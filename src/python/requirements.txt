@@ -8,4 +8,4 @@ zensols.util~=1.14.4
 zensols.rend~=1.1.1
 zensols.deepnlp~=1.14.0
 zensols.amr~=0.1.2
-zensols.propbankdb~=0.0.2
+zensols.propbankdb~=0.1.0
