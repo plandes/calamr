@@ -1,0 +1,61 @@
+capacity_calculator:
+  doc: 'calculates and the component alignment capacities'
+  desc: 'capacity calculation'
+  params:
+    similarity_dampen_exp:
+      doc: 'the exponent that dampens the cosine similarity for all nodes'
+      type: dict
+      value:
+        sentence: 1
+        concept: 2
+        neighborhood: 2
+        attribute: 0.8
+    concept_embedding_role_weights:
+      doc: "the weights for concept node's roles (i.e. ARG0 with neighbor node)"
+      type: dict
+      value:
+        neighbor: 0.3
+        role: 0.5
+    concept_embedding_weights:
+      doc: "the weights for concept node's weighted average across tokens and role sets"
+      type: dict
+      value:
+        token: 0.4
+        roleset: 0.4
+        roles: 0.2
+    neighbor_direction:
+      doc: >-
+        indicate how to find neighbors (from the point of the reverse/maxflow
+        graph with the root on the bottom), which is one of descendant (only
+        children and descendents), ancestor (only parents and ancestors), or all
+        (all neighbors)
+      type: choice
+      choices: [descendant, ancestor, all]
+      value: all
+    neighbor_embedding_weights:
+      doc: >-
+        weights used to scale each neighbor from the the current node and
+        immediate neighbor to the furthest neighbor; if there is only one
+        entry, the singleton value is multiplied by the respective nodes
+        embeddings
+      type: list
+      value: [0, 1, 0.1, 0.1]
+    neighbor_skew:
+      doc: >-
+        neighborhood sidmoid skew settings with y/x translation, and
+        compression (how much to compress or "squeeze" the function to provide
+        a faster transition) with cosine similarity as the input
+      type: dict
+      value:
+        y_trans: -0.5
+        x_trans: 0.5
+        compress: 1
+    sentence_dampen:
+      doc: >-
+        the slope for the linear dampening of nodes under a sentence by
+        sentence cosine similarity; the higher the value the lower the sentence
+        similarity, which leads to lower concept and attribute node
+        similarities
+      type: float
+      value: 0.5
+      interval: [0, 1]

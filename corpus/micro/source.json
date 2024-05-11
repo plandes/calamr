@@ -1,0 +1,85 @@
+[
+    {
+	"id": "liu-example",
+	"comment": "original 2014 Liu et al example",
+	"body": "I saw Joe's dog, which was running in the garden. The dog was chasing a cat.",
+	"summary": "Joe's dog was chasing a cat in the garden."
+    },
+    {
+	"id": "dup",
+	"body": "I saw Joe's dog, which was running in the garden. The dog was chasing a cat.",
+	"summary": "I saw Joe's dog, which was running in the garden. The dog was chasing a cat."
+    },
+    {
+	"id": "src-not-in-smy",
+	"body": "I saw Joe's dog, which was running in the garden. The dog was chasing a cat. A boy threw a ball.",
+	"summary": "Joe's dog was chasing a cat in the garden."
+    },
+    {
+	"id": "smy-not-in-src",
+	"body": "I saw Joe's dog, which was running in the garden. The dog was chasing a cat. A boy threw a ball.",
+	"summary": "Joe's dog was chasing a cat in the garden. A plane flew over."
+    },
+    {
+	"id": "coref-src",
+	"comment": "example has co-reference in only souce",
+	"body": "I saw Joe's dog, which was running in the garden. His dog was chasing a cat.",
+	"summary": "Joe's dog was chasing a cat in the garden."
+    },
+    {
+	"id": "coref-bipartite",
+	"body": "I saw Joe's dog, which was running in the garden. His dog was chasing a cat.",
+	"summary": "His dog was chasing a cat in the garden."
+    },
+    {
+	"id": "fixable-reentrancy",
+	"body": "Ancient people thought that these lights were dragon on fire and not sure what they are.",
+	"summary": "Ancient people saw dragons."
+    },
+    {
+	"id": "bad-reetrancy",
+	"body": "The lights usually grow brighter, then suddenly dim.",
+	"summary": "The Northern Lights are bands of color in the night sky."
+    },
+    {
+	"id": "no-summary",
+	"comment": "example with no summary to test failures",
+	"body": "I saw Joe's dog, which was running in the garden. The dog was chasing a cat."
+    },
+    {
+	"id": "earthquake",
+	"comment": "small example",
+	"body": "A 6.2-magnitude earthquake struck the Philippines early Tuesday, the U.S. Geological Survey said. The quake's epicenter was reported to be in Negros, about 360 miles south-southeast of Manila. The earthquake had a depth of nearly 12 miles, the USGS said. There were no immediate reports of injuries or damage.",
+	"summary": "The earthquake had a reported magnitude of 6.2. It struck in Negros, about 360 miles south-southeast of Manila."
+    },
+    {
+	"id": "falling-man",
+	"comment": "small example",
+	"body": "Esquire magazine published a previously written piece by journalist Tom Junod about the powerful \"falling man\" image of September 11. But somewhere in the site's technology, the image became associated with unrelated content, resulting in an unfortunate online display. .",
+	"summary": "An image of 9/11's \"falling man\" was posted with unrelated content. The mistake quickly spread on Twitter. Esquire's apology viewed as unsympathetic."
+    },
+    {
+	"id": "five-words-date",
+	"comment": "small example",
+	"body": "Never mind that it's six words long, the hashtag #FiveWordsToRuinADate is taking the Twitterverse by storm. It topped the trending list in both the United States and the United Kingdom. This new hashtag game has something for everyone -- from big corporations to regular folks. Perhaps that's why so many are joining in.",
+	"summary": "#FiveWordsToRuinADate is a top-trending hashtag in the U.S. and UK. Folks share their creativity and biases."
+    },
+    {
+	"id": "oscars",
+	"comment": "small example",
+	"body": "That statue wasn't the only thing that was golden. This year's Oscars ceremony also yielded some hysterical memes. From Lady Gaga's lobster-like gloves to Reese Witherspoon's forehead, social media had zero chill. But don't just take our word for it. And what the heck, John Travolta? No, seriously, what are you going through?",
+	"summary": "Celebs at the Oscars made for great memes. Lady Gaga's gloves were mocked. John Travolta was all over it."
+    },
+    {
+	"id": "soccer",
+	"comment": "small example",
+	"body": "By. Simon Jones. Manchester City striker John Guidetti is wanted by Feyenoord who are prepared to sign him on a permanent deal. The Swedish international had a successful loan spell with the Dutch club in 2011/12. Juventus have also shown an interest in the 22-year-old who is available for around £34.5million. Wanted: John Guidetti is a target for Feyenoord after struggling to win a place at Manchester City.",
+	"summary": "John Guidetti is a target for Feyenoord. Manchester City striker spent season 2011/12 on loan at the Dutch club. Juventus are also interested in £34.5m-rated Swede."
+    },
+    {
+	"id": "aurora-borealis",
+	"comment": "midsize example",
+	"body": "There are times when the night sky glows with bands of color. The bands may begin as cloud shapes and then spread into a great arc across the entire sky. They may fall in folds like a curtain drawn across the heavens. The lights usually grow brighter, then suddenly dim. During this time the sky glows with pale yellow, pink, green, violet, blue, and red. These lights are called the Aurora Borealis. Some people call them the Northern Lights. Scientists have been watching them for hundreds of years. They are not quite sure what causes them. In ancient times people were afraid of the Lights. They imagined that they saw fiery dragons in the sky. Some even concluded that the heavens were on fire.",
+	"summary": "The Aurora Borealis, or Northern Lights, are bands of color in the night sky. Ancient people thought that these lights were dragon on fire, and even modern scientists are not sure what they are."
+    }
+]

@@ -1,0 +1,143 @@
+{
+    "sequences": [
+	{"name": "graph_construction",
+	 "heading": "Nascent"
+	},
+	{"name": "construct_source",
+	 "render_name": "reversed_source",
+	 "heading": "Construct source graph",
+	 "controller": "calamr_construct_source_controller"
+	},
+	{"name": "coref_source",
+	 "class": "RenderUpSideDownGraphSequence",
+	 "process_name": "reversed_source",
+	 "heading": "Source coref resolution",
+	 "controller": "calamr_coref_source_controller"
+	},
+	{"name": "maxflow_source",
+	 "class": "RenderUpSideDownGraphSequence",
+	 "process_name": "reversed_source",
+	 "heading": "Source max flow",
+	 "controller": "calamr_maxflow_source_controller"
+	},
+	{"name": "normflow_source",
+	 "class": "RenderUpSideDownGraphSequence",
+	 "process_name": "reversed_source",
+	 "heading": "Source max flow normalized",
+	 "controller": "calamr_normflow_source_controller"
+	},
+	{"name": "save_source_flow",
+	 "process_name": "reversed_source",
+	 "render_name": null,
+	 "heading": "Save previous flow on source",
+	 "controller": "calamr_save_flow_source_controller"
+	},
+	{"name": "fix_reentrancy_source",
+	 "class": "RenderUpSideDownGraphSequence",
+	 "process_name": "reversed_source",
+	 "heading": "Fix source reentrancies",
+	 "controller": "calamr_fix_source_reentrancy_controller"
+	},
+	{"name": "zero_align_source_capacity",
+	 "class": "RenderUpSideDownGraphSequence",
+	 "process_name": "reversed_source",
+	 "heading": "Zero align source capacity",
+	 "controller": "calamr_align_capacity_set_controller"
+	},
+	{"name": "zero_role_source_capacity",
+	 "class": "RenderUpSideDownGraphSequence",
+	 "process_name": "reversed_source",
+	 "heading": "Zero role source capacity",
+	 "controller": "calamr_role_capacity_set_source_controller"
+	},
+	{"name": "remove_source_alignments",
+	 "class": "RenderUpSideDownGraphSequence",
+	 "process_name": "reversed_source",
+	 "heading": "Remove 0 capacity source component alignments",
+	 "controller": "calamr_remove_align_set_controller"
+	},
+	{"name": "construct_summary",
+	 "render_name": "reversed_summary",
+	 "heading": "Construct summary graph",
+	 "controller": "calamr_construct_summary_controller"
+	},
+	{"name": "maxflow_summary",
+	 "class": "RenderUpSideDownGraphSequence",
+	 "process_name": "reversed_summary",
+	 "heading": "Summary max flow",
+	 "controller": "calamr_maxflow_summary_controller"
+	},
+	{"name": "normflow_summary",
+	 "class": "RenderUpSideDownGraphSequence",
+	 "process_name": "reversed_summary",
+	 "heading": "Summary max flow normalized",
+	 "controller": "calamr_normflow_summary_controller"
+	},
+	{"name": "fix_reentrancy_summary",
+	 "class": "RenderUpSideDownGraphSequence",
+	 "process_name": "reversed_summary",
+	 "heading": "Fix summary reentrancies",
+	 "controller": "calamr_fix_summary_reentrancy_controller"
+	},
+	{"name": "zero_align_summary_capacity",
+	 "class": "RenderUpSideDownGraphSequence",
+	 "process_name": "reversed_summary",
+	 "heading": "Zero align summary capacity",
+	 "controller": "calamr_align_capacity_set_controller"
+	},
+	{"name": "zero_role_summary_capacity",
+	 "class": "RenderUpSideDownGraphSequence",
+	 "process_name": "reversed_summary",
+	 "heading": "Zero role summary capacity",
+	 "controller": "calamr_role_capacity_set_summary_controller"
+	},
+	{"name": "remove_summary_alignments",
+	 "class": "RenderUpSideDownGraphSequence",
+	 "process_name": "reversed_summary",
+	 "heading": "Remove 0 capacity summary component alignments",
+	 "controller": "calamr_remove_align_set_controller"
+	},
+	{"name": "restore_source_flow",
+	 "process_name": "reversed_source",
+	 "render_name": null,
+	 "heading": "Restore previous flow on source",
+	 "controller": "calamr_restore_flow_source_controller"
+	}
+    ],
+    "iterations": {
+	"construct": [
+	    {"name": "graph_construction", "render": 9},
+	    {"name": "construct_source", "render": 2, "updates": true},
+	    {"name": "coref_source", "render": 2, "updates": true},
+	    {"name": "maxflow_source", "render": 2, "updates": true},
+	    {"name": "fix_reentrancy_source", "render": 5, "updates": true},
+	    {"name": "normflow_source", "render": 5},
+	    {"name": "zero_align_source_capacity", "render": 6},
+	    {"name": "save_source_flow", "render": 0},
+	    {"name": "construct_summary", "render": 2, "updates": true},
+	    {"name": "maxflow_summary", "render": 2, "updates": true},
+	    {"name": "fix_reentrancy_summary", "render": 5, "updates": true},
+	    {"name": "normflow_summary", "render": 5},
+	    {"name": "zero_align_summary_capacity", "render": 6}
+	],
+	"loop": [
+	    {"name": "maxflow_source", "render": 3, "updates": true},
+	    {"name": "fix_reentrancy_source", "render": 5, "updates": true},
+	    {"name": "normflow_source", "render": 5},
+	    {"name": "zero_align_source_capacity", "render": 6},
+	    {"name": "zero_role_source_capacity", "render": 7},
+	    {"name": "save_source_flow", "render": 0},
+	    {"name": "maxflow_summary", "render": 3, "updates": true},
+	    {"name": "fix_reentrancy_summary", "render": 5, "updates": true},
+	    {"name": "normflow_summary", "render": 5},
+	    {"name": "zero_align_summary_capacity", "render": 6},
+	    {"name": "zero_role_summary_capacity", "render": 7}
+	],
+	"final": [
+	    {"name": "remove_source_alignments", "render": 9},
+	    {"name": "remove_summary_alignments", "render": 9},
+	    {"name": "restore_source_flow", "render": 0},
+	    {"name": "graph_construction", "render": 10}
+	]
+    }
+}

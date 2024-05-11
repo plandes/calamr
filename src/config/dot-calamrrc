@@ -1,0 +1,43 @@
+# @meta: {desc: 'CALAMR local configuration', date: '2023-11-22'}
+
+
+[calamr_corpus]
+# Corpus to use
+#
+#name = proxy-report
+#name = bio
+#name = little-prince
+name = adhoc
+
+
+[calamr_default]
+# Visualization:
+#   pyvis: dynamic graphs with movable nodes, but hard to read
+#   plotly: dynamic with fixed nodes, easier to read
+#   graphviz: flat, but can generate pdf, svg or eps
+#
+#renderer = pyvis
+#renderer = plotly
+renderer = graphviz
+
+
+[calamr_graph_render_graphviz]
+# Alignment graph in graphviz; one of: eps, svg, pdf
+#
+extension = svg
+
+
+[default]
+# Default paths
+#
+# the root directory is where corpora and data are stored; this can be set to
+# something like ~/.cache/calamr
+root_dir = ~/.cache/calamr
+data_dir = ${root_dir}/data
+
+
+[amr_default]
+# AMR
+#
+# default parse model
+#parse_model = spring

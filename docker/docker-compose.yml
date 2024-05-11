@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  calamr:
+    container_name: calamr
+    image: 'plandes/calamr'
+    command: /usr/bin/tail -f /dev/null
+
+    ## the image was built with all models installed, but they can be
+    ## overridden by uncommenting their paths below
+    ##
+    # volumes:
+    #   - ./mnt/data:/app/data
+    #   - ./mnt/model:/app/model
+
+    ## the following configuration maps results to the local files system; make
+    ## it one list if the previous `volumes` definitions are uncommitted
+    ##
+    volumes:
+      - ./mnt/results:/app/results
+
+    ## uncomment for your machine's hardware profile or leave commented out for
+    ## CPU only
+    ##
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]

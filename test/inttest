@@ -1,0 +1,172 @@
+#!/bin/bash
+# @meta {desc: 'Integration test script', date: '2024-03-15'}
+#
+# Integration testing for CALAMR.  This script uses the command line tool to
+# download corpora, align documents, score AMR graphs along with several other
+# tests.  The proxy corpus tests need the AMR 3.0 corpus file installed at
+# $AMR_30_CORP.
+
+
+PROG=$(basename $0)
+AMR_30_CORP=${HOME}/Desktop/amr_annotation_3.0_LDC2020T02.tgz
+unset CALAMRRC
+
+
+## Utiility
+#
+function prhead() {
+    echo "--------------------${1}:"
+}
+
+function bail() {
+    msg=$1 ; shift
+    echo "$PROG: error: $msg"
+    exit 1
+}
+
+function report() {
+    msg=$1 ; shift
+    echo "$PROG: test outcome: $msg"
+}
+
+function assert_success() {
+    ret=$1 ; shift
+    if [ $ret -ne 0 ] ; then
+	bail "last command failed"
+    fi
+}
+
+function assert_files() {
+    dir=$1 ; shift
+    expect=$1 ; shift
+    if [ ! -d $dir ] ; then
+	bail "no directory: $dir"
+    fi
+    cnt=$(ls $dir | wc -l)
+    if [ $cnt -ne $expect ] ; then
+	bail "expected $expect files in $dir but got $cnt"
+    fi
+    report "file count $dir: ${cnt}...OK"
+}
+
+function assert_file_len() {
+    file=$1 ; shift
+    expect=$1 ; shift
+    cnt=$(cat $file | wc -l)
+    if [ ! -f $file ] ; then
+	bail "no file: $file"
+    fi
+    if [ $cnt -ne $expect ] ; then
+	bail "expected $file to have $expect lines but got $cnt"
+    fi
+    report "file length $file: ${cnt}...OK"
+}
+
+function assert_output_len() {
+    cmd=$1 ; shift
+    expect=$1 ; shift
+    cnt=$($cmd | wc -l)
+    if [ $cnt -ne $expect ] ; then
+	bail "expected <$cmd> to have $expect lines but got $cnt"
+    fi
+    report "command output <$cmd>: ${cnt}...OK"
+}
+
+function check_amr_rel_corpus() {
+    if [ ! -f $AMR_30_CORP ] && [ ! -f download/$AMR_30_CORP ] ; then
+	bail "missing AMR corpus file: $AMR_30_CORP"
+    fi
+}
+
+## Setup
+#
+function clean() {
+    prhead "clean"
+
+    make hellfire
+    assert_success $?
+
+    rm -fr lp.txt example scored.csv
+    assert_success $?
+}
+
+function configure() {
+    prhead "configure"
+
+    echo "src/config/dot-calamrrc -> ~/.calamrrc"
+    cp src/config/dot-calamrrc ~/.calamrrc
+    assert_success $?
+}
+
+## Basic tests
+#
+function test_align() {
+    prhead "alignment"
+
+    ./calamr mkadhoc --corpusfile corpus/micro/source.json
+    assert_success $?
+
+    rm -fr example
+    ./calamr aligncorp liu-example -f txt -o example
+    assert_success $?
+
+    assert_files "example/liu-example" 7
+}
+
+function test_scoring() {
+    prhead "scoring"
+
+    assert_output_len "./calamr keys --override=calamr_corpus.name=little-prince" 1
+
+    ./calamr penman -o lp.txt --limit 5 \
+	     --override amr_default.parse_model=spring \
+	     corpus/amr-rel/amr-bank-struct-v3.0.txt
+    assert_success $?
+    assert_file_len lp.txt 58
+
+    ./calamr score --parsed lp.txt \
+	   --methods calamr,smatch,wlk -o scored \
+	     corpus/amr-rel/amr-bank-struct-v3.0.txt
+    assert_success $?
+    assert_file_len scored.csv 6
+}
+
+
+## Proxy tests
+#
+function test_proxy() {
+    prhead "proxy-corpus"
+
+    if [ ! -f ./download/$AMR_30_CORP ] ; then
+	mkdir -p ./download
+	assert_success $?
+
+	cp $AMR_30_CORP ./download
+	assert_success $?
+    fi
+
+    ./src/bin/merge-proxy-anons.py
+    assert_success $?
+    assert_output_len "./calamr keys --override=calamr_corpus.name=proxy-report" 367
+
+    rm -fr example
+    ./calamr aligncorp 20041010_0024 -f txt -o example \
+	   --override calamr_corpus.name=proxy-report
+    assert_success $?
+    assert_files example/20041010_0024 7
+}
+
+
+## Main
+#
+function main() {
+    check_amr_rel_corpus
+    clean
+    configure
+    test_align
+    test_scoring
+    test_proxy
+    clean
+}
+
+main

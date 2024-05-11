@@ -1,0 +1,71 @@
+# description: graphviz/dot PDF dynamic graph configuration
+
+## Graph visualization
+#
+# shapes:
+#  - label inside: ellipse, circle, database, box, text
+#  - label outside: image, circularImage, diamond, dot, star, triangle, triangleDown, square and icon
+calamr_graph_render_graphviz_visual_style:
+  add_heading: true
+  graph:
+    nodesep: 0.7
+    ranksep: 0.7
+  label:
+    wrap_width: 60
+  attributes:
+    labelloc: 'top'
+    labeljust: 'left'
+    # TB: top to bottom, LR: left to right
+    rankdir: 'TB'
+    # half screen size
+    #size: '16'
+    size: '30'
+  node:
+    label:
+      add_id: false
+    comp:
+      source:
+        fillcolor: '#DDA0DD'
+        style: 'filled'
+      summary:
+        fillcolor: '#C7ECC6'
+        style: 'filled'
+    attr:
+      default:
+        shape: 'rectangle'
+      concept:
+        shape: 'ellipse'
+      doc:
+        shape: 'rectangle'
+        style: 'filled'
+        fillcolor: '#DCDCDC'
+      attribute:
+        shape: 'rectangle'
+        style: 'rounded'
+      control:
+        shape: 'circle'
+        fillcolor: '#FF69B4'
+        style: 'filled'
+  edge:
+    label:
+      add_id: false
+    attr:
+      default:
+        arrowType: normal
+        penwidth: 1
+    weighted_edge_add:
+      color: red
+    weights:
+      flow: true
+      flow_scale: 10
+      weighted_scale: 2
+      color_ends: 3
+      color_buckets: 20
+      max_capacity: 5
+      max_edge_width: 7
+
+calamr_graph_render_graphviz:
+  class_name: zensols.calamr.render.graphvis.GraphVisGraphRenderer
+  browser_manager: 'instance: rend_browser_manager'
+  visual_style: 'instance: calamr_graph_render_graphviz_visual_style'
+  sleep: 0.3

@@ -1,0 +1,22 @@
+# description: scorer objects
+
+calamr_score_method:
+  class_name: zensols.calamr.score.CalamrScoreMethod
+  word_piece_doc_factory: 'instance: ${calamr_default:word_piece_doc_factory}'
+  doc_graph_factory: 'instance: calamr_doc_graph_factory'
+  doc_graph_aligner: 'instance: calamr_doc_graph_aligner'
+
+calamr_scorer_methods:
+  calamr: >-
+    'calamr': 'calamr_score_method',
+
+nlp_scorer:
+  class_name: zensols.nlp.score.Scorer
+  methods: >-
+    instance: dict: {
+      ${nlp_scorer_methods:bleu}
+      ${nlp_scorer_methods:rouge}
+      ${amr_scorer_methods:smatch}
+      ${amr_scorer_methods:wlk}
+      ${calamr_scorer_methods:calamr}
+      }

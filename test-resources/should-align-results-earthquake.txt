@@ -1,0 +1,55 @@
+summary:
+    The earthquake had a reported magnitude of 6.2.
+    It struck in Negros, about 360 miles south-southeast of Manila.
+sections:
+    no section sentences
+        A 6.2-magnitude earthquake struck the Philippines early Tuesday, the U.S. Geo...
+        The quake's epicenter was reported to be in Negros, about 360 miles south-sou...
+        The earthquake had a depth of nearly 12 miles, the USGS said.
+        There were no immediate reports of injuries or damage.
+statistics:
+    agg:
+        aligned_portion_hmean: 0.6606217616580311
+        mean_flow: 1.04
+        tot_alignable: 74
+        tot_aligned: 47
+        aligned_portion: 0.6351351351351351
+        reentrancies: 1
+    bipartite_relations: 1
+    components:
+        source:
+            connected:
+                alignable: 52
+                aligned: 30
+                aligned_portion: 0.5769230769230769
+            counts:
+                edge:
+                    doc: 0
+                    role: 45
+                    sentence: 8
+                node:
+                    attribute: 11
+                    concept: 37
+                    doc: 1
+                    sentence: 4
+            reentrancies: 1
+            relations: 0
+            root_flow: 0.62
+        summary:
+            connected:
+                alignable: 22
+                aligned: 17
+                aligned_portion: 0.7727272727272727
+            counts:
+                edge:
+                    doc: 0
+                    role: 18
+                    sentence: 4
+                node:
+                    attribute: 4
+                    concept: 16
+                    doc: 1
+                    sentence: 2
+            reentrancies: 0
+            relations: 0
+            root_flow: 1.45

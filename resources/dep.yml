@@ -1,0 +1,55 @@
+# description: dependenency configuration
+
+
+## Language
+#
+transformer_fixed_resource:
+  # sbert large model
+  model_id: sentence-transformers/all-mpnet-base-v2
+  cache: true
+
+white_space_doc_paresr:
+  class_name: zensols.nlp.WhiteSpaceTokenizerFeatureDocumentParser
+
+
+## Embedding
+#
+calamr_embedding_resource:
+  class_name: zensols.calamr.EmbeddingResource
+  torch_config: 'instance: gpu_torch_config'
+  # helps with node embeddings that have no token alignments
+  word_piece_doc_parser: 'instance: white_space_doc_paresr'
+  word_piece_doc_factory: 'instance: ${calamr_default:word_piece_doc_factory}'
+  roleset_stash: "call({'param': {'attribute': 'roleset_stash'}}): pbdb_db"
+
+
+## AMR
+#
+# the data from AMRs to include in serialized output (see
+# zensols.amr.annotate.AmrSerializedFactory)
+amr_serialized_factory:
+  includes:
+    - sentence_text
+    - sentences
+    - annotated_summary
+    - annotated_sections
+
+# override to add word embeddings
+amr_anon_doc_factory:
+  class_name: zensols.calamr.annotate.CalamrAnnotatedAmrFeatureDocumentFactory
+  word_piece_doc_factory: 'instance: ${calamr_default:word_piece_doc_factory}'
+  remove_alignments: true
+
+# AMR coreference resolution
+amr_coref_resolver:
+  # coref doesn't work in subprocess threads, which is where calamr invokes it,
+  # which is in `calamr_flow_graph_result_multi_stash`
+  use_multithreading: false
+
+# save plots to calamr package configured path
+amr_dumper:
+  target_dir: 'path: ${calamr_default:results_dir}'
+
+# install relative to package configured path
+amr_anon_corpus_installer:
+  base_directory: 'path: ${calamr_default:amr_rel_dir}'

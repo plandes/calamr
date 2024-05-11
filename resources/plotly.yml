@@ -1,0 +1,44 @@
+# description: Plotly graph configuration
+
+
+## Graph visualization
+#
+calamr_graph_render_plotly_visual_style:
+  label:
+    wrap_width: 60
+  node:
+    label:
+      add_id: false
+    z-sep: .5
+    comp:
+      source:
+        color: '#DDA0DD'
+        symbol: 'circle'
+        size: 8
+        line:
+          color: black
+          width: 0.5
+      summary:
+        color: '#C7ECC6'
+        symbol: 'circle'
+        size: 8
+        line:
+          color: black
+          width: 0.5
+  edge:
+    line_width: 1
+    capacity_line_scale: 2
+    weights:
+      flow: true
+      flow_scale: 10
+      weighted_scale: 2
+      color_ends: 3
+      color_buckets: 20
+      max_capacity: 10
+      max_edge_width: 15
+
+calamr_graph_render_plotly:
+  class_name: zensols.calamr.render.plotly.PlotlyGraphRenderer
+  browser_manager: 'instance: rend_browser_manager'
+  visual_style: 'instance: calamr_graph_render_plotly_visual_style'
+  sleep: 1

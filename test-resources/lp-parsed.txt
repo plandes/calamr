@@ -1,0 +1,58 @@
+# ::snt Chapter 1 .
+# ::id lpp_1943.1
+(z1 / chapter~e.0
+      :mod 1~e.1)
+
+# ::snt Once when I was six years old I saw a magnificent picture in a book , called True Stories from Nature , about the primeval forest .
+# ::id lpp_1943.2
+(z1 / see-01~e.8
+      :frequency 1
+      :ARG0 (z2 / i~e.2)
+      :ARG1 (z3 / picture~e.11
+            :mod (z4 / magnificent~e.10)
+            :topic (z5 / forest~e.25
+                  :mod (z6 / primeval~e.24))
+            :location (z7 / book~e.14
+                  :name (z8 / name
+                        :op1 "True"~e.17
+                        :op2 "Stories"~e.18
+                        :op3 "from"~e.19
+                        :op4 "Nature"~e.20)))
+      :time (z9 / age-01
+            :ARG1 z2
+            :ARG2 (z10 / temporal-quantity
+                  :quant 6~e.4
+                  :unit (z11 / year~e.5))))
+
+# ::snt It was a picture of a boa constrictor in the act of swallowing an animal .
+# ::id lpp_1943.3
+(z1 / picture~e.3
+      :topic (z2 / constrictor~e.7
+            :mod (z3 / boa~e.6)
+            :ARG0-of (z4 / swallow-01~e.12
+                  :ARG1 (z5 / animal~e.14))))
+
+# ::snt Here is a copy of the drawing .
+# ::id lpp_1943.4
+(z1 / thing
+      :ARG2-of (z2 / copy-01~e.3
+            :ARG1 (z3 / thing
+                  :ARG1-of (z4 / draw-01~e.6))))
+
+# ::snt In the book it said : " Boa constrictors swallow their prey whole , without chewing it .
+# ::id lpp_1943.5
+(z1 / say-01~e.4
+      :ARG0 (z2 / book~e.2)
+      :ARG1 (z3 / swallow-01~e.9
+            :ARG0 (z4 / person
+                  :ARG0-of (z5 / constrict-01~e.8
+                        :ARG1 (z6 / river
+                              :name (z7 / name
+                                    :op1 "Boa"~e.7))))
+            :ARG1 (z8 / prey~e.11
+                  :poss z4)
+            :extent (z9 / whole~e.12)
+            :manner (z10 / chew-01~e.15
+                  :polarity -
+                  :ARG0 z4
+                  :ARG1 z8)))

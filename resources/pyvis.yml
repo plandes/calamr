@@ -1,0 +1,125 @@
+# description: pyvis HTML dynamic graph configuration
+
+## Graph visualization (pyvis)
+# https://pyvis.readthedocs.io/en/latest/documentation.html
+#
+# shapes:
+#  - label inside: ellipse, circle, database, box, text
+#  - label outside: image, circularImage, diamond, dot, star, triangle, triangleDown, square and icon
+calamr_graph_render_pyvis_visual_style:
+  label_format:
+    edge: '{ge.label}'
+    node: '{gn.description}'
+    wrap_width: 60
+  # offset from the root to where colors should start graduating
+  root_offset: 2
+  # the color lightness of the nodes
+  color_lightness:
+    default: 0.8
+    source: 0.95
+    summary: 0.75
+  component:
+    # used for source
+    default:
+      borderWidth: 1
+    summary:
+      borderWidth: 1
+  # additional style to add to the root node
+  root_add:
+    shape: box
+    color: '#DCDCDC'
+  # additional style to add to the doc nodes
+  doc_add:
+    shape: box
+  # additional style to add to the sentence nodes
+  sent_add:
+    shape: box
+#    color: LightSalmon
+  # additional style to add to the concept nodes
+  concept_add:
+    shape: ellipse
+  concept_color:
+    source: rainbow
+    summary: rainbow
+    partition_disable:
+      - color: yellow
+      - color: tan
+    partition:
+      - borderWidth: 1
+      - borderWidth: 7
+    component:
+      source: '#DDA0DD'
+      summary: '#C7ECC6'
+  # additional style to add to the attribute nodes
+  attribute_add:
+    shape: box
+  terminal_add:
+    shape: box
+    color: '#FF69B4'
+  sink_add:
+    mass_disable: 20
+  # edges style
+  edge_add:
+    color: Black
+    width: 1
+  edge_capacity_strlen: 5
+  edge_flow_strlen: 5
+  # colors of edges based on their AMR roles
+  role_colors:
+    ARG: blue
+    ARG-of: yellow
+    op: green
+    inverse: darkblue
+  weighted_edge_add:
+    color: red
+    arrowStrikethrough: false
+  weights:
+    flow: true
+    scale: 5
+    color_ends: 3
+    color_buckets: 20
+    max_capacity: 5
+    max_edge_width: 13
+  # whether to show the layout config buttons
+  show_layout_buttons: false
+  options:
+    rooted:
+      edges:
+        smooth: true
+        shadow: true
+      physics:
+        enabled: true
+      layout:
+        improvedLayout: true
+        randomSeed: 1
+        hierarchical:
+          enabled: true
+          #direction: 'LR'
+          # the separation of the nodes when rendered as a tree
+          levelSeparation: 150
+          # separation width wise
+          nodeSpacing: 150
+          #blockShifting: false
+          #sortMethod: directed
+          parentCentralization: false
+          #shakeTowards: leaves
+    non_rooted:
+      edges:
+        smooth: true
+        shadow: true
+      layout:
+        improvedLayout: true
+        randomSeed: 1
+      physics:
+        randomSeed: 1
+        enabled: true
+        solver: 'repulsion'
+        repulsion:
+          nodeDistance: 160
+
+calamr_graph_render_pyvis:
+  class_name: zensols.calamr.render.pyvis.PyvisGraphRenderer
+  browser_manager: 'instance: rend_browser_manager'
+  visual_style: 'instance: calamr_graph_render_pyvis_visual_style'
+  sleep: 0.1
+  rooted: false

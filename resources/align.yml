@@ -1,0 +1,254 @@
+#@meta {desc: 'alignment objects context', date: '2024-04-15'}
+
+
+## Defaults
+#
+calamr_default:
+  # a comma separated list of section instances with a `clear` method to delete
+  # cached data
+  clearables: calamr_flow_graph_result_stash, ${calamr_default:amr_anon_doc_stash}
+
+# use AMR annotation stash, then add embeddings to it
+calamr_anon_feature_doc_stash:
+  class_name: zensols.calamr.annotate.AddEmbeddingsFeatureDocumentStash
+  delegate: 'instance: amr_anon_feature_doc_stash'
+  word_piece_doc_factory: 'instance: ${calamr_default:word_piece_doc_factory}'
+
+
+## Alignment hyperparameters
+#
+calamr_alignment:
+  # the minimum amount of flow to trigger setting the capacity of a target edge
+  # capacity to `capacity_min`
+  align_min_capacity_cutoff: 0.1
+  # finds low flow role edges at or lower than this value and sets (zeros out)
+  # all the capacities of all the connected edge aligmnets recursively for all
+  # descendants
+  role_min_flow_cutoff: 0.1
+  # the graph component alignment edges are removed if their capacities are at
+  # or below this value, which is set by anything lower than
+  # `min_capacity_cutoff` after the graph sequence completes on converge
+  capacity_min: 0
+
+
+## Graph instantiation
+#
+# prototype entry used for all top level document graph instantiating
+calamr_doc_graph:
+  class_name: zensols.calamr.DocumentGraph
+  name: factory_built
+  graph_attrib_context: 'instance: calamr_graph_attrib_context'
+
+# creates the `igraph.Graph` and populates `GraphAttribute` instances
+calamr_doc_graph_decorator_isomorph:
+  class_name: zensols.calamr.morph.IsomorphDocumentGraphDecorator
+  graph_attrib_context_name: calamr_graph_attrib_context
+
+
+# summary graph instantiation
+calamr_doc_graph_factory:
+  class_name: zensols.calamr.summary.factory.AnnotatedSummaryAmrDocumentGraphFactory
+  graph_decorators: >-
+    instance: tuple:
+      calamr_intermediate_rm_node_doc_graph_decorator,
+      calamr_doc_graph_decorator_isomorph
+  graph_attrib_context: 'instance: calamr_graph_attrib_context'
+  doc_graph_section_name: calamr_doc_graph
+
+# short cuts the `section`, `header` to make the top level `header` node the
+# `body-sub` that has the sentences
+calamr_intermediate_rm_node_doc_graph_decorator:
+  class_name: zensols.calamr.summary.factory.IntermediateNodeRemoveDocumentGraphDecorator
+
+
+
+## Graph alignment constructors
+#
+calamr_noop_alignment_constructor_section:
+  class_name: zensols.calamr.GraphAlignmentConstructor
+
+calamr_flow_to_source_alignment_constructor:
+  class_name: zensols.calamr.summary.alignconst.ReverseFlowGraphAlignmentConstructor
+  capacity_calculator: 'instance: calamr_capacity_calculator'
+  reverse_alignments: true
+
+calamr_flow_to_summary_alignment_constructor:
+  class_name: zensols.calamr.summary.alignconst.SharedGraphAlignmentConstructor
+  capacity_calculator: 'instance: calamr_capacity_calculator'
+  reverse_alignments: false
+  org_constructor: 'instance: calamr_flow_to_source_alignment_constructor'
+
+
+## Graph alignment controllers
+#
+calamr_construct_source_controller:
+  class_name: zensols.calamr.ctrl.ConstructDocumentGraphController
+  constructor: 'instance: calamr_flow_to_source_alignment_constructor'
+  renderer: 'instance: calamr_graph_render_${calamr_default:renderer}'
+  build_graph_name: reversed_source
+
+calamr_construct_summary_controller:
+  class_name: zensols.calamr.ctrl.ConstructDocumentGraphController
+  constructor: 'instance: calamr_flow_to_summary_alignment_constructor'
+  renderer: 'instance: calamr_graph_render_${calamr_default:renderer}'
+  build_graph_name: reversed_summary
+
+calamr_coref_source_controller:
+  class_name: zensols.calamr.summary.coref.CorefDocumentGraphController
+  constructor: 'instance: calamr_flow_to_source_alignment_constructor'
+
+calamr_maxflow_source_controller:
+  class_name: zensols.calamr.ctrl.MaxflowDocumentGraphController
+  constructor: 'instance: calamr_flow_to_source_alignment_constructor'
+
+calamr_maxflow_summary_controller:
+  class_name: zensols.calamr.ctrl.MaxflowDocumentGraphController
+  constructor: 'instance: calamr_flow_to_summary_alignment_constructor'
+
+calamr_fix_source_reentrancy_controller:
+  class_name: zensols.calamr.ctrl.FixReentrancyDocumentGraphController
+  component_name: source
+  maxflow_controller: 'instance: calamr_maxflow_source_controller'
+  only_report: ${calamr_default:only_report_reentrancies}
+
+calamr_fix_summary_reentrancy_controller:
+  class_name: zensols.calamr.ctrl.FixReentrancyDocumentGraphController
+  component_name: summary
+  maxflow_controller: 'instance: calamr_maxflow_summary_controller'
+  only_report: ${calamr_default:only_report_reentrancies}
+
+calamr_normflow_source_controller:
+  class_name: zensols.calamr.ctrl.NormFlowDocumentGraphController
+  constructor: 'instance: calamr_flow_to_source_alignment_constructor'
+  component_names: 'set: source'
+  normalize_mode: fpn
+
+calamr_normflow_summary_controller:
+  class_name: zensols.calamr.ctrl.NormFlowDocumentGraphController
+  constructor: 'instance: calamr_flow_to_summary_alignment_constructor'
+  component_names: 'set: summary'
+  normalize_mode: ${calamr_normflow_source_controller:normalize_mode}
+
+calamr_flow_set_summary_controller:
+  class_name: zensols.calamr.ctrl.FlowSetDocumentGraphController
+  match_edge_classes: "eval({'import': ['zensols.calamr as c']}): {c.TerminalGraphEdge}"
+
+calamr_flow_discount_summary_controller:
+  class_name: zensols.calamr.ctrl.FlowDiscountDocumentGraphController
+  discount_sum: ${calamr_graph_attrib_context:component_alignment_capacity}
+  component_names: 'set: source'
+
+calamr_align_capacity_set_controller:
+  class_name: zensols.calamr.ctrl.AlignmentCapacitySetDocumentGraphController
+  min_capacity: ${calamr_alignment:align_min_capacity_cutoff}
+  capacity: ${calamr_alignment:capacity_min}
+
+calamr_role_capacity_set_source_controller:
+  class_name: zensols.calamr.ctrl.RoleCapacitySetDocumentGraphController
+  component_names: 'set: source'
+  min_flow: ${calamr_alignment:role_min_flow_cutoff}
+  capacity: ${calamr_alignment:capacity_min}
+
+calamr_role_capacity_set_summary_controller:
+  class_name: zensols.calamr.ctrl.RoleCapacitySetDocumentGraphController
+  component_names: 'set: summary'
+  min_flow: ${calamr_alignment:role_min_flow_cutoff}
+  capacity: ${calamr_alignment:capacity_min}
+
+calamr_remove_align_set_controller:
+  class_name: zensols.calamr.ctrl.RemoveAlignsDocumentGraphController
+  min_capacity: ${calamr_alignment:capacity_min}
+
+calamr_save_flow_source_controller:
+  class_name: zensols.calamr.ctrl.SnapshotDocumentGraphController
+  component_names: ['source']
+  snapshot_source: null
+
+calamr_restore_flow_source_controller:
+  class_name: zensols.calamr.ctrl.SnapshotDocumentGraphController
+  component_names: ['source']
+  snapshot_source: 'instance: calamr_save_flow_source_controller'
+
+
+## Graph editing automation
+#
+# aggregated flow data
+calamr_flow_doc_graph_manager:
+  class_name: zensols.calamr.FlowDocumentGraphManager
+
+calamr_flow_graph_result_context:
+  class_name: zensols.calamr.flow._FlowGraphResultContext
+  renderer: 'instance: calamr_graph_render_${calamr_default:renderer}'
+  graph_attrib_context: 'instance: calamr_graph_attrib_context'
+
+calamr_flow_graph_result:
+  class_name: zensols.calamr.FlowGraphResult
+  component_paths: [[reversed_source, source], [reversed_summary, summary]]
+  context: 'instance: calamr_flow_graph_result_context'
+
+# graph sequencer
+calamr_graph_sequencer:
+  class_name: zensols.calamr.GraphSequencer
+  sequence_path: 'resource(zensols.calamr): resources/sequence.json'
+  heading_format: '{seq.heading} ({iter_name} {run_iter})'
+
+# graph alignment client facade
+calamr_doc_graph_aligner:
+  class_name: zensols.calamr.MaxflowDocumentGraphAligner
+  doc_graph_name: reversed_summary
+  # hyperparams
+  hyp: "call({'param': {'path': 'capacity_calculator'}}): capacity_calculator_hyperparam"
+  renderer: 'instance: calamr_graph_render_${calamr_default:renderer}'
+  flow_graph_result_name: 'calamr_flow_graph_result'
+  graph_sequencer_name: 'calamr_graph_sequencer'
+  max_sequencer_iterations: 30
+  render_level: 5
+  init_loops_render_level: 0
+  output_dir: null
+
+
+## Alignment flow results
+#
+# aligns and creates FlowGraphResult instances
+calamr_flow_graph_result_factory_stash:
+  class_name: zensols.calamr.stash.FlowGraphResultFactoryStash
+  anon_doc_stash: 'instance: ${calamr_default:amr_anon_doc_stash}'
+  doc_graph_factory: 'instance: calamr_doc_graph_factory'
+  doc_graph_aligner: 'instance: calamr_doc_graph_aligner'
+
+# backing stash
+calamr_flow_graph_result_persist_stash:
+  class_name: zensols.persist.DirectoryStash
+  path: 'path: ${calamr_default:data_dir}/aligns'
+
+# on demand caching stash
+calamr_flow_graph_result_lazy_stash:
+  class_name: zensols.persist.FactoryStash
+  factory: 'instance: calamr_flow_graph_result_factory_stash'
+  delegate: 'instance: calamr_flow_graph_result_persist_stash'
+  enable_preemptive: false
+
+# multiprocessing stash to process the entire corpus
+calamr_flow_graph_result_preemptive_stash:
+  class_name: zensols.multi.MultiProcessFactoryStash
+  factory: 'instance: calamr_flow_graph_result_factory_stash'
+  delegate: 'instance: calamr_flow_graph_result_persist_stash'
+  workers: ${calamr_default:preemptive_workers}
+
+# the stash configured/used by the client of this package
+calamr_flow_graph_result_stash:
+  class_name: zensols.calamr.stash.FlowGraphRestoreStash
+  delegate: 'instance: calamr_flow_graph_result_${calamr_default:flow_graph_result_caching}_stash'
+  flow_graph_result_context: 'instance: calamr_flow_graph_result_context'
+
+
+## Client facade
+#
+calamr_resource:
+  class_name: zensols.calamr.app.Resource
+  anon_doc_stash: 'instance: ${calamr_default:amr_anon_doc_stash}'
+  serialized_factory: 'instance: amr_serialized_factory'
+  doc_graph_factory: 'instance: calamr_doc_graph_factory'
+  doc_graph_aligner: 'instance: calamr_doc_graph_aligner'
+  flow_results_stash: 'instance: calamr_flow_graph_result_stash'
+  anon_doc_factory: 'instance: amr_anon_doc_factory'
