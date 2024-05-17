@@ -90,3 +90,12 @@ class FlowGraphRestoreStash(DelegateStash, PrimeableStash):
         # vs. preemtive; so rely on existence in keys
         self.prime()
         return Stash.exists(self, name)
+
+    def get(self, name: str, default: FlowGraphResult = None) -> \
+            FlowGraphResult:
+        self.prime()
+        res: FlowGraphResult = self.load(name)
+        if res is None:
+            return default
+        else:
+            return res
