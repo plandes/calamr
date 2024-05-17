@@ -13,10 +13,9 @@ from igraph import Graph, Vertex, Edge
 from pyvis.network import Network
 from zensols.util import APIError
 from zensols.config import Settings
-from zensols.amr import AmrFeatureSentence
 from .base import GraphRenderer, RenderContext
 from .. import (
-    GraphNode, GraphEdge, AmrDocumentNode, RoleGraphEdge, DocumentGraph,
+    GraphNode, GraphEdge, RoleGraphEdge, DocumentGraph,
     SentenceGraphAttribute, DocumentGraphNode, SentenceGraphNode,
     ConceptGraphNode, AttributeGraphNode, TerminalGraphNode,
     ComponentAlignmentGraphEdge, DocumentGraphComponent,
