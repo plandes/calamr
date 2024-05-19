@@ -422,7 +422,7 @@ Copyright (c) 2023 - 2024 Paul Landes
 [micro corpus]: corpus/micro/source.json
 [LDC2020T02]: https://catalog.ldc.upenn.edu/LDC2020T02
 [SPRING]: https://github.com/SapienzaNLP/spring
-[CALAMR: Component ALignment for Abstract Meaning Representation]: https://example.com
+[CALAMR: Component ALignment for Abstract Meaning Representation]: https://aclanthology.org/2024.lrec-main.236/
 [ISI]: https://amr.isi.edu
 
 [amrlib]: https://github.com/bjascob/amrlib
