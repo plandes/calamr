@@ -377,14 +377,23 @@ This project, or reference model code, uses:
 If you use this project in your research please use the following BibTeX entry:
 
 ```bibtex
-@inproceedings{landesCALAMRComponentALignment2024,
-  title = {{{CALAMR}}: {{Component ALignment}} for {{Abstract Meaning Representation}}},
-  booktitle = {The 2024 {{Joint International Conference}} on {{Computational Linguistics}}, {{Language Resources}} and {{Evaluation}}},
-  author = {Landes, Paul and Di Eugenio, Barbara},
-  date = {2024-05-20},
-  publisher = {International Committee on Computational Linguistics},
-  location = {Turin, Italy},
-  eventtitle = {{{LREC-COLING}} 2024}
+@inproceedings{landes-di-eugenio-2024-calamr-component,
+    title = "{CALAMR}: Component {AL}ignment for {A}bstract {M}eaning {R}epresentation",
+    author = "Landes, Paul  and
+      Di Eugenio, Barbara",
+    editor = "Calzolari, Nicoletta  and
+      Kan, Min-Yen  and
+      Hoste, Veronique  and
+      Lenci, Alessandro  and
+      Sakti, Sakriani  and
+      Xue, Nianwen",
+    booktitle = "Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024)",
+    month = may,
+    year = "2024",
+    address = "Torino, Italy",
+    publisher = "ELRA and ICCL",
+    url = "https://aclanthology.org/2024.lrec-main.236",
+    pages = "2622--2637"
 }
 ```
 

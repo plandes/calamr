@@ -4,7 +4,7 @@ message: >-
   If you use this software, please cite it using the
   metadata from this file.
 type: software
-date-released: 2023-06-30
+date-released: 2024-05-19
 repository-code: https://github.com/uic-nlp-lab/calamr
 authors:
   - given-names: Paul
@@ -24,11 +24,11 @@ preferred-citation:
       family-names: Di Eugenio
       affiliation: University of Illinois at Chicago
   title: 'CALAMR: Component ALignment for Abstract Meaning Representation'
-  url: https://aclanthology.org/TBD
+  url: https://aclanthology.org/2024.lrec-main.236/
   year: 2024
   conference:
-    name: The 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation
-    city: Turin
+    name: Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024)
+    city: Torino
     country: IT
     date-start: 2024-05-20
     date-end: 2024-05-25
