@@ -56,6 +56,7 @@ The recommended reading order for this project:
 
 1. The abstract and introduction of the paper [CALAMR: Component ALignment for
    Abstract Meaning Representation]
+1. The [conference slides](https://plandes.github.io/calamr/doc/CalamrSlides.pdf)
 1. [Overview and implementation guide](https://plandes.github.io/calamr/doc/CalamrImplementGuide.pdf)
 1. [Full documentation](https://plandes.github.io/calamr/index.html)
 1. [API reference](https://plandes.github.io/calamr/api.html)
