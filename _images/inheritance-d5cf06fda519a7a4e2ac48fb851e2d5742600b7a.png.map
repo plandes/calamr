@@ -1,0 +1,5 @@
+<map id="inheritance9c6e38c599" name="inheritance9c6e38c599">
+<area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="125,5,197,36"/>
+<area shape="rect" id="node2" href="#zensols.calamr.doc.DocumentGraphDecorator" target="_top" title="A strategy to create a graph from a document structure." alt="" coords="43,84,278,115"/>
+<area shape="rect" id="node3" href="#zensols.calamr.morph.IsomorphDocumentGraphDecorator" target="_top" title="Populates a :class:`.igraph.Graph` attributes from a" alt="" coords="5,163,316,193"/>
+</map>

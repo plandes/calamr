@@ -1,0 +1,6 @@
+<map id="inheritance447a36b0ae" name="inheritance447a36b0ae">
+<area shape="rect" id="node1" href="zensols.calamr.html#zensols.calamr.alignconst.GraphAlignmentConstructor" target="_top" title="Adds additional nodes and edges that enable the maxflow algorithm to be" alt="" coords="58,5,305,36"/>
+<area shape="rect" id="node3" href="#zensols.calamr.summary.alignconst.SummaryGraphAlignmentConstructor" target="_top" title="A graph alignment constructor for summary graphs." alt="" coords="18,84,345,115"/>
+<area shape="rect" id="node2" href="#zensols.calamr.summary.alignconst.ReverseFlowGraphAlignmentConstructor" target="_top" title="A constructor that::" alt="" coords="5,163,357,193"/>
+<area shape="rect" id="node4" href="#zensols.calamr.summary.alignconst.SharedGraphAlignmentConstructor" target="_top" title="Creates graph alignment :class:`..ComponentAlignmentGraphEdge` instances" alt="" coords="29,241,334,272"/>
+</map>

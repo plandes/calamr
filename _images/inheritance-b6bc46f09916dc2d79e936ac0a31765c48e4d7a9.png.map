@@ -1,0 +1,17 @@
+<map id="inheritance861a168bdc" name="inheritance861a168bdc">
+<area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="159,5,231,36"/>
+<area shape="rect" id="node7" title="An interface for classes that have multi&#45;line debuging capability." alt="" coords="5,163,93,193"/>
+<area shape="rect" id="node12" title="A dictionary&#45;like pure virtual class for CRUDing data, most of which read" alt="" coords="221,84,293,115"/>
+<area shape="rect" id="node13" title="All subclasses have the ability to deallocate any resources. &#160;This is" alt="" coords="67,84,197,115"/>
+<area shape="rect" id="node14" title="Any subclass that has the ability (and need) to do preprocessing. &#160;For" alt="" coords="317,84,421,115"/>
+<area shape="rect" id="node2" href="#zensols.calamr.annotate.AddEmbeddingsFeatureDocumentStash" target="_top" title="Add embeddings to AMR feature documents. &#160;Embedding population is" alt="" coords="364,320,711,351"/>
+<area shape="rect" id="node3" title="Delegate pattern. &#160;It can also be used as a no&#45;op if no delegate is" alt="" coords="351,241,491,272"/>
+<area shape="rect" id="node4" title="Any subclass that has the ability to do processing before any CRUD method" alt="" coords="503,163,654,193"/>
+<area shape="rect" id="node5" title="A document of AMR graphs, which is indexible and iterable." alt="" coords="120,241,259,272"/>
+<area shape="rect" id="node8" title="An AMR document containing a unique document identifier from the corpus." alt="" coords="79,320,300,351"/>
+<area shape="rect" id="node6" title="Classes can extend this that want to persist :class:`.PersistedWork`" alt="" coords="117,163,307,193"/>
+<area shape="rect" id="node15" href="#zensols.calamr.annotate.ProxyReportAnnotatedAmrDocument" target="_top" title="Overrides the sections property to skip duplicate summary sentences also" alt="" coords="29,399,350,429"/>
+<area shape="rect" id="node9" title="Creates instances of :class:`.AmrFeatureDocument` each with" alt="" coords="475,5,818,36"/>
+<area shape="rect" id="node10" href="#zensols.calamr.annotate.CalamrAnnotatedAmrFeatureDocumentFactory" target="_top" title="Adds wordpiece embeddings to" alt="" coords="445,84,848,115"/>
+<area shape="rect" id="node11" title="Any stash that has a resource that needs to be closed." alt="" coords="331,163,479,193"/>
+</map>

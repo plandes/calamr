@@ -1,0 +1,5 @@
+<map id="inheritancee9b7315197" name="inheritancee9b7315197">
+<area shape="rect" id="node1" href="#zensols.calamr.app.AlignmentApplication" target="_top" title="This application aligns data in files." alt="" coords="5,5,196,36"/>
+<area shape="rect" id="node2" href="#zensols.calamr.app.CorpusApplication" target="_top" title="AMR graph aligment." alt="" coords="305,5,473,36"/>
+<area shape="rect" id="node3" href="#zensols.calamr.app.Resource" target="_top" title="A client facade (GoF) for Calamr annotated AMR corpus access and" alt="" coords="538,5,637,36"/>
+</map>

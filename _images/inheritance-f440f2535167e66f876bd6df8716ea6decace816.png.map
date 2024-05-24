@@ -1,0 +1,16 @@
+<map id="inheritancea26480d7a6" name="inheritancea26480d7a6">
+<area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="431,1,449,9"/>
+<area shape="rect" id="node6" title="An interface for classes that have multi&#45;line debuging capability." alt="" coords="429,20,450,28"/>
+<area shape="rect" id="node2" href="#zensols.calamr.ctrl.AlignmentCapacitySetDocumentGraphController" target="_top" title="Set the capacity on edges if the criteria matches :obj:`min_flow`," alt="" coords="1,77,100,84"/>
+<area shape="rect" id="node3" href="#zensols.calamr.aligner.DocumentGraphController" target="_top" title="Executes the maxflow/min cut algorithm on a document graph." alt="" coords="412,58,468,65"/>
+<area shape="rect" id="node4" href="#zensols.calamr.ctrl.ConstructDocumentGraphController" target="_top" title="Constructs the graph that will later be used for the min cut/max flow" alt="" coords="106,77,181,84"/>
+<area shape="rect" id="node7" href="#zensols.calamr.ctrl.FixReentrancyDocumentGraphController" target="_top" title="Fix reentrancies by splitting the flow of the last calculated maxflow as" alt="" coords="187,77,271,84"/>
+<area shape="rect" id="node8" href="#zensols.calamr.ctrl.FlowDiscountDocumentGraphController" target="_top" title="Decrease/constrict the capacities by making the sum of the incoming flows" alt="" coords="277,77,359,84"/>
+<area shape="rect" id="node9" href="#zensols.calamr.ctrl.FlowSetDocumentGraphController" target="_top" title="Set a static flow on components based on name and edges based on class." alt="" coords="365,77,437,84"/>
+<area shape="rect" id="node10" href="#zensols.calamr.ctrl.MaxflowDocumentGraphController" target="_top" title="Executes the maxflow/min cut algorithm on a document graph." alt="" coords="443,77,515,84"/>
+<area shape="rect" id="node11" href="#zensols.calamr.ctrl.NormFlowDocumentGraphController" target="_top" title="Normalizes flow on edges as the flow going through the edge and the total" alt="" coords="521,77,597,84"/>
+<area shape="rect" id="node12" href="#zensols.calamr.ctrl.RemoveAlignsDocumentGraphController" target="_top" title="Removes graph component alignment for low capacity links." alt="" coords="603,77,688,84"/>
+<area shape="rect" id="node13" href="#zensols.calamr.ctrl.RoleCapacitySetDocumentGraphController" target="_top" title="This finds low flow role edges and sets (zeros out) all the capacities of" alt="" coords="694,77,782,84"/>
+<area shape="rect" id="node14" href="#zensols.calamr.ctrl.SnapshotDocumentGraphController" target="_top" title="Record flows, then later restore. &#160;If :obj:`snapshot_source` is not" alt="" coords="788,77,863,84"/>
+<area shape="rect" id="node5" title="A class that that generates a dictionary recursively from data classes" alt="" coords="429,39,450,47"/>
+</map>

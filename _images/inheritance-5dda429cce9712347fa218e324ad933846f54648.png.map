@@ -1,0 +1,8 @@
+<map id="inheritanceaf9659c462" name="inheritanceaf9659c462">
+<area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="323,5,392,35"/>
+<area shape="rect" id="node3" href="zensols.calamr.html#zensols.calamr.doc.DocumentGraphFactory" target="_top" title="Creates a document graph. &#160;After the document portion of the graph is" alt="" coords="148,81,357,111"/>
+<area shape="rect" id="node4" href="zensols.calamr.html#zensols.calamr.doc.DocumentGraphDecorator" target="_top" title="A strategy to create a graph from a document structure." alt="" coords="479,81,706,111"/>
+<area shape="rect" id="node2" href="#zensols.calamr.summary.factory.AnnotatedSummaryAmrDocumentGraphFactory" target="_top" title="Creates document graphs from" alt="" coords="5,157,403,187"/>
+<area shape="rect" id="node5" href="#zensols.calamr.summary.factory.IntermediateNodeRemoveDocumentGraphDecorator" target="_top" title="A decorator that short cuts the ``section``, ``header`` to make the top" alt="" coords="427,157,859,187"/>
+<area shape="rect" id="node6" href="#zensols.calamr.summary.factory.SummaryConstants" target="_top" title="Constants used for annotated AMR documents." alt="" coords="625,5,802,35"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="inheritance17011939d9" name="inheritance17011939d9">
+<area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="213,5,285,36"/>
+<area shape="rect" id="node2" title="All subclasses have the ability to deallocate any resources. &#160;This is" alt="" coords="251,84,381,115"/>
+<area shape="rect" id="node4" title="An interface for classes that have multi&#45;line debuging capability." alt="" coords="139,84,227,115"/>
+<area shape="rect" id="node13" title="Classes can extend this that want to persist :class:`.PersistedWork`" alt="" coords="221,163,411,193"/>
+<area shape="rect" id="node3" title="A class that that generates a dictionary recursively from data classes" alt="" coords="443,163,530,193"/>
+<area shape="rect" id="node8" href="#zensols.calamr.flow.Flow" target="_top" title="A triple of a source node, target node and connecting edge from the" alt="" coords="456,241,528,272"/>
+<area shape="rect" id="node11" href="#zensols.calamr.flow.FlowGraphComponentResult" target="_top" title="A container class for the flow data from a :class:`.DocumentComponent`" alt="" coords="552,241,808,272"/>
+<area shape="rect" id="node12" href="#zensols.calamr.flow.FlowGraphResult" target="_top" title="A container class for flow document results, which include the detailed" alt="" coords="269,241,432,272"/>
+<area shape="rect" id="node6" href="#zensols.calamr.comp.GraphComponent" target="_top" title="A container class for an :class:`igraph.Graph`, which also has caching" alt="" coords="78,241,245,272"/>
+<area shape="rect" id="node5" href="#zensols.calamr.doc.DocumentGraph" target="_top" title="A graph containing the text, text features, AMR Penman graph and igraph." alt="" coords="34,320,190,351"/>
+<area shape="rect" id="node9" href="#zensols.calamr.flow.FlowDocumentGraph" target="_top" title="Contains all the flows of a :class:`.DocumentGraph` and has" alt="" coords="5,399,200,429"/>
+<area shape="rect" id="node7" href="#zensols.calamr.dcomp.DocumentGraphComponent" target="_top" title="A class containing the root information of the document tree and the" alt="" coords="233,320,484,351"/>
+<area shape="rect" id="node10" href="#zensols.calamr.flow.FlowDocumentGraphComponent" target="_top" title="Contains all the flows of a :class:`.DocumentComponent`." alt="" coords="224,399,512,429"/>
+</map>

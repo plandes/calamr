@@ -1,0 +1,12 @@
+<map id="inheritance3d747e5643" name="inheritance3d747e5643">
+<area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="343,5,415,36"/>
+<area shape="rect" id="node3" title="An interface for classes that have multi&#45;line debuging capability." alt="" coords="297,84,385,115"/>
+<area shape="rect" id="node4" href="#zensols.calamr.aligner.DocumentGraphAligner" target="_top" title="Aligns the graph components of ``doc_graph`` and visualizes them with" alt="" coords="426,84,638,115"/>
+<area shape="rect" id="node2" title="A class that that generates a dictionary recursively from data classes" alt="" coords="290,163,377,193"/>
+<area shape="rect" id="node5" href="#zensols.calamr.aligner.DocumentGraphController" target="_top" title="Executes the maxflow/min cut algorithm on a document graph." alt="" coords="5,241,240,272"/>
+<area shape="rect" id="node6" href="#zensols.calamr.aligner.GraphIteration" target="_top" title="An iteration of the alignment algorithm." alt="" coords="264,241,403,272"/>
+<area shape="rect" id="node7" href="#zensols.calamr.aligner.GraphSequence" target="_top" title="A strategy GoF pattern that models what to do during a sequence of graph" alt="" coords="427,241,581,272"/>
+<area shape="rect" id="node9" href="#zensols.calamr.aligner.MaxflowDocumentGraphAligner" target="_top" title="Uses the maxflow/min cut algorithm to compute graph component alignments." alt="" coords="401,163,679,193"/>
+<area shape="rect" id="node10" href="#zensols.calamr.aligner.RenderUpSideDownGraphSequence" target="_top" title="A graph sequence that tells :mod:`graphviz` to render the diagram upside" alt="" coords="345,320,663,351"/>
+<area shape="rect" id="node8" href="#zensols.calamr.aligner.GraphSequencer" target="_top" title="This invokes the :class:`.GraphSequence` objects in the provided sequence" alt="" coords="585,5,745,36"/>
+</map>
