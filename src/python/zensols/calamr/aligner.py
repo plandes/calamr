@@ -497,17 +497,21 @@ class MaxflowDocumentGraphAligner(DocumentGraphAligner):
             sequencer.run('construct')
             sequencer.render_level = self.init_loops_render_level
             converges: int = 0
+            max_iters: int = self.max_sequencer_iterations
             iteration: int
-            for iteration in range(self.max_sequencer_iterations):
+            for iteration in range(max_iters):
                 updates: int = sequencer.run('loop')
                 if updates == 0:
                     if converges >= 1:
-                        logger.info('max flow convergence after ' +
-                                    f'{iteration + 1} iterations')
+                        if logger.isEnabledFor(logging.INFO):
+                            logger.info('max flow convergence after ' +
+                                        f'{iteration + 1} iterations')
                         break
                     converges += 1
                 else:
                     converges = 0
+                if logger.isEnabledFor(logging.INFO):
+                    logger.info(f'alignment step {iteration}/{max_iters}')
             sequencer.render_level = self.render_level
             sequencer.run('final')
             return self.config_factory.new_instance(
