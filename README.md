@@ -124,7 +124,7 @@ corpora (including the last section's micro corpus):
 
 1. Generate the Liu et al. graph for the micro corpus in directory `example`:
 	```bash
-	calamr aligncorp liu-example -f txt -d example
+	calamr aligncorp liu-example -f txt -o example
 	```
 1. Force the *Little Prince* AMR corpus download and confirm success with the
    single document key `1943`:
@@ -134,7 +134,7 @@ corpora (including the last section's micro corpus):
 1. Use the default AMR parser to extract sentence text from the *Little Prince*
 	AMR corpus using the [SPRING] (Bevilacqua et al. 2021) parser:
 	```bash
-	calamr penman -d lp.txt --limit 5 \
+	calamr penman -o lp.txt --limit 5 \
 		--override amr_default.parse_model=spring \
 		~/.cache/calamr/corpus/amr-rel/amr-bank-struct-v3.0.txt
 	```
@@ -170,7 +170,7 @@ aligned.  However, there's an easier way to align ad hoc documents.
    Now align the documents using the `XFM Bart Base` AMR parser, rendering
    with the maximum number of steps (`-r 10`), and save results to `example`:
 	```bash
-	calamr align short-story.json --override amr_default.parse_model=xfm_bart_base -r 10 -d example -f txt
+	calamr align short-story.json --override amr_default.parse_model=xfm_bart_base -r 10 -o example -f txt
 	```
 
 The `-r` option controls how many intermediate graphs generated to show the
@@ -200,7 +200,7 @@ merge them into one dataset do the following:
 1. Confirm the merge was successful by printing the document keys and align a report:
    ```bash
    calamr keys --override=calamr_corpus.name=proxy-report
-   calamr aligncorp 20041010_0024 -f txt -d example \
+   calamr aligncorp 20041010_0024 -f txt -o example \
 	   --override calamr_corpus.name=proxy-report
    ```
 
