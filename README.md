@@ -62,12 +62,14 @@ The recommended reading order for this project:
 1. [API reference](https://plandes.github.io/calamr/api.html)
 
 
-## Obtaining
+## Installing
 
 The library can be installed with pip from the [pypi] repository:
 ```bash
 pip3 install zensols.calamr
 ```
+
+See [Installing the Gsii Model].
 
 
 ## Corpora
@@ -439,3 +441,4 @@ Copyright (c) 2023 - 2024 Paul Landes
 [zensols.deepnlp]: https://github.com/plandes/deepnlp
 [zensols.propbankdb]: https://github.com/plandes/propbankdb
 [PropBank API/curated database]: https://github.com/plandes/propbankdb
+[Installing the Gsii Model]: https://github.com/plandes/amr#installing-the-gsii-model
