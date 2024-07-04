@@ -222,7 +222,7 @@ This is taken from the [ad hoc API example](./test/test-adhoc.py)
    from zensols.amr import AmrSentence, AmrDocument, AmrFeatureDocument
    from zensols.calamr import DocumentGraph, FlowGraphResult, Resource, ApplicationFactory
 
-# get the resource bundle
+   # get the resource bundle
    res: Resource = ApplicationFactory.get_resource()
    ```
 1. Create test data:
