@@ -27,7 +27,7 @@ Features:
 ## Table of Contents
 
 - [Documentation](#documentation)
-- [Obtaining](#obtaining)
+- [Installing](#installing)
 - [Corpora](#corpora)
 - [Usage](#usage)
     - [Command Line](#command-line)
@@ -35,6 +35,8 @@ Features:
         - [Ad hoc Corpora](#ad-hoc-corpora)
     - [AMR Release 3.0 Corpus (LDC2020T02)](#amr-release-30-corpus-ldc2020t02)
     - [API](#api)
+        - [Aligning Ad hoc Documents](#aligning-ad-hoc-documents)
+        - [Aligning Corpora Documents](#aligning-corpora-documents)
     - [Docker](#docker)
 - [Example Graphs](#example-graphs)
     - [GraphViz](#graphviz)
@@ -208,7 +210,73 @@ merge them into one dataset do the following:
 
 ### API
 
-To use the package programmatically:
+This section explains how to use the library's API directly in Python.
+
+
+#### Aligning Ad hoc Documents
+
+This is taken from the [ad hoc API example](./test/test-adhoc.py)
+
+1. Get the resource bundle:
+   ```python
+   from zensols.amr import AmrSentence, AmrDocument, AmrFeatureDocument
+   from zensols.calamr import DocumentGraph, FlowGraphResult, Resource, ApplicationFactory
+
+# get the resource bundle
+   res: Resource = ApplicationFactory.get_resource()
+   ```
+1. Create test data:
+   ```python
+   # create AMR sentences
+   test_summary = AmrSentence("""\
+   # ::snt Joe's dog was chasing a cat in the garden.
+   # ::snt-type summary
+   # ::id liu-example.0
+   (c / chase-01
+	  :ARG0 (d / dog
+			   :poss (p / person
+						:name (n / name
+								 :op1 "Joe")))
+	  :ARG1 (c2 / cat)
+	  :location (g / garden))""")
+   test_body = AmrSentence("""\
+   # ::snt I saw Joe's dog, which was running in the garden.
+   # ::snt-type body
+   # ::id liu-example.1
+   (s / see-01
+	  :ARG0 (ii / i)
+	  :ARG1 (d / dog
+			   :poss (p / person
+						:name (n / name
+								 :op1 "Joe"))
+			   :ARG0-of (r / run-02
+						   :location (g / garden))))""")
+
+	# create the AMR document 
+   adoc = AmrDocument((test_summary, test_body))
+   ```
+1. Create the annotated document and align it:
+   ```python
+   # convert the AMR document to an AMR annotated document with NLP features
+   fdoc: AmrFeatureDocument = res.to_annotated_doc(adoc)
+   # create the bipartite source/summary graph
+   graph: DocumentGraph = res.create_graph(fdoc)
+   # align the graph
+   flow: FlowGraphResult = res.align(graph)
+   ```
+1. Get and visualize the results:
+   ```python
+   # write the summarization metrics
+   flow.write()
+   # render the results as a graph in a web browser
+   flow.render()
+   ```
+
+
+#### Aligning Corpora Documents
+
+To use an existing corpus (ad hoc "micro" corpus, The Little Prince, Biomedical
+Corpus, or Proxy report 3.0), use the following API to speed things up:
 
 1. Get the resource bundle:
    ```python

@@ -66,6 +66,11 @@ class CalamrAnnotatedAmrFeatureDocumentFactory(
             wpdoc: WordPieceFeatureDocument = self.word_piece_doc_factory(doc)
             wpdoc.copy_embedding(doc)
 
+    def to_annotated_doc(self, doc: AmrFeatureDocument) -> AmrFeatureDocument:
+        fdoc = super().to_annotated_doc(doc)
+        self._populate_embeddings(fdoc)
+        return fdoc
+
     def from_dict(self, data: Dict[str, str]) -> AmrFeatureDocument:
         fdoc = super().from_dict(data)
         if self.word_piece_doc_factory is not None:

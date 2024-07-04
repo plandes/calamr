@@ -20,8 +20,9 @@ from zensols.util import stdout
 from zensols.config import ConfigFactory, DefaultDictable
 from zensols.persist import Stash
 from zensols.cli import ApplicationError
-from zensols.amr import AmrFeatureDocument, Format
+from zensols.amr import AmrFailure, AmrDocument, AmrFeatureDocument, Format
 from zensols.amr.serial import AmrSerializedFactory
+from zensols.amr.docfac import AmrFeatureDocumentFactory
 from zensols.amr.annotate import AnnotatedAmrFeatureDocumentFactory
 from . import (
     DocumentGraph, DocumentGraphFactory, DocumentGraphAligner, FlowGraphResult
@@ -40,6 +41,11 @@ class Resource(object):
     """Contains human annotated AMRs.  This could be from the adhoc (micro)
     corpus (small toy corpus), AMR 3.0 Proxy Report corpus, Little Prince, or
     the Bio AMR corpus.
+
+    """
+    doc_factory: AmrFeatureDocumentFactory = field()
+    """Creates :class:`.AmrFeatureDocument` from :class:`.AmrDocument`
+    instances.
 
     """
     serialized_factory: AmrSerializedFactory = field()
@@ -95,6 +101,53 @@ class Resource(object):
 
         """
         return self.anon_doc_factory(data)
+
+    def to_feature_doc(self, amr_doc: AmrDocument, catch: bool = False,
+                       add_metadata: Union[str, bool] = False,
+                       add_alignment: bool = False) -> \
+            Union[AmrFeatureDocument,
+                  Tuple[AmrFeatureDocument, List[AmrFailure]]]:
+        """Create a :class:`.AmrFeatureDocument` from a class:`.AmrDocument` by
+        parsing the ``snt`` metadata with a
+        :class:`~zensols.nlp.parser.FeatureDocumentParser`.
+
+        :param add_metadata: add missing annotation metadata to ``amr_doc``
+                             parsed from spaCy if missing (see
+                             :meth:`.AmrParser.add_metadata`) if ``True`` and
+                             replace any previous metadata if this value is the
+                             string ``clobber``
+
+        :param catch: if ``True``, return caught exceptions creating a
+                      :class:`.AmrFailure` from each and return them
+
+        :return: an AMR feature document if ``catch`` is ``False``; otherwise, a
+                 tuple of a document with sentences that were successfully
+                 parsed and a list any exceptions raised during the parsing
+
+        """
+        return self.doc_factory.to_feature_doc(
+            amr_doc, catch, add_metadata, add_alignment)
+
+    def to_annotated_doc(self, doc: Union[AmrDocument, AmrFeatureDocument]) \
+            -> AmrFeatureDocument:
+        """Return an annotated feature document, creating the feature document
+        if necessary.  The ``doc.amr`` attribute is set to annotated AMR
+        document.
+
+        :param doc: an AMR document or an AMR feature document
+
+        :return: a new instance of a document if ``doc`` is not a
+                 ``AmrFeatureDocument`` or if ``doc.amr`` is not an
+                 ``AnnotatedAmrDocument``
+
+        """
+        fdoc: AmrFeatureDocument
+        if isinstance(doc, AmrDocument):
+            fdoc = self.to_feature_doc(doc)
+        else:
+            fdoc = doc
+        fdoc = self.anon_doc_factory.to_annotated_doc(fdoc)
+        return fdoc
 
     def create_graph(self, doc: AmrFeatureDocument) -> DocumentGraph:
         """Return a new document graph based on feature document.
