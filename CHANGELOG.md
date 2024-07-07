@@ -25,7 +25,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Upgraded to [zensols.propbank] 0.1.0.
 
 
-
 ## [0.0.1] - 2023-12-11
 ### Added
 - Initial version.
