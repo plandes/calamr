@@ -1,0 +1,11 @@
+<map id="inheritance70a0f0d06c" name="inheritance70a0f0d06c">
+<area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="326,5,398,36"/>
+<area shape="rect" id="node3" title="A dictionary&#45;like pure virtual class for CRUDing data, most of which read" alt="" coords="255,84,327,115"/>
+<area shape="rect" id="node9" title="Any subclass that has the ability (and need) to do preprocessing. &#160;For" alt="" coords="382,84,486,115"/>
+<area shape="rect" id="node2" title="Any stash that has a resource that needs to be closed." alt="" coords="16,163,164,193"/>
+<area shape="rect" id="node4" title="Delegate pattern. &#160;It can also be used as a no&#45;op if no delegate is" alt="" coords="5,241,145,272"/>
+<area shape="rect" id="node6" title="Any subclass that has the ability to do processing before any CRUD method" alt="" coords="375,163,525,193"/>
+<area shape="rect" id="node8" title="An abstract base class for subclasses that do not support write methods" alt="" coords="201,163,350,193"/>
+<area shape="rect" id="node5" href="#zensols.calamr.stash.FlowGraphRestoreStash" target="_top" title="The a stash that restores transient data on :class:`.FlowGraphResult`" alt="" coords="179,320,399,351"/>
+<area shape="rect" id="node7" href="#zensols.calamr.stash.FlowGraphResultFactoryStash" target="_top" title="A factory stash that creates aligned :class:`.FlowGraphResult` instances" alt="" coords="169,241,437,272"/>
+</map>

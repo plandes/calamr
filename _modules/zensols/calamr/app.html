@@ -1,0 +1,1048 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
+
+    <!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+        <title>zensols.calamr.app - CALAMR: Component ALignment for Abstract Meaning Representation 0.1.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../top.html"><div class="brand">CALAMR: Component ALignment for Abstract Meaning Representation 0.1.2 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../top.html">
+  
+  
+  <span class="sidebar-brand-text">CALAMR: Component ALignment for Abstract Meaning Representation 0.1.2 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../api.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../api/zensols.calamr.html">zensols.calamr package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of zensols.calamr package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/zensols.calamr.render.html">zensols.calamr.render namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/zensols.calamr.summary.html">zensols.calamr.summary namespace</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/zensols.calamr.render.html">zensols.calamr.render namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/zensols.calamr.summary.html">zensols.calamr.summary namespace</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CONTRIBUTING.html">Contributing</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <h1>Source code for zensols.calamr.app</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;AMR Summarization.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Paul Landes&#39;</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span>
+    <span class="n">Iterable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">itertools</span> <span class="k">as</span> <span class="nn">it</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">TextIOWrapper</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">zensols.util</span> <span class="kn">import</span> <span class="n">stdout</span>
+<span class="kn">from</span> <span class="nn">zensols.config</span> <span class="kn">import</span> <span class="n">ConfigFactory</span><span class="p">,</span> <span class="n">DefaultDictable</span>
+<span class="kn">from</span> <span class="nn">zensols.persist</span> <span class="kn">import</span> <span class="n">Stash</span>
+<span class="kn">from</span> <span class="nn">zensols.cli</span> <span class="kn">import</span> <span class="n">ApplicationError</span>
+<span class="kn">from</span> <span class="nn">zensols.amr</span> <span class="kn">import</span> <span class="n">AmrFailure</span><span class="p">,</span> <span class="n">AmrDocument</span><span class="p">,</span> <span class="n">AmrFeatureDocument</span><span class="p">,</span> <span class="n">Format</span>
+<span class="kn">from</span> <span class="nn">zensols.amr.serial</span> <span class="kn">import</span> <span class="n">AmrSerializedFactory</span>
+<span class="kn">from</span> <span class="nn">zensols.amr.docfac</span> <span class="kn">import</span> <span class="n">AmrFeatureDocumentFactory</span>
+<span class="kn">from</span> <span class="nn">zensols.amr.annotate</span> <span class="kn">import</span> <span class="n">AnnotatedAmrFeatureDocumentFactory</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DocumentGraph</span><span class="p">,</span> <span class="n">DocumentGraphFactory</span><span class="p">,</span> <span class="n">DocumentGraphAligner</span><span class="p">,</span> <span class="n">FlowGraphResult</span>
+<span class="p">)</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Resource">
+<a class="viewcode-back" href="../../../api/zensols.calamr.html#zensols.calamr.app.Resource">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Resource</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A client facade (GoF) for Calamr annotated AMR corpus access and</span>
+<span class="sd">    alginment.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">anon_doc_stash</span><span class="p">:</span> <span class="n">Stash</span> <span class="o">=</span> <span class="n">field</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Contains human annotated AMRs.  This could be from the adhoc (micro)</span>
+<span class="sd">    corpus (small toy corpus), AMR 3.0 Proxy Report corpus, Little Prince, or</span>
+<span class="sd">    the Bio AMR corpus.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">doc_factory</span><span class="p">:</span> <span class="n">AmrFeatureDocumentFactory</span> <span class="o">=</span> <span class="n">field</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates :class:`.AmrFeatureDocument` from :class:`.AmrDocument`</span>
+<span class="sd">    instances.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">serialized_factory</span><span class="p">:</span> <span class="n">AmrSerializedFactory</span> <span class="o">=</span> <span class="n">field</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a :class:`.Serialized` from :class:`.AmrDocument`,</span>
+<span class="sd">    :class:`.AmrSentence` or :class:`.AnnotatedAmrDocument`.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">doc_graph_factory</span><span class="p">:</span> <span class="n">DocumentGraphFactory</span> <span class="o">=</span> <span class="n">field</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create document graphs.&quot;&quot;&quot;</span>
+
+    <span class="n">doc_graph_aligner</span><span class="p">:</span> <span class="n">DocumentGraphAligner</span> <span class="o">=</span> <span class="n">field</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create document graphs.&quot;&quot;&quot;</span>
+
+    <span class="n">flow_results_stash</span><span class="p">:</span> <span class="n">Stash</span> <span class="o">=</span> <span class="n">field</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates cached instances of :class:`.FlowGraphResult`.&quot;&quot;&quot;</span>
+
+    <span class="n">anon_doc_factory</span><span class="p">:</span> <span class="n">AnnotatedAmrFeatureDocumentFactory</span> <span class="o">=</span> <span class="n">field</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates instances of :class:`~zensols.amr.annotate..AmrFeatureDocument`.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Resource.get_corpus_keys">
+<a class="viewcode-back" href="../../../api/zensols.calamr.html#zensols.calamr.app.Resource.get_corpus_keys">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_corpus_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the keys of the application configured AMR corpus.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">anon_doc_stash</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Resource.get_corpus_document">
+<a class="viewcode-back" href="../../../api/zensols.calamr.html#zensols.calamr.app.Resource.get_corpus_document">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_corpus_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doc_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AmrFeatureDocument</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get an AMR feature document by key from the application configured</span>
+<span class="sd">        corpus.</span>
+
+<span class="sd">        :param doc_id: the corpus document ID (i.e. ``liu-example`` or</span>
+<span class="sd">                       ``20041010_0024``)</span>
+
+<span class="sd">        :return: the AMR feature document</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">anon_doc_stash</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">doc_id</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Resource.parse_documents">
+<a class="viewcode-back" href="../../../api/zensols.calamr.html#zensols.calamr.app.Resource.parse_documents">[docs]</a>
+    <span class="k">def</span> <span class="nf">parse_documents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Path</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">])</span> <span class="o">-&gt;</span> \
+            <span class="n">Iterable</span><span class="p">[</span><span class="n">AmrFeatureDocument</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse documents with keys ``id``, ``comment``, ``body``, and</span>
+<span class="sd">        ``summary`` from a :class:`dict`, sequence of :class:`dict`</span>
+<span class="sd">        instanaces. or JSON file in the format::</span>
+
+<span class="sd">            [{</span>
+<span class="sd">                &quot;id&quot;: &quot;ex1&quot;,</span>
+<span class="sd">                &quot;comment&quot;: &quot;very short&quot;,</span>
+<span class="sd">                &quot;body&quot;: &quot;The man ran to make the train. He just missed it.&quot;,</span>
+<span class="sd">                &quot;summary&quot;: &quot;A man got caught in the door of a train he missed.&quot;</span>
+<span class="sd">            }]</span>
+
+<span class="sd">        :return: the parsed AMR feature document</span>
+
+<span class="sd">        :see: :class:`~zensols.amr.annotate.AnnotatedAmrFeatureDocumentFactory`</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">anon_doc_factory</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Resource.to_feature_doc">
+<a class="viewcode-back" href="../../../api/zensols.calamr.html#zensols.calamr.app.Resource.to_feature_doc">[docs]</a>
+    <span class="k">def</span> <span class="nf">to_feature_doc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amr_doc</span><span class="p">:</span> <span class="n">AmrDocument</span><span class="p">,</span> <span class="n">catch</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                       <span class="n">add_metadata</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                       <span class="n">add_alignment</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> \
+            <span class="n">Union</span><span class="p">[</span><span class="n">AmrFeatureDocument</span><span class="p">,</span>
+                  <span class="n">Tuple</span><span class="p">[</span><span class="n">AmrFeatureDocument</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">AmrFailure</span><span class="p">]]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a :class:`.AmrFeatureDocument` from a class:`.AmrDocument` by</span>
+<span class="sd">        parsing the ``snt`` metadata with a</span>
+<span class="sd">        :class:`~zensols.nlp.parser.FeatureDocumentParser`.</span>
+
+<span class="sd">        :param add_metadata: add missing annotation metadata to ``amr_doc``</span>
+<span class="sd">                             parsed from spaCy if missing (see</span>
+<span class="sd">                             :meth:`.AmrParser.add_metadata`) if ``True`` and</span>
+<span class="sd">                             replace any previous metadata if this value is the</span>
+<span class="sd">                             string ``clobber``</span>
+
+<span class="sd">        :param catch: if ``True``, return caught exceptions creating a</span>
+<span class="sd">                      :class:`.AmrFailure` from each and return them</span>
+
+<span class="sd">        :return: an AMR feature document if ``catch`` is ``False``; otherwise, a</span>
+<span class="sd">                 tuple of a document with sentences that were successfully</span>
+<span class="sd">                 parsed and a list any exceptions raised during the parsing</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">doc_factory</span><span class="o">.</span><span class="n">to_feature_doc</span><span class="p">(</span>
+            <span class="n">amr_doc</span><span class="p">,</span> <span class="n">catch</span><span class="p">,</span> <span class="n">add_metadata</span><span class="p">,</span> <span class="n">add_alignment</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Resource.to_annotated_doc">
+<a class="viewcode-back" href="../../../api/zensols.calamr.html#zensols.calamr.app.Resource.to_annotated_doc">[docs]</a>
+    <span class="k">def</span> <span class="nf">to_annotated_doc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">AmrDocument</span><span class="p">,</span> <span class="n">AmrFeatureDocument</span><span class="p">])</span> \
+            <span class="o">-&gt;</span> <span class="n">AmrFeatureDocument</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return an annotated feature document, creating the feature document</span>
+<span class="sd">        if necessary.  The ``doc.amr`` attribute is set to annotated AMR</span>
+<span class="sd">        document.</span>
+
+<span class="sd">        :param doc: an AMR document or an AMR feature document</span>
+
+<span class="sd">        :return: a new instance of a document if ``doc`` is not a</span>
+<span class="sd">                 ``AmrFeatureDocument`` or if ``doc.amr`` is not an</span>
+<span class="sd">                 ``AnnotatedAmrDocument``</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fdoc</span><span class="p">:</span> <span class="n">AmrFeatureDocument</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">AmrDocument</span><span class="p">):</span>
+            <span class="n">fdoc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_feature_doc</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fdoc</span> <span class="o">=</span> <span class="n">doc</span>
+        <span class="n">fdoc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">anon_doc_factory</span><span class="o">.</span><span class="n">to_annotated_doc</span><span class="p">(</span><span class="n">fdoc</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fdoc</span></div>
+
+
+<div class="viewcode-block" id="Resource.create_graph">
+<a class="viewcode-back" href="../../../api/zensols.calamr.html#zensols.calamr.app.Resource.create_graph">[docs]</a>
+    <span class="k">def</span> <span class="nf">create_graph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">AmrFeatureDocument</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DocumentGraph</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a new document graph based on feature document.</span>
+
+<span class="sd">        :param doc: the document on which to base the new graph</span>
+
+<span class="sd">        :return: a new AMR document graph</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">doc_graph_factory</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Resource.align_corpus_document">
+<a class="viewcode-back" href="../../../api/zensols.calamr.html#zensols.calamr.app.Resource.align_corpus_document">[docs]</a>
+    <span class="k">def</span> <span class="nf">align_corpus_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doc_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">use_cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> \
+            <span class="n">Optional</span><span class="p">[</span><span class="n">FlowGraphResult</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create flow results of a corpus AMR document.</span>
+
+<span class="sd">        :param doc_id: the corpus document ID (i.e. ``liu-example`` or</span>
+<span class="sd">                       ``20041010_0024``)</span>
+
+<span class="sd">        :param use_cache: whether to cache (and use cached) results</span>
+
+<span class="sd">        :return: the flow results for the corpus document or ``None`` if</span>
+<span class="sd">                 ``doc_id`` is not a valid key</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">res</span><span class="p">:</span> <span class="n">FlowGraphResult</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">use_cache</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flow_results_stash</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">doc_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">anon_doc_stash</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">doc_id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">doc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">doc_graph</span><span class="p">:</span> <span class="n">DocumentGraph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">doc_graph_factory</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">doc_graph</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+
+<div class="viewcode-block" id="Resource.align">
+<a class="viewcode-back" href="../../../api/zensols.calamr.html#zensols.calamr.app.Resource.align">[docs]</a>
+    <span class="k">def</span> <span class="nf">align</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doc_graph</span><span class="p">:</span> <span class="n">DocumentGraph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FlowGraphResult</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create flow results from a document graph.</span>
+
+<span class="sd">        :param doc_graph: the source/summary components to align</span>
+
+<span class="sd">        :return: the aligned bipartite graph and its statistics</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">al</span><span class="p">:</span> <span class="n">DocumentGraphAligner</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">doc_graph_aligner</span>
+        <span class="n">levels</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">render_level</span><span class="p">,</span> <span class="n">al</span><span class="o">.</span><span class="n">init_loops_render_level</span>
+        <span class="n">al</span><span class="o">.</span><span class="n">render_level</span><span class="p">,</span> <span class="n">al</span><span class="o">.</span><span class="n">init_loops_render_level</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">al</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">doc_graph</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">al</span><span class="o">.</span><span class="n">render_level</span><span class="p">,</span> <span class="n">al</span><span class="o">.</span><span class="n">init_loops_render_level</span> <span class="o">=</span> <span class="n">levels</span></div>
+</div>
+
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">_AlignmentBaseApplication</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for applications defined in this module.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">resource</span><span class="p">:</span> <span class="n">Resource</span> <span class="o">=</span> <span class="n">field</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A client facade (GoF) for Calamr annotated AMR corpus access and</span>
+<span class="sd">    alginment.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_get_output_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                         <span class="n">output_format</span><span class="p">:</span> <span class="n">Format</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+        <span class="n">output_dir</span> <span class="o">=</span> <span class="n">output_dir</span> <span class="o">/</span> <span class="n">key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">doc_graph_aligner</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">output_dir</span>
+        <span class="n">output_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">ext</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Format</span><span class="o">.</span><span class="n">to_ext</span><span class="p">(</span><span class="n">output_format</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s1">&#39;results.</span><span class="si">{</span><span class="n">ext</span><span class="si">}</span><span class="s1">&#39;</span>
+
+    <span class="k">def</span> <span class="nf">_output_align</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_format</span><span class="p">:</span> <span class="n">Format</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">AmrFeatureDocument</span><span class="p">,</span>
+                      <span class="n">fout</span><span class="p">:</span> <span class="n">TextIOWrapper</span><span class="p">,</span> <span class="n">res</span><span class="p">:</span> <span class="n">FlowGraphResult</span><span class="p">):</span>
+        <span class="n">doc</span><span class="p">:</span> <span class="n">AmrFeatureDocument</span>
+        <span class="k">if</span> <span class="n">doc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">doc</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">doc_graph</span><span class="o">.</span><span class="n">doc</span>
+        <span class="k">if</span> <span class="n">output_format</span> <span class="o">==</span> <span class="n">Format</span><span class="o">.</span><span class="n">txt</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">serialized_factory</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">amr</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">writer</span><span class="o">=</span><span class="n">fout</span><span class="p">)</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">writer</span><span class="o">=</span><span class="n">fout</span><span class="p">,</span> <span class="n">include_doc</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">output_format</span> <span class="o">==</span> <span class="n">Format</span><span class="o">.</span><span class="n">json</span><span class="p">:</span>
+            <span class="n">dct</span> <span class="o">=</span> <span class="n">DefaultDictable</span><span class="p">(</span>
+                <span class="p">{</span><span class="s1">&#39;doc&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">serialized_factory</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">amr</span><span class="p">)</span><span class="o">.</span><span class="n">asdict</span><span class="p">(),</span>
+                 <span class="s1">&#39;alignment&#39;</span><span class="p">:</span> <span class="n">res</span><span class="o">.</span><span class="n">asdict</span><span class="p">()})</span>
+            <span class="n">fout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">dct</span><span class="o">.</span><span class="n">asjson</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">output_format</span> <span class="o">==</span> <span class="n">Format</span><span class="o">.</span><span class="n">csv</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">stats_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">fout</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ApplicationError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;Format not supported: </span><span class="si">{</span><span class="n">output_format</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_align_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">use_cached</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> \
+            <span class="n">Tuple</span><span class="p">[</span><span class="n">FlowGraphResult</span><span class="p">,</span> <span class="n">AmrFeatureDocument</span><span class="p">]:</span>
+        <span class="n">res</span><span class="p">:</span> <span class="n">FlowGraphResult</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">doc</span><span class="p">:</span> <span class="n">AmrFeatureDocument</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">use_cached</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">flow_results_stash</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">aligner</span><span class="p">:</span> <span class="n">DocumentGraphAligner</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">doc_graph_aligner</span>
+            <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">anon_doc_stash</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">doc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">ApplicationError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No such key: &#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&#39;, use keys action&quot;</span><span class="p">)</span>
+            <span class="n">doc_graph</span><span class="p">:</span> <span class="n">DocumentGraph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">doc_graph_factory</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">aligner</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">doc_graph</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">res</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ApplicationError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No such key: &#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&#39;, use keys action&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">is_error</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">failure</span><span class="o">.</span><span class="n">rethrow</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">,</span> <span class="n">doc</span>
+
+    <span class="k">def</span> <span class="nf">_align_corpus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">output_format</span><span class="p">:</span> <span class="n">Format</span><span class="p">,</span>
+                      <span class="n">use_stdout</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">use_cached</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FlowGraphResult</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;aligning on document </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">fout</span><span class="p">:</span> <span class="n">TextIOWrapper</span>
+        <span class="n">output_file</span><span class="p">:</span> <span class="n">Path</span>
+        <span class="k">if</span> <span class="n">use_stdout</span><span class="p">:</span>
+            <span class="n">fout</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">output_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_output_file</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">output_format</span><span class="p">)</span>
+            <span class="n">fout</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">res</span><span class="p">:</span> <span class="n">FlowGraphResult</span>
+            <span class="n">doc</span><span class="p">:</span> <span class="n">AmrFeatureDocument</span>
+            <span class="n">res</span><span class="p">,</span> <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_align_result</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">use_cached</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_output_align</span><span class="p">(</span><span class="n">output_format</span><span class="p">,</span> <span class="n">doc</span><span class="p">,</span> <span class="n">fout</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">res</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">id</span><span class="p">(</span><span class="n">fout</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">id</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+                <span class="n">fout</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;wrote: </span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_prep_align</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">render_level</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> \
+            <span class="n">Tuple</span><span class="p">[</span><span class="n">Path</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
+        <span class="k">assert</span> <span class="n">output_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">use_stdout</span><span class="p">:</span> <span class="nb">bool</span>
+        <span class="k">if</span> <span class="n">output_dir</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">stdout</span><span class="o">.</span><span class="n">STANDARD_OUT_PATH</span><span class="p">:</span>
+            <span class="n">use_stdout</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">output_dir</span> <span class="o">=</span> <span class="n">output_dir</span><span class="o">.</span><span class="n">expanduser</span><span class="p">()</span>
+            <span class="n">use_stdout</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">use_stdout</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">render_level</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">doc_graph_aligner</span><span class="o">.</span><span class="n">render_level</span> <span class="o">=</span> <span class="n">render_level</span>
+        <span class="k">return</span> <span class="n">output_dir</span><span class="p">,</span> <span class="n">use_stdout</span>
+
+
+<div class="viewcode-block" id="CorpusApplication">
+<a class="viewcode-back" href="../../../api/zensols.calamr.html#zensols.calamr.app.CorpusApplication">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">CorpusApplication</span><span class="p">(</span><span class="n">_AlignmentBaseApplication</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;AMR graph aligment.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">config_factory</span><span class="p">:</span> <span class="n">ConfigFactory</span> <span class="o">=</span> <span class="n">field</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;For prototyping.&quot;&quot;&quot;</span>
+
+    <span class="n">results_dir</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">field</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The directory where the output results are written, then read back for</span>
+<span class="sd">    analysis reporting.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="CorpusApplication.write_keys">
+<a class="viewcode-back" href="../../../api/zensols.calamr.html#zensols.calamr.app.CorpusApplication.write_keys">[docs]</a>
+    <span class="k">def</span> <span class="nf">write_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Write the keys of the configured corpus.&quot;&quot;&quot;</span>
+        <span class="n">key</span><span class="p">:</span> <span class="nb">str</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">anon_doc_stash</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CorpusApplication.get_annotated_summary">
+<a class="viewcode-back" href="../../../api/zensols.calamr.html#zensols.calamr.app.CorpusApplication.get_annotated_summary">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_annotated_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a CSV file with a summary of the annotated AMR dataset.</span>
+
+<span class="sd">        :param limit: the max of items to process</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rows</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">idx</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">limit</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">maxsize</span> <span class="k">if</span> <span class="n">limit</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">limit</span>
+        <span class="n">k</span><span class="p">:</span> <span class="nb">str</span>
+        <span class="n">doc</span><span class="p">:</span> <span class="n">AmrFeatureDocument</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">it</span><span class="o">.</span><span class="n">islice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">anon_doc_stash</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">limit</span><span class="p">):</span>
+            <span class="n">idx</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+            <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">doc</span><span class="o">.</span><span class="n">token_len</span><span class="p">,</span> <span class="n">doc</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;len text&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">idx</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;len&#39;</span><span class="p">)</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;id&#39;</span>
+        <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="CorpusApplication.dump_annotated">
+<a class="viewcode-back" href="../../../api/zensols.calamr.html#zensols.calamr.app.CorpusApplication.dump_annotated">[docs]</a>
+    <span class="k">def</span> <span class="nf">dump_annotated</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                       <span class="n">output_format</span><span class="p">:</span> <span class="n">Format</span> <span class="o">=</span> <span class="n">Format</span><span class="o">.</span><span class="n">csv</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Write annotated documents and their keys.</span>
+
+<span class="sd">        :param limit: the max of items to process</span>
+
+<span class="sd">        :param output_dir: the output directory</span>
+
+<span class="sd">        :param output_format: the output format</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">output_dir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">output_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results_dir</span>
+        <span class="n">output_dir</span> <span class="o">=</span> <span class="n">output_dir</span><span class="o">.</span><span class="n">expanduser</span><span class="p">()</span>
+        <span class="n">limit</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">maxsize</span> <span class="k">if</span> <span class="n">limit</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">limit</span>
+        <span class="n">fac</span><span class="p">:</span> <span class="n">AmrSerializedFactory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">serialized_factory</span>
+        <span class="n">docs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">k</span><span class="p">:</span> <span class="nb">str</span>
+        <span class="n">doc</span><span class="p">:</span> <span class="n">AmrFeatureDocument</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">it</span><span class="o">.</span><span class="n">islice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">anon_doc_stash</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">limit</span><span class="p">):</span>
+            <span class="n">docs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">fac</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">amr</span><span class="p">)</span><span class="o">.</span><span class="n">asdict</span><span class="p">()</span>
+        <span class="n">dct</span> <span class="o">=</span> <span class="n">DefaultDictable</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+        <span class="n">fname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;annotated.</span><span class="si">{</span><span class="n">Format</span><span class="o">.</span><span class="n">to_ext</span><span class="p">(</span><span class="n">output_format</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">output_file</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">output_dir</span> <span class="o">/</span> <span class="n">fname</span>
+        <span class="n">output_file</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fout</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">output_format</span> <span class="o">==</span> <span class="n">Format</span><span class="o">.</span><span class="n">txt</span><span class="p">:</span>
+                <span class="n">dct</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">writer</span><span class="o">=</span><span class="n">fout</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">output_format</span> <span class="o">==</span> <span class="n">Format</span><span class="o">.</span><span class="n">csv</span><span class="p">:</span>
+                <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_annotated_summary</span><span class="p">(</span><span class="n">limit</span><span class="p">)</span>
+                <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">fout</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">output_format</span> <span class="o">==</span> <span class="n">Format</span><span class="o">.</span><span class="n">json</span><span class="p">:</span>
+                <span class="n">fout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">dct</span><span class="o">.</span><span class="n">asjson</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">ApplicationError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s1">&#39;Format not supported: </span><span class="si">{</span><span class="n">output_format</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;wrote: </span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CorpusApplication.align_corpus">
+<a class="viewcode-back" href="../../../api/zensols.calamr.html#zensols.calamr.app.CorpusApplication.align_corpus">[docs]</a>
+    <span class="k">def</span> <span class="nf">align_corpus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keys</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                     <span class="n">output_format</span><span class="p">:</span> <span class="n">Format</span> <span class="o">=</span> <span class="n">Format</span><span class="o">.</span><span class="n">csv</span><span class="p">,</span>
+                     <span class="n">render_level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                     <span class="n">use_cached</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Align an annotated AMR document from the corpus.</span>
+
+<span class="sd">        :param keys: comma-separated list of dataset keys or file name</span>
+
+<span class="sd">        :param output_dir: the output directory</span>
+
+<span class="sd">        :param output_format: the output format</span>
+
+<span class="sd">        :param render_level: how many graphs to render (0 - 10), higher means</span>
+<span class="sd">                             more</span>
+
+<span class="sd">        :param use_cached: whether to use a cached result if available</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">success_keys</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">results</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">FlowGraphResult</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">use_stdout</span><span class="p">:</span> <span class="nb">bool</span>
+        <span class="n">output_dir</span><span class="p">,</span> <span class="n">use_stdout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prep_align</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">render_level</span><span class="p">)</span>
+        <span class="n">keys</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">keys</span> <span class="o">==</span> <span class="s1">&#39;ALL&#39;</span><span class="p">:</span>
+            <span class="n">keys</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">anon_doc_stash</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">keys</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^,\s]+&#39;</span><span class="p">,</span> <span class="n">keys</span><span class="p">)</span>
+        <span class="n">key</span><span class="p">:</span> <span class="nb">str</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">fdg</span><span class="p">:</span> <span class="n">FlowGraphResult</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_align_corpus</span><span class="p">(</span>
+                    <span class="n">key</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">,</span> <span class="n">output_format</span><span class="p">,</span> <span class="n">use_stdout</span><span class="p">,</span> <span class="n">use_cached</span><span class="p">)</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fdg</span><span class="p">)</span>
+                <span class="n">success_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">use_stdout</span><span class="p">:</span>
+                    <span class="kn">from</span> <span class="nn">zensols.datdesc</span> <span class="kn">import</span> <span class="n">DataDescriber</span>
+                    <span class="n">dd</span><span class="p">:</span> <span class="n">DataDescriber</span> <span class="o">=</span> <span class="n">fdg</span><span class="o">.</span><span class="n">create_data_describer</span><span class="p">()</span>
+                    <span class="n">meth</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">save_csv</span>
+                    <span class="n">meth</span><span class="p">(</span><span class="n">output_dir</span> <span class="o">/</span> <span class="s1">&#39;alignments&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Can not align </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">use_stdout</span><span class="p">:</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_dir</span> <span class="o">/</span> <span class="s1">&#39;errors.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;error: </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                        <span class="n">traceback</span><span class="o">.</span><span class="n">print_exception</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;_&#39;</span> <span class="o">*</span> <span class="mi">80</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">use_stdout</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">dfs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">res</span><span class="p">:</span> <span class="n">FlowGraphResult</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">res</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">success_keys</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">is_error</span><span class="p">:</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+                    <span class="k">continue</span>
+                <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">stats_df</span>
+                <span class="n">cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="n">df</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+                <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">cols</span><span class="p">]</span>
+                <span class="n">dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dfs</span><span class="p">)</span>
+            <span class="n">df_path</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">output_dir</span> <span class="o">/</span> <span class="s1">&#39;results.csv&#39;</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">df_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;wrote: </span><span class="si">{</span><span class="n">df_path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CorpusApplication.write_adhoc_corpus">
+<a class="viewcode-back" href="../../../api/zensols.calamr.html#zensols.calamr.app.CorpusApplication.write_adhoc_corpus">[docs]</a>
+    <span class="k">def</span> <span class="nf">write_adhoc_corpus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">corpus_file</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Write the adhoc corpus from the JSON created file.</span>
+
+<span class="sd">        :param corpus_file: the file with the source and summary sentences</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">zensols.amr.annotate</span> <span class="kn">import</span> <span class="n">FileCorpusWriter</span>
+        <span class="n">writer_sec</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;calamr_adhoc_corpus&#39;</span>
+        <span class="k">if</span> <span class="n">writer_sec</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_factory</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">sections</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ApplicationError</span><span class="p">(</span>
+                <span class="s1">&#39;Looks like wrong config: &#39;</span> <span class="o">+</span>
+                <span class="s1">&#39;use -f --override calamr_corpus.name=adhoc&#39;</span><span class="p">)</span>
+        <span class="n">writer</span><span class="p">:</span> <span class="n">FileCorpusWriter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_factory</span><span class="p">(</span><span class="n">writer_sec</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">corpus_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">corpus_file</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="n">input_file</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">writer</span><span class="o">.</span><span class="n">input_file</span> <span class="o">=</span> <span class="n">corpus_file</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;reading: </span><span class="si">{</span><span class="n">corpus_file</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">writer</span><span class="o">.</span><span class="n">output_file</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;already exists: </span><span class="si">{</span><span class="n">writer</span><span class="o">.</span><span class="n">output_file</span><span class="si">}</span><span class="s1">--skipping&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">writer</span><span class="p">()</span>
+        <span class="c1"># clear the annotated feature document stash</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">anon_doc_stash</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="AlignmentApplication">
+<a class="viewcode-back" href="../../../api/zensols.calamr.html#zensols.calamr.app.AlignmentApplication">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">AlignmentApplication</span><span class="p">(</span><span class="n">_AlignmentBaseApplication</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This application aligns data in files.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">config_factory</span><span class="p">:</span> <span class="n">ConfigFactory</span> <span class="o">=</span> <span class="n">field</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Application configuration factory.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="AlignmentApplication.align_file">
+<a class="viewcode-back" href="../../../api/zensols.calamr.html#zensols.calamr.app.AlignmentApplication.align_file">[docs]</a>
+    <span class="k">def</span> <span class="nf">align_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                   <span class="n">output_format</span><span class="p">:</span> <span class="n">Format</span> <span class="o">=</span> <span class="n">Format</span><span class="o">.</span><span class="n">csv</span><span class="p">,</span>
+                   <span class="n">render_level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Align annotated documents from a JSON file.</span>
+
+<span class="sd">        :param input_file: the input JSON file.</span>
+
+<span class="sd">        :param output_dir: the output directory</span>
+
+<span class="sd">        :param output_format: the output format</span>
+
+<span class="sd">        :param render_level: how many graphs to render (0 - 10), higher means</span>
+<span class="sd">                             more</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">output_dir</span><span class="p">,</span> <span class="n">use_stdout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prep_align</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">render_level</span><span class="p">)</span>
+        <span class="n">success_keys</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">results</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">FlowGraphResult</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">dix</span><span class="p">:</span> <span class="nb">int</span>
+        <span class="n">doc</span><span class="p">:</span> <span class="n">AmrFeatureDocument</span>
+        <span class="k">for</span> <span class="n">dix</span><span class="p">,</span> <span class="n">doc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">parse_documents</span><span class="p">(</span><span class="n">input_file</span><span class="p">)):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">doc_graph</span><span class="p">:</span> <span class="n">DocumentGraph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">doc_graph_factory</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+                <span class="n">output_file</span><span class="p">:</span> <span class="n">Path</span>
+                <span class="k">if</span> <span class="n">use_stdout</span><span class="p">:</span>
+                    <span class="n">output_file</span> <span class="o">=</span> <span class="n">stdout</span><span class="o">.</span><span class="n">STANDARD_OUT_PATH</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">output_file</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_output_file</span><span class="p">(</span>
+                        <span class="n">output_dir</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">dix</span><span class="p">),</span> <span class="n">output_format</span><span class="p">)</span>
+                <span class="n">res</span><span class="p">:</span> <span class="n">FlowGraphResult</span> <span class="o">=</span> <span class="n">aligner</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">doc_graph</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">is_error</span><span class="p">:</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">failure</span><span class="o">.</span><span class="n">rethrow</span><span class="p">()</span>
+                <span class="k">with</span> <span class="n">stdout</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fout</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_output_align</span><span class="p">(</span><span class="n">output_format</span><span class="p">,</span> <span class="n">doc</span><span class="p">,</span> <span class="n">fout</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">use_stdout</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;wrote: </span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+                <span class="n">success_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dix</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Can not align </span><span class="si">{</span><span class="n">dix</span><span class="si">}</span><span class="s1">th </span><span class="si">{</span><span class="n">doc</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">use_stdout</span><span class="p">:</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_dir</span> <span class="o">/</span> <span class="s1">&#39;errors.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;error: </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                        <span class="n">traceback</span><span class="o">.</span><span class="n">print_exception</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;_&#39;</span> <span class="o">*</span> <span class="mi">80</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">use_stdout</span> <span class="ow">and</span> <span class="n">dix</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">dfs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">res</span><span class="p">:</span> <span class="n">FlowGraphResult</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">res</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">success_keys</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">is_error</span><span class="p">:</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+                    <span class="k">continue</span>
+                <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">stats_df</span>
+                <span class="n">cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="n">df</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+                <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">cols</span><span class="p">]</span>
+                <span class="n">dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dfs</span><span class="p">)</span>
+            <span class="n">df_path</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">output_dir</span> <span class="o">/</span> <span class="s1">&#39;results.csv&#39;</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">df_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;wrote: </span><span class="si">{</span><span class="n">df_path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">_ProtoApplication</span><span class="p">(</span><span class="n">_AlignmentBaseApplication</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;An application entry point for prototyping.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">CLI_META</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;is_usage_visible&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+
+    <span class="n">config_factory</span><span class="p">:</span> <span class="n">ConfigFactory</span> <span class="o">=</span> <span class="n">field</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;For prototyping.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_get_doc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># proxy corpus</span>
+            <span class="n">k</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;20080705_0216&#39;</span>
+            <span class="c1"># no summary</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="s1">&#39;20030126_0212&#39;</span>
+            <span class="c1"># key error bug:</span>
+            <span class="c1">#k = &#39;20030814_0653&#39;</span>
+            <span class="c1"># no such alignment (37)</span>
+            <span class="c1">#k = &#39;20080107_0053&#39;</span>
+            <span class="c1"># max recursion</span>
+            <span class="c1">#k = &#39;20080125_0121&#39;</span>
+            <span class="c1"># unsupporter operand type</span>
+            <span class="c1">#k = &#39;20080717_0594&#39;</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">anon_doc_stash</span><span class="p">:</span>
+            <span class="c1"># adhoc</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="s1">&#39;liu-example&#39;</span>  <span class="c1"># original 2014 Lui et al example</span>
+            <span class="c1">#k = &#39;coref-src&#39;  # example has co-reference in only souce</span>
+            <span class="c1">#k = &#39;fixable-reentrancy&#39;</span>
+            <span class="c1">#k = &#39;soccer&#39;</span>
+            <span class="c1">#k = &#39;earthquake&#39;</span>
+            <span class="c1">#k = &#39;coref-bipartite&#39;</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">anon_doc_stash</span><span class="p">:</span>
+            <span class="c1"># little prince</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="s1">&#39;1943&#39;</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">anon_doc_stash</span><span class="p">:</span>
+            <span class="c1"># bio</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="s1">&#39;1563_0473&#39;</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">anon_doc_stash</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;no key: </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1"> in </span><span class="si">{</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">anon_doc_stash</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">anon_doc_stash</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_read_docs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">AmrFeatureDocument</span><span class="p">]:</span>
+        <span class="kn">from</span> <span class="nn">.annotate</span> <span class="kn">import</span> <span class="n">AnnotatedAmrFeatureDocumentFactory</span>
+        <span class="n">factory</span><span class="p">:</span> <span class="n">AnnotatedAmrFeatureDocumentFactory</span> <span class="o">=</span> \
+            <span class="bp">self</span><span class="o">.</span><span class="n">config_factory</span><span class="p">(</span><span class="s1">&#39;anon_doc_factory&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">factory</span><span class="p">(</span><span class="n">input_file</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_corpus_datadescriber</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;DataDescriber&#39;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+        <span class="kn">from</span> <span class="nn">zensols.util</span> <span class="kn">import</span> <span class="n">Failure</span>
+        <span class="kn">from</span> <span class="nn">zensols.datdesc</span> <span class="kn">import</span> <span class="n">DataFrameDescriber</span><span class="p">,</span> <span class="n">DataDescriber</span>
+        <span class="n">stash</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_factory</span><span class="p">(</span><span class="s1">&#39;calamr_flow_graph_result_cache_stash&#39;</span><span class="p">)</span>
+        <span class="n">dfs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">dd</span><span class="p">:</span> <span class="n">DataDescriber</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">did</span><span class="p">:</span> <span class="nb">str</span>
+        <span class="n">res</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">FlowGraphResult</span><span class="p">,</span> <span class="n">Failure</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">did</span><span class="p">,</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">it</span><span class="o">.</span><span class="n">islice</span><span class="p">(</span><span class="n">stash</span><span class="p">,</span> <span class="n">limit</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">FlowGraphResult</span><span class="p">):</span>
+                <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">df</span>
+                <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">did</span><span class="p">)</span>
+                <span class="n">dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">dd</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">dd</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">create_data_describer</span><span class="p">()</span>
+        <span class="n">dfd</span><span class="p">:</span> <span class="n">DataFrameDescriber</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">describers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">derive</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">dd</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">desc</span><span class="o">=</span><span class="n">dd</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dfs</span><span class="p">))</span>
+        <span class="n">dfd</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span>
+            <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;doc_id&#39;</span><span class="p">:</span> <span class="s1">&#39;AMR document ID&#39;</span><span class="p">},</span>
+                      <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;doc_id&#39;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;description&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(),</span>
+            <span class="n">dfd</span><span class="o">.</span><span class="n">meta</span><span class="p">))</span>
+        <span class="k">if</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">zensols.rend</span> <span class="kn">import</span> <span class="n">ApplicationFactory</span>
+            <span class="n">br</span> <span class="o">=</span> <span class="n">ApplicationFactory</span><span class="o">.</span><span class="n">get_browser_manager</span><span class="p">()</span>
+            <span class="n">br</span><span class="p">(</span><span class="n">dfd</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_align</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">render_level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">write</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="n">doc</span><span class="p">:</span> <span class="n">AmrFeatureDocument</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_doc</span><span class="p">()</span>
+        <span class="n">doc_graph</span><span class="p">:</span> <span class="n">DocumentGraph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">doc_graph_factory</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">doc_graph_aligner</span><span class="o">.</span><span class="n">render_level</span> <span class="o">=</span> <span class="n">render_level</span>
+        <span class="c1">#self.resource.doc_graph_aligner.init_loops_render_level = render_level</span>
+        <span class="n">res</span><span class="p">:</span> <span class="n">FlowGraphResult</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">doc_graph_aligner</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">doc_graph</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">write</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">res</span>
+
+    <span class="k">def</span> <span class="nf">_align_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
+        <span class="n">aligner</span><span class="p">:</span> <span class="n">DocumentGraphAligner</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">doc_graph_aligner</span>
+        <span class="n">doc</span><span class="p">:</span> <span class="n">AmrFeatureDocument</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_read_docs</span><span class="p">(</span><span class="n">input_file</span><span class="p">)))</span>
+        <span class="n">doc_graph</span><span class="p">:</span> <span class="n">DocumentGraph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">doc_graph_factory</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+        <span class="n">res</span><span class="p">:</span> <span class="n">FlowGraphResult</span> <span class="o">=</span> <span class="n">aligner</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">doc_graph</span><span class="p">)</span>
+        <span class="n">doc</span><span class="o">.</span><span class="n">amr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">limit_sent</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_write</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_doc</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">serialized_factory</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">amr</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_read_adhoc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">input_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;corpus/micro/source.json&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">it</span><span class="o">.</span><span class="n">islice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_read_docs</span><span class="p">(</span><span class="n">input_file</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;doc_id: </span><span class="si">{</span><span class="n">doc</span><span class="o">.</span><span class="n">amr</span><span class="o">.</span><span class="n">doc_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">doc</span><span class="o">.</span><span class="n">amr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">limit_sent</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_proxy_key_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_factory</span><span class="p">(</span><span class="s1">&#39;calamr_amr_corp_split_keys&#39;</span><span class="p">)</span>
+        <span class="n">ks</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_tmp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">render</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">zensols.util</span> <span class="kn">import</span> <span class="n">time</span>
+        <span class="n">stash</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_factory</span><span class="p">(</span><span class="s1">&#39;calamr_flow_graph_result_stash&#39;</span><span class="p">)</span>
+        <span class="c1">#stash.clear()</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="s1">&#39;aurora-borealis&#39;</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="s1">&#39;liu-example&#39;</span>
+        <span class="c1">#k = &#39;20030814_0653&#39;</span>
+        <span class="k">with</span> <span class="n">time</span><span class="p">():</span>
+            <span class="n">res</span><span class="p">:</span> <span class="n">FlowGraphResult</span> <span class="o">=</span> <span class="n">stash</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">render</span><span class="p">:</span>
+                <span class="kn">from</span> <span class="nn">.render.base</span> <span class="kn">import</span> <span class="n">RenderContext</span><span class="p">,</span> <span class="n">rendergroup</span>
+                <span class="n">renderer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_factory</span><span class="p">(</span><span class="s1">&#39;calamr_resource&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">doc_graph_aligner</span><span class="o">.</span><span class="n">renderer</span>
+                <span class="k">with</span> <span class="n">rendergroup</span><span class="p">(</span><span class="n">renderer</span><span class="p">)</span> <span class="k">as</span> <span class="n">rg</span><span class="p">:</span>
+                    <span class="n">ctx</span><span class="p">:</span> <span class="n">RenderContext</span>
+                    <span class="k">for</span> <span class="n">ctx</span> <span class="ow">in</span> <span class="n">res</span><span class="o">.</span><span class="n">get_render_contexts</span><span class="p">():</span>
+                        <span class="n">rg</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_tmp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">zensols.util</span> <span class="kn">import</span> <span class="n">time</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;liu-example&#39;</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;no-summary&#39;</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;aurora-borealis&#39;</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;falling-man&#39;</span>
+        <span class="n">stash</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_factory</span><span class="p">(</span><span class="s1">&#39;calamr_flow_graph_result_stash&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">time</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;alignment </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">):</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">stash</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+        <span class="c1">#res.render()</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">get_render_contexts</span><span class="p">(</span><span class="n">include_nascent</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_tmp_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">doc</span><span class="p">:</span> <span class="n">AmrFeatureDocument</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_doc</span><span class="p">()</span>
+        <span class="n">doc</span><span class="o">.</span><span class="n">amr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">limit_sent</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">doc_graph</span><span class="p">:</span> <span class="n">DocumentGraph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">doc_graph_factory</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+        <span class="c1">#self.resource.doc_graph_aligner.render_level = render_level</span>
+        <span class="c1">#self.resource.doc_graph_aligner.init_loops_render_level = render_level</span>
+        <span class="n">res</span><span class="p">:</span> <span class="n">FlowGraphResult</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">doc_graph_aligner</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">doc_graph</span><span class="p">)</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">df</span>
+        <span class="c1">#df.to_csv(&#39;aft-all.csv&#39;)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;s_attr&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;sentence&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">zensols.rend</span> <span class="kn">import</span> <span class="n">ApplicationFactory</span>
+            <span class="n">br</span> <span class="o">=</span> <span class="n">ApplicationFactory</span><span class="o">.</span><span class="n">get_browser_manager</span><span class="p">()</span>
+            <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/d/bef-all.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">df2</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;s_attr&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;sentence&#39;</span><span class="p">]</span>
+            <span class="n">br</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">df2</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">_tmp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">.render.base</span> <span class="kn">import</span> <span class="n">rendergroup</span><span class="p">,</span> <span class="n">RenderContext</span>
+        <span class="n">stash</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_factory</span><span class="p">(</span><span class="s1">&#39;calamr_flow_graph_result_stash&#39;</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">stash</span><span class="p">[</span><span class="s1">&#39;earthquake&#39;</span><span class="p">]</span>
+        <span class="n">doc_graph</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">doc_graph</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="s1">&#39;reversed_source&#39;</span><span class="p">]</span>
+        <span class="n">doc_graph</span> <span class="o">=</span> <span class="n">doc_graph</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">reverse_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">doc_graph</span><span class="o">.</span><span class="n">components</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">vs</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">gs</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">res</span><span class="o">.</span><span class="n">doc_graph</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">child</span><span class="p">))</span>
+                <span class="n">gs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+            <span class="n">renderer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_factory</span><span class="p">(</span><span class="s1">&#39;calamr_resource&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">doc_graph_aligner</span><span class="o">.</span><span class="n">renderer</span>
+            <span class="k">with</span> <span class="n">rendergroup</span><span class="p">(</span><span class="n">renderer</span><span class="p">,</span> <span class="n">graph_id</span><span class="o">=</span><span class="s1">&#39;graph&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">rg</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">gs</span><span class="p">:</span>
+                    <span class="n">rg</span><span class="p">(</span><span class="n">RenderContext</span><span class="p">(</span><span class="n">doc_graph</span><span class="o">=</span><span class="n">g</span><span class="p">))</span>
+                <span class="n">rg</span><span class="p">(</span><span class="n">RenderContext</span><span class="p">(</span><span class="n">doc_graph</span><span class="o">=</span><span class="n">res</span><span class="o">.</span><span class="n">doc_graph</span><span class="p">))</span>
+            <span class="k">return</span>
+        <span class="n">renderer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_factory</span><span class="p">(</span><span class="s1">&#39;calamr_resource&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">doc_graph_aligner</span><span class="o">.</span><span class="n">renderer</span>
+        <span class="k">with</span> <span class="n">rendergroup</span><span class="p">(</span><span class="n">renderer</span><span class="p">,</span> <span class="n">graph_id</span><span class="o">=</span><span class="s1">&#39;graph&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">rg</span><span class="p">:</span>
+            <span class="n">rg</span><span class="p">(</span><span class="n">RenderContext</span><span class="p">(</span><span class="n">doc_graph</span><span class="o">=</span><span class="n">doc_graph</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_tmp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">factory</span><span class="p">:</span> <span class="n">AnnotatedAmrFeatureDocumentFactory</span> <span class="o">=</span> \
+            <span class="bp">self</span><span class="o">.</span><span class="n">config_factory</span><span class="p">(</span><span class="s1">&#39;amr_anon_doc_factory&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">it</span><span class="o">.</span><span class="n">islice</span><span class="p">(</span><span class="n">factory</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;short-story.json&#39;</span><span class="p">)),</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">doc</span><span class="p">))</span>
+            <span class="n">doc</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+            <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">sents</span><span class="p">:</span>
+                <span class="n">pprint</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">amr</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_tmp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;aligning liu example...&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">align_corpus_document</span><span class="p">(</span><span class="s1">&#39;liu-example&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_tmp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">.render.base</span> <span class="kn">import</span> <span class="n">rendergroup</span><span class="p">,</span> <span class="n">RenderContext</span>
+        <span class="n">doc</span><span class="p">:</span> <span class="n">AmrFeatureDocument</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_doc</span><span class="p">()</span>
+        <span class="n">doc</span><span class="o">.</span><span class="n">amr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">include_amr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">doc_graph</span><span class="p">:</span> <span class="n">DocumentGraph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">doc_graph_factory</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+        <span class="n">renderer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_factory</span><span class="p">(</span><span class="s1">&#39;calamr_resource&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">doc_graph_aligner</span><span class="o">.</span><span class="n">renderer</span>
+        <span class="k">with</span> <span class="n">rendergroup</span><span class="p">(</span><span class="n">renderer</span><span class="p">,</span> <span class="n">graph_id</span><span class="o">=</span><span class="s1">&#39;graph&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">rg</span><span class="p">:</span>
+            <span class="n">rg</span><span class="p">(</span><span class="n">RenderContext</span><span class="p">(</span><span class="n">doc_graph</span><span class="o">=</span><span class="n">doc_graph</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">proto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prototype test.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tmp</span><span class="p">,</span>
+            <span class="c1"># make earthquake more well connected</span>
+            <span class="c1"># neighbor_embedding_weights: [0, 1, 0.6, 0.5, 0.3, 0.2, 0.1]</span>
+            <span class="c1"># neighbor_skew: {y_trans: -0.5, x_trans: 0, compress: 1}</span>
+            <span class="mi">1</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_align</span><span class="p">(</span><span class="n">render_level</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span>
+            <span class="mi">2</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="s1">&#39;20080717_0594&#39;</span><span class="p">,</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">),</span> <span class="n">Format</span><span class="o">.</span><span class="n">txt</span><span class="p">),</span>
+        <span class="p">}[</span><span class="n">run</span><span class="p">]()</span>
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Paul Landes
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="../../../_static/documentation_options.js?v=92734c54"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    </body>
+</html>

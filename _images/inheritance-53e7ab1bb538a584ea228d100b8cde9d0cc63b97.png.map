@@ -1,0 +1,8 @@
+<map id="inheritancefc5d4420e6" name="inheritancefc5d4420e6">
+<area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="111,5,183,36"/>
+<area shape="rect" id="node3" title="An interface for classes that have multi&#45;line debuging capability." alt="" coords="33,84,121,115"/>
+<area shape="rect" id="node4" href="#zensols.calamr.render.base.GraphRenderer" target="_top" title="Renders an igraph in to a file and then displays it. &#160;To render the" alt="" coords="145,84,293,115"/>
+<area shape="rect" id="node2" title="A class that that generates a dictionary recursively from data classes" alt="" coords="33,163,120,193"/>
+<area shape="rect" id="node5" href="#zensols.calamr.render.base.RenderContext" target="_top" title="Contains everything that is needed to render a graph." alt="" coords="5,241,148,272"/>
+<area shape="rect" id="node6" href="#zensols.calamr.render.base.rendergroup" target="_top" title="A context manager to render several graphs at a time, then optionally" alt="" coords="502,5,622,36"/>
+</map>

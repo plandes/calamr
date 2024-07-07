@@ -1,0 +1,5 @@
+<map id="inheritancee206d5ef53" name="inheritancee206d5ef53">
+<area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="65,5,137,36"/>
+<area shape="rect" id="node2" href="#zensols.calamr.render.base.GraphRenderer" target="_top" title="Renders an igraph in to a file and then displays it. &#160;To render the" alt="" coords="27,84,175,115"/>
+<area shape="rect" id="node3" href="#zensols.calamr.render.plotly.PlotlyGraphRenderer" target="_top" title="Render teh graph in plotly using a tree layout with each separated on the" alt="" coords="5,163,197,193"/>
+</map>

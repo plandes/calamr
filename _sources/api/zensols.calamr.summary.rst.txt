@@ -1,0 +1,45 @@
+zensols.calamr.summary namespace
+================================
+
+Submodules
+----------
+
+zensols.calamr.summary.alignconst
+---------------------------------
+.. inheritance-diagram:: zensols.calamr.summary.alignconst
+   :parts: 1
+
+.. automodule:: zensols.calamr.summary.alignconst
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.summary.capacity
+-------------------------------
+.. inheritance-diagram:: zensols.calamr.summary.capacity
+   :parts: 1
+
+.. automodule:: zensols.calamr.summary.capacity
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.summary.coref
+----------------------------
+.. inheritance-diagram:: zensols.calamr.summary.coref
+   :parts: 1
+
+.. automodule:: zensols.calamr.summary.coref
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.summary.factory
+------------------------------
+.. inheritance-diagram:: zensols.calamr.summary.factory
+   :parts: 1
+
+.. automodule:: zensols.calamr.summary.factory
+   :members:
+   :undoc-members:
+   :show-inheritance:

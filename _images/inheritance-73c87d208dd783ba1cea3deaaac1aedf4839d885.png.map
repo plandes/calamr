@@ -1,0 +1,11 @@
+<map id="inheritance8ebd431592" name="inheritance8ebd431592">
+<area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="152,5,224,36"/>
+<area shape="rect" id="node2" title="All subclasses have the ability to deallocate any resources. &#160;This is" alt="" coords="56,84,187,115"/>
+<area shape="rect" id="node4" title="An interface for classes that have multi&#45;line debuging capability." alt="" coords="211,84,299,115"/>
+<area shape="rect" id="node7" title="Classes can extend this that want to persist :class:`.PersistedWork`" alt="" coords="27,163,216,193"/>
+<area shape="rect" id="node3" title="A class that that generates a dictionary recursively from data classes" alt="" coords="291,163,378,193"/>
+<area shape="rect" id="node8" href="#zensols.calamr.dcomp.SentenceEntry" target="_top" title="Contains the sentence node of a sentence, and the respective concept and" alt="" coords="255,241,395,272"/>
+<area shape="rect" id="node9" href="#zensols.calamr.dcomp.SentenceIndex" target="_top" title="An index of the sentences of a :class:`.DocumentGraphComponent`." alt="" coords="419,241,562,272"/>
+<area shape="rect" id="node6" href="#zensols.calamr.comp.GraphComponent" target="_top" title="A container class for an :class:`igraph.Graph`, which also has caching" alt="" coords="47,241,214,272"/>
+<area shape="rect" id="node5" href="#zensols.calamr.dcomp.DocumentGraphComponent" target="_top" title="A class containing the root information of the document tree and the" alt="" coords="5,320,256,351"/>
+</map>

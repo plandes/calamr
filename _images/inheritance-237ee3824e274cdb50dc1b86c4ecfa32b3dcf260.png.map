@@ -1,0 +1,10 @@
+<map id="inheritance62a8b57c0e" name="inheritance62a8b57c0e">
+<area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="365,5,437,36"/>
+<area shape="rect" id="node2" title="All subclasses have the ability to deallocate any resources. &#160;This is" alt="" coords="5,84,136,115"/>
+<area shape="rect" id="node5" href="#zensols.calamr.doc.DocumentGraphDecorator" target="_top" title="A strategy to create a graph from a document structure." alt="" coords="160,84,395,115"/>
+<area shape="rect" id="node6" href="#zensols.calamr.doc.DocumentGraphFactory" target="_top" title="Creates a document graph. &#160;After the document portion of the graph is" alt="" coords="419,84,635,115"/>
+<area shape="rect" id="node8" title="An interface for classes that have multi&#45;line debuging capability." alt="" coords="521,163,609,193"/>
+<area shape="rect" id="node7" title="Classes can extend this that want to persist :class:`.PersistedWork`" alt="" coords="203,163,392,193"/>
+<area shape="rect" id="node3" href="#zensols.calamr.doc.DocumentGraph" target="_top" title="A graph containing the text, text features, AMR Penman graph and igraph." alt="" coords="353,320,509,351"/>
+<area shape="rect" id="node4" href="#zensols.calamr.comp.GraphComponent" target="_top" title="A container class for an :class:`igraph.Graph`, which also has caching" alt="" coords="347,241,514,272"/>
+</map>
