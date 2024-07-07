@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+## [0.1.2] - 2024-07-07
+### Changed
+- Fix inconsistent scoring due to dirty cache hits in role edge assignment.
+
+
 ## [0.1.1] - 2024-07-03
 ### Added
 - Easier facade level access to create and align ad hoc annotated (for source
@@ -27,7 +32,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 <!-- links -->
-[Unreleased]: https://github.com/plandes/calamr/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/plandes/calamr/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/plandes/calamr/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/plandes/calamr/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/plandes/calamr/compare/v0.0.1...v0.1.0
 [0.0.1]: https://github.com/plandes/calamr/compare/v0.0.0...v0.0.1

@@ -8,7 +8,7 @@ calamr_relation_cache_stash:
   class_name: zensols.persist.DictionaryStash
 
 calamr_relation_factory_stash:
-  class_name: zensols.persist.FactoryStash
+  class_name: zensols.persist.CacheFactoryStash
   delegate: 'instance: calamr_relation_cache_stash'
   factory: "call({'param': {'attribute': 'relation_stash'}}): pbdb_db"
 

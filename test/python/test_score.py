@@ -53,7 +53,7 @@ class TestScore(unittest.TestCase):
         if WRITE:
             df.to_csv(should_file)
         dfs = pd.read_csv(should_file, index_col=0)
-        sigdig = 1
+        sigdig = 15
         df = df.round(sigdig)
         dfs = dfs.round(sigdig)
         dfc = dfs.compare(df)
