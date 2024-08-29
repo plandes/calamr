@@ -5,6 +5,7 @@
 #
 PROJ_TYPE =		python
 PROJ_MODULES =		git python-resources python-cli python-doc python-doc-deploy markdown
+PY_DEP_POST_DEPS +=	scoredeps modeldeps
 CLEAN_DEPS +=		pycleancache
 ADD_CLEAN_ALL +=	data corpus/micro/amr.txt
 PY_DOC_BUILD_HTML_DEPS += cpgraphs
@@ -23,6 +24,11 @@ include ./zenbuild/main.mk
 
 ## Configure
 #
+# download [spacy models](https://spacy.io/models/en)
+.PHONY:			modeldeps
+modeldeps:
+			$(PIP_BIN) install $(PIP_ARGS) -r $(PY_SRC)/requirements-model.txt
+
 # install dependencies needed for scoring AMRs (i.e. WLK)
 .PHONY:			scoredeps
 scoredeps:
