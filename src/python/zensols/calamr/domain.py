@@ -117,6 +117,7 @@ class EmbeddingResource(object):
         emb: Tensor = self.get_token_embedding('[SEP]')
         emb = emb.clone().detach()
         emb.zero_()
+        emb = self.torch_config.to(emb)
         return emb
 
     @property
