@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    paths-ignore:
+      - '**.md'
+      - 'doc/*'
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11']
+    steps:
+      - name: Checkout reposistory
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+
+      # https://github.com/MaartenGr/BERTopic/issues/392
+      - name: Avoid default numpy 2.x install before module deps
+        run: pip install numpy==1.25.2
+
+      # https://github.com/nmslib/nmslib/issues/538
+      - name: Install an available library from the abandoned nmslib project
+        run: >-
+          [ $(python --version | sed -E 's/Python ([0-9]+\.[0-9]+)\.[0-9]+.*/\1/') == '3.11' ] && \
+            pip install https://raw.githubusercontent.com/plandes/mednlp/master/test-resources/github-workflow-lib/nmslib-2.1.2-cp311-cp311-linux_x86_64.whl || true
+
+      - name: Prepare tests
+        run: 'make info deps'
+
+      - name: Run tests
+        run: 'make test'
