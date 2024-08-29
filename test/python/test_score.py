@@ -1,3 +1,4 @@
+import sys
 import re
 from io import StringIO
 from pathlib import Path
@@ -15,12 +16,9 @@ class TestScore(TestBase):
         sio = StringIO()
         res.write(writer=sio)
         actual: str = sio.getvalue()
-        # reduce precision to 2 significant digits for differ slightly values
-        # based on Python and library versions; more precision handled in
-        # :meth:`test_score`
+        # reduce precision to 3 significant digits
         actual = '\n'.join(map(
-            lambda s: re.sub(
-                r'^(\s+(mean|root)_flow: [0-9.]{3})[0-9.]+', r'\1', s),
+            lambda s: re.sub(r'^(\s+(mean|root)_flow: [0-9.]{4})[0-9.]+', r'\1', s),
             actual.split('\n')))
         if write:
             with open(should_file, 'w') as f:
@@ -30,9 +28,12 @@ class TestScore(TestBase):
         self.assertEqual(should, actual)
 
     def test_score_align(self):
-        resource = self._get_app().resource
-        self._test_align('earthquake', resource)
-        self._test_align('aurora-borealis', resource)
+        if sys.version_info.minor >= 11:
+            # disable tests under Python 3.10 since frozendict formats
+            # incorrectly in Writable.write
+            resource = self._get_app().resource
+            self._test_align('earthquake', resource)
+            self._test_align('aurora-borealis', resource)
 
     def test_score(self):
         WRITE: bool = False
