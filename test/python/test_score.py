@@ -1,20 +1,14 @@
-import sys
-import unittest
 import re
 from io import StringIO
 from pathlib import Path
 import shutil
 import pandas as pd
-from zensols import deepnlp; deepnlp.init()
 from zensols.cli import CliHarness
 from zensols.calamr import FlowGraphResult, Resource, ApplicationFactory
+from util import TestBase
 
 
-class TestScore(unittest.TestCase):
-    def setUp(self):
-        # initialize the NLP system
-        self.maxDiff = sys.maxsize
-
+class TestScore(TestBase):
     def _test_align(self, key: str, resource: Resource, write: bool = False):
         should_file = Path(f'test-resources/should-align-results-{key}.txt')
         res: FlowGraphResult = resource.align_corpus_document(key, False)
@@ -33,7 +27,7 @@ class TestScore(unittest.TestCase):
         self.assertEqual(should, actual)
 
     def test_align(self):
-        resource = ApplicationFactory.get_resource('--level err')
+        resource = self._get_app().resource
         self._test_align('earthquake', resource)
         self._test_align('aurora-borealis', resource)
 

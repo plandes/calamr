@@ -40,7 +40,7 @@ jobs:
             pip install https://raw.githubusercontent.com/plandes/mednlp/master/test-resources/github-workflow-lib/nmslib-2.1.2-cp311-cp311-linux_x86_64.whl || true
 
       - name: Prepare tests
-        run: 'make info deps'
+        run: 'make info deps scoredeps'
 
       - name: Run tests
         run: 'make test'

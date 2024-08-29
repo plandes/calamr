@@ -9,47 +9,47 @@ sections:
         There were no immediate reports of injuries or damage.
 statistics:
     agg:
-        aligned_portion_hmean: 0.6606217616580311
-        mean_flow: 1.04
-        tot_alignable: 74
+        aligned_portion_hmean: 0.6813627254509017
+        mean_flow: 1.05
+        tot_alignable: 72
         tot_aligned: 47
-        aligned_portion: 0.6351351351351351
-        reentrancies: 1
-    bipartite_relations: 1
+        aligned_portion: 0.6527777777777778
+        reentrancies: 0
+    bipartite_relations: 0
     components:
         source:
             connected:
-                alignable: 52
+                alignable: 51
                 aligned: 30
-                aligned_portion: 0.5769230769230769
+                aligned_portion: 0.5882352941176471
             counts:
                 edge:
                     doc: 0
-                    role: 45
+                    role: 43
                     sentence: 8
                 node:
                     attribute: 11
-                    concept: 37
+                    concept: 36
                     doc: 1
                     sentence: 4
-            reentrancies: 1
+            reentrancies: 0
             relations: 0
             root_flow: 0.62
         summary:
             connected:
-                alignable: 22
+                alignable: 21
                 aligned: 17
-                aligned_portion: 0.7727272727272727
+                aligned_portion: 0.8095238095238095
             counts:
                 edge:
                     doc: 0
-                    role: 18
+                    role: 17
                     sentence: 4
                 node:
                     attribute: 4
-                    concept: 16
+                    concept: 15
                     doc: 1
                     sentence: 2
             reentrancies: 0
             relations: 0
-            root_flow: 1.45
+            root_flow: 1.47

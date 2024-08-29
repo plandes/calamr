@@ -1,5 +1,6 @@
 import unittest
 from pathlib import Path
+import sys
 import shutil
 from zensols.cli import CliHarness, ApplicationFailure
 from zensols.persist import Stash
@@ -15,7 +16,7 @@ from zensols.calamr import (
 
 class TestBase(unittest.TestCase):
     def setUp(self):
-        self.maxDiff = 9999
+        self.maxDiff = sys.maxsize
         self._clean_cache()
         self.config_factory: ConfigFactory = self._get_config_factory()
         deepnlp.init()

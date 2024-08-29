@@ -23,6 +23,11 @@ include ./zenbuild/main.mk
 
 ## Configure
 #
+# install dependencies needed for scoring AMRs (i.e. WLK)
+.PHONY:			scoredeps
+scoredeps:
+			$(PIP_BIN) install $(PIP_ARGS) -r $(PY_SRC)/requirements-score.txt
+
 # configure the application
 .PHONY:			configapp
 configapp:

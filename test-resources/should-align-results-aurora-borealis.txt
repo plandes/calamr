@@ -17,47 +17,47 @@ sections:
         Some even concluded that the heavens were on fire.
 statistics:
     agg:
-        aligned_portion_hmean: 0.3314651721377102
-        mean_flow: 0.61
-        tot_alignable: 131
-        tot_aligned: 41
-        aligned_portion: 0.31297709923664124
-        reentrancies: 5
-    bipartite_relations: 1
+        aligned_portion_hmean: 0.480370942812983
+        mean_flow: 0.72
+        tot_alignable: 135
+        tot_aligned: 58
+        aligned_portion: 0.42962962962962964
+        reentrancies: 6
+    bipartite_relations: 2
     components:
         source:
             connected:
-                alignable: 103
-                aligned: 23
-                aligned_portion: 0.22330097087378642
+                alignable: 110
+                aligned: 37
+                aligned_portion: 0.33636363636363636
             counts:
                 edge:
                     doc: 0
-                    role: 84
+                    role: 93
                     sentence: 24
                 node:
                     attribute: 7
-                    concept: 84
+                    concept: 91
                     doc: 1
                     sentence: 12
             reentrancies: 5
-            relations: 2
-            root_flow: 0.26
+            relations: 0
+            root_flow: 0.27
         summary:
             connected:
-                alignable: 28
-                aligned: 18
-                aligned_portion: 0.6428571428571429
+                alignable: 25
+                aligned: 21
+                aligned_portion: 0.84
             counts:
                 edge:
                     doc: 0
-                    role: 24
+                    role: 22
                     sentence: 4
                 node:
-                    attribute: 5
-                    concept: 21
+                    attribute: 3
+                    concept: 20
                     doc: 1
                     sentence: 2
-            reentrancies: 0
+            reentrancies: 1
             relations: 0
-            root_flow: 0.96
+            root_flow: 1.18
