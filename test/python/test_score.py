@@ -26,7 +26,11 @@ class TestScore(TestBase):
             should: str = f.read()
         self.assertEqual(should, actual)
 
-    def test_align(self):
+    def _disable_test_score_align(self):
+        """Curently disabled since verbatim scores differ slightly based on
+        Python and library versions.
+
+        """
         resource = self._get_app().resource
         self._test_align('earthquake', resource)
         self._test_align('aurora-borealis', resource)
