@@ -10,7 +10,7 @@ sections:
 statistics:
     agg:
         aligned_portion_hmean: 0.6813627254509017
-        mean_flow: 1.05
+        mean_flow: 1.0
         tot_alignable: 72
         tot_aligned: 47
         aligned_portion: 0.6527777777777778
@@ -34,7 +34,7 @@ statistics:
                     sentence: 4
             reentrancies: 0
             relations: 0
-            root_flow: 0.62
+            root_flow: 0.6
         summary:
             connected:
                 alignable: 21
@@ -52,4 +52,4 @@ statistics:
                     sentence: 2
             reentrancies: 0
             relations: 0
-            root_flow: 1.47
+            root_flow: 1.4
