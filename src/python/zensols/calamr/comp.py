@@ -256,7 +256,7 @@ class GraphComponent(PersistableContainer, Writable):
                               directed graph, which is used to create the
                               reverse flow graphs used in the maxflow algorithm
 
-        :param deep: whether to create a deep clone, which detatches a component
+        :param deep: whether to create a deep clone, which detaches a component
                      from any bipartite graph by keeping only the graph composed
                      of :obj:`vs`; otherwise the graph is copied as a
                      subcomponent starting from :obj:`root`
