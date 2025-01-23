@@ -1,11 +1,11 @@
-"""AMR Summarization.
+"""Alignment entry point application.
 
 """
 from __future__ import annotations
 __author__ = 'Paul Landes'
 from typing import (
-    Dict, Any, List, Tuple, ClassVar, Sequence, Union,
-    Iterable, Optional, Callable
+    Dict, Any, List, Tuple, Sequence, Union, Iterable,
+    Optional, Callable, TYPE_CHECKING
 )
 from dataclasses import dataclass, field
 import logging
@@ -20,6 +20,8 @@ from zensols.util import stdout
 from zensols.config import ConfigFactory, DefaultDictable
 from zensols.persist import Stash
 from zensols.cli import ApplicationError
+if TYPE_CHECKING:
+    from zensols.datdesc import DataDescriber
 from zensols.amr import AmrFailure, AmrDocument, AmrFeatureDocument, Format
 from zensols.amr.serial import AmrSerializedFactory
 from zensols.amr.docfac import AmrFeatureDocumentFactory
@@ -403,7 +405,6 @@ class CorpusApplication(_AlignmentBaseApplication):
                 results.append(fdg)
                 success_keys.append(key)
                 if not use_stdout:
-                    from zensols.datdesc import DataDescriber
                     dd: DataDescriber = fdg.create_data_describer()
                     meth: Callable = dd.save_csv
                     meth(output_dir / 'alignments')
@@ -481,6 +482,7 @@ class AlignmentApplication(_AlignmentBaseApplication):
                              more
 
         """
+        aligner: DocumentGraphAligner = self.resource.doc_graph_aligner
         output_dir, use_stdout = self._prep_align(output_dir, render_level)
         success_keys: List[str] = []
         results: List[FlowGraphResult] = []
@@ -528,226 +530,3 @@ class AlignmentApplication(_AlignmentBaseApplication):
             df_path: Path = output_dir / 'results.csv'
             df.to_csv(df_path, index=False)
             logger.info(f'wrote: {df_path}')
-
-
-@dataclass
-class _ProtoApplication(_AlignmentBaseApplication):
-    """An application entry point for prototyping.
-
-    """
-    CLI_META: ClassVar[Dict[str, Any]] = {'is_usage_visible': False}
-
-    config_factory: ConfigFactory = field()
-    """For prototyping."""
-
-    def _get_doc(self):
-        if 1:
-            # proxy corpus
-            k: str = '20080705_0216'
-            # no summary
-            k = '20030126_0212'
-            # key error bug:
-            #k = '20030814_0653'
-            # no such alignment (37)
-            #k = '20080107_0053'
-            # max recursion
-            #k = '20080125_0121'
-            # unsupporter operand type
-            #k = '20080717_0594'
-        if k not in self.resource.anon_doc_stash:
-            # adhoc
-            k = 'liu-example'  # original 2014 Lui et al example
-            #k = 'coref-src'  # example has co-reference in only souce
-            #k = 'fixable-reentrancy'
-            #k = 'soccer'
-            #k = 'earthquake'
-            #k = 'coref-bipartite'
-        if k not in self.resource.anon_doc_stash:
-            # little prince
-            k = '1943'
-        if k not in self.resource.anon_doc_stash:
-            # bio
-            k = '1563_0473'
-        if k not in self.resource.anon_doc_stash:
-            print(f'no key: {k} in {tuple(self.resource.anon_doc_stash.keys())}')
-        return self.resource.anon_doc_stash[k]
-
-    def _read_docs(self, input_file: Path) -> Iterable[AmrFeatureDocument]:
-        from .annotate import AnnotatedAmrFeatureDocumentFactory
-        factory: AnnotatedAmrFeatureDocumentFactory = \
-            self.config_factory('anon_doc_factory')
-        return factory(input_file)
-
-    def _get_corpus_datadescriber(self, limit: int = 2) -> 'DataDescriber':
-        from typing import Union
-        from zensols.util import Failure
-        from zensols.datdesc import DataFrameDescriber, DataDescriber
-        stash = self.config_factory('calamr_flow_graph_result_cache_stash')
-        dfs: List[pd.DataFrame] = []
-        dd: DataDescriber = None
-        did: str
-        res: Union[FlowGraphResult, Failure]
-        for did, res in it.islice(stash, limit):
-            if isinstance(res, FlowGraphResult):
-                df: pd.DataFrame = res.df
-                df.insert(0, 'id', did)
-                dfs.append(df)
-                if dd is None:
-                    dd = res.create_data_describer()
-        dfd: DataFrameDescriber = dd.describers[0].derive(
-            name=dd.name,
-            desc=dd.name,
-            df=pd.concat(dfs))
-        dfd.meta = pd.concat((
-            pd.Series(data={'doc_id': 'AMR document ID'},
-                      index=['doc_id'], name='description').to_frame(),
-            dfd.meta))
-        if 1:
-            from zensols.rend import ApplicationFactory
-            br = ApplicationFactory.get_browser_manager()
-            br(dfd)
-
-    def _align(self, render_level: int = 5, write: bool = True):
-        doc: AmrFeatureDocument = self._get_doc()
-        doc_graph: DocumentGraph = self.resource.doc_graph_factory(doc)
-        self.resource.doc_graph_aligner.render_level = render_level
-        #self.resource.doc_graph_aligner.init_loops_render_level = render_level
-        res: FlowGraphResult = self.resource.doc_graph_aligner.align(doc_graph)
-        if write:
-            res.write()
-        return res
-
-    def _align_file(self, input_file: Path):
-        aligner: DocumentGraphAligner = self.resource.doc_graph_aligner
-        doc: AmrFeatureDocument = next(iter(self._read_docs(input_file)))
-        doc_graph: DocumentGraph = self.resource.doc_graph_factory(doc)
-        res: FlowGraphResult = aligner.align(doc_graph)
-        doc.amr.write(limit_sent=0)
-        res.write()
-
-    def _write(self):
-        doc = self._get_doc()
-        self.resource.serialized_factory(doc.amr).write()
-
-    def _read_adhoc(self):
-        input_file = Path('corpus/micro/source.json')
-        for doc in it.islice(self._read_docs(input_file), 2):
-            print(f'doc_id: {doc.amr.doc_id}')
-            doc.amr.write(1, limit_sent=0)
-
-    def _proxy_key_splits(self):
-        ks = self.config_factory('calamr_amr_corp_split_keys')
-        ks.write()
-
-    def _tmp(self, render: bool = True):
-        from zensols.util import time
-        stash = self.config_factory('calamr_flow_graph_result_stash')
-        #stash.clear()
-        k = 'aurora-borealis'
-        k = 'liu-example'
-        #k = '20030814_0653'
-        with time():
-            res: FlowGraphResult = stash[k]
-            if render:
-                from .render.base import RenderContext, rendergroup
-                renderer = self.config_factory('calamr_resource').doc_graph_aligner.renderer
-                with rendergroup(renderer) as rg:
-                    ctx: RenderContext
-                    for ctx in res.get_render_contexts():
-                        rg(ctx)
-        res.write()
-
-    def _tmp(self):
-        from zensols.util import time
-        key = 'liu-example'
-        key = 'no-summary'
-        key = 'aurora-borealis'
-        key = 'falling-man'
-        stash = self.config_factory('calamr_flow_graph_result_stash')
-        with time(f'alignment {key}'):
-            res = stash[key]
-        res.write()
-        #res.render()
-        res.render(res.get_render_contexts(include_nascent=False))
-
-    def _tmp_(self):
-        doc: AmrFeatureDocument = self._get_doc()
-        doc.amr.write(limit_sent=0)
-        doc_graph: DocumentGraph = self.resource.doc_graph_factory(doc)
-        #self.resource.doc_graph_aligner.render_level = render_level
-        #self.resource.doc_graph_aligner.init_loops_render_level = render_level
-        res: FlowGraphResult = self.resource.doc_graph_aligner.align(doc_graph)
-        res.write()
-        df = res.df
-        #df.to_csv('aft-all.csv')
-        df = df[df['s_attr'] == 'sentence']
-        if 0:
-            from zensols.rend import ApplicationFactory
-            br = ApplicationFactory.get_browser_manager()
-            df2 = pd.read_csv('/d/bef-all.csv', index_col=0)
-            df2 = df2[df2['s_attr'] == 'sentence']
-            br([df, df2])
-
-    def _tmp(self):
-        from .render.base import rendergroup, RenderContext
-        stash = self.config_factory('calamr_flow_graph_result_stash')
-        res = stash['earthquake']
-        doc_graph = res.doc_graph.children['reversed_source']
-        doc_graph = doc_graph.clone(reverse_edges=True, deep=True)
-        if 1:
-            res.write()
-            return
-        if 0:
-            for c in doc_graph.components:
-                print(f'{c.name}:')
-                for v in c.vs.values():
-                    print(' ', v)
-            return
-        if 1:
-            gs = []
-            for child in res.doc_graph.children.values():
-                print(type(child))
-                gs.append(child)
-            renderer = self.config_factory('calamr_resource').doc_graph_aligner.renderer
-            with rendergroup(renderer, graph_id='graph') as rg:
-                for g in gs:
-                    rg(RenderContext(doc_graph=g))
-                rg(RenderContext(doc_graph=res.doc_graph))
-            return
-        renderer = self.config_factory('calamr_resource').doc_graph_aligner.renderer
-        with rendergroup(renderer, graph_id='graph') as rg:
-            rg(RenderContext(doc_graph=doc_graph))
-
-    def _tmp(self):
-        factory: AnnotatedAmrFeatureDocumentFactory = \
-            self.config_factory('amr_anon_doc_factory')
-        for doc in it.islice(factory(Path('short-story.json')), 1):
-            print(type(doc))
-            doc.write()
-            from pprint import pprint
-            for s in doc.sents:
-                pprint(s.amr.metadata)
-
-    def _tmp(self):
-        print('aligning liu example...')
-        self.resource.align_corpus_document('liu-example', True)
-
-    def _tmp(self):
-        from .render.base import rendergroup, RenderContext
-        doc: AmrFeatureDocument = self._get_doc()
-        doc.amr.write(include_amr=False)
-        doc_graph: DocumentGraph = self.resource.doc_graph_factory(doc)
-        renderer = self.config_factory('calamr_resource').doc_graph_aligner.renderer
-        with rendergroup(renderer, graph_id='graph') as rg:
-            rg(RenderContext(doc_graph=doc_graph))
-
-    def proto(self, run: int = 1):
-        """Prototype test."""
-        return {
-            0: self._tmp,
-            # make earthquake more well connected
-            # neighbor_embedding_weights: [0, 1, 0.6, 0.5, 0.3, 0.2, 0.1]
-            # neighbor_skew: {y_trans: -0.5, x_trans: 0, compress: 1}
-            1: lambda: self._align(render_level=5),
-            2: lambda: self.align('20080717_0594', Path('-'), Format.txt),
-        }[run]()
