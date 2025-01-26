@@ -66,7 +66,16 @@ The recommended reading order for this project:
 
 ## Installing
 
-The library can be installed with pip from the [pypi] repository:
+Because the this library has many dependencies and many moving parts, it is
+best to create a new environment using [conda]:
+
+```bash
+wget https://github.com/plandes/calamr/raw/refs/heads/master/environment.yml
+conda env create -f environment.yml
+conda activate calamr
+```
+
+The library can also be installed with pip from the [pypi] repository:
 ```bash
 pip3 install zensols.calamr
 ```
@@ -497,6 +506,7 @@ Copyright (c) 2023 - 2025 Paul Landes
 [SPRING]: https://github.com/SapienzaNLP/spring
 [CALAMR: Component ALignment for Abstract Meaning Representation]: https://aclanthology.org/2024.lrec-main.236/
 [ISI]: https://amr.isi.edu
+[conda]: https://docs.anaconda.com/miniconda/
 
 [amrlib]: https://github.com/bjascob/amrlib
 [amr_coref]: https://github.com/bjascob/amr_coref
