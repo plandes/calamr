@@ -143,9 +143,9 @@ class CapacityCalculator(Dictable):
     """Whether to include tokens in the dataframe for debugging."""
 
     clear_align_node_iteration: bool = field()
-    """Whether to clear (:meth:`_Context.clear) the intermediate data structures
-    after each iteration of the node alignment algorithm.  Cursory results on a
-    small sample show flow and alignments only slightly change when
+    """Whether to clear (:meth:`_Context.clear`) the intermediate data
+    structures after each iteration of the node alignment algorithm.  Cursory
+    results on a small sample show flow and alignments only slightly change when
     :obj:`_Context.neigh_sim` is cleared.
 
     This is because the concept embeddings are used in network neighborhood
@@ -156,53 +156,51 @@ class CapacityCalculator(Dictable):
 
     """
     hyp: HyperparamModel = field()
-    """The calculator's hyperparameters.
+    """The calculator's *hyperparameters*.
 
-    Hyperparameters::
+    :param similarity_dampen_exp: the exponent that dampens the cosine
+                                  similarity for all nodes
+    :type similarity_dampen_exp: dict
 
-        :param similarity_dampen_exp: the exponent that dampens the cosine
-                                      similarity for all nodes
-        :type similarity_dampen_exp: dict
+    :param concept_embedding_role_weights: the weights for concept node's
+                                           roles (i.e. arg0 with neighbor
+                                           node)
+    :type concept_embedding_role_weights: dict
 
-        :param concept_embedding_role_weights: the weights for concept node's
-                                               roles (i.e. arg0 with neighbor
-                                               node)
-        :type concept_embedding_role_weights: dict
+    :param concept_embedding_weights: the weights for concept node's
+                                      weighted average across tokens and
+                                      role sets
+    :type concept_embedding_weights: dict
 
-        :param concept_embedding_weights: the weights for concept node's
-                                          weighted average across tokens and
-                                          role sets
-        :type concept_embedding_weights: dict
+    :param neighbor_direction: indicate how to find neighbors (from the
+                               point of the reverse/maxflow graph with the
+                               root on the bottom), which is one of
+                               descendant (only children and descendents),
+                               ancestor (only parents and ancestors), or all
+                               (all neighbors)
+    :type neighbor_direction: str; one of: descendant, ancestor, all
 
-        :param neighbor_direction: indicate how to find neighbors (from the
-                                   point of the reverse/maxflow graph with the
-                                   root on the bottom), which is one of
-                                   descendant (only children and descendents),
-                                   ancestor (only parents and ancestors), or all
-                                   (all neighbors)
-        :type neighbor_direction: str; one of: descendant, ancestor, all
+    :param neighbor_embedding_weights: weights used to scale each neighbor
+                                       from the the current node and
+                                       immediate neighbor to the furthest
+                                       neighbor; if there is only one entry,
+                                       the singleton value is multiplied by
+                                       the respective nodes embeddings
+    :type neighbor_embedding_weights: list
 
-        :param neighbor_embedding_weights: weights used to scale each neighbor
-                                           from the the current node and
-                                           immediate neighbor to the furthest
-                                           neighbor; if there is only one entry,
-                                           the singleton value is multiplied by
-                                           the respective nodes embeddings
-        :type neighbor_embedding_weights: list
+    :param neighbor_skew: neighborhood sidmoid skew settings with y/x
+                          translation, and compression (how much to compress
+                          or "squeeze" the function to provide a faster
+                          transition) with cosine similarity as the input
+    :type neighbor_skew: dict
 
-        :param neighbor_skew: neighborhood sidmoid skew settings with y/x
-                              translation, and compression (how much to compress
-                              or "squeeze" the function to provide a faster
-                              transition) with cosine similarity as the input
-        :type neighbor_skew: dict
-
-        :param sentence_dampen: the slope for the linear dampening of nodes
-                                under a sentence by sentence cosine similarity;
-                                the higher the value the lower the sentence
-                                similarity, which leads to lower concept and
-                                attribute node similarities, must be in the
-                                interval [0, 1]
-        :type sentence_dampen: float
+    :param sentence_dampen: the slope for the linear dampening of nodes
+                            under a sentence by sentence cosine similarity;
+                            the higher the value the lower the sentence
+                            similarity, which leads to lower concept and
+                            attribute node similarities, must be in the
+                            interval [0, 1]
+    :type sentence_dampen: float
 
     """
     @staticmethod
