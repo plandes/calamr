@@ -1,0 +1,39 @@
+zensols.calamr.summary namespace
+================================
+
+.. py:module:: zensols.calamr.summary
+
+Submodules
+----------
+
+zensols.calamr.summary.alignconst module
+----------------------------------------
+
+.. automodule:: zensols.calamr.summary.alignconst
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.summary.capacity module
+--------------------------------------
+
+.. automodule:: zensols.calamr.summary.capacity
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.summary.coref module
+-----------------------------------
+
+.. automodule:: zensols.calamr.summary.coref
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.summary.factory module
+-------------------------------------
+
+.. automodule:: zensols.calamr.summary.factory
+   :members:
+   :undoc-members:
+   :show-inheritance:
