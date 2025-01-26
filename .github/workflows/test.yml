@@ -25,7 +25,7 @@ jobs:
         uses: conda-incubator/setup-miniconda@v3
         with:
           environment-file: src/python/environment.yml
-          activate-environment: mimicsid
+          activate-environment: calamr
           auto-activate-base: false
 
       - name: Display Conda info
