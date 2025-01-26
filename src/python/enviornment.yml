@@ -1,0 +1,31 @@
+name: calamr
+channels:
+  - defaults
+dependencies:
+  - python==3.11.11
+  - numpy==1.25.2
+  - pip
+  - pip:
+      # third party frameworks
+      - torch==2.1.2
+      - transformers==4.45.2
+      ## graph
+      - igraph==0.11.3
+      - pyvis==0.2.1
+      # plotly
+      - chart-studio==1.1.0
+      ## models
+      - https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.6.0/en_core_web_sm-3.6.0-py3-none-any.whl
+      ## score
+      - pyemd==1.0.0
+      - rouge-score==0.1.2
+      - editdistance==0.8.1
+      ## zensols framework
+      - zensols.util==1.15.2
+      - zensols.nlp==1.12.1
+      - zensols.deeplearn==1.13.2
+      - zensols.deepnlp==1.17.0
+      - zensols.propbankdb==0.2.0
+      - zensols.amr==0.2.1
+      ## tools
+      - zensols.rend

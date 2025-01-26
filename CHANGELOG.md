@@ -8,6 +8,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+### Removed
+- Support for Python 3.10.
+
+### Added
+- Conda `src/python/environment.yml` file.
+
+### Changed
+- Upgrade to [zensols.propbank] version 0.2.0 and other dependent packages
+  (including [zensols.amr]).
+- Update URLs to test.
+- Fix integration test (ISI website is now offline).
+- Clean up application CLI source.
+
+
 ## [0.1.2] - 2024-07-07
 ### Changed
 - Fix inconsistent scoring due to dirty cache hits in role edge assignment.
@@ -38,3 +52,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 [0.0.1]: https://github.com/plandes/calamr/compare/v0.0.0...v0.0.1
 
 [zensols.propbank]: https://github.com/plandes/propbankdb
+[zensols.amr]: https://github.com/plandes/amr

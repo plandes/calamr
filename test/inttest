@@ -4,11 +4,12 @@
 # Integration testing for CALAMR.  This script uses the command line tool to
 # download corpora, align documents, score AMR graphs along with several other
 # tests.  The proxy corpus tests need the AMR 3.0 corpus file installed at
-# $AMR_30_CORP.
+# ~/Desktop/amr_annotation_3.0_LDC2020T02.tgz.
 
 
 PROG=$(basename $0)
-AMR_30_CORP=${HOME}/Desktop/amr_annotation_3.0_LDC2020T02.tgz
+PYTHON_BIN="python"
+CALAMR_BIN="${PYTHON_BIN} ./calamr"
 unset CALAMRRC
 
 
@@ -21,6 +22,8 @@ function prhead() {
 function bail() {
     msg=$1 ; shift
     echo "$PROG: error: $msg"
+    echo "environment:"
+    export
     exit 1
 }
 
@@ -72,42 +75,68 @@ function assert_output_len() {
     report "command output <$cmd>: ${cnt}...OK"
 }
 
+## Setup
+#
+function setup_env() {
+    # env vars here are set by framework and not configurable
+    CONF_DIR=${HOME}
+    APP_RC="${CONF_DIR}/.calamrrc"
+    CACHE_DIR="${HOME}/.cache/calamr"
+    LP_CORP="${CACHE_DIR}/corpus/amr-rel/amr-bank-struct-v3.0.txt"
+    LP_CORP_OUT="./lp.txt"
+
+    # AMR 3.0 corpus needs to be downloaded and put on the desktop
+    amr_file=amr_annotation_3.0_LDC2020T02.tgz
+    AMR_FILE_SRC=${HOME}/Desktop/${amr_file}
+    AMR_FILE_DST=${CACHE_DIR}/download/${amr_file}
+}
+
 function check_amr_rel_corpus() {
-    if [ ! -f $AMR_30_CORP ] && [ ! -f download/$AMR_30_CORP ] ; then
+    if [ ! -f ${AMR_FILE_SRC} ] ; then
 	bail "missing AMR corpus file: $AMR_30_CORP"
     fi
 }
 
-## Setup
-#
 function clean() {
     prhead "clean"
 
-    make hellfire
+    make cleanall
     assert_success $?
 
-    rm -fr lp.txt example scored.csv
+    rm -fr ${LP_CORP_OUT} example scored.csv
     assert_success $?
 }
 
 function configure() {
     prhead "configure"
 
-    echo "src/config/dot-calamrrc -> ~/.calamrrc"
-    cp src/config/dot-calamrrc ~/.calamrrc
+    echo "src/config/dot-calamrrc -> ${APP_RC}"
+    cp src/config/dot-calamrrc ${APP_RC}
     assert_success $?
 }
 
-## Basic tests
+
+## Little Prince corpus and basic tests
 #
+function test_corpus_access() {
+    prhead "test corpus access"
+
+    assert_output_len "${CALAMR_BIN} keys --override calamr_corpus.name=little-prince" 1
+    if [ -f $LP_CORP ] ; then
+	echo "little prince corpus download: ${LP_CORP}...ok"
+    else
+	bail "missing little prince corpus: ${LP_CORP}"
+    fi
+}
+
 function test_align() {
     prhead "alignment"
 
-    ./calamr mkadhoc --corpusfile corpus/micro/source.json
+    ${CALAMR_BIN} mkadhoc --corpusfile corpus/micro/source.json
     assert_success $?
 
     rm -fr example
-    ./calamr aligncorp liu-example -f txt -o example
+    ${CALAMR_BIN} aligncorp liu-example -f txt -o example
     assert_success $?
 
     assert_files "example/liu-example" 7
@@ -116,17 +145,13 @@ function test_align() {
 function test_scoring() {
     prhead "scoring"
 
-    assert_output_len "./calamr keys --override=calamr_corpus.name=little-prince" 1
-
-    ./calamr penman -o lp.txt --limit 5 \
-	     --override amr_default.parse_model=spring \
-	     corpus/amr-rel/amr-bank-struct-v3.0.txt
+    ${CALAMR_BIN} penman ${LP_CORP} -o ${LP_CORP_OUT} --limit 5 \
+	     --override amr_default.parse_model=xfm_bart_base
     assert_success $?
-    assert_file_len lp.txt 58
+    assert_file_len ${LP_CORP_OUT} 57
 
-    ./calamr score --parsed lp.txt \
-	   --methods calamr,smatch,wlk -o scored \
-	     corpus/amr-rel/amr-bank-struct-v3.0.txt
+    ${CALAMR_BIN} score ${LP_CORP} --parsed ${LP_CORP_OUT} \
+	   --methods calamr,smatch,wlk -o scored
     assert_success $?
     assert_file_len scored.csv 6
 }
@@ -137,20 +162,20 @@ function test_scoring() {
 function test_proxy() {
     prhead "proxy-corpus"
 
-    if [ ! -f ./download/$AMR_30_CORP ] ; then
-	mkdir -p ./download
+    if [ ! -f ${AMR_FILE_DST} ] ; then
+	mkdir $(dirname ${AMR_FILE_DST})
 	assert_success $?
 
-	cp $AMR_30_CORP ./download
+	cp ${AMR_FILE_SRC} ${AMR_FILE_DST}
 	assert_success $?
     fi
 
-    ./src/bin/merge-proxy-anons.py
+    ${PYTHON_BIN} ./src/bin/merge-proxy-anons.py
     assert_success $?
-    assert_output_len "./calamr keys --override=calamr_corpus.name=proxy-report" 367
+    assert_output_len "${CALAMR_BIN} keys --override calamr_corpus.name=proxy-report" 367
 
     rm -fr example
-    ./calamr aligncorp 20041010_0024 -f txt -o example \
+    ${CALAMR_BIN} aligncorp 20041010_0024 -f txt -o example \
 	   --override calamr_corpus.name=proxy-report
     assert_success $?
     assert_files example/20041010_0024 7
@@ -160,9 +185,11 @@ function test_proxy() {
 ## Main
 #
 function main() {
+    setup_env
     check_amr_rel_corpus
     clean
     configure
+    test_corpus_access
     test_align
     test_scoring
     test_proxy

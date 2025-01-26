@@ -3,9 +3,8 @@ igraph~=0.11.3
 pyvis~=0.2.1
 # plotly
 chart-studio~=1.1.0
-
-zensols.util~=1.14.4
-zensols.rend~=1.1.1
-zensols.deepnlp~=1.15.0
-zensols.amr~=0.1.4
-zensols.propbankdb~=0.1.0
+# framework
+zensols.propbankdb~=0.2.0
+zensols.amr~=0.2.1
+# tools
+zensols.rend

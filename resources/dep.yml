@@ -8,7 +8,7 @@ transformer_fixed_resource:
   model_id: sentence-transformers/all-mpnet-base-v2
   cache: true
 
-white_space_doc_paresr:
+white_space_doc_parser:
   class_name: zensols.nlp.WhiteSpaceTokenizerFeatureDocumentParser
 
 
@@ -18,7 +18,7 @@ calamr_embedding_resource:
   class_name: zensols.calamr.EmbeddingResource
   torch_config: 'instance: gpu_torch_config'
   # helps with node embeddings that have no token alignments
-  word_piece_doc_parser: 'instance: white_space_doc_paresr'
+  word_piece_doc_parser: 'instance: white_space_doc_parser'
   word_piece_doc_factory: 'instance: ${calamr_default:word_piece_doc_factory}'
   roleset_stash: "call({'param': {'attribute': 'roleset_stash'}}): pbdb_db"
 
