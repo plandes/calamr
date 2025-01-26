@@ -117,8 +117,8 @@ testall:		test
 # create a virtual environment for the tests
 $(PY_CMR_ENV):
 			@if [ ! -d "$(PY_CMR_ENV)" ] ; then \
-				echo "creating enviornment in $(PY_CMR_ENV)" ; \
-				conda env create -f src/python/enviornment.yml \
+				echo "creating environment in $(PY_CMR_ENV)" ; \
+				conda env create -f src/python/environment.yml \
 					--prefix=$(PY_CMR_ENV) ; \
 				$(PY_CMR_ENV)/bin/pip install plac zensols.pybuild ; \
 			fi
