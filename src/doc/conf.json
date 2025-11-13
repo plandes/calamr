@@ -1,7 +1,0 @@
-{"includes": {"named": ["numpy", "pandas", "torch", "zensols.nlp", "zensols.util"],
-	      "mapped": [["zensols.deepnlp", "{url}/deepnlp/"],
-			 ["zensols.amr", "{url}/amr/"],
-			 ["zensols.propbankdb", "{url}/propbankdb/"],
-			 ["pyvis", "https://pyvis.readthedocs.io/en/latest/"],
-			 ["graphviz", "https://graphviz.readthedocs.io/en/stable/"],
-			 ["igraph", "https://igraph.readthedocs.io/en/stable/api/"]]}}

@@ -3,10 +3,11 @@
 """
 __author__ = 'Paul Landes'
 
-from typing import Iterable, Tuple, Dict, Any, List, Union
+from typing import Iterable, Tuple, Dict, Any, List, Union, Type
 from dataclasses import dataclass, field
 from collections import OrderedDict
 import logging
+from zensols.util import PackageRequirement
 from zensols.nlp.score import ErrorScore, ScoreMethod, ScoreContext, Score
 from zensols.amr import AmrFeatureSentence, AmrFeatureDocument
 from zensols.amr.annotate import (

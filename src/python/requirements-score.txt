@@ -1,3 +1,0 @@
-pyemd~=1.0.0
-rouge-score~=0.1.2
-editdistance~=0.8.1

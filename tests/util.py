@@ -7,7 +7,7 @@ from zensols.persist import Stash
 from zensols.config import ConfigFactory
 # initialize the NLP system
 from zensols import deepnlp
-from zensols.amr import AmrFeatureDocument
+from zensols.amr import AmrFeatureDocument, suppress_warnings
 from zensols.calamr import (
     ApplicationFactory, CorpusApplication,
     DocumentGraph, DocumentGraphFactory, DocumentGraphAligner,
@@ -16,6 +16,7 @@ from zensols.calamr import (
 
 class TestBase(unittest.TestCase):
     def setUp(self):
+        suppress_warnings()
         self.maxDiff = sys.maxsize
         self._clean_cache()
         self.config_factory: ConfigFactory = self._get_config_factory()
