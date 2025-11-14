@@ -7,7 +7,8 @@ PROJ_TYPE =		python
 PROJ_MODULES =		python/doc python/package python/deploy
 PY_DOC_POST_BUILD_DEPS += cpgraphs
 PY_TEST_ALL_TARGETS +=	aligncorp alignadhoc graphexampleshtml graphexampleseps
-ADD_CLEAN_ALL +=	data $(EXAMPLE_DIR) results corpus/micro/amr.txt ~/.cache/calamr ~/.calamrrc
+ADD_CLEAN +=		$(EXAMPLE_DIR) results
+ADD_CLEAN_ALL +=	data corpus/micro/amr.txt ~/.cache/calamr ~/.calamrrc
 VAPORIZE_DEPS +=	vaporizedep
 
 

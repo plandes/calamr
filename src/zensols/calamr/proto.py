@@ -190,8 +190,9 @@ class _ProtoApplication(_AlignmentBaseApplication):
                 src: str = tok_aligns(flow.source)
                 trg: str = tok_aligns(flow.target)
                 print(f'{flow}: {src} -> {trg}')
-        print('_' * 80)
-        print(res.df['name s_descr s_toks'.split()])
+        if 1:
+            from zensols.rend import ApplicationFactory
+            ApplicationFactory.render(res.df)
 
     def proto(self, run: int = 6):
         """Prototype test."""
