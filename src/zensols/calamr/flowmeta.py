@@ -8,8 +8,8 @@ from typing import Tuple
 _DATA_DESC_META: Tuple[Tuple[str, str]] = (
     ('s_descr', 'source node descriptions such as concept names, attribute constants and sentence text'),
     ('t_descr', 'target node descriptions such as concept names, attribute constants and sentence text'),
-    ('s_toks', 'any source node aligned tokens'),
-    ('t_toks', 'any target node aligned tokens'),
+    ('s_toks', 'any source node aligned tokens as JSON forms of `[<token text>, [character span]]`'),
+    ('t_toks', 'any target node aligned tokens as JSON forms of `[<token text>, [character span]]`'),
     ('s_attr', 'source node attribute name give by such as `doc`, `sentence`, `concept`, `attribute`'),
     ('t_attr', 'target node attribute name give by such as `doc`, `sentence`, `concept`, `attribute`'),
     ('s_id', 'source node unique identifier'),

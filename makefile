@@ -6,7 +6,8 @@
 PROJ_TYPE =		python
 PROJ_MODULES =		python/doc python/package python/deploy
 PY_DOC_POST_BUILD_DEPS += cpgraphs
-ADD_CLEAN_ALL +=	data $(EXAMPLE_DIR) corpus/micro/amr.txt ~/.cache/calamr ~/.calamrrc
+PY_TEST_ALL_TARGETS +=	aligncorp alignadhoc graphexampleshtml graphexampleseps
+ADD_CLEAN_ALL +=	data $(EXAMPLE_DIR) results corpus/micro/amr.txt ~/.cache/calamr ~/.calamrrc
 VAPORIZE_DEPS +=	vaporizedep
 
 
@@ -79,14 +80,14 @@ alignproxy:
 .PHONY:			graphexampleshtml
 graphexampleshtml:
 			rm -rf $(EXAMPLE_DIR)
-			@$(MAKE) ARG="aligncorp ALL -o $(EXAMPLE_DIR) -r 2 -f txt \
+			@$(MAKE) pyharn ARG="aligncorp ALL -o $(EXAMPLE_DIR) -r 2 -f txt \
 			    --override='calamr_corpus.name=adhoc,calamr_default.renderer=graphviz'"
 
 # create examples of graphs in latex friendly EPS
 .PHONY:			graphexampleseps
 graphexampleseps:
-			rm -rf example
-			@$(MAKE) ARG="aligncorp ALL -o $(EXAMPLE_DIR) -r 2 -f txt \
+			rm -rf $(EXAMPLE_DIR)
+			@$(MAKE) pyharn ARG="aligncorp ALL -o $(EXAMPLE_DIR) -r 2 -f txt \
 			    --override='calamr_corpus.name=adhoc,calamr_graph_render_graphviz.extension=eps,calamr_default.renderer=graphviz'"
 
 # copy the graphs and guide to GitHub pages
@@ -100,9 +101,9 @@ cpgraphs:
 ## Test
 #
 # test: unit and integration
-.PHONY:			testall
-testall:		test
-			./test/inttest
+.PHONY:			testint
+testint:
+			./tests/inttest.sh
 
 # create a virtual environment for the tests
 $(PY_CMR_ENV):
@@ -118,7 +119,7 @@ $(PY_CMR_ENV):
 testworld:		hellfire $(PY_CMR_ENV)
 			@$(call loginfo,unit and integration testing...)
 			@PATH="$(PY_CMR_ENV)/bin:$(PATH)" make test
-			@PATH="$(PY_CMR_ENV)/bin:$(PATH)" ./test/inttest
+			@PATH="$(PY_CMR_ENV)/bin:$(PATH)" ./tests/inttest.sh
 
 # # remove everything (careful)
 .PHONY:			vaporizedep

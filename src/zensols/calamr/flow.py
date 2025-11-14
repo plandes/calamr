@@ -13,6 +13,7 @@ import logging
 from frozendict import frozendict
 import collections
 import textwrap as tw
+import json
 from io import TextIOBase
 from pathlib import Path
 import numpy as np
@@ -65,13 +66,16 @@ class Flow(Dictable):
         :meth:`.FlowDocumentGraphComponent.create_df`.
 
         """
-        def tok_str(node: GraphNode):
+        def tok_aligns(node: GraphNode) -> str:
+            spans: Tuple[Tuple[str, Tuple[int, int]], ...] = None
             if isinstance(node, SentenceGraphAttribute):
-                tstr: str = '|'.join(map(lambda t: t.norm, node.tokens))
-                return tstr if len(tstr) > 0 else None
+                spans = tuple(map(
+                    lambda t: (t.norm, t.lexspan.astuple), node.tokens))
+            spans = None if spans is not None and len(spans) == 0 else spans
+            return None if spans is None else json.dumps(spans)
 
-        src_toks: str = tok_str(self.source)
-        targ_toks: str = tok_str(self.target)
+        src_toks: str = tok_aligns(self.source)
+        targ_toks: str = tok_aligns(self.target)
         row: List[Any] = [self.source.description, self.target.description,
                           src_toks, targ_toks]
         rel_id: int = None

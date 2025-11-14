@@ -159,11 +159,13 @@ class _ProtoApplication(_AlignmentBaseApplication):
         import json
         from . import GraphNode, SentenceGraphAttribute, Flow, FlowDocumentGraph
 
-        def tix(node: GraphNode) -> Tuple[Tuple[str, Tuple[int, int]], ...]:
+        def tok_aligns(node: GraphNode) -> str:
+            spans: Tuple[Tuple[str, Tuple[int, int]], ...] = None
             if isinstance(node, SentenceGraphAttribute):
-                return tuple(map(
+                spans = tuple(map(
                     lambda t: (t.norm, t.lexspan.astuple), node.tokens))
-            return ()
+            spans = None if spans is not None and len(spans) == 0 else spans
+            return None if spans is None else json.dumps(spans)
 
         cached_file = Path('tmp.pkl')
         #cached_file.unlink()
@@ -176,17 +178,20 @@ class _ProtoApplication(_AlignmentBaseApplication):
                 pickle.dump(res, f)
         with open(cached_file, 'rb') as f:
             res = pickle.load(f)
-        self.resource.restore(res)
-        #res.render()
+        #res.write()
+        if 0:
+            self.resource.restore(res)
+            res.render()
         doc_graph = res.doc_graph
         flow_doc_graph: FlowDocumentGraph = res.doc_graph.children['reversed_source']
         for cname, graph in flow_doc_graph.components_by_name.items():
             flow: Flow
             for flow in graph.flows:
-                src: Tuple[Tuple[str, Tuple[int, int]], ...] = tix(flow.source)
-                trg: Tuple[Tuple[str, Tuple[int, int]], ...] = tix(flow.target)
-                json_str: str = json.dumps({'source': src, 'target': trg})
-                print(f'{flow}: {json_str}')
+                src: str = tok_aligns(flow.source)
+                trg: str = tok_aligns(flow.target)
+                print(f'{flow}: {src} -> {trg}')
+        print('_' * 80)
+        print(res.df['name s_descr s_toks'.split()])
 
     def proto(self, run: int = 6):
         """Prototype test."""

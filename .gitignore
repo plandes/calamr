@@ -15,6 +15,7 @@
 /cache
 /download
 /env
+
 # pixi environments
 .pixi
 /pyproject.toml
