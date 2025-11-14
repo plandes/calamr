@@ -3,7 +3,7 @@
 """
 __author__ = 'PaulLandes'
 
-from typing import Dict, Any, List, Tuple, Iterable, ClassVar
+from typing import Dict, Any, List, Tuple, ClassVar
 from dataclasses import dataclass, field
 from pathlib import Path
 import itertools as it
@@ -154,7 +154,41 @@ class _ProtoApplication(_AlignmentBaseApplication):
         with rendergroup(renderer, graph_id='graph') as rg:
             rg(RenderContext(doc_graph=doc_graph))
 
-    def proto(self, run: int = 3):
+    def _iterate_align_tokens(self):
+        import pickle
+        import json
+        from . import GraphNode, SentenceGraphAttribute, Flow, FlowDocumentGraph
+
+        def tix(node: GraphNode) -> Tuple[Tuple[str, Tuple[int, int]], ...]:
+            if isinstance(node, SentenceGraphAttribute):
+                return tuple(map(
+                    lambda t: (t.norm, t.lexspan.astuple), node.tokens))
+            return ()
+
+        cached_file = Path('tmp.pkl')
+        #cached_file.unlink()
+        if not cached_file.is_file():
+            doc: AmrFeatureDocument = self._get_doc()
+            doc.amr.write(limit_sent=0)
+            doc_graph: DocumentGraph = self.resource.doc_graph_factory(doc)
+            res: FlowGraphResult = self.resource.align(doc_graph)
+            with open(cached_file, 'wb') as f:
+                pickle.dump(res, f)
+        with open(cached_file, 'rb') as f:
+            res = pickle.load(f)
+        self.resource.restore(res)
+        #res.render()
+        doc_graph = res.doc_graph
+        flow_doc_graph: FlowDocumentGraph = res.doc_graph.children['reversed_source']
+        for cname, graph in flow_doc_graph.components_by_name.items():
+            flow: Flow
+            for flow in graph.flows:
+                src: Tuple[Tuple[str, Tuple[int, int]], ...] = tix(flow.source)
+                trg: Tuple[Tuple[str, Tuple[int, int]], ...] = tix(flow.target)
+                json_str: str = json.dumps({'source': src, 'target': trg})
+                print(f'{flow}: {json_str}')
+
+    def proto(self, run: int = 6):
         """Prototype test."""
         return {
             1: self._write_default_doc,
@@ -162,4 +196,5 @@ class _ProtoApplication(_AlignmentBaseApplication):
             3: self._render_corpus_data,
             4: lambda: self._align(render_level=5),
             5: lambda: self.align('20080717_0594', Path('-'), Format.txt),
+            6: self._iterate_align_tokens,
         }[run]()
