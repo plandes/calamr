@@ -200,6 +200,20 @@ class Resource(object):
         finally:
             al.render_level, al.init_loops_render_level = levels
 
+    def restore(self, res: FlowGraphResult):
+        """Restore the information on a flow graph result needed to render it.
+        Without out it, :meth:`.FlowGraphResult.render` will raise errors.
+
+        This is only needed when pickling a :class:`.FlowGraphResult`, and thus,
+        bypassing :obj:`flow_results_stash`.
+
+        :param res: has additional context information set
+
+        """
+        from .stash import FlowGraphRestoreStash
+        stash: FlowGraphRestoreStash = self.flow_results_stash
+        stash.restore(res)
+
 
 @dataclass
 class _AlignmentBaseApplication(object):

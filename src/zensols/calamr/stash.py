@@ -80,9 +80,12 @@ class FlowGraphRestoreStash(DelegateStash, PrimeableStash):
     :class:`.FlowGraphResult` when it is created or unpickled.
 
     """
+    def restore(self, res: FlowGraphResult):
+        res._set_context(self.flow_graph_result_context)
+
     def load(self, name: str) -> FlowGraphResult:
         res: FlowGraphResult = super().load(name)
-        res._set_context(self.flow_graph_result_context)
+        self.restore(res)
         return res
 
     def exists(self, name: str) -> bool:
