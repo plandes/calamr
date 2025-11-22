@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+### Added
+- Added [zensols.relpo] `envdist` configuration for (almost) Internet
+  disconnected environment Conda installs.
+
+
 ## [0.3.0] - 2025-11-13
 ### Changed
 - The source aligned tokens `s_toks` and `t_toks` of the Pandas data frame
@@ -69,4 +74,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 [zensols.propbank]: https://github.com/plandes/propbankdb
 [zensols.amr]: https://github.com/plandes/amr
+[zensols.relpo]: https://github.com/plandes/relpo
 [pixi]: https://pixi.sh

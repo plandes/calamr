@@ -4,7 +4,7 @@
 ## Build system
 #
 PROJ_TYPE =		python
-PROJ_MODULES =		python/doc python/package python/deploy
+PROJ_MODULES =		python/doc python/package python/deploy python/envdist
 PY_DOC_POST_BUILD_DEPS += cpgraphs
 PY_TEST_ALL_TARGETS +=	aligncorp alignadhoc graphexampleshtml graphexampleseps
 ADD_CLEAN +=		$(EXAMPLE_DIR) results

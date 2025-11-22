@@ -19,3 +19,7 @@
 # pixi environments
 .pixi
 /pyproject.toml
+
+# tests
+/example
+/results

@@ -25,7 +25,7 @@ project:
     # Python interpreter versions
     version:
       # constraint on install eligibility
-      required: '>=3.11,<3.13'
+      required: '>=3.11,<3.15'
       # last supported version of Python supported for the project
       previous: '3.11.12'
       # Python version supported for current development
@@ -73,3 +73,16 @@ doc:
       penman:
         modules: ['penman']
         url: 'https://penman.readthedocs.io/en/latest/'
+build:
+  table_appends:
+    tool.pixi.environments.build-env-add-setup:
+      features: ['pyvercur', 'build-env-add-setup']
+      solve-group: 'default'
+    tool.pixi.feature.build-env-add-setup.dependencies:
+      # smatch scoring needs setuptools and scm because it sets
+      # use_scm_version=True in setup.py
+      setuptools: '<81'
+      setuptools_scm: '*'
+      pip: '*'
+envdist:
+  environment: build-env-add-setup
