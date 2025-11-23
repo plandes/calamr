@@ -193,7 +193,11 @@ iteration of the algorithm over all the steps (see the paper for details).
 #### Multiple Ad hoc Corpora
 
 Multiple adhoc corpora can coexist in one project.  See the [multiple corpora
-example][example/multicorp].
+example](example/multicorp).  This examples demonstrates:
+
+* Creating corpora from JSON files with source/summary pairs.
+* Aligning the corpora.
+* Programmatically accessing the corpus and caching flow results.
 
 
 ### AMR Release 3.0 Corpus (LDC2020T02)
