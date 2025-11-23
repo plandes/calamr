@@ -15,8 +15,10 @@ VAPORIZE_DEPS +=	vaporizedep
 ## Project
 #
 ALIGN_DIR =		results/align
-PY_CMR_ENV =		./env
-EXAMPLE_DIR = 		example
+EXAMPLE_DIR = 		align-example
+
+
+PY_TEST_GLOB =		test_align*.py
 
 
 ## Includes
@@ -99,30 +101,9 @@ cpgraphs:
 			cp -r doc $(PY_DOC_BUILD_HTML)
 
 
-## Test
+## Clean
 #
-# test: unit and integration
-.PHONY:			testint
-testint:
-			./tests/inttest.sh
-
-# create a virtual environment for the tests
-$(PY_CMR_ENV):
-			@if [ ! -d "$(PY_CMR_ENV)" ] ; then \
-				echo "creating environment in $(PY_CMR_ENV)" ; \
-				conda env create -f src/python/environment.yml \
-					--prefix=$(PY_CMR_ENV) ; \
-				$(PY_CMR_ENV)/bin/pip install plac zensols.pybuild ; \
-			fi
-
-# creates a test environment and then tests
-.PHONY:			testworld
-testworld:		hellfire $(PY_CMR_ENV)
-			@$(call loginfo,unit and integration testing...)
-			@PATH="$(PY_CMR_ENV)/bin:$(PATH)" make test
-			@PATH="$(PY_CMR_ENV)/bin:$(PATH)" ./tests/inttest.sh
-
-# # remove everything (careful)
+# remove everything (careful)
 .PHONY:			vaporizedep
 vaporizedep:
 			rm -fr corpus download
@@ -131,4 +112,4 @@ vaporizedep:
 # # remove everything and more (careful!)
 .PHONY:			hellfire
 hellfire:		vaporize
-			rm -fr $(PY_CMR_ENV) $(EXAMPLE_DIR) scored.csv
+			rm -fr $(EXAMPLE_DIR) results scored.csv
