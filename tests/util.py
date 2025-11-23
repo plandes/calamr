@@ -21,6 +21,14 @@ class TestBase(unittest.TestCase):
         self._clean_cache()
         self.config_factory: ConfigFactory = self._get_config_factory()
         deepnlp.init()
+        micro_file = Path('download/micro.txt.bz2')
+        targ_micro_file = Path('target/download/micro.txt.bz2')
+        if not micro_file.is_file():
+            raise ValueError(
+                f"Missing micro corpus file '{micro_file}'. Run `make micro`")
+        if not targ_micro_file.is_file():
+            targ_micro_file.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy(micro_file, targ_micro_file)
 
     def _clean_cache(self):
         self.targ_dir = Path('target')

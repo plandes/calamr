@@ -8,9 +8,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+### Removed
+- Integration test using pre-Pixi configuration.
+
+### Changed
+- Move import of corpus configuration to `app.conf` from `pkg.conf` to allow
+  external configuration overriding for adhoc corpora.
+
 ### Added
 - Added [zensols.relpo] `envdist` configuration for (almost) Internet
   disconnected environment Conda installs.
+- Multiple corpus example.
 
 
 ## [0.3.0] - 2025-11-13

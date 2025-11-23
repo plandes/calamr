@@ -18,9 +18,6 @@ ALIGN_DIR =		results/align
 EXAMPLE_DIR = 		align-example
 
 
-PY_TEST_GLOB =		test_align*.py
-
-
 ## Includes
 #
 include ./zenbuild/main.mk

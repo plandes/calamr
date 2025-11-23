@@ -190,6 +190,12 @@ The `-r` option controls how many intermediate graphs generated to show the
 iteration of the algorithm over all the steps (see the paper for details).
 
 
+#### Multiple Ad hoc Corpora
+
+Multiple adhoc corpora can coexist in one project.  See the [multiple corpora
+example][example/multicorp].
+
+
 ### AMR Release 3.0 Corpus (LDC2020T02)
 
 If you are using the AMR 3.0 corpus, there is a preprocessing step that needs

@@ -1,0 +1,14 @@
+[
+    {
+	"id": "earthquake",
+	"comment": "small example",
+	"body": "A 6.2-magnitude earthquake struck the Philippines early Tuesday, the U.S. Geological Survey said. The quake's epicenter was reported to be in Negros, about 360 miles south-southeast of Manila. The earthquake had a depth of nearly 12 miles, the USGS said. There were no immediate reports of injuries or damage.",
+	"summary": "The earthquake had a reported magnitude of 6.2. It struck in Negros, about 360 miles south-southeast of Manila."
+    },
+    {
+	"id": "falling-man",
+	"comment": "small example",
+	"body": "Esquire magazine published a previously written piece by journalist Tom Junod about the powerful \"falling man\" image of September 11. But somewhere in the site's technology, the image became associated with unrelated content, resulting in an unfortunate online display. .",
+	"summary": "An image of 9/11's \"falling man\" was posted with unrelated content. The mistake quickly spread on Twitter. Esquire's apology viewed as unsympathetic."
+    }
+]

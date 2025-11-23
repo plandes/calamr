@@ -1,0 +1,13 @@
+[
+    {
+	"id": "liu-example",
+	"comment": "original 2014 Liu et al example",
+	"body": "I saw Joe's dog, which was running in the garden. The dog was chasing a cat.",
+	"summary": "Joe's dog was chasing a cat in the garden."
+    },
+    {
+	"id": "dup",
+	"body": "I saw Joe's dog, which was running in the garden. The dog was chasing a cat.",
+	"summary": "I saw Joe's dog, which was running in the garden. The dog was chasing a cat."
+    }
+]
