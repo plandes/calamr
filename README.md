@@ -22,6 +22,9 @@ Features:
   text.
 * Rendering of the alignments.
 * Support for four AMR [corpora](#corpora).
+* High-level, how-to and API
+  [documentation](https://plandes.github.io/calamr/index.html).
+
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 ## Table of Contents
@@ -33,11 +36,15 @@ Features:
     - [Command Line](#command-line)
         - [Aligning Corpus Documents](#aligning-corpus-documents)
         - [Ad hoc Corpora](#ad-hoc-corpora)
+        - [Multiple Ad hoc Corpora](#multiple-ad-hoc-corpora)
     - [AMR Release 3.0 Corpus (LDC2020T02)](#amr-release-30-corpus-ldc2020t02)
     - [API](#api)
         - [Aligning Ad hoc Documents](#aligning-ad-hoc-documents)
         - [Aligning Corpora Documents](#aligning-corpora-documents)
     - [Docker](#docker)
+- [Configuration](#configuration)
+    - [Text Alignments](#text-alignments)
+    - [Multiprocessing](#multiprocessing)
 - [Example Graphs](#example-graphs)
     - [GraphViz](#graphviz)
         - [The Nascent Graph (with flow data)](#the-nascent-graph-with-flow-data)
@@ -49,7 +56,6 @@ Features:
 - [License](#license)
 
 <!-- markdown-toc end -->
-
 
 
 ## Documentation
@@ -397,6 +403,13 @@ Corpus, or Proxy report 3.0), use the following API to speed things up:
 See [configuration](#text-alignments) regarding text alignments.
 
 
+### Docker
+
+A stand-alone docker image is also available (see [CALAMR Docker
+image](./docker)).  This [docker image] provides stand-alone container with all
+models, configuration and the adhoc micro corpus installed.
+
+
 ## Configuration
 
 To modify the configuration, create an `ini` file in `~/.calamrrc`.
@@ -429,13 +442,6 @@ setting the following configuration:
 only_report_reentrancies = False
 preemptive_workers = 4
 ```
-
-
-### Docker
-
-A stand-alone docker image is also available (see [CALAMR Docker
-image](./docker)).  This [docker image] provides stand-alone container with all
-models, configuration and the adhoc micro corpus installed.
 
 
 ## Example Graphs
