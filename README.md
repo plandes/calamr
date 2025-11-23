@@ -439,7 +439,7 @@ setting the following configuration:
 ```ini
 # use 4 processes to align the corpus
 [calamr_default]
-only_report_reentrancies = False
+flow_graph_result_caching = preemptive
 preemptive_workers = 4
 ```
 
