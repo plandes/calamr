@@ -7,7 +7,7 @@ import pandas as pd
 
 def main():
     # get the application resource for corpus A
-    res: Resource = ApplicationFactory.get_resource(['-c config/corp-a.conf'])
+    res: Resource = ApplicationFactory.get_resource('-c config/corp-a.conf')
     # align and compute flow results and cache the data
     flow_result: FlowGraphResult = res.align_corpus_document('liu-example')
     # get the results as a dataframe
@@ -23,7 +23,7 @@ def main():
         print(f'{key} -> {doc}')
 
     # iterate through all results of corpus B
-    res = ApplicationFactory.get_resource(['-c config/corp-b.conf'])
+    res = ApplicationFactory.get_resource('-c config/corp-b.conf')
     for key, doc in res.anon_doc_stash.items():
         print(f'{key} -> {doc}')
 
