@@ -394,6 +394,43 @@ Corpus, or Proxy report 3.0), use the following API to speed things up:
        display=False)
    ```
 
+See [configuration](#text-alignments) regarding text alignments.
+
+
+## Configuration
+
+To modify the configuration, create an `ini` file in `~/.calamrrc`.
+
+
+### Text Alignments
+
+The program was built to deal with data using the corpora API.  However, adhoc
+documents can be aligned but they document graphs will not have the text
+alignments.  To enable that, in your `~/.calamrrc` add the following:'
+
+```ini
+# include alignments in adhoc parsed documents
+[amr_anon_doc_factory]
+remove_alignments = False
+```
+
+### Multiprocessing
+
+By default, corpus documents are lazy-aligned from the
+[`Resources.get_corpus_document`](#aligning-corpora-documents) method.
+However, the entire corpus can be aligned across multiple processes.  In this
+case, the first access to the first document will start the processing, and
+will not return until the entire dataset is aligned.  This is enabled by
+setting the following configuration:
+
+```ini
+# use 4 processes to align the corpus
+[calamr_default]
+only_report_reentrancies = False
+preemptive_workers = 4
+```
+
+
 ### Docker
 
 A stand-alone docker image is also available (see [CALAMR Docker
