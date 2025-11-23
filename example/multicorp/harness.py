@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from zensols.amr import AmrFeatureDocument
 from zensols.calamr import ApplicationFactory, Resource, FlowGraphResult
 import pandas as pd
 
@@ -15,15 +16,16 @@ def main():
     flow_result.write()
     print(df.head(10))
 
-    # iterate through all results of the corpus
+    # iterate through all documents of the corpus
     key: str
-    for key, flow_result in res.anon_doc_stash.items():
-        print(f'{key} -> {flow_result}')
+    doc: AmrFeatureDocument
+    for key, doc in res.anon_doc_stash.items():
+        print(f'{key} -> {doc}')
 
-    res = ApplicationFactory.get_resource(['-c config/corp-b.conf'])
     # iterate through all results of corpus B
-    for key, flow_result in res.anon_doc_stash.items():
-        print(f'{key} -> {flow_result}')
+    res = ApplicationFactory.get_resource(['-c config/corp-b.conf'])
+    for key, doc in res.anon_doc_stash.items():
+        print(f'{key} -> {doc}')
 
 
 if (__name__ == '__main__'):
