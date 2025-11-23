@@ -97,7 +97,7 @@ class Resource(object):
                 "summary": "A man got caught in the door of a train he missed."
             }]
 
-        :return: the parsed AMR feature document
+        :return: the parsed AMR feature document(s)
 
         :see: :class:`~zensols.amr.annotate.AnnotatedAmrFeatureDocumentFactory`
 
