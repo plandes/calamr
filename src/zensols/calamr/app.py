@@ -45,6 +45,9 @@ class Resource(object):
     the Bio AMR corpus.
 
     """
+    adhoc_doc_stash: Stash = field()
+    """
+    """
     doc_factory: AmrFeatureDocumentFactory = field()
     """Creates :class:`.AmrFeatureDocument` from :class:`.AmrDocument`
     instances.

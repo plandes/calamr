@@ -38,6 +38,8 @@ amr_serialized_factory:
 amr_anon_doc_factory:
   class_name: zensols.calamr.annotate.CalamrAnnotatedAmrFeatureDocumentFactory
   word_piece_doc_factory: 'instance: ${calamr_default:word_piece_doc_factory}'
+  # remove text alignments so that corpora AMR file written to disk leaves them
+  # without, which forces the pipeline to add them later
   remove_alignments: true
 
 # AMR coreference resolution

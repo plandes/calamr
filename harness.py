@@ -18,6 +18,6 @@ if (__name__ == '__main__'):
         proto_args='proto',
         proto_factory_kwargs={
             'reload_pattern':
-            r'^zensols\.calamr\.(?!flow|doc|domain|annotate)'},
+            r'^zensols\.calamr\.(?!flow|doc|domain)'},
     )
     r = harness.run()

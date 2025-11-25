@@ -194,9 +194,45 @@ class _ProtoApplication(_AlignmentBaseApplication):
             from zensols.rend import ApplicationFactory
             ApplicationFactory.render(res.df)
 
-    def proto(self, run: int = 6):
+    def tmp(self):
+        if 0:
+            with open('/d/a.yml', 'w') as f:
+                self.config_factory.config.write(writer=f)
+            return
+        ex = [{
+	    "id": "newid",
+	    "body": "The rulings bolster criticisms of how hastily the prosecutions were brought. The rulings were rushed.",
+	    "summary": "The rulings suggest the prosecutions were rushed."
+            }, {
+                "id": "ex1",
+                "comment": "very short",
+                "body": "The man ran to make the train. He just missed it.",
+                "summary": "A man got caught in the door of a train he just missed."
+            }]
+        ex = [{
+	    "id": "newid",
+	    "body": "The rulings bolster criticisms of how hastily the prosecutions were brought.",
+	    "summary": "The rulings suggest the prosecutions were rushed."}]
+        id = 'newid'
+        #id = 'liu-example'
+
+        from itertools import chain
+        from zensols.amr import AmrDocument
+        adhoc_stash: CalamrAnnotatedAmrDocumentStash = \
+            self.config_factory('calamr_adhoc_amr_anon_doc_factory_stash')
+        print(type(adhoc_stash))
+        adhoc_stash.set_corpus(ex)
+        res = self.config_factory('calamr_resource')
+        cd = self.resource.adhoc_doc_stash[id]
+        #ad = next(iter(self.resource.parse_documents(ex)))
+        print(cd[0].amr.graph_string)
+        #print(ad[0].amr.graph_string)
+        #cd.clear()
+
+    def proto(self, run: int = 0):
         """Prototype test."""
         return {
+            0: self.tmp,
             1: self._write_default_doc,
             2: lambda: self._read_meta_file(show='align', limit =3),
             3: self._render_corpus_data,
