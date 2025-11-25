@@ -2,26 +2,15 @@
 
 """
 __author__ = 'Paul Landes'
-
-from typing import Dict, Tuple, List, Iterable, Sequence, Any, Union
+from typing import Dict, Tuple, Any
 from dataclasses import dataclass, field
 import logging
-from itertools import chain
-from pathlib import Path
 from zensols.util import time
-from zensols.persist import (
-    persisted, DelegateStash, PrimeableStash,
-    PersistedWork, DictionaryStash, ReadOnlyStash
-)
-from zensols.config import ConfigFactory
-from zensols.install import Installer
-from zensols.amr import (
-    AmrFailure, AmrSentence, AmrDocument, AmrFeatureDocument
-)
+from zensols.persist import DelegateStash, PrimeableStash
+from zensols.amr import AmrSentence, AmrFeatureDocument
 from zensols.amr.annotate import (
     AnnotatedAmrFeatureDocumentFactory,
     AnnotatedAmrDocument, AnnotatedAmrSectionDocument,
-    AnnotatedAmrDocumentStash
 )
 from zensols.deepnlp.transformer import (
     WordPieceFeatureDocumentFactory, WordPieceFeatureDocument
@@ -105,46 +94,3 @@ class ProxyReportAnnotatedAmrDocument(AnnotatedAmrDocument):
         for sec in secs:
             sec.sents = tuple(filter(filter_sents, sec.sents))
         return secs
-
-
-@dataclass
-class CalamrAnnotatedAmrDocumentStash(ReadOnlyStash):
-    config_factory: ConfigFactory = field(default=None)
-    anon_doc_stash: AnnotatedAmrDocumentStash = field(default=None)
-    anon_doc_factory: AnnotatedAmrFeatureDocumentFactory = field(default=None)
-    stash_writers: Sequence[Tuple[str, str]] = field(default=None)
-
-    def _replace_persists(self, doc):
-        self._corpus_doc = PersistedWork('__corpus_doc', self, initial_value=doc)
-        self._corpus_df = PersistedWork('__corpus_df', self)
-        self.anon_doc_stash._corpus_doc = self._corpus_doc
-        self.anon_doc_stash._corpus_df = self._corpus_df
-
-    def _replace_caching_stashes(self):
-        replace_stash = DictionaryStash()
-        sec: str
-        attr: str
-        for sec, attr in self.stash_writers:
-            obj = self.config_factory(sec)
-            print(f'setting {type(obj)}: {attr} -> {type(replace_stash)}')
-            setattr(obj, attr, replace_stash)
-
-    def set_corpus(self, data: Union[Path, Dict, Sequence]):
-        self._replace_caching_stashes()
-        docs: Tuple[AmrFeatureDocument, ...] = \
-            tuple(self.anon_doc_factory(data))
-        sents: Iterable[AmrSentence] = map(
-            lambda s: s.amr,
-            chain.from_iterable(map(lambda d: d.sents, docs)))
-        doc: AmrDocument = AmrDocument.to_document(sents)
-        #self._set_doc(doc)
-        self._replace_persists(doc)
-
-    def load(self, doc_id: str) -> AnnotatedAmrDocument:
-        return self.anon_doc_stash.load(doc_id)
-
-    def keys(self) -> Iterable[str]:
-        return self.anon_doc_stash.keys()
-
-    def exists(self, doc_id: str) -> bool:
-        return self.anon_doc_stash.exists(doc_id)

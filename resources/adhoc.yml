@@ -2,7 +2,7 @@
 
 
 calamr_adhoc_amr_anon_doc_factory_stash:
-  class_name: zensols.calamr.annotate.CalamrAnnotatedAmrDocumentStash
+  class_name: zensols.calamr.adhoc.CalamrAnnotatedAmrDocumentStash
   anon_doc_stash: 'instance: amr_anon_doc_factory_stash'
   anon_doc_factory: 'instance: amr_anon_doc_factory'
   stash_writers:
@@ -31,3 +31,7 @@ calamr_adhoc_anon_feature_doc_stash:
   class_name: zensols.calamr.annotate.AddEmbeddingsFeatureDocumentStash
   delegate: 'instance: calamr_adhoc_amr_anon_feature_doc_stash'
   word_piece_doc_factory: ${${calamr_default:amr_anon_doc_stash}:word_piece_doc_factory}
+
+
+##
+#AdhocAnnotatedAmrDocumentStash
