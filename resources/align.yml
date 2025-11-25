@@ -248,7 +248,7 @@ calamr_resource:
   class_name: zensols.calamr.app.Resource
   doc_factory: 'instance: amr_feature_doc_factory'
   anon_doc_stash: 'instance: ${calamr_default:amr_anon_doc_stash}'
-  adhoc_doc_stash: 'instance: ${calamr_default:calamr_adhoc_amr_anon_doc_stash}'
+  #adhoc_doc_stash: 'instance: calamr_adhoc_anon_feature_doc_stash
   serialized_factory: 'instance: amr_serialized_factory'
   doc_graph_factory: 'instance: calamr_doc_graph_factory'
   doc_graph_aligner: 'instance: calamr_doc_graph_aligner'

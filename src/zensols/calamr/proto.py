@@ -195,10 +195,6 @@ class _ProtoApplication(_AlignmentBaseApplication):
             ApplicationFactory.render(res.df)
 
     def tmp(self):
-        if 0:
-            with open('/d/a.yml', 'w') as f:
-                self.config_factory.config.write(writer=f)
-            return
         ex = [{
 	    "id": "newid",
 	    "body": "The rulings bolster criticisms of how hastily the prosecutions were brought. The rulings were rushed.",
@@ -213,21 +209,19 @@ class _ProtoApplication(_AlignmentBaseApplication):
 	    "id": "newid",
 	    "body": "The rulings bolster criticisms of how hastily the prosecutions were brought.",
 	    "summary": "The rulings suggest the prosecutions were rushed."}]
-        id = 'newid'
-        #id = 'liu-example'
-
-        from itertools import chain
-        from zensols.amr import AmrDocument
-        adhoc_stash: CalamrAnnotatedAmrDocumentStash = \
-            self.config_factory('calamr_adhoc_amr_anon_doc_factory_stash')
-        print(type(adhoc_stash))
-        adhoc_stash.set_corpus(ex)
-        res = self.config_factory('calamr_resource')
-        cd = self.resource.adhoc_doc_stash[id]
-        #ad = next(iter(self.resource.parse_documents(ex)))
-        print(cd[0].amr.graph_string)
-        #print(ad[0].amr.graph_string)
-        #cd.clear()
+        if 1:
+            id = 'newid'
+            stash: CalamrAnnotatedAmrDocumentStash = \
+                self.config_factory('calamr_adhoc_amr_anon_doc_factory_stash')
+            stash.set_corpus(ex)
+            #res = self.config_factory('calamr_resource')
+            stash = self.config_factory('calamr_adhoc_anon_feature_doc_stash')
+            doc = stash[id]
+        else:
+            id = 'liu-example'
+            doc = self.resource.anon_doc_stash[id]
+        print(type(doc))
+        print(doc[0].amr.graph_string)
 
     def proto(self, run: int = 0):
         """Prototype test."""
