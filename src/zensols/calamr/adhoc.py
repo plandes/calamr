@@ -8,7 +8,7 @@ from itertools import chain
 from pathlib import Path
 import shutil
 import pickle
-from zensols.util.fail import APIError
+from zensols.util import APIError, Hasher
 from zensols.config import Dictable
 from zensols.amr import AmrDocument, AmrFeatureDocument
 from zensols.amr.annotate import AnnotatedAmrFeatureDocumentFactory
@@ -73,6 +73,7 @@ class ConfigSwapper(Dictable):
 class AdhocAnnotatedAmrDocumentStash(DelegateStash):
     config_factory: ConfigFactory = field()
     anon_doc_factory: AnnotatedAmrFeatureDocumentFactory = field()
+    hasher: Hasher = field()
     temporary_dir: Path = field()
     doc_key: Union[Sequence[str], Tuple[str, str]] = field()
     swapper: ConfigSwapper = field()
@@ -89,9 +90,17 @@ class AdhocAnnotatedAmrDocumentStash(DelegateStash):
             chain.from_iterable(map(lambda d: d.sents, docs)))
         return AmrDocument.to_document(sents)
 
+    def _get_temp_dir(self, data: Union[Path, Dict, Sequence],
+                      corpus_id: str) -> Path:
+        if corpus_id is None:
+            self.hasher.reset()
+            self.hasher.update(data)
+            corpus_id = self.hasher()
+        return self.temporary_dir / corpus_id
+
     def set_corpus(self, data: Union[Path, Dict, Sequence],
-                   corpus_id: str):
-        temp_dir: Path = self.temporary_dir / corpus_id
+                   corpus_id: str = None):
+        temp_dir: Path = self._get_temp_dir(data, corpus_id)
         amr_doc_file: Path = temp_dir / 'amr-docs.dat'
         need_create: bool = not amr_doc_file.exists()
         self.swapper.root_dir = temp_dir

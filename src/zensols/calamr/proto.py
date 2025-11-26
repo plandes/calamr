@@ -205,18 +205,18 @@ class _ProtoApplication(_AlignmentBaseApplication):
                 "body": "The man ran to make the train. He just missed it.",
                 "summary": "A man got caught in the door of a train he just missed."
             }]
-        ex = [{
+        ex2 = [{
 	    "id": "newid",
 	    "body": "The rulings bolster criticisms of how hastily the prosecutions were brought.",
 	    "summary": "The rulings suggest the prosecutions were rushed."}]
-        if 0:
+        if 1:
             stash = self.config_factory('calamr_adhoc_anon_feature_doc_stash')
-            stash.set_corpus(ex, 'tmp')
+            stash.set_corpus(ex)
             doc = stash['newid']
-            print(doc[0].amr.graph_string)
+            print(doc.amr.graph_string)
             #stash.clear()
             return
-        if 1:
+        if 0:
             doc = self.resource.anon_doc_stash['liu-example']
             print(doc[0].amr.graph_string)
             return
