@@ -3,7 +3,7 @@
 
 calamr_adhoc_config_swapper:
   class_name: zensols.calamr.adhoc.ConfigSwapper
-  root_dir: 'path: ${calamr_default:data_dir}/adhoc'
+  root_dir: null
   swaps:
     - ['amr_anon_doc_backing_stash', 'path', 'path']
     - ['amr_anon_doc_parser_stash', 'path', 'path']
@@ -17,5 +17,6 @@ calamr_adhoc_anon_feature_doc_stash:
   class_name: zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash
   delegate: 'instance: ${calamr_default:amr_anon_doc_stash}'
   anon_doc_factory: 'instance: amr_anon_doc_factory'
+  swapper: 'instance: calamr_adhoc_config_swapper'
+  temporary_dir: 'path: ${calamr_default:data_dir}/adhoc'
   doc_key: ['amr_anon_doc_factory_stash', '_corpus_doc']
-  swapper_name: calamr_adhoc_config_swapper

@@ -209,27 +209,16 @@ class _ProtoApplication(_AlignmentBaseApplication):
 	    "id": "newid",
 	    "body": "The rulings bolster criticisms of how hastily the prosecutions were brought.",
 	    "summary": "The rulings suggest the prosecutions were rushed."}]
-        id = 'newid'
-        if 1:
+        if 0:
             stash = self.config_factory('calamr_adhoc_anon_feature_doc_stash')
-            if 0:
-                stash.clear()
-                return
             stash.set_corpus(ex, 'tmp')
-            doc = stash[id]
+            doc = stash['newid']
             print(doc[0].amr.graph_string)
             #stash.clear()
             return
         if 1:
-            stash = self.config_factory('calamr_adhoc_amr_anon_doc_factory_stash')
-            stash.set_corpus(ex)
-            stash = self.config_factory('calamr_adhoc_anon_feature_doc_stash')
-            doc = stash[id]
+            doc = self.resource.anon_doc_stash['liu-example']
             print(doc[0].amr.graph_string)
-            return
-        if 1:
-            id = 'liu-example'
-            doc = self.resource.anon_doc_stash[id]
             return
 
     def proto(self, run: int = 0):
