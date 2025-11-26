@@ -13,17 +13,17 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.11.12-hbd8a1cb_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/icu-75.1-he02047a_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/importlib-metadata-8.7.0-pyhe01879c_1.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45-bootstrap_ha15bf96_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45-default_hbd61a6d_104.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.7.3-hecca717_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libffi-3.5.2-h9ec8514_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-h767d61c_7.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.2.0-h69a702a_7.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-h767d61c_7.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-he0feb66_12.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.2.0-h69a702a_12.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-he0feb66_12.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.1-hb9d3cd8_2.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libnsl-2.0.1-hb9d3cd8_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.51.0-hee844dc_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h8f9b012_7.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-15.2.0-h4852527_7.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h934c35e_12.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-15.2.0-hdf11a46_12.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.41.2-he9a06e4_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libxcrypt-4.4.36-hd590300_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.1-hb9d3cd8_2.conda
@@ -39,6 +39,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/tzdata-2025b-h78e105d_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/wheel-0.45.1-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/zipp-3.23.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb8e6e7a_2.conda
       - pypi: https://files.pythonhosted.org/packages/c4/bf/a6455be76e5a580190ace72fe3d15aa4acd0789ff0f399a45cbc68a5ddad/amrlib-0.8.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/d2/39/e7eaf1799466a4aef85b6a4fe7bd175ad2b1c6345066aa33f1f58d4b18d0/asttokens-3.0.1-py3-none-any.whl
@@ -187,7 +188,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/25/61/7aa08eb2521c966d9abec0085040e10f52c269e1acda2e4b821f36f197db/zensols.amr_coref-0.0.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/99/f8/c715d4b76e304245fee18b8d4e8d005de75bcb8b3f241e705ecfa55db7a7/zensols.install-1.2.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/4b/4e/110ee564b0a8b369f4767127c5ba86a8277818d0b108f5a152112edc7bd2/zensols_amr-0.2.4-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/bd/db/2b53b5b3fabb2f2843d34147c91cae1c4e6fa5a179932f92d6d7e46e15be/zensols_datdesc-1.3.4-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/bb/e8/90eeefb21a5d653d345d55eee75ddbdc89c71db9023786e0eed8cc98d649/zensols_datdesc-1.3.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/81/36/04df9df0d5c41c6a7c8838e06eb8563b609e03791a9b4a0d48c9d60ae400/zensols_db-1.4.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/73/d5/a0b1b5bb3d5f36adb8fec83755547508f998812e3ed5b6aeb6d36a396318/zensols_deeplearn-1.14.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/84/33/030b2681297fd318e8a159c36c15766858a84b5436d8f94aa03f2e108978/zensols_deepnlp-1.18.1-py3-none-any.whl
@@ -353,7 +354,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/25/61/7aa08eb2521c966d9abec0085040e10f52c269e1acda2e4b821f36f197db/zensols.amr_coref-0.0.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/99/f8/c715d4b76e304245fee18b8d4e8d005de75bcb8b3f241e705ecfa55db7a7/zensols.install-1.2.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/4b/4e/110ee564b0a8b369f4767127c5ba86a8277818d0b108f5a152112edc7bd2/zensols_amr-0.2.4-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/bd/db/2b53b5b3fabb2f2843d34147c91cae1c4e6fa5a179932f92d6d7e46e15be/zensols_datdesc-1.3.4-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/bb/e8/90eeefb21a5d653d345d55eee75ddbdc89c71db9023786e0eed8cc98d649/zensols_datdesc-1.3.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/81/36/04df9df0d5c41c6a7c8838e06eb8563b609e03791a9b4a0d48c9d60ae400/zensols_db-1.4.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/73/d5/a0b1b5bb3d5f36adb8fec83755547508f998812e3ed5b6aeb6d36a396318/zensols_deeplearn-1.14.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/84/33/030b2681297fd318e8a159c36c15766858a84b5436d8f94aa03f2e108978/zensols_deepnlp-1.18.1-py3-none-any.whl
@@ -515,7 +516,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/25/61/7aa08eb2521c966d9abec0085040e10f52c269e1acda2e4b821f36f197db/zensols.amr_coref-0.0.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/99/f8/c715d4b76e304245fee18b8d4e8d005de75bcb8b3f241e705ecfa55db7a7/zensols.install-1.2.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/4b/4e/110ee564b0a8b369f4767127c5ba86a8277818d0b108f5a152112edc7bd2/zensols_amr-0.2.4-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/bd/db/2b53b5b3fabb2f2843d34147c91cae1c4e6fa5a179932f92d6d7e46e15be/zensols_datdesc-1.3.4-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/bb/e8/90eeefb21a5d653d345d55eee75ddbdc89c71db9023786e0eed8cc98d649/zensols_datdesc-1.3.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/81/36/04df9df0d5c41c6a7c8838e06eb8563b609e03791a9b4a0d48c9d60ae400/zensols_db-1.4.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/73/d5/a0b1b5bb3d5f36adb8fec83755547508f998812e3ed5b6aeb6d36a396318/zensols_deeplearn-1.14.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/84/33/030b2681297fd318e8a159c36c15766858a84b5436d8f94aa03f2e108978/zensols_deepnlp-1.18.1-py3-none-any.whl
@@ -536,17 +537,17 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.11.12-hbd8a1cb_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/icu-75.1-he02047a_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/importlib-metadata-8.7.0-pyhe01879c_1.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45-bootstrap_ha15bf96_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45-default_hbd61a6d_104.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.7.3-hecca717_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libffi-3.5.2-h9ec8514_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-h767d61c_7.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.2.0-h69a702a_7.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-h767d61c_7.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-he0feb66_12.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.2.0-h69a702a_12.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-he0feb66_12.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.1-hb9d3cd8_2.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libnsl-2.0.1-hb9d3cd8_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.51.0-hee844dc_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h8f9b012_7.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-15.2.0-h4852527_7.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h934c35e_12.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-15.2.0-hdf11a46_12.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.41.2-he9a06e4_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libxcrypt-4.4.36-hd590300_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.1-hb9d3cd8_2.conda
@@ -566,6 +567,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/tzdata-2025b-h78e105d_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/wheel-0.45.1-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/zipp-3.23.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb8e6e7a_2.conda
       - pypi: https://files.pythonhosted.org/packages/c4/bf/a6455be76e5a580190ace72fe3d15aa4acd0789ff0f399a45cbc68a5ddad/amrlib-0.8.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/d2/39/e7eaf1799466a4aef85b6a4fe7bd175ad2b1c6345066aa33f1f58d4b18d0/asttokens-3.0.1-py3-none-any.whl
@@ -714,7 +716,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/25/61/7aa08eb2521c966d9abec0085040e10f52c269e1acda2e4b821f36f197db/zensols.amr_coref-0.0.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/99/f8/c715d4b76e304245fee18b8d4e8d005de75bcb8b3f241e705ecfa55db7a7/zensols.install-1.2.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/4b/4e/110ee564b0a8b369f4767127c5ba86a8277818d0b108f5a152112edc7bd2/zensols_amr-0.2.4-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/bd/db/2b53b5b3fabb2f2843d34147c91cae1c4e6fa5a179932f92d6d7e46e15be/zensols_datdesc-1.3.4-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/bb/e8/90eeefb21a5d653d345d55eee75ddbdc89c71db9023786e0eed8cc98d649/zensols_datdesc-1.3.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/81/36/04df9df0d5c41c6a7c8838e06eb8563b609e03791a9b4a0d48c9d60ae400/zensols_db-1.4.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/73/d5/a0b1b5bb3d5f36adb8fec83755547508f998812e3ed5b6aeb6d36a396318/zensols_deeplearn-1.14.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/84/33/030b2681297fd318e8a159c36c15766858a84b5436d8f94aa03f2e108978/zensols_deepnlp-1.18.1-py3-none-any.whl
@@ -884,7 +886,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/25/61/7aa08eb2521c966d9abec0085040e10f52c269e1acda2e4b821f36f197db/zensols.amr_coref-0.0.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/99/f8/c715d4b76e304245fee18b8d4e8d005de75bcb8b3f241e705ecfa55db7a7/zensols.install-1.2.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/4b/4e/110ee564b0a8b369f4767127c5ba86a8277818d0b108f5a152112edc7bd2/zensols_amr-0.2.4-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/bd/db/2b53b5b3fabb2f2843d34147c91cae1c4e6fa5a179932f92d6d7e46e15be/zensols_datdesc-1.3.4-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/bb/e8/90eeefb21a5d653d345d55eee75ddbdc89c71db9023786e0eed8cc98d649/zensols_datdesc-1.3.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/81/36/04df9df0d5c41c6a7c8838e06eb8563b609e03791a9b4a0d48c9d60ae400/zensols_db-1.4.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/73/d5/a0b1b5bb3d5f36adb8fec83755547508f998812e3ed5b6aeb6d36a396318/zensols_deeplearn-1.14.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/84/33/030b2681297fd318e8a159c36c15766858a84b5436d8f94aa03f2e108978/zensols_deepnlp-1.18.1-py3-none-any.whl
@@ -1050,7 +1052,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/25/61/7aa08eb2521c966d9abec0085040e10f52c269e1acda2e4b821f36f197db/zensols.amr_coref-0.0.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/99/f8/c715d4b76e304245fee18b8d4e8d005de75bcb8b3f241e705ecfa55db7a7/zensols.install-1.2.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/4b/4e/110ee564b0a8b369f4767127c5ba86a8277818d0b108f5a152112edc7bd2/zensols_amr-0.2.4-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/bd/db/2b53b5b3fabb2f2843d34147c91cae1c4e6fa5a179932f92d6d7e46e15be/zensols_datdesc-1.3.4-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/bb/e8/90eeefb21a5d653d345d55eee75ddbdc89c71db9023786e0eed8cc98d649/zensols_datdesc-1.3.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/81/36/04df9df0d5c41c6a7c8838e06eb8563b609e03791a9b4a0d48c9d60ae400/zensols_db-1.4.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/73/d5/a0b1b5bb3d5f36adb8fec83755547508f998812e3ed5b6aeb6d36a396318/zensols_deeplearn-1.14.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/84/33/030b2681297fd318e8a159c36c15766858a84b5436d8f94aa03f2e108978/zensols_deepnlp-1.18.1-py3-none-any.whl
@@ -1073,17 +1075,17 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/hatchling-1.26.3-pypyhff2d567_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/icu-75.1-he02047a_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/importlib-metadata-8.7.0-pyhe01879c_1.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45-bootstrap_ha15bf96_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45-default_hbd61a6d_104.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.7.3-hecca717_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libffi-3.5.2-h9ec8514_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-h767d61c_7.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.2.0-h69a702a_7.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-h767d61c_7.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-he0feb66_12.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.2.0-h69a702a_12.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-he0feb66_12.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.1-hb9d3cd8_2.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libnsl-2.0.1-hb9d3cd8_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.51.0-hee844dc_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h8f9b012_7.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-15.2.0-h4852527_7.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h934c35e_12.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-15.2.0-hdf11a46_12.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.41.2-he9a06e4_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libxcrypt-4.4.36-hd590300_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.1-hb9d3cd8_2.conda
@@ -1103,6 +1105,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/tzdata-2025b-h78e105d_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/wheel-0.45.1-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/zipp-3.23.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb8e6e7a_2.conda
       - pypi: https://files.pythonhosted.org/packages/c4/bf/a6455be76e5a580190ace72fe3d15aa4acd0789ff0f399a45cbc68a5ddad/amrlib-0.8.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/d2/39/e7eaf1799466a4aef85b6a4fe7bd175ad2b1c6345066aa33f1f58d4b18d0/asttokens-3.0.1-py3-none-any.whl
@@ -1251,7 +1254,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/25/61/7aa08eb2521c966d9abec0085040e10f52c269e1acda2e4b821f36f197db/zensols.amr_coref-0.0.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/99/f8/c715d4b76e304245fee18b8d4e8d005de75bcb8b3f241e705ecfa55db7a7/zensols.install-1.2.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/4b/4e/110ee564b0a8b369f4767127c5ba86a8277818d0b108f5a152112edc7bd2/zensols_amr-0.2.4-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/bd/db/2b53b5b3fabb2f2843d34147c91cae1c4e6fa5a179932f92d6d7e46e15be/zensols_datdesc-1.3.4-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/bb/e8/90eeefb21a5d653d345d55eee75ddbdc89c71db9023786e0eed8cc98d649/zensols_datdesc-1.3.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/81/36/04df9df0d5c41c6a7c8838e06eb8563b609e03791a9b4a0d48c9d60ae400/zensols_db-1.4.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/73/d5/a0b1b5bb3d5f36adb8fec83755547508f998812e3ed5b6aeb6d36a396318/zensols_deeplearn-1.14.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/84/33/030b2681297fd318e8a159c36c15766858a84b5436d8f94aa03f2e108978/zensols_deepnlp-1.18.1-py3-none-any.whl
@@ -1423,7 +1426,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/25/61/7aa08eb2521c966d9abec0085040e10f52c269e1acda2e4b821f36f197db/zensols.amr_coref-0.0.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/99/f8/c715d4b76e304245fee18b8d4e8d005de75bcb8b3f241e705ecfa55db7a7/zensols.install-1.2.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/4b/4e/110ee564b0a8b369f4767127c5ba86a8277818d0b108f5a152112edc7bd2/zensols_amr-0.2.4-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/bd/db/2b53b5b3fabb2f2843d34147c91cae1c4e6fa5a179932f92d6d7e46e15be/zensols_datdesc-1.3.4-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/bb/e8/90eeefb21a5d653d345d55eee75ddbdc89c71db9023786e0eed8cc98d649/zensols_datdesc-1.3.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/81/36/04df9df0d5c41c6a7c8838e06eb8563b609e03791a9b4a0d48c9d60ae400/zensols_db-1.4.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/73/d5/a0b1b5bb3d5f36adb8fec83755547508f998812e3ed5b6aeb6d36a396318/zensols_deeplearn-1.14.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/84/33/030b2681297fd318e8a159c36c15766858a84b5436d8f94aa03f2e108978/zensols_deepnlp-1.18.1-py3-none-any.whl
@@ -1591,7 +1594,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/25/61/7aa08eb2521c966d9abec0085040e10f52c269e1acda2e4b821f36f197db/zensols.amr_coref-0.0.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/99/f8/c715d4b76e304245fee18b8d4e8d005de75bcb8b3f241e705ecfa55db7a7/zensols.install-1.2.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/4b/4e/110ee564b0a8b369f4767127c5ba86a8277818d0b108f5a152112edc7bd2/zensols_amr-0.2.4-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/bd/db/2b53b5b3fabb2f2843d34147c91cae1c4e6fa5a179932f92d6d7e46e15be/zensols_datdesc-1.3.4-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/bb/e8/90eeefb21a5d653d345d55eee75ddbdc89c71db9023786e0eed8cc98d649/zensols_datdesc-1.3.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/81/36/04df9df0d5c41c6a7c8838e06eb8563b609e03791a9b4a0d48c9d60ae400/zensols_db-1.4.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/73/d5/a0b1b5bb3d5f36adb8fec83755547508f998812e3ed5b6aeb6d36a396318/zensols_deeplearn-1.14.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/84/33/030b2681297fd318e8a159c36c15766858a84b5436d8f94aa03f2e108978/zensols_deepnlp-1.18.1-py3-none-any.whl
@@ -1612,17 +1615,17 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.11.12-hbd8a1cb_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/icu-75.1-he02047a_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/importlib-metadata-8.7.0-pyhe01879c_1.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45-bootstrap_ha15bf96_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45-default_hbd61a6d_104.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.7.3-hecca717_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libffi-3.5.2-h9ec8514_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-h767d61c_7.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.2.0-h69a702a_7.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-h767d61c_7.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-he0feb66_12.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.2.0-h69a702a_12.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-he0feb66_12.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.1-hb9d3cd8_2.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libnsl-2.0.1-hb9d3cd8_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.51.0-hee844dc_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h8f9b012_7.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-15.2.0-h4852527_7.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h934c35e_12.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-15.2.0-hdf11a46_12.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.41.2-he9a06e4_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libxcrypt-4.4.36-hd590300_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.1-hb9d3cd8_2.conda
@@ -1638,6 +1641,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/tzdata-2025b-h78e105d_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/wheel-0.45.1-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/zipp-3.23.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb8e6e7a_2.conda
       - pypi: https://files.pythonhosted.org/packages/c4/bf/a6455be76e5a580190ace72fe3d15aa4acd0789ff0f399a45cbc68a5ddad/amrlib-0.8.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/d2/39/e7eaf1799466a4aef85b6a4fe7bd175ad2b1c6345066aa33f1f58d4b18d0/asttokens-3.0.1-py3-none-any.whl
@@ -1786,7 +1790,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/25/61/7aa08eb2521c966d9abec0085040e10f52c269e1acda2e4b821f36f197db/zensols.amr_coref-0.0.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/99/f8/c715d4b76e304245fee18b8d4e8d005de75bcb8b3f241e705ecfa55db7a7/zensols.install-1.2.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/4b/4e/110ee564b0a8b369f4767127c5ba86a8277818d0b108f5a152112edc7bd2/zensols_amr-0.2.4-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/bd/db/2b53b5b3fabb2f2843d34147c91cae1c4e6fa5a179932f92d6d7e46e15be/zensols_datdesc-1.3.4-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/bb/e8/90eeefb21a5d653d345d55eee75ddbdc89c71db9023786e0eed8cc98d649/zensols_datdesc-1.3.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/81/36/04df9df0d5c41c6a7c8838e06eb8563b609e03791a9b4a0d48c9d60ae400/zensols_db-1.4.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/73/d5/a0b1b5bb3d5f36adb8fec83755547508f998812e3ed5b6aeb6d36a396318/zensols_deeplearn-1.14.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/84/33/030b2681297fd318e8a159c36c15766858a84b5436d8f94aa03f2e108978/zensols_deepnlp-1.18.1-py3-none-any.whl
@@ -1952,7 +1956,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/25/61/7aa08eb2521c966d9abec0085040e10f52c269e1acda2e4b821f36f197db/zensols.amr_coref-0.0.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/99/f8/c715d4b76e304245fee18b8d4e8d005de75bcb8b3f241e705ecfa55db7a7/zensols.install-1.2.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/4b/4e/110ee564b0a8b369f4767127c5ba86a8277818d0b108f5a152112edc7bd2/zensols_amr-0.2.4-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/bd/db/2b53b5b3fabb2f2843d34147c91cae1c4e6fa5a179932f92d6d7e46e15be/zensols_datdesc-1.3.4-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/bb/e8/90eeefb21a5d653d345d55eee75ddbdc89c71db9023786e0eed8cc98d649/zensols_datdesc-1.3.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/81/36/04df9df0d5c41c6a7c8838e06eb8563b609e03791a9b4a0d48c9d60ae400/zensols_db-1.4.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/73/d5/a0b1b5bb3d5f36adb8fec83755547508f998812e3ed5b6aeb6d36a396318/zensols_deeplearn-1.14.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/84/33/030b2681297fd318e8a159c36c15766858a84b5436d8f94aa03f2e108978/zensols_deepnlp-1.18.1-py3-none-any.whl
@@ -2114,7 +2118,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/25/61/7aa08eb2521c966d9abec0085040e10f52c269e1acda2e4b821f36f197db/zensols.amr_coref-0.0.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/99/f8/c715d4b76e304245fee18b8d4e8d005de75bcb8b3f241e705ecfa55db7a7/zensols.install-1.2.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/4b/4e/110ee564b0a8b369f4767127c5ba86a8277818d0b108f5a152112edc7bd2/zensols_amr-0.2.4-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/bd/db/2b53b5b3fabb2f2843d34147c91cae1c4e6fa5a179932f92d6d7e46e15be/zensols_datdesc-1.3.4-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/bb/e8/90eeefb21a5d653d345d55eee75ddbdc89c71db9023786e0eed8cc98d649/zensols_datdesc-1.3.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/81/36/04df9df0d5c41c6a7c8838e06eb8563b609e03791a9b4a0d48c9d60ae400/zensols_db-1.4.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/73/d5/a0b1b5bb3d5f36adb8fec83755547508f998812e3ed5b6aeb6d36a396318/zensols_deeplearn-1.14.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/84/33/030b2681297fd318e8a159c36c15766858a84b5436d8f94aa03f2e108978/zensols_deepnlp-1.18.1-py3-none-any.whl
@@ -2134,17 +2138,17 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hda65f42_8.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.11.12-hbd8a1cb_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/icu-75.1-he02047a_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45-bootstrap_ha15bf96_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45-default_hbd61a6d_104.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.7.3-hecca717_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libffi-3.5.2-h9ec8514_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-h767d61c_7.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.2.0-h69a702a_7.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-h767d61c_7.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-he0feb66_12.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.2.0-h69a702a_12.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-he0feb66_12.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.1-hb9d3cd8_2.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libnsl-2.0.1-hb9d3cd8_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.51.0-hee844dc_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h8f9b012_7.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-15.2.0-h4852527_7.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h934c35e_12.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-15.2.0-hdf11a46_12.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.41.2-he9a06e4_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libxcrypt-4.4.36-hd590300_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.1-hb9d3cd8_2.conda
@@ -2154,6 +2158,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/readline-8.2-h8c095d6_2.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_ha0e22de_103.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/tzdata-2025b-h78e105d_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb8e6e7a_2.conda
       - pypi: https://files.pythonhosted.org/packages/c4/bf/a6455be76e5a580190ace72fe3d15aa4acd0789ff0f399a45cbc68a5ddad/amrlib-0.8.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/d2/39/e7eaf1799466a4aef85b6a4fe7bd175ad2b1c6345066aa33f1f58d4b18d0/asttokens-3.0.1-py3-none-any.whl
@@ -2307,7 +2312,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/25/61/7aa08eb2521c966d9abec0085040e10f52c269e1acda2e4b821f36f197db/zensols.amr_coref-0.0.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/99/f8/c715d4b76e304245fee18b8d4e8d005de75bcb8b3f241e705ecfa55db7a7/zensols.install-1.2.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/4b/4e/110ee564b0a8b369f4767127c5ba86a8277818d0b108f5a152112edc7bd2/zensols_amr-0.2.4-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/bd/db/2b53b5b3fabb2f2843d34147c91cae1c4e6fa5a179932f92d6d7e46e15be/zensols_datdesc-1.3.4-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/bb/e8/90eeefb21a5d653d345d55eee75ddbdc89c71db9023786e0eed8cc98d649/zensols_datdesc-1.3.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/81/36/04df9df0d5c41c6a7c8838e06eb8563b609e03791a9b4a0d48c9d60ae400/zensols_db-1.4.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/73/d5/a0b1b5bb3d5f36adb8fec83755547508f998812e3ed5b6aeb6d36a396318/zensols_deeplearn-1.14.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/84/33/030b2681297fd318e8a159c36c15766858a84b5436d8f94aa03f2e108978/zensols_deepnlp-1.18.1-py3-none-any.whl
@@ -2472,7 +2477,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/25/61/7aa08eb2521c966d9abec0085040e10f52c269e1acda2e4b821f36f197db/zensols.amr_coref-0.0.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/99/f8/c715d4b76e304245fee18b8d4e8d005de75bcb8b3f241e705ecfa55db7a7/zensols.install-1.2.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/4b/4e/110ee564b0a8b369f4767127c5ba86a8277818d0b108f5a152112edc7bd2/zensols_amr-0.2.4-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/bd/db/2b53b5b3fabb2f2843d34147c91cae1c4e6fa5a179932f92d6d7e46e15be/zensols_datdesc-1.3.4-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/bb/e8/90eeefb21a5d653d345d55eee75ddbdc89c71db9023786e0eed8cc98d649/zensols_datdesc-1.3.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/81/36/04df9df0d5c41c6a7c8838e06eb8563b609e03791a9b4a0d48c9d60ae400/zensols_db-1.4.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/73/d5/a0b1b5bb3d5f36adb8fec83755547508f998812e3ed5b6aeb6d36a396318/zensols_deeplearn-1.14.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/84/33/030b2681297fd318e8a159c36c15766858a84b5436d8f94aa03f2e108978/zensols_deepnlp-1.18.1-py3-none-any.whl
@@ -2633,7 +2638,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/25/61/7aa08eb2521c966d9abec0085040e10f52c269e1acda2e4b821f36f197db/zensols.amr_coref-0.0.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/99/f8/c715d4b76e304245fee18b8d4e8d005de75bcb8b3f241e705ecfa55db7a7/zensols.install-1.2.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/4b/4e/110ee564b0a8b369f4767127c5ba86a8277818d0b108f5a152112edc7bd2/zensols_amr-0.2.4-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/bd/db/2b53b5b3fabb2f2843d34147c91cae1c4e6fa5a179932f92d6d7e46e15be/zensols_datdesc-1.3.4-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/bb/e8/90eeefb21a5d653d345d55eee75ddbdc89c71db9023786e0eed8cc98d649/zensols_datdesc-1.3.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/81/36/04df9df0d5c41c6a7c8838e06eb8563b609e03791a9b4a0d48c9d60ae400/zensols_db-1.4.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/73/d5/a0b1b5bb3d5f36adb8fec83755547508f998812e3ed5b6aeb6d36a396318/zensols_deeplearn-1.14.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/84/33/030b2681297fd318e8a159c36c15766858a84b5436d8f94aa03f2e108978/zensols_deepnlp-1.18.1-py3-none-any.whl
@@ -2654,17 +2659,17 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hda65f42_8.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.11.12-hbd8a1cb_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/icu-75.1-he02047a_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45-bootstrap_ha15bf96_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45-default_hbd61a6d_104.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.7.3-hecca717_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libffi-3.5.2-h9ec8514_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-h767d61c_7.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.2.0-h69a702a_7.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-h767d61c_7.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-he0feb66_12.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.2.0-h69a702a_12.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-he0feb66_12.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.1-hb9d3cd8_2.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libnsl-2.0.1-hb9d3cd8_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.51.0-hee844dc_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h8f9b012_7.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-15.2.0-h4852527_7.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h934c35e_12.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-15.2.0-hdf11a46_12.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.41.2-he9a06e4_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libxcrypt-4.4.36-hd590300_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.1-hb9d3cd8_2.conda
@@ -2674,6 +2679,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/readline-8.2-h8c095d6_2.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_ha0e22de_103.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/tzdata-2025b-h78e105d_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb8e6e7a_2.conda
       - pypi: https://files.pythonhosted.org/packages/c4/bf/a6455be76e5a580190ace72fe3d15aa4acd0789ff0f399a45cbc68a5ddad/amrlib-0.8.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/d2/39/e7eaf1799466a4aef85b6a4fe7bd175ad2b1c6345066aa33f1f58d4b18d0/asttokens-3.0.1-py3-none-any.whl
@@ -2827,7 +2833,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/25/61/7aa08eb2521c966d9abec0085040e10f52c269e1acda2e4b821f36f197db/zensols.amr_coref-0.0.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/99/f8/c715d4b76e304245fee18b8d4e8d005de75bcb8b3f241e705ecfa55db7a7/zensols.install-1.2.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/4b/4e/110ee564b0a8b369f4767127c5ba86a8277818d0b108f5a152112edc7bd2/zensols_amr-0.2.4-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/bd/db/2b53b5b3fabb2f2843d34147c91cae1c4e6fa5a179932f92d6d7e46e15be/zensols_datdesc-1.3.4-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/bb/e8/90eeefb21a5d653d345d55eee75ddbdc89c71db9023786e0eed8cc98d649/zensols_datdesc-1.3.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/81/36/04df9df0d5c41c6a7c8838e06eb8563b609e03791a9b4a0d48c9d60ae400/zensols_db-1.4.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/73/d5/a0b1b5bb3d5f36adb8fec83755547508f998812e3ed5b6aeb6d36a396318/zensols_deeplearn-1.14.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/84/33/030b2681297fd318e8a159c36c15766858a84b5436d8f94aa03f2e108978/zensols_deepnlp-1.18.1-py3-none-any.whl
@@ -2992,7 +2998,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/25/61/7aa08eb2521c966d9abec0085040e10f52c269e1acda2e4b821f36f197db/zensols.amr_coref-0.0.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/99/f8/c715d4b76e304245fee18b8d4e8d005de75bcb8b3f241e705ecfa55db7a7/zensols.install-1.2.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/4b/4e/110ee564b0a8b369f4767127c5ba86a8277818d0b108f5a152112edc7bd2/zensols_amr-0.2.4-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/bd/db/2b53b5b3fabb2f2843d34147c91cae1c4e6fa5a179932f92d6d7e46e15be/zensols_datdesc-1.3.4-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/bb/e8/90eeefb21a5d653d345d55eee75ddbdc89c71db9023786e0eed8cc98d649/zensols_datdesc-1.3.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/81/36/04df9df0d5c41c6a7c8838e06eb8563b609e03791a9b4a0d48c9d60ae400/zensols_db-1.4.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/73/d5/a0b1b5bb3d5f36adb8fec83755547508f998812e3ed5b6aeb6d36a396318/zensols_deeplearn-1.14.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/84/33/030b2681297fd318e8a159c36c15766858a84b5436d8f94aa03f2e108978/zensols_deepnlp-1.18.1-py3-none-any.whl
@@ -3153,7 +3159,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/25/61/7aa08eb2521c966d9abec0085040e10f52c269e1acda2e4b821f36f197db/zensols.amr_coref-0.0.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/99/f8/c715d4b76e304245fee18b8d4e8d005de75bcb8b3f241e705ecfa55db7a7/zensols.install-1.2.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/4b/4e/110ee564b0a8b369f4767127c5ba86a8277818d0b108f5a152112edc7bd2/zensols_amr-0.2.4-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/bd/db/2b53b5b3fabb2f2843d34147c91cae1c4e6fa5a179932f92d6d7e46e15be/zensols_datdesc-1.3.4-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/bb/e8/90eeefb21a5d653d345d55eee75ddbdc89c71db9023786e0eed8cc98d649/zensols_datdesc-1.3.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/81/36/04df9df0d5c41c6a7c8838e06eb8563b609e03791a9b4a0d48c9d60ae400/zensols_db-1.4.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/73/d5/a0b1b5bb3d5f36adb8fec83755547508f998812e3ed5b6aeb6d36a396318/zensols_deeplearn-1.14.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/84/33/030b2681297fd318e8a159c36c15766858a84b5436d8f94aa03f2e108978/zensols_deepnlp-1.18.1-py3-none-any.whl
@@ -4896,17 +4902,19 @@ packages:
   - twine ; extra == 'build'
   - pytest ; extra == 'test'
   - pytest-cov ; extra == 'test'
-- conda: https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45-bootstrap_ha15bf96_3.conda
-  sha256: 7dfdf5500318521827c590fbda0fce5d6bda1d15dfee11b677d420580d18ccc0
-  md5: 3036ca5b895b7f5146c5a25486234a68
+- conda: https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45-default_hbd61a6d_104.conda
+  sha256: 9e191baf2426a19507f1d0a17be0fdb7aa155cdf0f61d5a09c808e0a69464312
+  md5: a6abd2796fc332536735f68ba23f7901
   depends:
   - __glibc >=2.17,<3.0.a0
+  - zstd >=1.5.7,<1.6.0a0
   constrains:
   - binutils_impl_linux-64 2.45
   license: GPL-3.0-only
+  license_family: GPL
   purls: []
-  size: 729222
-  timestamp: 1763768158810
+  size: 725545
+  timestamp: 1764007826689
 - conda: https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.7.3-hecca717_0.conda
   sha256: 1e1b08f6211629cbc2efe7a5bca5953f8f6b3cae0eeb04ca4dacee1bd4e2db2f
   md5: 8b09ae86839581147ef2e5c5e229d164
@@ -4979,40 +4987,40 @@ packages:
   purls: []
   size: 44866
   timestamp: 1760295760649
-- conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-h767d61c_7.conda
-  sha256: 08f9b87578ab981c7713e4e6a7d935e40766e10691732bba376d4964562bcb45
-  md5: c0374badb3a5d4b1372db28d19462c53
+- conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-he0feb66_12.conda
+  sha256: b2c57cebdcf243f71d96a6c934c643aebb5a38093eb61d8d1aa67dc2e03c9244
+  md5: b3137606149c607becd89faed5ee4ec6
   depends:
   - __glibc >=2.17,<3.0.a0
   - _openmp_mutex >=4.5
   constrains:
-  - libgomp 15.2.0 h767d61c_7
-  - libgcc-ng ==15.2.0=*_7
+  - libgomp 15.2.0 he0feb66_12
+  - libgcc-ng ==15.2.0=*_12
   license: GPL-3.0-only WITH GCC-exception-3.1
   license_family: GPL
   purls: []
-  size: 822552
-  timestamp: 1759968052178
-- conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.2.0-h69a702a_7.conda
-  sha256: 2045066dd8e6e58aaf5ae2b722fb6dfdbb57c862b5f34ac7bfb58c40ef39b6ad
-  md5: 280ea6eee9e2ddefde25ff799c4f0363
+  size: 1043771
+  timestamp: 1764036113005
+- conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.2.0-h69a702a_12.conda
+  sha256: b45f45c2362f9e8aaa5b875a7e612f4b4562bd136611a93b7642b45f7d1eaec3
+  md5: 3c4b621138fcfc95ba219344b8a0d91f
   depends:
-  - libgcc 15.2.0 h767d61c_7
+  - libgcc 15.2.0 he0feb66_12
   license: GPL-3.0-only WITH GCC-exception-3.1
   license_family: GPL
   purls: []
-  size: 29313
-  timestamp: 1759968065504
-- conda: https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-h767d61c_7.conda
-  sha256: e9fb1c258c8e66ee278397b5822692527c5f5786d372fe7a869b900853f3f5ca
-  md5: f7b4d76975aac7e5d9e6ad13845f92fe
+  size: 29191
+  timestamp: 1764036122114
+- conda: https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-he0feb66_12.conda
+  sha256: 49c313bb040d04512c5e29da169dec58c51c6535dc97cc5808d3614bc048723e
+  md5: 4881b9b732ee8b673cd46875d7d36fc6
   depends:
   - __glibc >=2.17,<3.0.a0
   license: GPL-3.0-only WITH GCC-exception-3.1
   license_family: GPL
   purls: []
-  size: 447919
-  timestamp: 1759967942498
+  size: 605231
+  timestamp: 1764036022611
 - conda: https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.1-hb9d3cd8_2.conda
   sha256: f2591c0069447bbe28d4d696b7fcb0c5bd0b4ac582769b89addbcf26fb3430d8
   md5: 1a580f7796c7bf6393fddb8bbbde58dc
@@ -5094,29 +5102,29 @@ packages:
   purls: []
   size: 1292710
   timestamp: 1762299749044
-- conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h8f9b012_7.conda
-  sha256: 1b981647d9775e1cdeb2fab0a4dd9cd75a6b0de2963f6c3953dbd712f78334b3
-  md5: 5b767048b1b3ee9a954b06f4084f93dc
+- conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h934c35e_12.conda
+  sha256: 2954f7b21ad6f0f1b9b5eabf0595039c425f6f6267087e58310dc4855fee8383
+  md5: b8ef46cab65ab6676c7d5c9581b17ebf
   depends:
   - __glibc >=2.17,<3.0.a0
-  - libgcc 15.2.0 h767d61c_7
+  - libgcc 15.2.0 he0feb66_12
   constrains:
-  - libstdcxx-ng ==15.2.0=*_7
+  - libstdcxx-ng ==15.2.0=*_12
   license: GPL-3.0-only WITH GCC-exception-3.1
   license_family: GPL
   purls: []
-  size: 3898269
-  timestamp: 1759968103436
-- conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-15.2.0-h4852527_7.conda
-  sha256: 024fd46ac3ea8032a5ec3ea7b91c4c235701a8bf0e6520fe5e6539992a6bd05f
-  md5: f627678cf829bd70bccf141a19c3ad3e
+  size: 5854408
+  timestamp: 1764036151142
+- conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-15.2.0-hdf11a46_12.conda
+  sha256: 7540d3b3577b058962d110dfa08ec2a278254dd6f9397d33ad0ede7bf222094e
+  md5: ac15e685fa88f7d070b60b396dd91017
   depends:
-  - libstdcxx 15.2.0 h8f9b012_7
+  - libstdcxx 15.2.0 h934c35e_12
   license: GPL-3.0-only WITH GCC-exception-3.1
   license_family: GPL
   purls: []
-  size: 29343
-  timestamp: 1759968157195
+  size: 29230
+  timestamp: 1764036201717
 - conda: https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.41.2-he9a06e4_0.conda
   sha256: e5ec6d2ad7eef538ddcb9ea62ad4346fde70a4736342c4ad87bd713641eb9808
   md5: 80c07c68d2f6870250959dcc95b209d1
@@ -9704,10 +9712,10 @@ packages:
   - scipy
   - torch
   - tqdm
-- pypi: https://files.pythonhosted.org/packages/bd/db/2b53b5b3fabb2f2843d34147c91cae1c4e6fa5a179932f92d6d7e46e15be/zensols_datdesc-1.3.4-py3-none-any.whl
+- pypi: https://files.pythonhosted.org/packages/bb/e8/90eeefb21a5d653d345d55eee75ddbdc89c71db9023786e0eed8cc98d649/zensols_datdesc-1.3.5-py3-none-any.whl
   name: zensols-datdesc
-  version: 1.3.4
-  sha256: fe9d5b95e5b91e0a025c9f6e8c3716723355f41a5f124efe77e6293f89c28fa2
+  version: 1.3.5
+  sha256: 3c6886c8ecaa06b5b0da6d15afe5430c6daec0ca8996fc1466082080256a693f
   requires_dist:
   - hyperopt~=0.2.7
   - jinja2>=3.1
@@ -9843,3 +9851,16 @@ packages:
   - pkg:pypi/zipp?source=hash-mapping
   size: 22963
   timestamp: 1749421737203
+- conda: https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb8e6e7a_2.conda
+  sha256: a4166e3d8ff4e35932510aaff7aa90772f84b4d07e9f6f83c614cba7ceefe0eb
+  md5: 6432cb5d4ac0046c3ac0a8a0f95842f9
+  depends:
+  - __glibc >=2.17,<3.0.a0
+  - libgcc >=13
+  - libstdcxx >=13
+  - libzlib >=1.3.1,<2.0a0
+  license: BSD-3-Clause
+  license_family: BSD
+  purls: []
+  size: 567578
+  timestamp: 1742433379869
