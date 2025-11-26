@@ -209,11 +209,18 @@ class _ProtoApplication(_AlignmentBaseApplication):
 	    "id": "newid",
 	    "body": "The rulings bolster criticisms of how hastily the prosecutions were brought.",
 	    "summary": "The rulings suggest the prosecutions were rushed."}]
-        if 0:
-            stash = self.config_factory('calamr_adhoc_amr_anon_doc_factory_stash')
+        id = 'newid'
+        if 1:
+            stash = self.config_factory('calamr_adhoc_anon_feature_doc_stash')
+            if 0:
+                stash.clear()
+                return
+            stash.set_corpus(ex, 'tmp')
+            doc = stash[id]
+            print(doc[0].amr.graph_string)
+            #stash.clear()
             return
         if 1:
-            id = 'newid'
             stash = self.config_factory('calamr_adhoc_amr_anon_doc_factory_stash')
             stash.set_corpus(ex)
             stash = self.config_factory('calamr_adhoc_anon_feature_doc_stash')

@@ -27,11 +27,36 @@ calamr_adhoc_amr_anon_feature_doc_stash:
 ## Adhoc document stash used to create non-corpus documents
 #
 # same as `calamr_anon_feature_doc_stash` but for adhoc docs in memory
-calamr_adhoc_anon_feature_doc_stash:
+calamr_adhoc_anon_feature_doc_stash_disable:
   class_name: zensols.calamr.annotate.AddEmbeddingsFeatureDocumentStash
   delegate: 'instance: calamr_adhoc_amr_anon_feature_doc_stash'
   word_piece_doc_factory: ${${calamr_default:amr_anon_doc_stash}:word_piece_doc_factory}
 
 
-##
-#AdhocAnnotatedAmrDocumentStash
+## Redo
+#
+# calamr_corpus_amr_anon_doc_factory_stash:
+#   class_name: zensols.calamr.adhoc.CalamrAnnotatedAmrDocumentStash
+#   anon_doc_stash: 'instance: amr_anon_doc_factory_stash'
+#   anon_doc_factory: 'instance: amr_anon_doc_factory'
+
+calamr_adhoc_config_swapper:
+  class_name: zensols.calamr.adhoc.ConfigSwapper
+  root_dir: 'path: ${calamr_default:data_dir}/adhoc'
+  swaps:
+    - ['amr_anon_doc_backing_stash', 'path', 'path']
+    - ['amr_anon_doc_parser_stash', 'path', 'path']
+    - ['amr_anon_feature_doc_back_stash', 'path', 'path']
+    - ['amr_coref_resolver_stash', 'path', 'path']
+    - ['calamr_flow_graph_result_persist_stash', 'path', 'path']
+    - ['amr_anon_doc_factory_stash', '_corpus_doc', 'persist']
+    - ['amr_anon_doc_factory_stash', '_corpus_df', 'persist']
+
+calamr_adhoc_anon_feature_doc_stash:
+  class_name: zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash
+  #delegate: 'instance: amr_anon_doc_factory_stash'
+  delegate: 'instance: ${calamr_default:amr_anon_doc_stash}'
+  anon_doc_factory: 'instance: amr_anon_doc_factory'
+  doc_key: ['amr_anon_doc_factory_stash', '_corpus_doc']
+  swapper_name: calamr_adhoc_config_swapper
+  #swapper: 'instance: calamr_adhoc_config_swapper'
