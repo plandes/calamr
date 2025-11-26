@@ -105,12 +105,22 @@ class AdhocAnnotatedAmrDocumentStash(DelegateStash):
     :class:`~zensols.amr.doc.AmrDocument`.
 
     """
-    config_factory: ConfigFactory = field()
     anon_doc_factory: AnnotatedAmrFeatureDocumentFactory = field()
+    """Parses text data into AMR source and summary documents."""
+
     hasher: Hasher = field()
+    """Used to create unique file cache root directories."""
+
     temporary_dir: Path = field()
+    """The directory base where cached files are stored."""
+
     doc_key: Union[Sequence[str], Tuple[str, str]] = field()
+    """Indicates the ``(config section, attribute)`` to locate the persisted
+    work to set with the cached document so the factory stash doesn't.
+
+    """
     swapper: ConfigSwapper = field()
+    """Used to swap in the adhoc paths and document and then back out."""
 
     def __post_init__(self):
         if not isinstance(self.doc_key, Tuple):
@@ -176,6 +186,7 @@ class AdhocAnnotatedAmrDocumentStash(DelegateStash):
         self.swapper.restore()
 
     def clear(self):
+        """Recursively remove all data in :obj:`temporary_dir`."""
         if self.swapper.root_dir is None:
             raise APIError('Must first call set_corpus before clearing')
         self.swapper.clear()

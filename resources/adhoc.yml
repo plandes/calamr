@@ -17,7 +17,6 @@ calamr_adhoc_config_swapper:
 calamr_adhoc_anon_feature_doc_stash:
   class_name: zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash
   delegate: 'instance: ${calamr_default:amr_anon_doc_stash}'
-  #hasher: "object({'param': {'short': False}}): zensols.util.Hasher"
   hasher: "object: zensols.util.Hasher"
   anon_doc_factory: 'instance: amr_anon_doc_factory'
   swapper: 'instance: calamr_adhoc_config_swapper'
