@@ -21,14 +21,42 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class ConfigSwapper(Dictable):
-    config_factory: ConfigFactory = field()
-    root_dir: Path = field()
-    swaps: Tuple[Tuple[str, str, str], ...] = field()
+    """Swap file system paths and
+    :class:`~zensols.persist.annotation.PersistedWork` instances.  This used to
+    temporarily cache files for :class:`.AdhocAnnotatedAmrDocumentStash`.  All
+    specified paths in :obj:`swap` are "redirected" to directories (with the
+    same names as swapped path) stemming from parent/ancestory directory
+    :obj:`root_dir`.
 
+    First :meth:`swap` is called to replace data.  Then :meth:`restore` is
+    called to restore the values of all data before :meth:`swap` was called.
+
+    """
+    config_factory: ConfigFactory = field()
+    """Used to retrieve instances that will have data swapped."""
+
+    root_dir: Path = field()
+    """The base directory to create cached files (see class docs)."""
+
+    swaps: Sequence[Tuple[str, str, str]] = field()
+    """Target factory objects to swap data (see class docs).  Each is a tuple
+    of: ``(config section, attribute, <path|persist>).`` The third string tells
+    whether to treat the attribute as a path or
+    :class:`~zensols.persist.annotation.PersistedWork`.  If the former, replace
+    data will have a new path that starts at :obj:`root_dir`.  If the latter, a
+    new uninitialized persisted work is swapped in.
+
+    """
     def __post_init__(self):
         self._prev: Dict[Tuple[str, str], Tuple[Any, Any]] = {}
 
     def swap(self, replacements: Dict[str, Any] = None):
+        """Swap in new temporary data specified by :obj:`swaps`.
+
+        :param replacements: keys are ``(config section, attribute)`` and values
+                             are what to swap in as the data
+
+        """
         replacements = {} if replacements is None else replacements
         sec: str
         attr: str
@@ -52,6 +80,7 @@ class ConfigSwapper(Dictable):
             setattr(inst, attr, new)
 
     def restore(self):
+        """Restore all data replaced by :meth:`swap`."""
         sec: str
         attr: str
         prev: Any
@@ -61,16 +90,21 @@ class ConfigSwapper(Dictable):
             setattr(inst, attr, prev)
         self._prev.clear()
 
-    def __getitem__(self, key: Tuple[str, str]) -> Tuple[Any, Any]:
-        return self._prev[key]
-
     def clear(self):
+        """Recursively remove all data in :obj:`root_dir`."""
         if self.root_dir.is_dir():
             shutil.rmtree(self.root_dir)
+
+    def __getitem__(self, key: Tuple[str, str]) -> Tuple[Any, Any]:
+        return self._prev[key]
 
 
 @dataclass
 class AdhocAnnotatedAmrDocumentStash(DelegateStash):
+    """A stash that generates and cachees instances of
+    :class:`~zensols.amr.doc.AmrDocument`.
+
+    """
     config_factory: ConfigFactory = field()
     anon_doc_factory: AnnotatedAmrFeatureDocumentFactory = field()
     hasher: Hasher = field()
@@ -100,6 +134,21 @@ class AdhocAnnotatedAmrDocumentStash(DelegateStash):
 
     def set_corpus(self, data: Union[Path, Dict, Sequence],
                    corpus_id: str = None):
+        """Set the corpus documents that will be used for parsing and
+        annotating.  The data will immediately be parsed into AMRs in this call
+        and the data that writes to the file system will be updated to point to
+        a new ``.../adhoc`` directory to not interfere with any corpus
+        documents (see :class:`.ConfigSwapper`).
+
+        To restore the configuration after adhoc document processing is
+        finished, call :meth:`restore`.
+
+        :param data: the AMR summary documents, which is usually a sequence of
+                     :class:`~typing.Dict` instances (see
+                     :class:`~zensols.arm.annotate.AnnotatedAmrFeatureDocumentFactory`
+                     for data structure details)
+
+        """
         temp_dir: Path = self._get_temp_dir(data, corpus_id)
         amr_doc_file: Path = temp_dir / 'amr-docs.dat'
         need_create: bool = not amr_doc_file.exists()
@@ -120,6 +169,10 @@ class AdhocAnnotatedAmrDocumentStash(DelegateStash):
         pw_current_corp_doc.set(doc)
 
     def restore(self):
+        """Restores the configuration that writes to the file system after the
+        call to :meth:`set_corpus`.
+
+        """
         self.swapper.restore()
 
     def clear(self):
