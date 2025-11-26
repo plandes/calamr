@@ -20,5 +20,5 @@ calamr_adhoc_anon_feature_doc_stash:
   hasher: "object: zensols.util.Hasher"
   anon_doc_factory: 'instance: amr_anon_doc_factory'
   swapper: 'instance: calamr_adhoc_config_swapper'
-  temporary_dir: 'path: ${calamr_default:data_dir}/adhoc'
+  root_dir: 'path: ${calamr_default:data_dir}/adhoc'
   doc_key: ['amr_anon_doc_factory_stash', '_corpus_doc']

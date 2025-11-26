@@ -199,24 +199,26 @@ class _ProtoApplication(_AlignmentBaseApplication):
 	    "id": "newid",
 	    "body": "The rulings bolster criticisms of how hastily the prosecutions were brought. The rulings were rushed.",
 	    "summary": "The rulings suggest the prosecutions were rushed."
-            }, {
-                "id": "ex1",
-                "comment": "very short",
-                "body": "The man ran to make the train. He just missed it.",
-                "summary": "A man got caught in the door of a train he just missed."
-            }]
-        ex2 = [{
+        }, {
+            "id": "ex1",
+            "comment": "very short",
+            "body": "The man ran to make the train. He just missed it.",
+            "summary": "A man got caught in the door of a train he just missed."
+        }]
+        ex = [{
 	    "id": "newid",
-	    "body": "The rulings bolster criticisms of how hastily the prosecutions were brought.",
+	    "body": "The rulings bolster criticisms of how hastily the prosecutions were brought against Donald Trump.",
 	    "summary": "The rulings suggest the prosecutions were rushed."}]
         if 1:
             stash = self.config_factory('calamr_adhoc_anon_feature_doc_stash')
             stash.set_corpus(ex)
+            if 1:
+                stash.clear()
+                return
             doc = stash['newid']
-            print(doc.amr.graph_string)
-            #stash.clear()
+            doc.amr.write()
             return
-        if 0:
+        if 1:
             doc = self.resource.anon_doc_stash['liu-example']
             print(doc[0].amr.graph_string)
             return

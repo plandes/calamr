@@ -13,7 +13,7 @@ from zensols.config import Dictable
 from zensols.amr import AmrDocument, AmrFeatureDocument
 from zensols.amr.annotate import AnnotatedAmrFeatureDocumentFactory
 from zensols.config import ConfigFactory
-from zensols.persist import PersistedWork, DelegateStash
+from zensols.persist import PersistedWork, PrimeableStash, DelegateStash
 from zensols.amr import AmrSentence
 
 logger = logging.getLogger(__name__)
@@ -100,7 +100,7 @@ class ConfigSwapper(Dictable):
 
 
 @dataclass
-class AdhocAnnotatedAmrDocumentStash(DelegateStash):
+class AdhocAnnotatedAmrDocumentStash(PrimeableStash, DelegateStash):
     """A stash that generates and cachees instances of
     :class:`~zensols.amr.doc.AmrDocument`.
 
@@ -111,7 +111,7 @@ class AdhocAnnotatedAmrDocumentStash(DelegateStash):
     hasher: Hasher = field()
     """Used to create unique file cache root directories."""
 
-    temporary_dir: Path = field()
+    root_dir: Path = field()
     """The directory base where cached files are stored."""
 
     doc_key: Union[Sequence[str], Tuple[str, str]] = field()
@@ -126,6 +126,10 @@ class AdhocAnnotatedAmrDocumentStash(DelegateStash):
         if not isinstance(self.doc_key, Tuple):
             self.doc_key = tuple(self.doc_key)
 
+    def _reset(self):
+        self._cache_dir: Path = None
+        self._data: Union[Path, Dict, Sequence] = None
+
     def _get_doc(self, data: Union[Path, Dict, Sequence]) -> AmrDocument:
         docs: Tuple[AmrFeatureDocument, ...] = \
             tuple(self.anon_doc_factory(data))
@@ -134,13 +138,12 @@ class AdhocAnnotatedAmrDocumentStash(DelegateStash):
             chain.from_iterable(map(lambda d: d.sents, docs)))
         return AmrDocument.to_document(sents)
 
-    def _get_temp_dir(self, data: Union[Path, Dict, Sequence],
-                      corpus_id: str) -> Path:
+    def _get_cache_dir(self, corpus_id: str) -> Path:
         if corpus_id is None:
             self.hasher.reset()
-            self.hasher.update(data)
+            self.hasher.update(self._data)
             corpus_id = self.hasher()
-        return self.temporary_dir / corpus_id
+        return self.root_dir / corpus_id
 
     def set_corpus(self, data: Union[Path, Dict, Sequence],
                    corpus_id: str = None):
@@ -159,13 +162,16 @@ class AdhocAnnotatedAmrDocumentStash(DelegateStash):
                      for data structure details)
 
         """
-        temp_dir: Path = self._get_temp_dir(data, corpus_id)
-        amr_doc_file: Path = temp_dir / 'amr-docs.dat'
+        self._data = data
+        self._cache_dir: Path = self._get_cache_dir(corpus_id)
+        self.swapper.root_dir = self._cache_dir
+
+    def prime(self):
+        amr_doc_file: Path = self._cache_dir / 'amr-docs.dat'
         need_create: bool = not amr_doc_file.exists()
-        self.swapper.root_dir = temp_dir
         self.swapper.swap()
         if need_create:
-            doc = self._get_doc(data)
+            doc = self._get_doc(self._data)
             with open(amr_doc_file, 'wb') as f:
                 pickle.dump(doc, f)
             if logger.isEnabledFor(logging.INFO):
@@ -177,6 +183,7 @@ class AdhocAnnotatedAmrDocumentStash(DelegateStash):
                 logger.info(f'wrote adhoc parsed amrs: {amr_doc_file}')
         pw_current_corp_doc: PersistedWork = self.swapper[self.doc_key][1]
         pw_current_corp_doc.set(doc)
+        super().prime()
 
     def restore(self):
         """Restores the configuration that writes to the file system after the
@@ -184,9 +191,10 @@ class AdhocAnnotatedAmrDocumentStash(DelegateStash):
 
         """
         self.swapper.restore()
+        self._reset()
 
     def clear(self):
-        """Recursively remove all data in :obj:`temporary_dir`."""
-        if self.swapper.root_dir is None:
+        """Recursively remove all data in :obj:`root_dir`."""
+        if self._cache_dir is None:
             raise APIError('Must first call set_corpus before clearing')
         self.swapper.clear()
