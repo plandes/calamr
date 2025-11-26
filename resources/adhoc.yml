@@ -1,45 +1,6 @@
 #@meta {desc: "adhoc AMR document generator", date: "2025-11-24"}
 
 
-calamr_adhoc_amr_anon_doc_factory_stash:
-  class_name: zensols.calamr.adhoc.CalamrAnnotatedAmrDocumentStash
-  anon_doc_stash: 'instance: amr_anon_doc_factory_stash'
-  anon_doc_factory: 'instance: amr_anon_doc_factory'
-  stash_writers:
-    - ['amr_anon_doc_stash', 'delegate']
-    - ['amr_anon_doc_parser', 'stash']
-    - ['amr_anon_feature_doc_stash', 'doc_stash']
-    - ['amr_coref_resolver', 'stash']
-
-calamr_adhoc_amr_anon_doc_stash:
-  class_name: zensols.persist.CacheFactoryStash
-  delegate: 'object: zensols.persist.NoopStash'
-  factory: 'instance: calamr_adhoc_amr_anon_doc_factory_stash'
-
-# copy of `amr_anon_feature_doc_stash` with `doc_stash` and `amr_stash` replaced
-calamr_adhoc_amr_anon_feature_doc_stash:
-  class_name: zensols.amr.annotate.AnnotatedAmrFeatureDocumentStash
-  feature_doc_factory: 'instance: amr_feature_doc_factory'
-  doc_stash: 'object: zensols.persist.NoopStash'
-  amr_stash: 'instance: calamr_adhoc_amr_anon_doc_stash'
-
-
-## Adhoc document stash used to create non-corpus documents
-#
-# same as `calamr_anon_feature_doc_stash` but for adhoc docs in memory
-calamr_adhoc_anon_feature_doc_stash_disable:
-  class_name: zensols.calamr.annotate.AddEmbeddingsFeatureDocumentStash
-  delegate: 'instance: calamr_adhoc_amr_anon_feature_doc_stash'
-  word_piece_doc_factory: ${${calamr_default:amr_anon_doc_stash}:word_piece_doc_factory}
-
-
-## Redo
-#
-# calamr_corpus_amr_anon_doc_factory_stash:
-#   class_name: zensols.calamr.adhoc.CalamrAnnotatedAmrDocumentStash
-#   anon_doc_stash: 'instance: amr_anon_doc_factory_stash'
-#   anon_doc_factory: 'instance: amr_anon_doc_factory'
-
 calamr_adhoc_config_swapper:
   class_name: zensols.calamr.adhoc.ConfigSwapper
   root_dir: 'path: ${calamr_default:data_dir}/adhoc'
@@ -54,9 +15,7 @@ calamr_adhoc_config_swapper:
 
 calamr_adhoc_anon_feature_doc_stash:
   class_name: zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash
-  #delegate: 'instance: amr_anon_doc_factory_stash'
   delegate: 'instance: ${calamr_default:amr_anon_doc_stash}'
   anon_doc_factory: 'instance: amr_anon_doc_factory'
   doc_key: ['amr_anon_doc_factory_stash', '_corpus_doc']
   swapper_name: calamr_adhoc_config_swapper
-  #swapper: 'instance: calamr_adhoc_config_swapper'
