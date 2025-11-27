@@ -3,11 +3,9 @@
 """
 from __future__ import annotations
 __author__ = 'Paul Landes'
-from typing import (
-    Dict, Any, List, Tuple, Sequence, Union, Iterable,
-    Optional, Callable, Type, TYPE_CHECKING
-)
+from typing import Dict, List, Tuple, Sequence, Union, Iterable, Optional, Type
 from dataclasses import dataclass, field
+from abc import abstractmethod, ABCMeta
 import logging
 import traceback
 from pathlib import Path
@@ -23,15 +21,74 @@ from . import (
 logger = logging.getLogger(__name__)
 
 
+class _docstash(object):
+    """A context manager to use an adhoc AMR document stash.  methods
+
+    :see: :class:`.AdhocAnnotatedAmrDocumentStash`
+
+    Example:
+
+    .. code-block:: python
+
+       with docstash(stash) as s:
+           # print the keys of the annotated AMR documents
+           s.keys()
+           # determine if a document is in the stash
+           print('some_key' in s)
+           # write an AMR document
+           s['some_key'].write()
+           # remove all cached files generated for this call
+           s.clear()
+    """
+    def __init__(self, stash: 'AdhocAnnotatedAmrDocumentStash'):
+        self._stash = stash
+
+    def __enter__(self) -> 'AdhocAnnotatedAmrDocumentStash':
+        self._stash.prime()
+        return self._stash
+
+    def __exit__(self, cls: Type[Exception], value: Optional[Exception],
+                 trace: traceback):
+        if value is not None:
+            raise value
+        try:
+            self._stash.restore()
+        except Exception as e:
+            logger.error(f'Could not restore state {self.__class__}: {e}',
+                         exc_info=True)
+
+
 @dataclass
 class Resource(object):
+    documents: Stash = field()
+
+
+@dataclass
+class Resources(object):
     """A client facade (GoF) for Calamr annotated AMR corpus access and
     alginment.
+
+    """
+    _anon_doc_stash: Stash = field()
+    """Contains human annotated AMRs.  This could be from the adhoc (micro)
+    corpus (small toy corpus), AMR 3.0 Proxy Report corpus, Little Prince, or
+    the Bio AMR corpus.
 
     """
     _adhoc_doc_stash: Stash = field()
     """Adhoc stash."""
 
+    @property
+    def corpus(self) -> Resource:
+        return Resource(self._anon_doc_stash)
+
+
+@dataclass
+class Toolbox(object):
+    """A client facade (GoF) for Calamr annotated AMR corpus access and
+    alginment.
+
+    """
     anon_doc_stash: Stash = field()
     """Contains human annotated AMRs.  This could be from the adhoc (micro)
     corpus (small toy corpus), AMR 3.0 Proxy Report corpus, Little Prince, or

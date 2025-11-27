@@ -8,7 +8,7 @@ import sys
 from zensols.config import ConfigFactory
 from zensols.cli import ActionResult, CliHarness
 from zensols.cli import ApplicationFactory as CliApplicationFactory
-from . import Resource
+from . import Resources
 
 
 class ApplicationFactory(CliApplicationFactory):
@@ -17,14 +17,14 @@ class ApplicationFactory(CliApplicationFactory):
         super().__init__(*args, **kwargs)
 
     @classmethod
-    def get_resource(cls: Type, *args, **kwargs) -> Resource:
+    def get_resources(cls: Type, *args, **kwargs) -> Resources:
         """A client facade (GoF) for Calamr annotated AMR corpus access and
         alginment.
 
         """
         harness: CliHarness = cls.create_harness()
         fac: ConfigFactory = harness.get_config_factory(*args, **kwargs)
-        return fac('aapp').resource
+        return fac('aapp').resources
 
 
 def main(args: List[str] = sys.argv, **kwargs: Dict[str, Any]) -> ActionResult:

@@ -3,10 +3,7 @@
 """
 from __future__ import annotations
 __author__ = 'Paul Landes'
-from typing import (
-    Dict, Any, List, Tuple, Sequence, Union, Iterable,
-    Optional, Callable, Type, TYPE_CHECKING
-)
+from typing import Dict, Any, List, Tuple, Sequence, Callable, TYPE_CHECKING
 from dataclasses import dataclass, field
 import logging
 import sys
@@ -26,7 +23,7 @@ from zensols.amr.serial import AmrSerializedFactory
 from . import (
     DocumentGraph, DocumentGraphAligner, FlowGraphResult
 )
-from .resource import Resource
+from .resource import Resources
 
 logger = logging.getLogger(__name__)
 
@@ -36,7 +33,7 @@ class _AlignmentBaseApplication(object):
     """Base class for applications defined in this module.
 
     """
-    resource: Resource = field()
+    resources: Resources = field()
     """A client facade (GoF) for Calamr annotated AMR corpus access and
     alginment.
 

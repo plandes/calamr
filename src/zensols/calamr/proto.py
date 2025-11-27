@@ -209,13 +209,20 @@ class _ProtoApplication(_AlignmentBaseApplication):
 	    "id": "newid",
 	    "body": "The rulings bolster criticisms of how hastily the prosecutions were brought against Donald Trump.",
 	    "summary": "The rulings suggest the prosecutions were rushed."}]
+        if 1:
+            print('here', type(self.resources.corpus))
+            return
         stash = self.config_factory('calamr_adhoc_anon_feature_doc_stash')
+        if 0:
+            stash = self.resource.adhoc()
+            return
         if 1:
             with stash.set_corpus(ex) as s:
                 doc: AmrFeatureDocument = s['newid']
-                graph: DocumentGraph = self.resource.create_graph(doc)
-                flow_res: FlowGraphResult = self.resource.align(graph)
-                flow_res.write()
+                doc.write()
+                #graph: DocumentGraph = self.resource.create_graph(doc)
+                #flow_res: FlowGraphResult = self.resource.align(graph)
+                #flow_res.write()
                 #flow_res.render()
 
     def proto(self, run: int = 0):
