@@ -81,19 +81,7 @@ class Resource(object):
 @dataclass
 class Resources(object):
     """A client facade (GoF) for Calamr annotated AMR corpus access and
-    alginment.  This object is used as a context manager.  For example
-
-    Example:
-
-    .. code-block:: python
-
-       with self.resources.corpus() as r:
-           # print the keys of the annotated AMR documents
-           r.keys()
-           # determine if a document is in the stash
-           print('some_key' in s)
-           # write an AMR document
-           s['some_key'].write()
+    alginment.  This object is used as a context manager.
 
     :see: :class:`.AdhocAnnotatedAmrDocumentStash`
 
@@ -118,6 +106,18 @@ class Resources(object):
         the parenthetical text files.  These files are then made available as
         resource to be downloaded or available on the file system.
 
+        Example:
+
+        .. code-block:: python
+
+           with self.resources.corpus() as r:
+               # print the keys of the annotated AMR documents
+               r.documents.keys()
+               # determine if a document is in the stash
+               print('some_key' in r.documents)
+               # write an AMR document
+               r.documents['some_key'].write()
+
         """
         return _corpus_resource(
             resource=Resource(
@@ -141,16 +141,28 @@ class Resources(object):
         added to the AMR sentence metadata.  Both are optional, and if ``id`` is
         missing, :obj:``doc_id``.
 
-        An example JSON creates a document with ID ``ex1``, a ``comment``
-        metadata, one :obj:`~zensols.amr.annotate.SentenceType.SUMMARY` and two
+        The following example JSON creates a document with ID ``ex1``, a
+        ``comment`` metadata, one
+        :obj:`~zensols.amr.annotate.SentenceType.SUMMARY` and two
         :obj:`.SentenceType.BODY` sentences::
 
-            [{
+        Example::
+
+            corpus = [{
                 "id": "ex1",
                 "comment": "very short",
                 "body": "The man ran to make the train. He just missed it.",
                 "summary": "A man got caught in the door of a train he just missed."
             }]
+
+        This source / summary text can then be AMR parsed, aligned, and rendered
+        with:
+
+        .. code-block:: python
+
+           with self.resources.adhoc(ex, clear=True) as r:
+               # render an aligned document
+               r.alignments['some_key'].render()
 
         :param data: the AMR summary documents, which is usually a sequence of
                      :class:`~typing.Dict` instances (see
