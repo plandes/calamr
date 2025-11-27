@@ -1,9 +1,11 @@
 """Classes that aid in creating and aligning documents without a corpus.
 
 """
-from typing import Dict, Tuple, Iterable, Sequence, Union, Any
+from __future__ import annotations
+from typing import Dict, Tuple, Iterable, Sequence, Union, Any, Optional, Type
 from dataclasses import dataclass, field
 import logging
+import traceback
 from itertools import chain
 from pathlib import Path
 import shutil
@@ -146,7 +148,7 @@ class AdhocAnnotatedAmrDocumentStash(PrimeableStash, DelegateStash):
         return self.root_dir / corpus_id
 
     def set_corpus(self, data: Union[Path, Dict, Sequence],
-                   corpus_id: str = None):
+                   corpus_id: str = None) -> docstash:
         """Set the corpus documents that will be used for parsing and
         annotating.  The data will immediately be parsed into AMRs in this call
         and the data that writes to the file system will be updated to point to
@@ -165,6 +167,7 @@ class AdhocAnnotatedAmrDocumentStash(PrimeableStash, DelegateStash):
         self._data = data
         self._cache_dir: Path = self._get_cache_dir(corpus_id)
         self.swapper.root_dir = self._cache_dir
+        return docstash(self)
 
     def prime(self):
         amr_doc_file: Path = self._cache_dir / 'amr-docs.dat'
@@ -198,3 +201,40 @@ class AdhocAnnotatedAmrDocumentStash(PrimeableStash, DelegateStash):
         if self._cache_dir is None:
             raise APIError('Must first call set_corpus before clearing')
         self.swapper.clear()
+
+
+class docstash(object):
+    """A context manager to use an adhoc AMR document stash.  methods
+
+    :see: :class:`.AdhocAnnotatedAmrDocumentStash`
+
+    Example:
+
+    .. code-block:: python
+
+       with docstash(stash) as s:
+           # print the keys of the annotated AMR documents
+           s.keys()
+           # determine if a document is in the stash
+           print('some_key' in s)
+           # write an AMR document
+           s['some_key'].write()
+           # remove all cached files generated for this call
+           s.clear()
+    """
+    def __init__(self, stash: AdhocAnnotatedAmrDocumentStash):
+        self._stash = stash
+
+    def __enter__(self) -> AdhocAnnotatedAmrDocumentStash:
+        self._stash.prime()
+        return self._stash
+
+    def __exit__(self, cls: Type[Exception], value: Optional[Exception],
+                 trace: traceback):
+        if value is not None:
+            raise value
+        try:
+            self._stash.restore()
+        except Exception as e:
+            logger.error(f'Could not restore state {self.__class__}: {e}',exc_info=True)
+            
