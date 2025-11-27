@@ -9,7 +9,7 @@ from abc import abstractmethod, ABCMeta
 import logging
 import traceback
 from pathlib import Path
-from zensols.persist import Stash
+from zensols.persist import Stash, persisted
 from zensols.amr import AmrFailure, AmrDocument, AmrFeatureDocument
 from zensols.amr.serial import AmrSerializedFactory
 from zensols.amr.docfac import AmrFeatureDocumentFactory
@@ -21,8 +21,21 @@ from . import (
 logger = logging.getLogger(__name__)
 
 
-class _docstash(object):
-    """A context manager to use an adhoc AMR document stash.  methods
+class _corpus_resource(object):
+    def __init__(self, resource: Resource):
+        self._resource = resource
+
+    def __enter__(self) -> Stash:
+        return self._resource
+
+    def __exit__(self, cls: Type[Exception], value: Optional[Exception],
+                 trace: traceback):
+        if value is not None:
+            raise value
+
+
+class _adhoc_resource(object):
+    """A context manager to use an adhoc AMR document stash.
 
     :see: :class:`.AdhocAnnotatedAmrDocumentStash`
 
@@ -40,19 +53,27 @@ class _docstash(object):
            # remove all cached files generated for this call
            s.clear()
     """
-    def __init__(self, stash: 'AdhocAnnotatedAmrDocumentStash'):
-        self._stash = stash
+    def __init__(self, resource: Resource,
+                 data: Union[Path, Dict, Sequence],
+                 corpus_id: str = None, clear: bool = False):
+        self._resource = resource
+        self._doc_stash: 'AdhocAnnotatedAmrDocumentStash' = resource.documents
+        self._clear = clear
+        self._data = data
+        self._corpus_id = corpus_id
+        self._doc_stash.set_corpus(self._data, self._corpus_id)
 
-    def __enter__(self) -> 'AdhocAnnotatedAmrDocumentStash':
-        self._stash.prime()
-        return self._stash
+    def __enter__(self) -> Stash:
+        self._doc_stash.prime()
+        return self._resource
 
     def __exit__(self, cls: Type[Exception], value: Optional[Exception],
                  trace: traceback):
         if value is not None:
             raise value
         try:
-            self._stash.restore()
+            print('T RESTORE', type(self._doc_stash))
+            self._doc_stash.restore()
         except Exception as e:
             logger.error(f'Could not restore state {self.__class__}: {e}',
                          exc_info=True)
@@ -60,7 +81,19 @@ class _docstash(object):
 
 @dataclass
 class Resource(object):
+    """Contains objects that parse AMR annotated documents and align them.
+
+    """
     documents: Stash = field()
+    """An stash (:class:`dict` like) collection with AMR doc IDs keys to
+    :class:`~zensols.amr.doc.AmrFeatureDocument` values.
+
+    """
+    alignments: Stash = field()
+    """An stash (:class:`dict` like) collection with AMR doc IDs keys to
+    :class:`~zensols.calamr.flow.FlowGraphResult` values.
+
+    """
 
 
 @dataclass
@@ -76,11 +109,28 @@ class Resources(object):
 
     """
     _adhoc_doc_stash: Stash = field()
-    """Adhoc stash."""
+    """A :class:`~zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash` instance.
+    It is used generate documents without setting up a corpus.
 
-    @property
+    """
+    _flow_results_stash: Stash = field()
+    """Creates cached instances of :class:`.FlowGraphResult`."""
+
     def corpus(self) -> Resource:
-        return Resource(self._anon_doc_stash)
+        return _corpus_resource(
+            resource=Resource(
+                documents=self._anon_doc_stash,
+                alignments=self._flow_results_stash))
+
+    def adhoc(self, data: Union[Path, Dict, Sequence], corpus_id: str = None,
+              clear: bool = False) -> Resource:
+        return _adhoc_resource(
+            resource=Resource(
+                documents=self._adhoc_doc_stash,
+                alignments=self._flow_results_stash),
+            data=data,
+            corpus_id=corpus_id,
+            clear=clear)
 
 
 @dataclass

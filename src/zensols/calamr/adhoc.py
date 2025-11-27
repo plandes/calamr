@@ -2,10 +2,9 @@
 
 """
 from __future__ import annotations
-from typing import Dict, Tuple, Iterable, Sequence, Union, Any, Optional, Type
+from typing import Dict, Tuple, Iterable, Sequence, Union, Any
 from dataclasses import dataclass, field
 import logging
-import traceback
 from itertools import chain
 from pathlib import Path
 import shutil
@@ -60,6 +59,8 @@ class ConfigSwapper(Dictable):
 
         """
         replacements = {} if replacements is None else replacements
+        if logger.isEnabledFor(logging.DEBUG):
+            logger.debug(f'swap in: {self.root_dir}')
         sec: str
         attr: str
         swap_type: str
@@ -83,6 +84,8 @@ class ConfigSwapper(Dictable):
 
     def restore(self):
         """Restore all data replaced by :meth:`swap`."""
+        if logger.isEnabledFor(logging.DEBUG):
+            logger.debug(f'swap out: {self.root_dir}')
         sec: str
         attr: str
         prev: Any
@@ -94,6 +97,8 @@ class ConfigSwapper(Dictable):
 
     def clear(self):
         """Recursively remove all data in :obj:`root_dir`."""
+        if logger.isEnabledFor(logging.DEBUG):
+            logger.debug(f'swap clear: {self.root_dir}')
         if self.root_dir.is_dir():
             shutil.rmtree(self.root_dir)
 
@@ -127,10 +132,12 @@ class AdhocAnnotatedAmrDocumentStash(PrimeableStash, DelegateStash):
     def __post_init__(self):
         if not isinstance(self.doc_key, Tuple):
             self.doc_key = tuple(self.doc_key)
+        self._reset()
 
     def _reset(self):
         self._cache_dir: Path = None
         self._data: Union[Path, Dict, Sequence] = None
+        self._created_docs: bool = False
 
     def _get_doc(self, data: Union[Path, Dict, Sequence]) -> AmrDocument:
         docs: Tuple[AmrFeatureDocument, ...] = \
@@ -148,7 +155,7 @@ class AdhocAnnotatedAmrDocumentStash(PrimeableStash, DelegateStash):
         return self.root_dir / corpus_id
 
     def set_corpus(self, data: Union[Path, Dict, Sequence],
-                   corpus_id: str = None) -> docstash:
+                   corpus_id: str = None):
         """Set the corpus documents that will be used for parsing and
         annotating.  The data will immediately be parsed into AMRs in this call
         and the data that writes to the file system will be updated to point to
@@ -167,11 +174,19 @@ class AdhocAnnotatedAmrDocumentStash(PrimeableStash, DelegateStash):
         self._data = data
         self._cache_dir: Path = self._get_cache_dir(corpus_id)
         self.swapper.root_dir = self._cache_dir
-        return docstash(self)
+        if logger.isEnabledFor(logging.DEBUG):
+            logger.debug(f'set corpus: {self._cache_dir}')
 
-    def prime(self):
+    def _assert_init(self):
+        if self._cache_dir is None:
+            raise APIError('Must first call set_corpus before clearing')
+
+    def _create_docs(self):
+        self._assert_init()
         amr_doc_file: Path = self._cache_dir / 'amr-docs.dat'
         need_create: bool = not amr_doc_file.exists()
+        if logger.isEnabledFor(logging.DEBUG):
+            logger.debug(f'need create: {need_create}')
         self.swapper.swap()
         if need_create:
             doc = self._get_doc(self._data)
@@ -186,6 +201,13 @@ class AdhocAnnotatedAmrDocumentStash(PrimeableStash, DelegateStash):
                 logger.info(f'wrote adhoc parsed amrs: {amr_doc_file}')
         pw_current_corp_doc: PersistedWork = self.swapper[self.doc_key][1]
         pw_current_corp_doc.set(doc)
+
+    def prime(self):
+        if logger.isEnabledFor(logging.INFO):
+            logger.info(f'priming {type(self)}...')
+        if not self._created_docs:
+            self._create_docs()
+            self._created_docs = True
         super().prime()
 
     def restore(self):
@@ -193,48 +215,12 @@ class AdhocAnnotatedAmrDocumentStash(PrimeableStash, DelegateStash):
         call to :meth:`set_corpus`.
 
         """
+        logger.debug('restore')
         self.swapper.restore()
         self._reset()
 
     def clear(self):
         """Recursively remove all data in :obj:`root_dir`."""
-        if self._cache_dir is None:
-            raise APIError('Must first call set_corpus before clearing')
+        logger.debug('clear')
+        self._assert_init()
         self.swapper.clear()
-
-
-class docstash(object):
-    """A context manager to use an adhoc AMR document stash.  methods
-
-    :see: :class:`.AdhocAnnotatedAmrDocumentStash`
-
-    Example:
-
-    .. code-block:: python
-
-       with docstash(stash) as s:
-           # print the keys of the annotated AMR documents
-           s.keys()
-           # determine if a document is in the stash
-           print('some_key' in s)
-           # write an AMR document
-           s['some_key'].write()
-           # remove all cached files generated for this call
-           s.clear()
-    """
-    def __init__(self, stash: AdhocAnnotatedAmrDocumentStash):
-        self._stash = stash
-
-    def __enter__(self) -> AdhocAnnotatedAmrDocumentStash:
-        self._stash.prime()
-        return self._stash
-
-    def __exit__(self, cls: Type[Exception], value: Optional[Exception],
-                 trace: traceback):
-        if value is not None:
-            raise value
-        try:
-            self._stash.restore()
-        except Exception as e:
-            logger.error(f'Could not restore state {self.__class__}: {e}',
-                         exc_info=True)

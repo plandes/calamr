@@ -6,10 +6,10 @@ calamr_resources:
   class_name: zensols.calamr.resource.Resources
   _anon_doc_stash: 'instance: ${calamr_default:amr_anon_doc_stash}'
   _adhoc_doc_stash: 'instance: calamr_adhoc_anon_feature_doc_stash'
+  _flow_results_stash: 'instance: calamr_flow_graph_result_stash'
 
 calamr_toolbox:
   class_name: zensols.calamr.resource.Toolbox
-  _adhoc_doc_stash: 'instance: calamr_adhoc_anon_feature_doc_stash'
   doc_factory: 'instance: amr_feature_doc_factory'
   anon_doc_stash: 'instance: ${calamr_default:amr_anon_doc_stash}'
   serialized_factory: 'instance: amr_serialized_factory'

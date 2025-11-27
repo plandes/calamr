@@ -209,21 +209,35 @@ class _ProtoApplication(_AlignmentBaseApplication):
 	    "id": "newid",
 	    "body": "The rulings bolster criticisms of how hastily the prosecutions were brought against Donald Trump.",
 	    "summary": "The rulings suggest the prosecutions were rushed."}]
-        if 1:
-            print('here', type(self.resources.corpus))
-            return
-        stash = self.config_factory('calamr_adhoc_anon_feature_doc_stash')
         if 0:
-            stash = self.resource.adhoc()
+            stash = self.config_factory('calamr_adhoc_anon_feature_doc_stash')
+            stash.set_corpus(ex)
+            doc = stash['newid']
+            doc.amr.write()
+            stash.restore()
+
+            stash = self.config_factory('calamr_toolbox').anon_doc_stash
+            doc = stash['liu-example']
+            print(doc[0].amr.graph_string)
             return
+        from zensols.calamr.resource import Resource
+        r: Resource
         if 1:
-            with stash.set_corpus(ex) as s:
-                doc: AmrFeatureDocument = s['newid']
-                doc.write()
-                #graph: DocumentGraph = self.resource.create_graph(doc)
-                #flow_res: FlowGraphResult = self.resource.align(graph)
-                #flow_res.write()
-                #flow_res.render()
+            if 0:
+                with self.resources.corpus() as r:
+                    k = 'liu-example'
+                    r.documents[k].write()
+                    #r.alignments[k].write()
+            if 1:
+                with self.resources.adhoc(ex) as r:
+                    k = 'newid'
+                    r.documents[k].write()
+            if 1:
+                with self.resources.corpus() as r:
+                    k = 'liu-example'
+                    r.documents[k].write()
+                    #r.alignments[k].write()
+            return
 
     def proto(self, run: int = 0):
         """Prototype test."""
