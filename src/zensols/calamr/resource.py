@@ -5,11 +5,10 @@ from __future__ import annotations
 __author__ = 'Paul Landes'
 from typing import Dict, List, Tuple, Sequence, Union, Iterable, Optional, Type
 from dataclasses import dataclass, field
-from abc import abstractmethod, ABCMeta
 import logging
 import traceback
 from pathlib import Path
-from zensols.persist import Stash, persisted
+from zensols.persist import Stash
 from zensols.amr import AmrFailure, AmrDocument, AmrFeatureDocument
 from zensols.amr.serial import AmrSerializedFactory
 from zensols.amr.docfac import AmrFeatureDocumentFactory
@@ -85,6 +84,11 @@ class Resources(object):
     alginment.  This object is used as a context manager.
 
     :see: :class:`.AdhocAnnotatedAmrDocumentStash`
+
+    """
+    serialized_factory: AmrSerializedFactory = field()
+    """Creates a :class:`.Serialized` from :class:`.AmrDocument`,
+    :class:`.AmrSentence` or :class:`.AnnotatedAmrDocument`.
 
     """
     _anon_doc_stash: Stash = field()

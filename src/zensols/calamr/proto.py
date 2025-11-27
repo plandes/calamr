@@ -239,6 +239,18 @@ class _ProtoApplication(_AlignmentBaseApplication):
                     #r.alignments[k].write()
             return
 
+    def tmp(self):
+        from zensols.amr import Format
+        app = self.config_factory('capp')
+        #app.write_keys()
+        #print(app.get_annotated_summary())
+        #app.dump_annotated(2)
+        #app.align_corpus('liu-example', output_format=Format.json)
+        #app.write_adhoc_corpus(Path('corpus/micro/source.json'))
+
+        app = self.config_factory('aapp')
+        app.align_file(Path('tmp.json'), Path('aligns'))
+
     def proto(self, run: int = 0):
         """Prototype test."""
         return {
