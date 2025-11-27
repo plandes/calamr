@@ -35,24 +35,6 @@ class _corpus_resource(object):
 
 
 class _adhoc_resource(object):
-    """A context manager to use an adhoc AMR document stash.
-
-    :see: :class:`.AdhocAnnotatedAmrDocumentStash`
-
-    Example:
-
-    .. code-block:: python
-
-       with docstash(stash) as s:
-           # print the keys of the annotated AMR documents
-           s.keys()
-           # determine if a document is in the stash
-           print('some_key' in s)
-           # write an AMR document
-           s['some_key'].write()
-           # remove all cached files generated for this call
-           s.clear()
-    """
     def __init__(self, resource: Resource,
                  data: Union[Path, Dict, Sequence],
                  corpus_id: str = None, clear: bool = False):
@@ -99,7 +81,21 @@ class Resource(object):
 @dataclass
 class Resources(object):
     """A client facade (GoF) for Calamr annotated AMR corpus access and
-    alginment.
+    alginment.  This object is used as a context manager.  For example
+
+    Example:
+
+    .. code-block:: python
+
+       with self.resources.corpus() as r:
+           # print the keys of the annotated AMR documents
+           r.keys()
+           # determine if a document is in the stash
+           print('some_key' in s)
+           # write an AMR document
+           s['some_key'].write()
+
+    :see: :class:`.AdhocAnnotatedAmrDocumentStash`
 
     """
     _anon_doc_stash: Stash = field()
@@ -117,6 +113,12 @@ class Resources(object):
     """Creates cached instances of :class:`.FlowGraphResult`."""
 
     def corpus(self) -> Resource:
+        """Return a context manager for corpus access.  A corpus must be created
+        before using this method, which amounts to using an AMR parser to create
+        the parenthetical text files.  These files are then made available as
+        resource to be downloaded or available on the file system.
+
+        """
         return _corpus_resource(
             resource=Resource(
                 documents=self._anon_doc_stash,
@@ -124,6 +126,46 @@ class Resources(object):
 
     def adhoc(self, data: Union[Path, Dict, Sequence], corpus_id: str = None,
               clear: bool = False) -> Resource:
+        """Return a context manager for parsing and aligning adhoc documents.
+        This sets the corpus documents that will be used for parsing and
+        annotating.  The data will immediately be parsed into AMRs in this call
+        and the data that writes to the file system will be updated to point to
+        a new ``.../adhoc`` directory to not interfere with any corpus
+        documents.
+
+        The ``data`` input can be a file name that contains parsed parenthetical
+        AMRs, a single document, or a sequence of documents.  The keys of each
+        dictionary are the case-insensitive enumeration values of
+        :class:`~zensols.amr.annotate.SentenceType`.  Keys ``id`` and
+        ``comment`` are the unique document identifier and a comment that is
+        added to the AMR sentence metadata.  Both are optional, and if ``id`` is
+        missing, :obj:``doc_id``.
+
+        An example JSON creates a document with ID ``ex1``, a ``comment``
+        metadata, one :obj:`~zensols.amr.annotate.SentenceType.SUMMARY` and two
+        :obj:`.SentenceType.BODY` sentences::
+
+            [{
+                "id": "ex1",
+                "comment": "very short",
+                "body": "The man ran to make the train. He just missed it.",
+                "summary": "A man got caught in the door of a train he just missed."
+            }]
+
+        :param data: the AMR summary documents, which is usually a sequence of
+                     :class:`~typing.Dict` instances (see
+                     :class:`~zensols.arm.annotate.AnnotatedAmrFeatureDocumentFactory`
+                     for data structure details)
+
+        :param corpus_id: a unique identifier for ``data``, or ``None`` to use a
+                          hashed string, which in turn, is used as the directory
+                          name for the cached data
+
+        :param clear: whether or not to deleted the cached files (parsed
+                      documents, aligned graphs etc) after leaving the lexical
+                      boundaries of the context manager
+
+        """
         return _adhoc_resource(
             resource=Resource(
                 documents=self._adhoc_doc_stash,

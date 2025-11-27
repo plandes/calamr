@@ -159,8 +159,8 @@ class AdhocAnnotatedAmrDocumentStash(PrimeableStash, DelegateStash):
         """Set the corpus documents that will be used for parsing and
         annotating.  The data will immediately be parsed into AMRs in this call
         and the data that writes to the file system will be updated to point to
-        a new ``.../adhoc`` directory to not interfere with any corpus
-        documents (see :class:`.ConfigSwapper`).
+        a new ``.../adhoc`` directory to not interfere with any corpus documents
+        (see :class:`.ConfigSwapper`).
 
         To restore the configuration after adhoc document processing is
         finished, call :meth:`restore`.
@@ -169,6 +169,10 @@ class AdhocAnnotatedAmrDocumentStash(PrimeableStash, DelegateStash):
                      :class:`~typing.Dict` instances (see
                      :class:`~zensols.arm.annotate.AnnotatedAmrFeatureDocumentFactory`
                      for data structure details)
+
+        :param corpus_id: a unique identifier for ``data``, or ``None`` to use a
+                          hashed string, which in turn, is used as the directory
+                          name for the cached data
 
         """
         self._data = data
