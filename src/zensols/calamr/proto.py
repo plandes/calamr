@@ -205,13 +205,18 @@ class _ProtoApplication(_AlignmentBaseApplication):
             "body": "The man ran to make the train. He just missed it.",
             "summary": "A man got caught in the door of a train he just missed."
         }]
-        ex = [{
+        ex2 = [{
 	    "id": "newid",
 	    "body": "The rulings bolster criticisms of how hastily the prosecutions were brought against Donald Trump.",
 	    "summary": "The rulings suggest the prosecutions were rushed."}]
-        tmp = self.config_factory('calamr_adhoc_anon_feature_doc_stash')
-        with tmp.set_corpus(ex) as s:
-            s['newid'].write()
+        stash = self.config_factory('calamr_adhoc_anon_feature_doc_stash')
+        if 1:
+            with stash.set_corpus(ex) as s:
+                doc: AmrFeatureDocument = s['newid']
+                graph: DocumentGraph = self.resource.create_graph(doc)
+                flow_res: FlowGraphResult = self.resource.align(graph)
+                flow_res.write()
+                #flow_res.render()
 
     def proto(self, run: int = 0):
         """Prototype test."""

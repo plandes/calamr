@@ -236,5 +236,5 @@ class docstash(object):
         try:
             self._stash.restore()
         except Exception as e:
-            logger.error(f'Could not restore state {self.__class__}: {e}',exc_info=True)
-            
+            logger.error(f'Could not restore state {self.__class__}: {e}',
+                         exc_info=True)
