@@ -232,7 +232,7 @@ class _ProtoApplication(_AlignmentBaseApplication):
                 with self.resources.adhoc(ex) as r:
                     k = 'newid'
                     r.documents[k].write()
-            if 1:
+            if 0:
                 with self.resources.corpus() as r:
                     k = 'liu-example'
                     r.documents[k].write()

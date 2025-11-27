@@ -54,7 +54,8 @@ class _adhoc_resource(object):
         if value is not None:
             raise value
         try:
-            print('T RESTORE', type(self._doc_stash))
+            if self._clear:
+                self._doc_stash.clear()
             self._doc_stash.restore()
         except Exception as e:
             logger.error(f'Could not restore state {self.__class__}: {e}',
