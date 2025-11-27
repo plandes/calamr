@@ -146,8 +146,6 @@ class Resources(object):
         :obj:`~zensols.amr.annotate.SentenceType.SUMMARY` and two
         :obj:`.SentenceType.BODY` sentences::
 
-        Example::
-
             corpus = [{
                 "id": "ex1",
                 "comment": "very short",
@@ -160,7 +158,7 @@ class Resources(object):
 
         .. code-block:: python
 
-           with self.resources.adhoc(ex, clear=True) as r:
+           with self.resources.adhoc(corpus, clear=True) as r:
                # render an aligned document
                r.alignments['some_key'].render()
 
