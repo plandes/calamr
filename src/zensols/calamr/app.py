@@ -3,7 +3,7 @@
 """
 from __future__ import annotations
 __author__ = 'Paul Landes'
-from typing import Dict, Any, List, Tuple, Sequence, Callable, TYPE_CHECKING
+from typing import Dict, Any, List, Tuple, Sequence, Iterable
 from dataclasses import dataclass, field
 import logging
 import sys
@@ -17,14 +17,10 @@ import pandas as pd
 from zensols.util import stdout
 from zensols.config import ConfigFactory, DefaultDictable
 from zensols.cli import ApplicationError
-if TYPE_CHECKING:
-    from zensols.datdesc import DataDescriber
 from zensols.amr import AmrFeatureDocument, Format
 from zensols.amr.serial import AmrSerializedFactory
-from . import (
-    DocumentGraph, DocumentGraphAligner, FlowGraphResult
-)
-from .resource import Resources
+from . import DocumentGraph, FlowGraphResult
+from .resource import Resource, Resources
 
 logger = logging.getLogger(__name__)
 
@@ -39,13 +35,10 @@ class _AlignmentBaseApplication(object):
     alginment.
 
     """
-    doc_graph_aligner: DocumentGraphAligner = field()
-    """Create document graphs."""
-
     def _get_output_file(self, output_dir: Path, key: str,
                          output_format: Format) -> Path:
         output_dir = output_dir / key
-        self.doc_graph_aligner.output_dir = output_dir
+        self.resources.doc_graph_aligner.output_dir = output_dir
         output_dir.mkdir(parents=True, exist_ok=True)
         ext: str = Format.to_ext(output_format)
         return output_dir / f'results.{ext}'
@@ -56,11 +49,11 @@ class _AlignmentBaseApplication(object):
         if doc is None:
             doc = res.doc_graph.doc
         if output_format == Format.txt:
-            self.resource.serialized_factory(doc.amr).write(writer=fout)
+            self.resources.serialized_factory(doc.amr).write(writer=fout)
             res.write(writer=fout, include_doc=False)
         elif output_format == Format.json:
             dct = DefaultDictable(
-                {'doc': self.resource.serialized_factory(doc.amr).asdict(),
+                {'doc': self.resources.serialized_factory(doc.amr).asdict(),
                  'alignment': res.asdict()})
             fout.write(dct.asjson(indent=4))
         elif output_format == Format.csv:
@@ -69,27 +62,19 @@ class _AlignmentBaseApplication(object):
             raise ApplicationError(
                 f'Format not supported: {output_format.name}')
 
-    def _get_align_result(self, key: str, use_cached: bool) -> \
+    def _get_align_result(self, key: str, doc: AmrFeatureDocument) -> \
             Tuple[FlowGraphResult, AmrFeatureDocument]:
-        res: FlowGraphResult = None
-        doc: AmrFeatureDocument = None
-        if use_cached:
-            res = self.resource.flow_results_stash.get(key)
-        else:
-            aligner: DocumentGraphAligner = self.doc_graph_aligner
-            doc = self.resource.anon_doc_stash.get(key)
-            if doc is None:
-                raise ApplicationError(f"No such key: '{key}', use keys action")
-            doc_graph: DocumentGraph = self.resource.doc_graph_factory(doc)
-            res = aligner.align(doc_graph)
+        doc_graph: DocumentGraph = self.resources.doc_graph_factory(doc)
+        res: FlowGraphResult = self.resources.doc_graph_aligner.align(doc_graph)
         if res is None:
             raise ApplicationError(f"No such key: '{key}', use keys action")
         if res.is_error:
             res.failure.rethrow()
         return res, doc
 
-    def _align_corpus(self, key: str, output_dir: Path, output_format: Format,
-                      use_stdout: bool, use_cached: bool) -> FlowGraphResult:
+    def _align_doc(self, key: str, output_dir: Path, output_format: Format,
+                   use_stdout: bool, doc: AmrFeatureDocument) -> \
+            FlowGraphResult:
         logger.info(f'aligning on document {key}')
         fout: TextIOWrapper
         output_file: Path
@@ -101,7 +86,7 @@ class _AlignmentBaseApplication(object):
         try:
             res: FlowGraphResult
             doc: AmrFeatureDocument
-            res, doc = self._get_align_result(key, use_cached)
+            res, doc = self._get_align_result(key, doc)
             self._output_align(output_format, doc, fout, res)
             return res
         finally:
@@ -116,12 +101,13 @@ class _AlignmentBaseApplication(object):
         if output_dir.name == stdout.STANDARD_OUT_PATH:
             use_stdout = True
         else:
-            output_dir = output_dir.expanduser()
             use_stdout = False
+            output_dir = output_dir.expanduser()
+            output_dir.mkdir(parents=True, exist_ok=True)
         if not use_stdout:
             logger.setLevel(logging.INFO)
         if render_level is not None:
-            self.resource.doc_graph_aligner.render_level = render_level
+            self.resources.doc_graph_aligner.render_level = render_level
         return output_dir, use_stdout
 
 
@@ -163,7 +149,7 @@ class CorpusApplication(_AlignmentBaseApplication):
         df.index.name = 'id'
         return df
 
-    def dump_annotated(self, limit: int = None, output_dir: Path = None,
+    def dump_annotated(self, limit: int = None, output_dir: Path = Path('-'),
                        output_format: Format = Format.csv):
         """Write annotated documents and their keys.
 
@@ -174,8 +160,6 @@ class CorpusApplication(_AlignmentBaseApplication):
         :param output_format: the output format
 
         """
-        if output_dir is None:
-            output_dir = self.results_dir
         output_dir = output_dir.expanduser()
         limit = sys.maxsize if limit is None else limit
         fac: AmrSerializedFactory = self.resources.serialized_factory
@@ -187,9 +171,8 @@ class CorpusApplication(_AlignmentBaseApplication):
                 docs[k] = fac(doc.amr).asdict()
         dct = DefaultDictable(docs)
         fname: str = f'annotated.{Format.to_ext(output_format)}'
-        output_file: Path = output_dir / fname
-        output_file.parent.mkdir(parents=True, exist_ok=True)
-        with open(output_file, 'w') as fout:
+        with stdout(output_dir / fname, 'w', output_format.name, fname,
+                    logger=logger, mkdir=True) as fout:
             if output_format == Format.txt:
                 dct.write(writer=fout)
             elif output_format == Format.csv:
@@ -200,74 +183,6 @@ class CorpusApplication(_AlignmentBaseApplication):
             else:
                 raise ApplicationError(
                     f'Format not supported: {output_format.name}')
-        logger.info(f'wrote: {output_file}')
-
-    def align_corpus(self, keys: str, output_dir: Path = None,
-                     output_format: Format = Format.csv,
-                     render_level: int = None,
-                     use_cached: bool = False):
-        """Align an annotated AMR document from the corpus.
-
-        :param keys: comma-separated list of dataset keys or file name
-
-        :param output_dir: the output directory
-
-        :param output_format: the output format
-
-        :param render_level: how many graphs to render (0 - 10), higher means
-                             more
-
-        :param use_cached: whether to use a cached result if available
-
-        """
-        success_keys: List[str] = []
-        results: List[FlowGraphResult] = []
-        use_stdout: bool
-        output_dir = Path('results') if output_dir is None else output_dir
-        output_dir, use_stdout = self._prep_align(output_dir, render_level)
-        with self.resources.corpus() as r:
-            keys: Sequence[str]
-            if keys == 'ALL':
-                keys = tuple(r.keys())
-            else:
-                keys = re.findall(r'[^,\s]+', keys)
-            if not use_stdout:
-                output_dir.mkdir(parents=True, exist_ok=True)
-            key: str
-            for key in keys:
-                try:
-                    fdg: FlowGraphResult = self._align_corpus(
-                        key, output_dir, output_format, use_stdout, use_cached)
-                    results.append(fdg)
-                    success_keys.append(key)
-                    if not use_stdout:
-                        dd: DataDescriber = fdg.create_data_describer()
-                        meth: Callable = dd.save_csv
-                        meth(output_dir / 'alignments')
-                except Exception as e:
-                    msg: str = f'Can not align {key}: {e}'
-                    logger.error(msg)
-                    if not use_stdout:
-                        with open(output_dir / 'errors.txt', 'a') as f:
-                            f.write(f'error: {msg}\n')
-                            traceback.print_exception(e, file=f)
-                            f.write('_' * 80 + '\n')
-            if not use_stdout and len(keys) > 1:
-                dfs: List[pd.DataFrame] = []
-                res: FlowGraphResult
-                for key, res in zip(success_keys, results):
-                    if res.is_error:
-                        res.write()
-                        continue
-                    df: pd.DataFrame = res.stats_df
-                    cols = df.columns.tolist()
-                    df['id'] = key
-                    df = df[['id'] + cols]
-                    dfs.append(df)
-                df = pd.concat(dfs)
-                df_path: Path = output_dir / 'results.csv'
-                df.to_csv(df_path, index=False)
-                logger.info(f'wrote: {df_path}')
 
     def write_adhoc_corpus(self, corpus_file: Path = None):
         """Write the adhoc corpus from the JSON created file.
@@ -304,10 +219,67 @@ class AlignmentApplication(_AlignmentBaseApplication):
     config_factory: ConfigFactory = field()
     """Application configuration factory."""
 
-    def align_file(self, input_file: Path, output_dir: Path = None,
-                   output_format: Format = Format.csv,
-                   render_level: int = None):
-        """Align annotated documents from a JSON file.
+    def _filter_keys(self, key_pat: str, keys: Iterable[str]) -> Sequence[str]:
+        if key_pat is None:
+            keys = tuple(keys)
+        else:
+            keys = re.findall(r'[^,\s]+', key_pat)
+        return keys
+
+    def _get_align_doc(self, r: Resource, doc_id: str, success_keys: List[str],
+                       results: List[FlowGraphResult], output_dir: Path,
+                       output_format: Format, use_stdout: bool):
+        try:
+            doc: AmrFeatureDocument = r.documents[doc_id]
+            output_file: Path
+            if use_stdout:
+                output_file = stdout.STANDARD_OUT_PATH
+            else:
+                output_file: Path = self._get_output_file(
+                    output_dir, doc_id, output_format)
+            res: FlowGraphResult = self._align_doc(
+                doc_id, output_dir, output_format, use_stdout, doc)
+            if res.is_error:
+                res.failure.rethrow()
+            with stdout(output_file, 'w') as fout:
+                self._output_align(output_format, doc, fout, res)
+            if not use_stdout:
+                logger.info(f'wrote: {output_file}')
+            results.append(res)
+            success_keys.append(doc_id)
+        except Exception as e:
+            msg: str = f'Can not align ID {doc_id}: {e}'
+            logger.error(msg)
+            if not use_stdout:
+                with open(output_dir / 'errors.txt', 'a') as f:
+                    f.write(f'error: {msg}\n')
+                    traceback.print_exception(e, file=f)
+                    f.write('_' * 80 + '\n')
+
+    def _write_align_stats(self, use_stdout, success_keys: List[str],
+                           results: List[FlowGraphResult], output_dir):
+        if not use_stdout and len(success_keys) > 0:
+            dfs: List[pd.DataFrame] = []
+            res: FlowGraphResult
+            for key, res in zip(success_keys, results):
+                if res.is_error:
+                    res.write()
+                    continue
+                df: pd.DataFrame = res.stats_df
+                cols = df.columns.tolist()
+                df['id'] = key
+                df = df[['id'] + cols]
+                dfs.append(df)
+            df = pd.concat(dfs)
+            df_path: Path = output_dir / 'results.csv'
+            df.to_csv(df_path, index=False)
+            logger.info(f'wrote: {df_path}')
+
+    def align(self, output_dir: Path = Path('-'), input_file: Path = None,
+              output_format: Format = Format.csv,
+              keys: str = None, render_level: int = None):
+        """Align the configured corpus or annotated documents from a JSON file
+        ``input_file`` if given.
 
         :param input_file: the input JSON file.
 
@@ -315,64 +287,32 @@ class AlignmentApplication(_AlignmentBaseApplication):
 
         :param output_format: the output format
 
+        :param keys: comma-separated list of dataset keys or omit for all
+
         :param render_level: how many graphs to render (0 - 10), higher means
                              more
 
         """
-        #aligner: DocumentGraphAligner = self.doc_graph_aligner
+        use_stdout: bool
         output_dir, use_stdout = self._prep_align(output_dir, render_level)
         success_keys: List[str] = []
         results: List[FlowGraphResult] = []
-        with open(input_file) as f:
-            docs: List[Dict[str, str]] = json.load(f)
-        output_dir.mkdir(parents=True, exist_ok=True)
-        with self.resources.adhoc(docs) as r:
-            #dix: int
-            did: str = None
-            res: FlowGraphResult
-            for did, res in r.alignments.items():
-                print(type(res))
-                try:
-                    doc: AmrFeatureDocument = r.documents[did]
-                    # doc_graph: DocumentGraph = self.resource.doc_graph_factory(doc)
-                    #doc_graph: DocumentGraph = res.doc_graph
-                    output_file: Path
-                    if use_stdout:
-                        output_file = stdout.STANDARD_OUT_PATH
-                    else:
-                        output_file: Path = self._get_output_file(
-                            output_dir, did, output_format)
-                    #res: FlowGraphResult = aligner.align(doc_graph)
-                    #res: FlowGraphResult = aligner.align(doc_graph)
-                    if res.is_error:
-                        res.failure.rethrow()
-                    with stdout(output_file, 'w') as fout:
-                        self._output_align(output_format, doc, fout, res)
-                    if not use_stdout:
-                        logger.info(f'wrote: {output_file}')
-                    results.append(res)
-                    success_keys.append(did)
-                except Exception as e:
-                    msg: str = f'Can not align ID {did}: {e}'
-                    logger.error(msg)
-                    if not use_stdout:
-                        with open(output_dir / 'errors.txt', 'a') as f:
-                            f.write(f'error: {msg}\n')
-                            traceback.print_exception(e, file=f)
-                            f.write('_' * 80 + '\n')
-            if not use_stdout and did is not None:
-                dfs: List[pd.DataFrame] = []
-                res: FlowGraphResult
-                for key, res in zip(success_keys, results):
-                    if res.is_error:
-                        res.write()
-                        continue
-                    df: pd.DataFrame = res.stats_df
-                    cols = df.columns.tolist()
-                    df['id'] = key
-                    df = df[['id'] + cols]
-                    dfs.append(df)
-                df = pd.concat(dfs)
-                df_path: Path = output_dir / 'results.csv'
-                df.to_csv(df_path, index=False)
-                logger.info(f'wrote: {df_path}')
+        if input_file is None:
+            # align corpus
+            with self.resources.corpus() as r:
+                doc_ids: Sequence[str] = self._filter_keys(
+                    keys, r.documents.keys())
+                for doc_id in doc_ids:
+                    self._get_align_doc(r, doc_id, success_keys, results,
+                                        output_dir, output_format, use_stdout)
+        else:
+            # align adhoc
+            with open(input_file) as f:
+                docs: List[Dict[str, str]] = json.load(f)
+            doc_ids: Sequence[str] = self._filter_keys(keys, map(
+                lambda d: d['id'], docs))
+            with self.resources.adhoc(docs) as r:
+                for doc_id in doc_ids:
+                    self._get_align_doc(r, doc_id, success_keys, results,
+                                        output_dir, output_format, use_stdout)
+        self._write_align_stats(use_stdout, success_keys, results, output_dir)

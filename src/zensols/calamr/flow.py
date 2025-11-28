@@ -706,7 +706,7 @@ class FlowGraphResult(PersistableContainer, Dictable):
                     ctx.visual_style = {'attributes': {'rankdir': 'BT'}}
         return ctxs
 
-    def render(self, contexts: Tuple[RenderContext] = None,
+    def render(self, contexts: Tuple[RenderContext, ...] = None,
                graph_id: str = 'graph', display: bool = True,
                directory: Path = None):
         """Render several graphs at a time, then optionally display them.

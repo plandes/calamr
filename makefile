@@ -49,15 +49,15 @@ micro:			clean
 .PHONY:			aligncorp
 aligncorp:
 			rm -rf $(EXAMPLE_DIR)
-			@$(MAKE) pyharn ARG="aligncorp liu-example -o $(EXAMPLE_DIR) -f txt \
-			    --override='calamr_corpus.name=adhoc,calamr_default.renderer=graphviz'"
+			@$(MAKE) $(PY_MAKE_ARGS) pyharn \
+				ARG="align -k liu-example -o $(EXAMPLE_DIR) -f txt \
+				--override='calamr_corpus.name=adhoc,calamr_default.renderer=graphviz'"
 
 # do not invoke directly--used by the align<corpus> targets
 .PHONY:			_aligncorp
 _aligncorp:
 			@$(call loginfo,aligning $(CORP_CONF))
-			@$(MAKE) pyharn ARG="aligncorp ALL \
-				--override \
+			@$(MAKE) $(PY_MAKE_ARGS) pyharn ARG="align --override \
 				'calamr_corpus.name=$(CORP_CONF),calamr_default.renderer=graphviz,calamr_default.flow_graph_result_caching=preemptive' \
 				--rendlevel $(REND_LEVEL) --cached \
 				-o $(ALIGN_DIR)/$(CORP_CONF)"
@@ -80,14 +80,14 @@ alignproxy:
 .PHONY:			graphexampleshtml
 graphexampleshtml:
 			rm -rf $(EXAMPLE_DIR)
-			@$(MAKE) pyharn ARG="aligncorp ALL -o $(EXAMPLE_DIR) -r 2 -f txt \
+			@$(MAKE) pyharn ARG="align -o $(EXAMPLE_DIR) -r 2 -f txt \
 			    --override='calamr_corpus.name=adhoc,calamr_default.renderer=graphviz'"
 
 # create examples of graphs in latex friendly EPS
 .PHONY:			graphexampleseps
 graphexampleseps:
 			rm -rf $(EXAMPLE_DIR)
-			@$(MAKE) pyharn ARG="aligncorp ALL -o $(EXAMPLE_DIR) -r 2 -f txt \
+			@$(MAKE) pyharn ARG="align -o $(EXAMPLE_DIR) -r 2 -f txt \
 			    --override='calamr_corpus.name=adhoc,calamr_graph_render_graphviz.extension=eps,calamr_default.renderer=graphviz'"
 
 # copy the graphs and guide to GitHub pages

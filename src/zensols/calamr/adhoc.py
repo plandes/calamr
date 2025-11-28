@@ -2,16 +2,19 @@
 
 """
 from __future__ import annotations
-from typing import Dict, Tuple, Iterable, Sequence, Union, Any
+from typing import Dict, Tuple, List, Iterable, Sequence, Union, Any
 from dataclasses import dataclass, field
 import logging
 from itertools import chain
+import itertools as it
 from pathlib import Path
 import shutil
 import pickle
 from zensols.util import APIError, Hasher
 from zensols.config import Dictable
-from zensols.amr import AmrDocument, AmrFeatureDocument
+from zensols.amr import (
+    AmrFailure, AmrError, AmrDocument, AmrFeatureSentence, AmrFeatureDocument
+)
 from zensols.amr.annotate import AnnotatedAmrFeatureDocumentFactory
 from zensols.config import ConfigFactory
 from zensols.persist import PersistedWork, PrimeableStash, DelegateStash
@@ -139,12 +142,38 @@ class AdhocAnnotatedAmrDocumentStash(PrimeableStash, DelegateStash):
         self._data: Union[Path, Dict, Sequence] = None
         self._created_docs: bool = False
 
-    def _get_doc(self, data: Union[Path, Dict, Sequence]) -> AmrDocument:
-        docs: Tuple[AmrFeatureDocument, ...] = \
-            tuple(self.anon_doc_factory(data))
-        sents: Iterable[AmrSentence] = map(
-            lambda s: s.amr,
-            chain.from_iterable(map(lambda d: d.sents, docs)))
+    # TODO: TypedDict
+    def _get_doc(self, data: Sequence[Dict[str, str]]) -> AmrDocument:
+        """A document containing all the sentences from the corpus.
+
+        :see: :obj:`~zensols.amr.annotate.AnnotatedAmrDocumentStash.corpus_doc`
+
+        """
+        def map_doc(six: int, ddoc: Dict[str, str]) -> List[AmrFeatureSentence]:
+            sents: List[AmrFeatureSentence] = []
+            try:
+                doc: AmrFeatureDocument = self.anon_doc_factory(ddoc)
+                sents.extend(doc.amr.sents)
+            except AmrError as e:
+                did: int = ddoc.get('id', six)
+                sent = AmrSentence(e.to_failure())
+                sent.set_metadata('id', f"{did}.0")
+                sents.append(sent)
+            return sents
+
+        #docs: Iterable[AmrFeatureDocument] = self.anon_doc_factory(data)
+        # sents: Iterable[AmrSentence] = map(
+        #     lambda s: s.amr,
+        #     chain.from_iterable(map(lambda d: d.sents, docs)))
+        sents: Iterable[AmrSentence] = chain.from_iterable(
+            map(lambda t: map_doc(*t), zip(it.count(), data)))
+        #sents: Iterable[AmrSentence] = map(map_doc, data)
+        if 0:
+            for s in sents:
+                print('S', type(s), s.is_failure, isinstance(s, AmrSentence))
+                print(s.metadata)
+                print('_' * 80)
+            raise ValueError()
         return AmrDocument.to_document(sents)
 
     def _get_cache_dir(self, corpus_id: str) -> Path:

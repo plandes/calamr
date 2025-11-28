@@ -249,7 +249,9 @@ class _ProtoApplication(_AlignmentBaseApplication):
         #app.write_adhoc_corpus(Path('corpus/micro/source.json'))
 
         app = self.config_factory('aapp')
-        app.align_file(Path('tmp.json'), Path('aligns'))
+        #app.align_corpus('ALL', Path('tmp'))
+        app.align(Path('aligns'), Path('tmp.json'))
+        #, output_format=Format.json)
 
     def proto(self, run: int = 0):
         """Prototype test."""

@@ -91,6 +91,12 @@ class Resources(object):
     :class:`.AmrSentence` or :class:`.AnnotatedAmrDocument`.
 
     """
+    doc_graph_factory: DocumentGraphFactory = field()
+    """Create document graphs."""
+
+    doc_graph_aligner: DocumentGraphAligner = field()
+    """Create document graphs."""
+
     _anon_doc_stash: Stash = field()
     """Contains human annotated AMRs.  This could be from the adhoc (micro)
     corpus (small toy corpus), AMR 3.0 Proxy Report corpus, Little Prince, or
