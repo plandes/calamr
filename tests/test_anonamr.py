@@ -35,6 +35,8 @@ class TestAnnotatedAmr(TestBase):
     def _test_doc_share(self, dix: int, six: int, gix: int,
                         config: str = None, debug: bool = False):
         """Test sharing of parts of document in DocumentGraph."""
+        if debug:
+            print(f'conf: {config}')
         fac: ConfigFactory
         if config is None:
             fac = self.config_factory
@@ -51,12 +53,22 @@ class TestAnnotatedAmr(TestBase):
             for s in doc:
                 s.write()
         doc_graph: DocumentGraph = gfac(doc)
+        if debug:
+            doc.write()
         self.assertEqual(AmrFeatureDocument, type(doc_graph.doc))
 
         # document in root of tree
         self.assertEqual(id(doc), id(doc_graph.doc))
         # first sentence across document and graph
         src = doc_graph.components_by_name['source'].root_node.doc
+        if debug:
+            print('_' * 80)
+            print('src')
+            src.write()
+            print('_' * 40)
+            print('doc')
+            doc.write()
+            print('_' * 80)
         self.assertEqual(id(src[six]), id(doc[dix]), f'{src[six]} != {doc[dix]}')
         # sentence contained in the sentence node
         sn = tuple(filter(lambda n: isinstance(n, SentenceGraphNode),
@@ -101,4 +113,5 @@ class TestAnnotatedAmr(TestBase):
 
     def test_doc_share_with_intermediary_nodes(self):
         self._clean_cache()
+        self._copy_micro()
         self._test_doc_share(1, 1, 0, config='with-intermediary')

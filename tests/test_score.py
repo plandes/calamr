@@ -1,37 +1,55 @@
 import sys
 import re
+import warnings
 from io import StringIO
 from pathlib import Path
 import shutil
 import pandas as pd
 from zensols.cli import CliHarness
-from zensols.calamr import FlowGraphResult, Resource, ApplicationFactory
+from zensols.amr import AmrFeatureDocument
+from zensols.calamr import (
+    FlowGraphResult, Resources, ApplicationFactory, DocumentGraph
+)
 from util import TestBase
 
 
 class TestScore(TestBase):
-    def _test_align(self, key: str, resource: Resource, write: bool = False):
+    def setUp(self):
+        super().setUp()
+        warnings.filterwarnings(
+            'ignore',
+            message=r'Deprecated call to `pkg_resources',
+            category=DeprecationWarning)
+        warnings.filterwarnings(
+            'ignore',
+            message=r'^pkg_resources is deprecated as an API',
+            category=UserWarning)
+
+    def _test_align(self, key: str, resources: Resources, write: bool = False):
         should_file = Path(f'test-resources/should-align-results-{key}.txt')
-        res: FlowGraphResult = resource.align_corpus_document(key, False)
-        sio = StringIO()
-        res.write(writer=sio)
-        actual: str = sio.getvalue()
-        # reduce precision to 3 significant digits
-        actual = '\n'.join(map(
-            lambda s: re.sub(r'^(\s+(mean|root)_flow: [0-9.]{4})[0-9.]+', r'\1', s),
-            actual.split('\n')))
-        if write:
-            with open(should_file, 'w') as f:
-                f.write(actual)
-        with open(should_file) as f:
-            should: str = f.read()
-        self.assertEqual(should, actual)
+        with resources.corpus() as r:
+            doc: AmrFeatureDocument = r.documents[key]
+            doc_graph: DocumentGraph = resources.doc_graph_factory(doc)
+            res: FlowGraphResult = resources.doc_graph_aligner.align(doc_graph)
+            sio = StringIO()
+            res.write(writer=sio)
+            actual: str = sio.getvalue()
+            # reduce precision to 3 significant digits
+            actual = '\n'.join(map(
+                lambda s: re.sub(r'^(\s+(mean|root)_flow: [0-9.]{4})[0-9.]+', r'\1', s),
+                actual.split('\n')))
+            if write:
+                with open(should_file, 'w') as f:
+                    f.write(actual)
+            with open(should_file) as f:
+                should: str = f.read()
+            self.assertEqual(should, actual)
 
     def test_score_align(self):
         if sys.version_info.minor >= 11:
             # disable tests under Python 3.10 since frozendict formats
             # incorrectly in Writable.write
-            resource = self._get_app().resource
+            resource = self._get_app().resources
             self._test_align('earthquake', resource)
             self._test_align('aurora-borealis', resource)
 

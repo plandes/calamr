@@ -9,7 +9,7 @@ from zensols.config import ConfigFactory
 from zensols import deepnlp
 from zensols.amr import AmrFeatureDocument, suppress_warnings
 from zensols.calamr import (
-    ApplicationFactory, CorpusApplication,
+    Resources, ApplicationFactory, CorpusApplication,
     DocumentGraph, DocumentGraphFactory, DocumentGraphAligner,
 )
 
@@ -21,6 +21,8 @@ class TestBase(unittest.TestCase):
         self._clean_cache()
         self.config_factory: ConfigFactory = self._get_config_factory()
         deepnlp.init()
+
+    def _copy_micro(self):
         micro_file = Path('download/micro.txt.bz2')
         targ_micro_file = Path('target/download/micro.txt.bz2')
         if not micro_file.is_file():
@@ -41,6 +43,7 @@ class TestBase(unittest.TestCase):
         return app.config_factory
 
     def _get_app(self, config: str = None) -> CorpusApplication:
+        from zensols.calamr import DocumentGraphAligner
         harn: CliHarness = ApplicationFactory.create_harness()
         config = 'no-intermediary' if config is None else config
         app = harn.get_application(
@@ -50,19 +53,25 @@ class TestBase(unittest.TestCase):
             raise ValueError('Could not create application')
         if isinstance(app, ApplicationFailure):
             app.raise_exception()
+        # turn off graphical rendering
+        doc_graph_aligner: DocumentGraphAligner = \
+            app.config_factory('calamr_resources').doc_graph_aligner
+        doc_graph_aligner.render_level = 0
         return app
 
     def _get_doc_graph(self) -> DocumentGraph:
-        stash: Stash = self.config_factory('calamr_resource').anon_doc_stash
-        doc_graph_factory: DocumentGraphFactory = self.config_factory(
-            'calamr_doc_graph_factory')
-        self.assertTrue(len(tuple(stash.keys())) > 0)
-        doc: AmrFeatureDocument = stash['liu-example']
-        self.assertEqual(AmrFeatureDocument, type(doc))
-        return doc_graph_factory(doc)
+        res: Resources = self.config_factory('calamr_resources')
+        with res.corpus() as r:
+            stash: Stash = r.documents
+            doc_graph_factory: DocumentGraphFactory = self.config_factory(
+                'calamr_doc_graph_factory')
+            self.assertTrue(len(tuple(stash.keys())) > 0)
+            doc: AmrFeatureDocument = stash['liu-example']
+            self.assertEqual(AmrFeatureDocument, type(doc))
+            return doc_graph_factory(doc)
 
     def _get_doc_graph_aligner(self) -> DocumentGraphAligner:
         doc_graph_aligner: DocumentGraphAligner = \
-            self.config_factory('calamr_resource').doc_graph_aligner
+            self.config_factory('calamr_resources').doc_graph_aligner
         doc_graph_aligner.render_level = 0
         return doc_graph_aligner
