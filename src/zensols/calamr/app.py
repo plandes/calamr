@@ -243,8 +243,6 @@ class AlignmentApplication(_AlignmentBaseApplication):
                 res.failure.rethrow()
             with stdout(output_file, 'w') as fout:
                 self._output_align(output_format, doc, fout, res)
-            if not use_stdout:
-                logger.info(f'wrote: {output_file}')
             results.append(res)
             success_keys.append(doc_id)
         except Exception as e:
