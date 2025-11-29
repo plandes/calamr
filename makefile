@@ -6,9 +6,10 @@
 PROJ_TYPE =		python
 PROJ_MODULES =		python/doc python/package python/deploy python/envdist
 PY_DOC_POST_BUILD_DEPS += cpgraphs
+PY_TEST_PRE_TARGETS +=	$(MICRO_CORP_FILE)
 PY_TEST_ALL_TARGETS +=	aligncorp alignadhoc graphexampleshtml graphexampleseps
 ADD_CLEAN +=		$(EXAMPLE_DIR)
-ADD_CLEAN_ALL +=	data corpus/micro/amr.txt ~/.cache/calamr ~/.calamrrc
+ADD_CLEAN_ALL +=	data download corpus/micro/amr.txt ~/.cache/calamr ~/.calamrrc
 VAPORIZE_DEPS +=	vaporizedep
 
 
@@ -42,7 +43,7 @@ $(MICRO_CORP_FILE):
 			@( cat corpus/micro/amr.txt | bzip2 > $(MICRO_CORP_FILE) )
 			@$(call loginfo,created $(MICRO_CORP_FILE))
 .PHONY:			micro
-micro:			clean $(MICRO_CORP_FILE)
+micro:			$(MICRO_CORP_FILE)
 
 
 ## Alignment
