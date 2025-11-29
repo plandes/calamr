@@ -7,15 +7,15 @@ PROJ_TYPE =		python
 PROJ_MODULES =		python/doc python/package python/deploy python/envdist
 PY_DOC_POST_BUILD_DEPS += cpgraphs
 PY_TEST_ALL_TARGETS +=	aligncorp alignadhoc graphexampleshtml graphexampleseps
-ADD_CLEAN +=		$(EXAMPLE_DIR) results
+ADD_CLEAN +=		$(EXAMPLE_DIR)
 ADD_CLEAN_ALL +=	data corpus/micro/amr.txt ~/.cache/calamr ~/.calamrrc
 VAPORIZE_DEPS +=	vaporizedep
 
 
 ## Project
 #
-ALIGN_DIR =		results/align
-EXAMPLE_DIR = 		align-example
+EXAMPLE_DIR ?= 		align-example
+MICRO_CORP_FILE ?=	download/micro.txt.bz2
 
 
 ## Includes
@@ -35,20 +35,22 @@ configapp:
 			fi
 
 # recreate the micro corpus using adhoc source/summary sentences in a JSON file
-.PHONY:			micro
-micro:			clean
+$(MICRO_CORP_FILE):
 			$(eval outfile := download/micro.txt.bz2)
-			@$(MAKE) pyharn ARG="mkadhoc --override calamr_corpus.name=adhoc"
+			@$(MAKE) pyharn ARG="mkadhoc"
 			@mkdir -p download
-			@( cat corpus/micro/amr.txt | bzip2 > $(outfile) )
-			@$(call loginfo,created $(outfile))
+			@( cat corpus/micro/amr.txt | bzip2 > $(MICRO_CORP_FILE) )
+			@$(call loginfo,created $(MICRO_CORP_FILE))
+.PHONY:			micro
+micro:			clean $(MICRO_CORP_FILE)
+
 
 ## Alignment
 #
 # create adhoc corpus graphs for one example
 .PHONY:			aligncorp
 aligncorp:
-			rm -rf $(EXAMPLE_DIR)
+			@rm -rf $(EXAMPLE_DIR)
 			@$(MAKE) $(PY_MAKE_ARGS) pyharn \
 				ARG="align -k liu-example -o $(EXAMPLE_DIR) -f txt \
 				--override='calamr_corpus.name=adhoc,calamr_default.renderer=graphviz'"
@@ -56,16 +58,19 @@ aligncorp:
 # do not invoke directly--used by the align<corpus> targets
 .PHONY:			_aligncorp
 _aligncorp:
+			@rm -rf $(EXAMPLE_DIR)
 			@$(call loginfo,aligning $(CORP_CONF))
 			@$(MAKE) $(PY_MAKE_ARGS) pyharn ARG="align --override \
 				'calamr_corpus.name=$(CORP_CONF),calamr_default.renderer=graphviz,calamr_default.flow_graph_result_caching=preemptive' \
-				--rendlevel $(REND_LEVEL) --cached \
-				-o $(ALIGN_DIR)/$(CORP_CONF)"
+				--rendlevel $(REND_LEVEL) \
+				-o $(EXAMPLE_DIR) $(EXTRA_ARGS)"
 
 # align and generate graphs for the adhoc corpus
 .PHONY:			alignadhoc
 alignadhoc:
-			@$(MAKE) $(PY_MAKE_ARGS) CORP_CONF=adhoc REND_LEVEL=5 _aligncorp
+			@$(MAKE) $(PY_MAKE_ARGS) \
+				CORP_CONF=adhoc REND_LEVEL=5 _aligncorp \
+				EXTRA_ARGS="-i test-resources/tiny-corp.json"
 
 # align and generate graphs for the proxyreport corpus
 .PHONY:			alignproxy
@@ -79,14 +84,14 @@ alignproxy:
 # create examples of html graphs
 .PHONY:			graphexampleshtml
 graphexampleshtml:
-			rm -rf $(EXAMPLE_DIR)
+			@rm -rf $(EXAMPLE_DIR)
 			@$(MAKE) pyharn ARG="align -o $(EXAMPLE_DIR) -r 2 -f txt \
 			    --override='calamr_corpus.name=adhoc,calamr_default.renderer=graphviz'"
 
 # create examples of graphs in latex friendly EPS
 .PHONY:			graphexampleseps
 graphexampleseps:
-			rm -rf $(EXAMPLE_DIR)
+			@rm -rf $(EXAMPLE_DIR)
 			@$(MAKE) pyharn ARG="align -o $(EXAMPLE_DIR) -r 2 -f txt \
 			    --override='calamr_corpus.name=adhoc,calamr_graph_render_graphviz.extension=eps,calamr_default.renderer=graphviz'"
 
@@ -105,8 +110,3 @@ cpgraphs:
 vaporizedep:
 			rm -fr corpus download
 			git checkout corpus
-
-# # remove everything and more (careful!)
-.PHONY:			hellfire
-hellfire:		vaporize
-			rm -fr $(EXAMPLE_DIR) results scored.csv
