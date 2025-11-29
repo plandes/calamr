@@ -142,7 +142,6 @@ class AdhocAnnotatedAmrDocumentStash(PrimeableStash, DelegateStash):
         self._data: Union[Path, Dict, Sequence] = None
         self._created_docs: bool = False
 
-    # TODO: TypedDict
     def _get_doc(self, data: Sequence[Dict[str, str]]) -> AmrDocument:
         """A document containing all the sentences from the corpus.
 
@@ -161,19 +160,8 @@ class AdhocAnnotatedAmrDocumentStash(PrimeableStash, DelegateStash):
                 sents.append(sent)
             return sents
 
-        #docs: Iterable[AmrFeatureDocument] = self.anon_doc_factory(data)
-        # sents: Iterable[AmrSentence] = map(
-        #     lambda s: s.amr,
-        #     chain.from_iterable(map(lambda d: d.sents, docs)))
         sents: Iterable[AmrSentence] = chain.from_iterable(
             map(lambda t: map_doc(*t), zip(it.count(), data)))
-        #sents: Iterable[AmrSentence] = map(map_doc, data)
-        if 0:
-            for s in sents:
-                print('S', type(s), s.is_failure, isinstance(s, AmrSentence))
-                print(s.metadata)
-                print('_' * 80)
-            raise ValueError()
         return AmrDocument.to_document(sents)
 
     def _get_cache_dir(self, corpus_id: str) -> Path:
