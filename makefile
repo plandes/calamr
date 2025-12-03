@@ -11,6 +11,7 @@ PY_TEST_ALL_TARGETS +=	aligncorp alignadhoc graphexampleshtml graphexampleseps
 ADD_CLEAN +=		$(EXAMPLE_DIR)
 ADD_CLEAN_ALL +=	data download corpus/micro/amr.txt \
 				example/data example/multicorp/data \
+				example/multicorp/corpus/*.txt \
 				~/.cache/calamr ~/.calamrrc
 VAPORIZE_DEPS +=	vaporizedep
 
