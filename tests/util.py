@@ -20,6 +20,7 @@ class TestBase(unittest.TestCase):
         self.maxDiff = sys.maxsize
         self._clean_cache()
         self.config_factory: ConfigFactory = self._get_config_factory()
+        self._copy_micro()
         deepnlp.init()
 
     def _copy_micro(self):

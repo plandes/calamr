@@ -9,7 +9,8 @@ PY_DOC_POST_BUILD_DEPS += cpgraphs
 PY_TEST_PRE_TARGETS +=	$(MICRO_CORP_FILE)
 PY_TEST_ALL_TARGETS +=	aligncorp alignadhoc graphexampleshtml graphexampleseps
 ADD_CLEAN +=		$(EXAMPLE_DIR)
-ADD_CLEAN_ALL +=	data download corpus/micro/amr.txt ~/.cache/calamr ~/.calamrrc
+ADD_CLEAN_ALL +=	data download corpus/micro/amr.txt \
+				example/data ~/.cache/calamr ~/.calamrrc
 VAPORIZE_DEPS +=	vaporizedep
 
 
