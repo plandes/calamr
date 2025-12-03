@@ -27,7 +27,6 @@ calamr_adhoc_anon_doc_part_back_stash:
   path: 'path: doc-part'
 
 calamr_adhoc_anon_doc_part_stash:
-  #class_name: zensols.persist.FactoryStash
   class_name: zensols.multi.MultiProcessFactoryStash
   factory: 'instance: calamr_adhoc_anon_doc_part_factory_stash'
   delegate: 'instance: calamr_adhoc_anon_doc_part_back_stash'
