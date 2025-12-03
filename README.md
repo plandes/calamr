@@ -112,7 +112,7 @@ examples also use data in the repository.  Do the following to get started:
    ```
 1. Copy the resource file:
    ```bash
-   cp src/config/dot-calamrrc ~/.calamrrc
+   cp config/dot-calamrrc ~/.calamrrc
    ```
 
 
