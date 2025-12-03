@@ -3,11 +3,10 @@
 """
 from __future__ import annotations
 __author__ = 'Paul Landes'
-from typing import Dict, Sequence, Union, Optional, Type
+from typing import Dict, Sequence, Optional, Type
 from dataclasses import dataclass, field
 import logging
 import traceback
-from pathlib import Path
 from zensols.persist import Stash
 from zensols.amr.serial import AmrSerializedFactory
 from . import DocumentGraphFactory, DocumentGraphAligner
@@ -30,14 +29,14 @@ class _corpus_resource(object):
 
 class _adhoc_resource(object):
     def __init__(self, resource: Resource,
-                 data: Union[Path, Dict, Sequence],
+                 corpus: Sequence[Dict[str, str]],
                  corpus_id: str = None, clear: bool = False):
         self._resource = resource
         self._doc_stash: 'AdhocAnnotatedAmrDocumentStash' = resource.documents
         self._clear = clear
-        self._data = data
+        self._corpus = corpus
         self._corpus_id = corpus_id
-        self._doc_stash.set_corpus(self._data, self._corpus_id)
+        self._doc_stash.set_corpus(self._corpus, self._corpus_id)
 
     def __enter__(self) -> Stash:
         self._doc_stash.prime()
@@ -134,7 +133,7 @@ class Resources(object):
                 documents=self._anon_doc_stash,
                 alignments=self._flow_results_stash))
 
-    def adhoc(self, data: Union[Path, Dict, Sequence], corpus_id: str = None,
+    def adhoc(self, corpus: Sequence[Dict[str, str]], corpus_id: str = None,
               clear: bool = False) -> Resource:
         """Return a context manager for parsing and aligning adhoc documents.
         This sets the corpus documents that will be used for parsing and
@@ -190,6 +189,6 @@ class Resources(object):
             resource=Resource(
                 documents=self._adhoc_doc_stash,
                 alignments=self._flow_results_stash),
-            data=data,
+            corpus=corpus,
             corpus_id=corpus_id,
             clear=clear)
