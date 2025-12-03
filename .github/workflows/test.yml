@@ -44,5 +44,8 @@ jobs:
       - name: Build information
         run: 'make info'
 
+      - name: Create the micro test corpus
+        run: 'make micro'
+
       - name: Run tests
-        run: 'make micro test'
+        run: 'make test'

@@ -37,6 +37,7 @@ configapp:
 
 # recreate the micro corpus using adhoc source/summary sentences in a JSON file
 $(MICRO_CORP_FILE):
+			@mkdir -p corpus/amr-rel
 			$(eval outfile := download/micro.txt.bz2)
 			@$(MAKE) pyharn ARG="mkadhoc"
 			@mkdir -p download
