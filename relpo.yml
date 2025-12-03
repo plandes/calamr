@@ -40,6 +40,7 @@ project:
       # plotly
       - 'chart-studio~=1.1.0'
       # framework
+      - 'zensols.util~=1.15.14'
       - 'zensols.propbankdb~=0.2.1'
       - 'zensols.amr~=0.2.6'
       # tools
