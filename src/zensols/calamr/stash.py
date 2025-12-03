@@ -27,7 +27,7 @@ class FlowGraphResultFactoryStash(ReadOnlyStash, PrimeableStash):
 
     """
     anon_doc_stash: Stash = field()
-    """Contains human annotated AMRs."""
+    """Contains annotated AMRs."""
 
     doc_graph_aligner: DocumentGraphAligner = field()
     """Create document graphs."""
@@ -51,8 +51,9 @@ class FlowGraphResultFactoryStash(ReadOnlyStash, PrimeableStash):
                 logger.info(f"alignment result: {res}")
             return res
         except Exception as e:
-            return self.doc_graph_aligner.create_error_result(
-                e, f"Could not align: '{name}'")
+            msg: str = f"Could not align: '{name}': {e}"
+            logger.error(msg, e)
+            return self.doc_graph_aligner.create_error_result(e, msg)
         finally:
             self.doc_graph_aligner.render_level = prev_render_level
 

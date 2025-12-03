@@ -41,7 +41,7 @@ project:
       - 'chart-studio~=1.1.0'
       # framework
       - 'zensols.propbankdb~=0.2.1'
-      - 'zensols.amr~=0.2.5'
+      - 'zensols.amr~=0.2.6'
       # tools
       - 'zensols.rend'
   # the program is called on the command line

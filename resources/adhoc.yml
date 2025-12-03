@@ -5,20 +5,41 @@ calamr_adhoc_config_swapper:
   class_name: zensols.calamr.adhoc.ConfigSwapper
   root_dir: null
   swaps:
-    - ['amr_anon_doc_backing_stash', 'path', 'path']
-    - ['amr_anon_doc_parser_stash', 'path', 'path']
-    - ['amr_anon_feature_doc_back_stash', 'path', 'path']
-    - ['amr_coref_resolver_stash', 'path', 'path']
-    - ['calamr_flow_graph_result_persist_stash', 'path', 'path']
-    - ['amr_anon_doc_factory_stash', '_corpus_doc', 'persist']
-    - ['amr_anon_doc_factory_stash', '_corpus_df', 'persist']
+    - ['amr_anon_doc_backing_stash', 'path', 'path', null, 'both']
+    - ['amr_anon_doc_parser_stash', 'path', 'path', null, 'both']
+    - ['amr_anon_feature_doc_back_stash', 'path', 'path', null, 'both']
+    - ['amr_coref_resolver_stash', 'path', 'path', null, 'both']
+    - ['calamr_flow_graph_result_persist_stash', 'path', 'path', null, 'both']
+    - ['amr_anon_doc_factory_stash', 'corpus_cache_dir', 'path', null, 'both']
+    - ['amr_anon_doc_factory_stash', '_corpus_doc', 'persist', null, 'both']
+    - ['amr_anon_doc_factory_stash', '_corpus_df', 'persist', null, 'both']
+    - ['calamr_adhoc_anon_doc_part_factory_stash', 'corpus', 'value', null, 'attr']
+    - ['calamr_adhoc_anon_doc_part_back_stash', 'path', 'path', null, 'both']
+    - ['calamr_flow_graph_result_factory_stash', 'anon_doc_stash', 'instance', 'calamr_adhoc_anon_feature_doc_stash', 'both']
+    - ['calamr_adhoc_anon_feature_doc_stash', '_cache_dir', 'identity', null, 'config']
 
+calamr_adhoc_anon_doc_part_factory_stash:
+  class_name: zensols.calamr.adhoc.AdhocAmrDocumentPartStash
+  anon_doc_factory: 'instance: amr_anon_doc_factory'
+
+calamr_adhoc_anon_doc_part_back_stash:
+  class_name: zensols.persist.DirectoryStash
+  path: 'path: doc-part'
+
+calamr_adhoc_anon_doc_part_stash:
+  #class_name: zensols.persist.FactoryStash
+  class_name: zensols.multi.MultiProcessFactoryStash
+  factory: 'instance: calamr_adhoc_anon_doc_part_factory_stash'
+  delegate: 'instance: calamr_adhoc_anon_doc_part_back_stash'
+  workers: ${calamr_default:preemptive_workers}
 
 calamr_adhoc_anon_feature_doc_stash:
   class_name: zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash
   delegate: 'instance: ${calamr_default:amr_anon_doc_stash}'
+  doc_part_stash: 'instance: calamr_adhoc_anon_doc_part_stash'
   hasher: "object: zensols.util.Hasher"
-  anon_doc_factory: 'instance: amr_anon_doc_factory'
   swapper: 'instance: calamr_adhoc_config_swapper'
   root_dir: 'path: ${calamr_default:data_dir}/adhoc'
-  doc_key: ['amr_anon_doc_factory_stash', '_corpus_doc']
+  swap_keys:
+    corpus: ['calamr_adhoc_anon_doc_part_factory_stash', 'corpus']
+    doc: ['amr_anon_doc_factory_stash', '_corpus_doc']

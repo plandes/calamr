@@ -194,7 +194,7 @@ class _ProtoApplication(_AlignmentBaseApplication):
             from zensols.rend import ApplicationFactory
             ApplicationFactory.render(res.df)
 
-    def tmp(self):
+    def _create_adhoc(self):
         ex = [{
 	    "id": "newid",
 	    "body": "The rulings bolster criticisms of how hastily the prosecutions were brought. The rulings were rushed.",
@@ -205,62 +205,23 @@ class _ProtoApplication(_AlignmentBaseApplication):
             "body": "The man ran to make the train. He just missed it.",
             "summary": "A man got caught in the door of a train he just missed."
         }]
-        ex2 = [{
-	    "id": "newid",
-	    "body": "The rulings bolster criticisms of how hastily the prosecutions were brought against Donald Trump.",
-	    "summary": "The rulings suggest the prosecutions were rushed."}]
         if 0:
-            stash = self.config_factory('calamr_adhoc_anon_feature_doc_stash')
-            stash.set_corpus(ex)
-            doc = stash['newid']
-            doc.amr.write()
-            stash.restore()
+            import json
+            with open('corpus/micro/source.json') as f:
+                ex = json.load(f)
+        with self.resources.adhoc(ex) as r:
+            stash = r.alignments
+            for k, v in stash.items():
+                print(k, v)
 
-            stash = self.config_factory('calamr_toolbox').anon_doc_stash
-            doc = stash['liu-example']
-            print(doc[0].amr.graph_string)
-            return
-        from zensols.calamr.resource import Resource
-        r: Resource
-        if 1:
-            if 0:
-                with self.resources.corpus() as r:
-                    k = 'liu-example'
-                    r.documents[k].write()
-                    #r.alignments[k].write()
-            if 1:
-                with self.resources.adhoc(ex) as r:
-                    k = 'newid'
-                    r.documents[k].write()
-            if 0:
-                with self.resources.corpus() as r:
-                    k = 'liu-example'
-                    r.documents[k].write()
-                    #r.alignments[k].write()
-            return
-
-    def tmp(self):
-        from zensols.amr import Format
-        app = self.config_factory('capp')
-        #app.write_keys()
-        #print(app.get_annotated_summary())
-        #app.dump_annotated(2)
-        #app.align_corpus('liu-example', output_format=Format.json)
-        #app.write_adhoc_corpus(Path('corpus/micro/source.json'))
-
-        app = self.config_factory('aapp')
-        #app.align_corpus('ALL', Path('tmp'))
-        app.align(Path('aligns'), Path('tmp.json'))
-        #, output_format=Format.json)
-
-    def proto(self, run: int = 0):
+    def proto(self, run: int = 7):
         """Prototype test."""
         return {
-            0: self.tmp,
             1: self._write_default_doc,
-            2: lambda: self._read_meta_file(show='align', limit =3),
+            2: lambda: self._read_meta_file(show='align', limit=3),
             3: self._render_corpus_data,
             4: lambda: self._align(render_level=5),
             5: lambda: self.align('20080717_0594', Path('-'), Format.txt),
             6: self._iterate_align_tokens,
+            7: self._create_adhoc,
         }[run]()

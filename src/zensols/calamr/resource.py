@@ -3,19 +3,14 @@
 """
 from __future__ import annotations
 __author__ = 'Paul Landes'
-from typing import Dict, List, Tuple, Sequence, Union, Iterable, Optional, Type
+from typing import Dict, Sequence, Union, Optional, Type
 from dataclasses import dataclass, field
 import logging
 import traceback
 from pathlib import Path
 from zensols.persist import Stash
-from zensols.amr import AmrFailure, AmrDocument, AmrFeatureDocument
 from zensols.amr.serial import AmrSerializedFactory
-from zensols.amr.docfac import AmrFeatureDocumentFactory
-from zensols.amr.annotate import AnnotatedAmrFeatureDocumentFactory
-from . import (
-    DocumentGraph, DocumentGraphFactory, DocumentGraphAligner, FlowGraphResult
-)
+from . import DocumentGraphFactory, DocumentGraphAligner
 
 logger = logging.getLogger(__name__)
 
@@ -50,15 +45,19 @@ class _adhoc_resource(object):
 
     def __exit__(self, cls: Type[Exception], value: Optional[Exception],
                  trace: traceback):
-        if value is not None:
-            raise value
         try:
             if self._clear:
                 self._doc_stash.clear()
+        except Exception as e:
+            logger.error(f'Could not clear stash in {self.__class__}: {e}',
+                         exc_info=True)
+        try:
             self._doc_stash.restore()
         except Exception as e:
-            logger.error(f'Could not restore state {self.__class__}: {e}',
+            logger.error(f'Could not restore state in {self.__class__}: {e}',
                          exc_info=True)
+        if value is not None:
+            raise value
 
 
 @dataclass

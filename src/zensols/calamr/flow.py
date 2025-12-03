@@ -748,6 +748,14 @@ class FlowGraphResult(PersistableContainer, Dictable):
             self._write_line('statistics:', depth, writer)
             self._write_object(self.stats, depth + 1, writer)
 
+    def __str__(self) -> str:
+        if self.is_error:
+            return str(self.failure)
+        else:
+            hmean: float = self.stats['agg']['aligned_portion_hmean']
+            doc: AmrFeatureDocument = self.doc_graph.doc
+            return f'{doc}: {hmean}'
+
     def deallocate(self):
         self._try_deallocate(self._data)
         del self._data
