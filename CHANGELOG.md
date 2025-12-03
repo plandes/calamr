@@ -8,6 +8,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+## [1.0.0] - 2025-12-02
+Major API interface change to make ad hoc document parsing and aligning easier.
+
+### Removed
+- `Application.get_resource` (see changes).
+
+### Changed
+- `Application` method changed to `get_resources` to use a context manager and
+  access to data as documents and alignments.  The `README.md` and the examples
+  have been updated to use this new API.  The API has also been paired down to
+  only what's needed from a client point of view.  However, the rest of the API
+  remains and is still accessible for more sophisticated clients.
+
+
 ## [0.4.0] - 2025-11-23
 ### Removed
 - Integration test using pre-Pixi configuration.
@@ -72,7 +86,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 <!-- links -->
-[Unreleased]: https://github.com/plandes/calamr/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/plandes/calamr/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/plandes/calamr/compare/v0.4.0...v1.0.0
 [0.4.0]: https://github.com/plandes/calamr/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/plandes/calamr/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/plandes/calamr/compare/v0.1.2...v0.2.0

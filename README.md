@@ -34,8 +34,8 @@ Features:
 - [Corpora](#corpora)
 - [Usage](#usage)
     - [Command Line](#command-line)
-        - [Aligning Corpus Documents](#aligning-corpus-documents)
         - [Ad hoc Corpora](#ad-hoc-corpora)
+        - [Aligning Corpus Documents](#aligning-corpus-documents)
         - [Multiple Ad hoc Corpora](#multiple-ad-hoc-corpora)
     - [AMR Release 3.0 Corpus (LDC2020T02)](#amr-release-30-corpus-ldc2020t02)
     - [API](#api)
@@ -135,6 +135,39 @@ application environment:
    ```
 
 
+#### Ad hoc Corpora
+
+The [micro corpus] can be edited and rebuilt to add your own data to be
+aligned.  However, there's an easier way to align ad hoc documents.
+
+1. Align a summarized document not included in any corpus.  First create the
+   annotated documents as files `short-story.json`.
+   ```json
+   [
+	   {
+		   "id": "intro",
+		   "body": "The Dow Jones Industrial Average and other major indexes pared losses.",
+		   "summary": "Dow Jones and other major indexes reduced losses."
+	   },
+	   {
+		   "id": "dow-stats",
+		   "body": "The Dow ended 0.5% lower on Friday while the S&P 500 fell 0.7%. Among the S&P sectors, energy and utilities gained while technology and communication services lagged.",
+		   "summary": "Dow sank 0.5%, S&P 500 lost 0.7% and energy, utilities up, tech, comms came down."
+	   }
+   ]
+   ```
+   Now align the documents using the `XFM Bart Base` AMR parser, rendering
+   with the maximum number of steps (`-r 10`), and save results to `example`:
+	```bash
+	calamr align short-story.json --override amr_default.parse_model=xfm_bart_base -r 10 -o example -f txt
+	```
+
+The `-r` option controls how many intermediate graphs generated to show the
+iteration of the algorithm over all the steps (see the paper for details).  It
+is possible to align ad hoc documents
+[programmatically](#aligning-ad-hoc-documents) as well.
+
+
 #### Aligning Corpus Documents
 
 AMR corpora that distinguish between source and summary documents are needed so
@@ -165,40 +198,9 @@ corpora (including the last section's micro corpus):
 	```
 
 
-#### Ad hoc Corpora
-
-The [micro corpus] can be edited and rebuilt to add your own data to be
-aligned.  However, there's an easier way to align ad hoc documents.
-
-1. Align a summarized document not included in any corpus.  First create the
-   annotated documents as files `short-story.json`.
-   ```json
-   [
-	   {
-		   "id": "intro",
-		   "body": "The Dow Jones Industrial Average and other major indexes pared losses.",
-		   "summary": "Dow Jones and other major indexes reduced losses."
-	   },
-	   {
-		   "id": "dow-stats",
-		   "body": "The Dow ended 0.5% lower on Friday while the S&P 500 fell 0.7%. Among the S&P sectors, energy and utilities gained while technology and communication services lagged.",
-		   "summary": "Dow sank 0.5%, S&P 500 lost 0.7% and energy, utilities up, tech, comms came down."
-	   }
-   ]
-   ```
-   Now align the documents using the `XFM Bart Base` AMR parser, rendering
-   with the maximum number of steps (`-r 10`), and save results to `example`:
-	```bash
-	calamr align short-story.json --override amr_default.parse_model=xfm_bart_base -r 10 -o example -f txt
-	```
-
-The `-r` option controls how many intermediate graphs generated to show the
-iteration of the algorithm over all the steps (see the paper for details).
-
-
 #### Multiple Ad hoc Corpora
 
-Multiple adhoc corpora can coexist in one project.  See the [multiple corpora
+Multiple ad hoc corpora can coexist in one project.  See the [multiple corpora
 example](example/multicorp).  This examples demonstrates:
 
 * Creating corpora from JSON files with source/summary pairs.
@@ -240,82 +242,107 @@ This section explains how to use the library's API directly in Python.
 
 #### Aligning Ad hoc Documents
 
-This is taken from the [ad hoc API example](./test/test-adhoc.py)
+You can parse an align documents without setting up a corpus first.  To do
+this, there is an ad API that creates the same data files as when using with a
+corpus, but in a different file system space.  It optionally takes the name of
+the corpus for this name space.  If not provided one is created by hashing the
+data given to the API.
 
-1. Get the resource bundle:
+1. Import and get the resource bundle:
    ```python
-   from zensols.amr import AmrSentence, AmrDocument, AmrFeatureDocument
-   from zensols.calamr import DocumentGraph, FlowGraphResult, Resource, ApplicationFactory
+   from typing import List, Dict
+   from zensols.amr import AmrFeatureDocument
+   from zensols.calamr import (
+	   DocumentGraph, FlowGraphResult, Resources, ApplicationFactory
+   )
+   ```
+1. Create corpus data.  For this example, it's a toy two-document corpus:
+   ```python
+   corpus: List[Dict[str, str]] = \
+	   [{
+		   "id": "first",
+		   "body": "The rulings bolster criticisms of how hastily the prosecutions were brought. The rulings were rushed.",
+		   "summary": "The rulings suggest the prosecutions were rushed."
+	   }]
+   ```
+1. Parse the corpus as AMR documents and access it:
+   ```python
+   # access an ad hoc corpus as defined above with the list of dictionaries above
+   with resources.adhoc(corpus) as r:
+	   # list the keys in the corpus, each of which is available as a document or
+	   # alignment as flow metrics/data
+	   keys = tuple(r.documents.keys())
+	   print(keys)
 
-   # get the resource bundle
-   res: Resource = ApplicationFactory.get_resource()
+	   # get a document, which parses the document (if they aren't already); this
+	   # step isn't necessary if you want to go right to the alignments
+	   doc: AmrFeatureDocument = r.documents['first']
+	   doc.write()
    ```
-1. Create test data:
+1. Get and visualize the results (for documentation purposes, a new ``with`` is given):
    ```python
-   # create AMR sentences
-   test_summary = AmrSentence("""\
-   # ::snt Joe's dog was chasing a cat in the garden.
-   # ::snt-type summary
-   # ::id liu-example.0
-   (c / chase-01
-	  :ARG0 (d / dog
-			   :poss (p / person
-						:name (n / name
-								 :op1 "Joe")))
-	  :ARG1 (c2 / cat)
-	  :location (g / garden))""")
-   test_body = AmrSentence("""\
-   # ::snt I saw Joe's dog, which was running in the garden.
-   # ::snt-type body
-   # ::id liu-example.1
-   (s / see-01
-	  :ARG0 (ii / i)
-	  :ARG1 (d / dog
-			   :poss (p / person
-						:name (n / name
-								 :op1 "Joe"))
-			   :ARG0-of (r / run-02
-						   :location (g / garden))))""")
-
-	# create the AMR document 
-   adoc = AmrDocument((test_summary, test_body))
+   with resources.adhoc(corpus) as r:
+	   # get an alignment, which parses alignments (if not already)
+	   flow: FlowGraphResult = r.alignments['first']
+	   # write the metrics (or flow.stats to get a simle dictionary)
+	   flow.write()
    ```
-1. Create the annotated document and align it:
-   ```python
-   # convert the AMR document to an AMR annotated document with NLP features
-   fdoc: AmrFeatureDocument = res.to_annotated_doc(adoc)
-   # create the bipartite source/summary graph
-   graph: DocumentGraph = res.create_graph(fdoc)
-   # align the graph
-   flow: FlowGraphResult = res.align(graph)
+   output:
+   ```yaml
+   summary:
+       The rulings suggest the prosecutions were rushed.
+   sections:
+       no section sentences
+           The rulings bolster criticisms of how hastily the prosecutions were brought.
+           The rulings were rushed.
+   statistics:
+       agg:
+           aligned_portion_hmean: 0.7777777777777779
+           mean_flow: 0.7187621593475342
+           tot_alignable: 16
+           tot_aligned: 12
+           aligned_portion: 0.75
+           reentrancies: 0
+   ...
    ```
-1. Get and visualize the results:
+1. Render the results of a flow:
    ```python
-   # write the summarization metrics
-   flow.write()
-   # render the results as a graph in a web browser
-   flow.render()
+       flow.render()
+   ```
+1. Render all graphs of the flow results of the flow to directory `example`:
+   ```python
+   flow.render(
+       contexts=flow.get_render_contexts(include_nascent=True),
+       directory=Path('example'),
+       display=False)
    ```
 
 
 #### Aligning Corpora Documents
 
-To use an existing corpus (ad hoc "micro" corpus, The Little Prince, Biomedical
-Corpus, or Proxy report 3.0), use the following API to speed things up:
+You can access existing corpora (the "micro" corpus, The Little Prince,
+Biomedical Corpus, or Proxy report 3.0) as discussed in [Aligning Corpus
+Documents](#aligning-corpus-documents).  The following API can be used, which
+is similar to the [Aligning Ad hoc Documents](#aligning-ad-hoc-documents)
+example but use a corpus. All the same resources are available in the ``with
+resource.corpus`` scope.
 
-1. Get the resource bundle:
+1. Import and get the resource bundle:
    ```python
-   from pathlib import Path
    from zensols.amr import AmrFeatureDocument
-   from zensols.calamr import DocumentGraph, Resource, ApplicationFactory
+   from zensols.calamr import FlowGraphResult, Resources, ApplicationFactory
 
    # get the resource bundle
-   res: Resource = ApplicationFactory.get_resource()
+   resources: Resources = ApplicationFactory.get_resources()
    ```
 1. Get the Liu et al. AMR feature document example and print it.
    ```python
-   doc: AmrFeatureDocument = res.get_corpus_document('liu-example')
-   doc.write()
+   # access the corpus in the `./download` directory
+   with resources.corpus() as r:
+	   # get a document, which parses the document (if they aren't already); this
+	   # step isn't necessary if you want to go right to the alignments
+	   doc: AmrFeatureDocument = r.documents['liu-example']
+	   doc.write()
    ```
    output:
    ```yaml
@@ -340,65 +367,6 @@ Corpus, or Proxy report 3.0), use the following API to speed things up:
                I saw Joe's dog, which was running in the garden.
                The dog was chasing a cat.
    ```
-1. Align (if not already and cached) and get the flow results of the example:
-   ```python
-   flow = res.align_corpus_document('liu-example')
-   flow.write()
-   ```
-   output:
-   ```yaml
-   summary:
-       Joe's dog was chasing a cat in the garden.
-   sections:
-       no section sentences
-           I saw Joe's dog, which was running in the garden.
-           The dog was chasing a cat.
-   statistics:
-       agg:
-           aligned_portion_hmean: 0.8695652173913044
-           mean_flow: 0.7131309357900468
-           tot_alignable: 21
-           tot_aligned: 18
-           aligned_portion: 0.8571428571428571
-           reentrancies: 0
-   ```
-1. Parse the first document from the [ad hoc JSON file](#ad-hoc-corpora) align
-   it, and give its statistics:
-   ```python
-   doc: AmrFeatureDocument = next(iter(res.parse_documents(Path('short-story.json'))))
-   graph: DocumentGraph = res.create_graph(doc)
-   flow = res.align(graph)
-   flow.write()
-   ```
-   output:
-   ```yaml
-   summary:
-       Dow Jones and other major indexes reduced losses.
-   sections:
-       no section sentences
-           The Dow Jones Industrial Average and other major indexes pared losses.
-   statistics:
-       agg:
-           aligned_portion_hmean: 1.0
-           mean_flow: 0.9269955839429582
-           tot_alignable: 24
-           tot_aligned: 24
-           aligned_portion: 1.0
-           reentrancies: 0
-    ...
-	```
-1. Render the results of a flow:
-   ```python
-   flow = res.align_corpus_document('liu-example')
-   flow.render()
-   ```
-1. Render all graphs of the flow results of the flow to directory `example`:
-   ```python
-   flow.render(
-       contexts=flow.get_render_contexts(include_nascent=True),
-       directory=Path('example'),
-       display=False)
-   ```
 
 See [configuration](#text-alignments) regarding text alignments.
 
@@ -407,7 +375,7 @@ See [configuration](#text-alignments) regarding text alignments.
 
 A stand-alone docker image is also available (see [CALAMR Docker
 image](./docker)).  This [docker image] provides stand-alone container with all
-models, configuration and the adhoc micro corpus installed.
+models, configuration and the ad hoc micro corpus installed.
 
 
 ## Configuration
@@ -417,12 +385,12 @@ To modify the configuration, create an `ini` file in `~/.calamrrc`.
 
 ### Text Alignments
 
-The program was built to deal with data using the corpora API.  However, adhoc
+The program was built to deal with data using the corpora API.  However, ad hoc
 documents can be aligned but they document graphs will not have the text
 alignments.  To enable that, in your `~/.calamrrc` add the following:'
 
 ```ini
-# include alignments in adhoc parsed documents
+# include alignments in ad hoc parsed documents
 [amr_anon_doc_factory]
 remove_alignments = False
 ```

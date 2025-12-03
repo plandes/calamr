@@ -18,7 +18,7 @@ There are two source files:
 To run the example, first create the AMR corpora:
 
 1. Create `corp-a` by parsing the sentences in the `corpus/corp-a.json` into
-   AMR file `corpus/corp-a.txt`: `./harness.sh mkcorp corp-b`
+   AMR file `corpus/corp-a.txt`: `./harness.sh mkcorp corp-a`
 2. Do the same for `corp-b`: `./harness.sh mkcorp corp-b`
 3. Optionally align via the command line: `./harness.sh align corp-a`
 

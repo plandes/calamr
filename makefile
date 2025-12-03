@@ -4,13 +4,14 @@
 ## Build system
 #
 PROJ_TYPE =		python
-PROJ_MODULES =		python/doc python/package python/deploy python/envdist
+PROJ_MODULES =		python/doc python/package python/deploy python/envdist markdown
 PY_DOC_POST_BUILD_DEPS += cpgraphs
 PY_TEST_PRE_TARGETS +=	$(MICRO_CORP_FILE)
 PY_TEST_ALL_TARGETS +=	aligncorp alignadhoc graphexampleshtml graphexampleseps
 ADD_CLEAN +=		$(EXAMPLE_DIR)
 ADD_CLEAN_ALL +=	data download corpus/micro/amr.txt \
-				example/data ~/.cache/calamr ~/.calamrrc
+				example/data example/multicorp/data \
+				~/.cache/calamr ~/.calamrrc
 VAPORIZE_DEPS +=	vaporizedep
 
 
