@@ -1,0 +1,182 @@
+zensols.calamr package
+======================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   zensols.calamr.render
+   zensols.calamr.summary
+
+Submodules
+----------
+
+zensols.calamr.adhoc module
+---------------------------
+
+.. automodule:: zensols.calamr.adhoc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.alignconst module
+--------------------------------
+
+.. automodule:: zensols.calamr.alignconst
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.aligner module
+-----------------------------
+
+.. automodule:: zensols.calamr.aligner
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.annotate module
+------------------------------
+
+.. automodule:: zensols.calamr.annotate
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.app module
+-------------------------
+
+.. automodule:: zensols.calamr.app
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.attr module
+--------------------------
+
+.. automodule:: zensols.calamr.attr
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.cli module
+-------------------------
+
+.. automodule:: zensols.calamr.cli
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.comp module
+--------------------------
+
+.. automodule:: zensols.calamr.comp
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.ctrl module
+--------------------------
+
+.. automodule:: zensols.calamr.ctrl
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.dcomp module
+---------------------------
+
+.. automodule:: zensols.calamr.dcomp
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.doc module
+-------------------------
+
+.. automodule:: zensols.calamr.doc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.domain module
+----------------------------
+
+.. automodule:: zensols.calamr.domain
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.flow module
+--------------------------
+
+.. automodule:: zensols.calamr.flow
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.flowmeta module
+------------------------------
+
+.. automodule:: zensols.calamr.flowmeta
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.morph module
+---------------------------
+
+.. automodule:: zensols.calamr.morph
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.proto module
+---------------------------
+
+.. automodule:: zensols.calamr.proto
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.reentrancy module
+--------------------------------
+
+.. automodule:: zensols.calamr.reentrancy
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.resource module
+------------------------------
+
+.. automodule:: zensols.calamr.resource
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.score module
+---------------------------
+
+.. automodule:: zensols.calamr.score
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.calamr.stash module
+---------------------------
+
+.. automodule:: zensols.calamr.stash
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: zensols.calamr
+   :members:
+   :undoc-members:
+   :show-inheritance:
