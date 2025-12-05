@@ -19,8 +19,10 @@ project:
     bipartite source and summary AMR graph.
   keywords:
     - amr
+    - abstract meaning representation
     - graph
     - semantics
+    - alignment
   python:
     # Python interpreter versions
     version:
