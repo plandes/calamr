@@ -1,7 +1,6 @@
 """Client facade access to annotated AMR documents and alignment.
 
 """
-from __future__ import annotations
 __author__ = 'Paul Landes'
 from typing import Dict, Sequence, Optional, Type
 from dataclasses import dataclass, field
@@ -18,50 +17,8 @@ from . import (
 logger = logging.getLogger(__name__)
 
 
-@dataclass
-class Resource(object):
-    """Contains objects that parse AMR annotated documents and align them.
-    Instance of this class are created with :classs:`.Resources`.
-
-    """
-    documents: Stash = field()
-    """A stash (:class:`dict` like) collection with AMR doc IDs keys to
-    :class:`~zensols.amr.container.AmrFeatureDocument` values.
-
-    """
-    alignments: Stash = field()
-    """A stash (:class:`dict` like) collection with AMR doc IDs keys to
-    :class:`~zensols.calamr.flow.FlowGraphResult` values.
-
-    """
-    _resources: Resources = field()
-    """The object that created this instance."""
-
-    def align(self, doc_id: str, render_level: int = None,
-              output_dir: Path = None) -> FlowGraphResult:
-        """Align a document, which allows for the rendering of a document since
-        it does not use the cached results from :obj:`alignments`.
-
-        """
-        graph_factory: DocumentGraphFactory = self._resources.doc_graph_factory
-        graph_aligner: DocumentGraphAligner = self._resources.doc_graph_aligner
-        doc: AmrFeatureDocument = self.documents[doc_id]
-        doc_graph: DocumentGraph = graph_factory(doc)
-        prev_render_level: int = graph_aligner.render_level
-        prev_output_dir: Path = graph_aligner.output_dir
-        try:
-            if render_level is not None:
-                graph_aligner.render_level = render_level
-            if output_dir is not None:
-                graph_aligner.output_dir = output_dir
-            return graph_aligner.align(doc_graph)
-        finally:
-            graph_aligner.render_level = prev_render_level
-            graph_aligner.output_dir = prev_output_dir
-
-
 class _corpus_resource(object):
-    def __init__(self, resource: Resource):
+    def __init__(self, resource: 'Resource'):
         self._resource = resource
 
     def __enter__(self) -> Stash:
@@ -74,7 +31,7 @@ class _corpus_resource(object):
 
 
 class _adhoc_resource(object):
-    def __init__(self, resource: Resource,
+    def __init__(self, resource: 'Resource',
                  corpus: Sequence[Dict[str, str]],
                  corpus_id: str = None, clear: bool = False):
         self._resource = resource
@@ -103,6 +60,48 @@ class _adhoc_resource(object):
                          exc_info=True)
         if value is not None:
             raise value
+
+
+@dataclass
+class Resource(object):
+    """Contains objects that parse AMR annotated documents and align them.
+    Instance of this class are created with :classs:`.Resources`.
+
+    """
+    documents: Stash = field()
+    """A stash (:class:`dict` like) collection with AMR doc IDs keys to
+    :class:`~zensols.amr.container.AmrFeatureDocument` values.
+
+    """
+    alignments: Stash = field()
+    """A stash (:class:`dict` like) collection with AMR doc IDs keys to
+    :class:`~zensols.calamr.flow.FlowGraphResult` values.
+
+    """
+    _resources: 'Resources' = field()
+    """The object that created this instance."""
+
+    def align(self, doc_id: str, render_level: int = None,
+              output_dir: Path = None) -> FlowGraphResult:
+        """Align a document, which allows for the rendering of a document since
+        it does not use the cached results from :obj:`alignments`.
+
+        """
+        graph_factory: DocumentGraphFactory = self._resources.doc_graph_factory
+        graph_aligner: DocumentGraphAligner = self._resources.doc_graph_aligner
+        doc: AmrFeatureDocument = self.documents[doc_id]
+        doc_graph: DocumentGraph = graph_factory(doc)
+        prev_render_level: int = graph_aligner.render_level
+        prev_output_dir: Path = graph_aligner.output_dir
+        try:
+            if render_level is not None:
+                graph_aligner.render_level = render_level
+            if output_dir is not None:
+                graph_aligner.output_dir = output_dir
+            return graph_aligner.align(doc_graph)
+        finally:
+            graph_aligner.render_level = prev_render_level
+            graph_aligner.output_dir = prev_output_dir
 
 
 @dataclass
