@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+### Added
+- The reduction method from [zensols.alsum] that removes flow graph terminals
+  and optionally 0-flow alignment edges.
+
+
 ## [1.0.0] - 2025-12-02
 Major API interface change to make ad hoc document parsing and aligning easier.
 
@@ -99,4 +104,5 @@ Major API interface change to make ad hoc document parsing and aligning easier.
 [zensols.propbank]: https://github.com/plandes/propbankdb
 [zensols.amr]: https://github.com/plandes/amr
 [zensols.relpo]: https://github.com/plandes/relpo
+[zensols.alsum]: https://github.com/plandes/alsum
 [pixi]: https://pixi.sh

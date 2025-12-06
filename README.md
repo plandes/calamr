@@ -287,11 +287,16 @@ with resources.adhoc(corpus) as r:
     flow: FlowGraphResult = r.alignments['first']
     # write the metrics (or flow.stats to get a simle dictionary)
     flow.write()
-    # render the results of a flow
+    # render the results of a flow in a browser window
     flow.render()
-    # render all graphs of the flow results of the flow to directory `example`
-    flow.render(
-        contexts=flow.get_render_contexts(include_nascent=True),
+	# delete flow graph terminals and prunes 0-flow alignment edges, then render it,
+	# add the graph as a flow child, then render all graphs in directory `example`
+	reduced_graph: FlowGraphResult = flow.reduce()
+	rlow.doc_graph.children['reduced'] = graph
+	flow.render(
+		contexts=flow.get_render_contexts(
+			child_names=flow.doc_graph.children.keys(),
+			include_nascent=True),
         directory=Path('example'),
         display=False)
 ```

@@ -26,10 +26,10 @@ from zensols.datdesc import DataFrameDescriber, DataDescriber
 from . import (
     ComponentAlignmentError, ComponentAlignmentFailure, GraphAttributeContext,
     RoleGraphEdge, ReentrancySet, GraphNode, GraphEdge, DocumentGraphEdge,
-    SentenceGraphNode, ConceptGraphNode, AttributeGraphNode, DocumentGraphNode,
-    TerminalGraphNode, DocumentGraphComponent, DocumentGraph, SentenceGraphEdge,
-    SentenceGraphAttribute,
-    ComponentAlignmentGraphEdge, ComponentCorefAlignmentGraphEdge,
+    TerminalGraphEdge, SentenceGraphNode, ConceptGraphNode, AttributeGraphNode,
+    DocumentGraphNode, TerminalGraphNode, DocumentGraphComponent, DocumentGraph,
+    SentenceGraphEdge, SentenceGraphAttribute, ComponentAlignmentGraphEdge,
+    ComponentCorefAlignmentGraphEdge,
 )
 from .flowmeta import _DATA_DESC_META
 from .render.base import RenderContext, GraphRenderer, rendergroup
@@ -420,7 +420,101 @@ class FlowDocumentGraph(DocumentGraph):
         for c in self.components:
             c._parent = self
 
+
+@dataclass
+class _GraphReducer(object):
+    """Deletes flow graph terminals and optionally prunes.
 
+    """
+    graph_attrib_context: GraphAttributeContext = field()
+    """The graph attribute context, which is used to reset attribute IDs."""
+
+    def _delete_terminals(self, doc_graph: DocumentGraph):
+        """Remove the source (S) and sink (T) nodes and their flow edges."""
+        edges: Tuple[GraphEdge, ...] = tuple(filter(
+            lambda ge: isinstance(ge, TerminalGraphEdge),
+            doc_graph.es.values()))
+        if logger.isEnabledFor(logging.DEBUG):
+            logger.debug(f'deleting {len(edges)} edges')
+        doc_graph.delete_edges(edges)
+
+    def _prune_graph(self, doc_graph: DocumentGraph, component_name: str):
+        """Remove all 0-flow links, except for document edges in the source
+        since the source component in the reversed source graph have no flow
+        between its root and sentence nodes.
+
+        """
+        def to_str(e: Edge) -> str:
+            """Logging."""
+            ge: GraphNode = doc_graph.edge_by_id(e.target)
+            gnt: GraphNode = doc_graph.node_by_id(e.target)
+            gns: GraphNode = doc_graph.node_by_id(e.source)
+            return f'{gns} -> f={ge.flow} {gnt}'
+
+        # populated with what to delete
+        to_del: List[GraphEdge] = []
+        # source igraph edge IDs to to avoid remove the component's doc edges
+        src_edges: Dict[int, int] = doc_graph.\
+            components_by_name[component_name].\
+            graph_edge_id_to_edge_ref
+        # 0-flow deletion candidates
+        edges: Iterable[Tuple[Edge, GraphEdge], ...] = filter(
+            lambda e: e[1].flow == 0, doc_graph.es.items())
+        e: Edge
+        ge: GraphEdge
+        for e, ge in edges:
+            # parent vertex and graph node
+            pv: Vertex = doc_graph.vertex_ref_by_id(e.target)
+            pgn: GraphNode = doc_graph.to_node(pv)
+            # children edges of parent vertex (reverse flow so outgoing)
+            nes: List[Edge] = pv.incident('out')
+            # max flow from all children edges
+            max_child_flow: int = 0
+            # if not a terminal connected, find the max flow (if any) from them
+            if len(nes) > 0:
+                max_child_flow = max(map(
+                    lambda e: doc_graph.edge_by_id(e.target).flow, nes))
+            # reversed source doc nodes have no flow, but their children might
+            is_doc_edge: bool = isinstance(ge, DocumentGraphEdge)
+            is_src: bool = ge.id in src_edges
+            # TODO: doc edges that should be deleted with children flow are not
+            if not is_src or not is_doc_edge:
+                if logger.isEnabledFor(logging.DEBUG):
+                    ids = ', '.join(map(to_str, nes))
+                    logger.debug(
+                        f'deleting: id={ge.id} ({type(ge).__name__}, ' +
+                        f'f={ge.flow}, mf={max_child_flow}, '
+                        f'par: {pgn} ({pgn.id}), neigh={ids}')
+                to_del.append(ge)
+        if logger.isEnabledFor(logging.INFO):
+            logger.info(f'pruning {len(to_del)} edges')
+        doc_graph.delete_edges(to_del, True)
+
+    def __call__(self, doc_graph: DocumentGraph, component_name: str,
+                 prune: bool) -> DocumentGraph:
+        """A non-reversed (nascent direction) graph without terminal nodes or
+        edges.
+
+        :param doc_graph: the graph to reduce
+
+        :param component_name: target component to reduce, which defaults the
+                               source
+
+        :param prune: whether ``doc_graph`` will have 0-flow edges pruned
+
+        """
+        # create reduced graph from a clone of the child graph for modification
+        doc_graph = doc_graph.clone(reverse_edges=True, deep=True)
+        # reset attributes for consistent IDs in clone
+        self.graph_attrib_context.reset_attrib_id()
+        # remove terminal nodes and edges
+        self._delete_terminals(doc_graph)
+        # optionally prune the graph
+        if prune:
+            self._prune_graph(doc_graph, component_name)
+        return doc_graph
+
+
 @dataclass
 class _FlowGraphResultContext(object):
     """Contains in memory/interperter session data needed by
@@ -432,6 +526,9 @@ class _FlowGraphResultContext(object):
 
     graph_attrib_context: GraphAttributeContext = field()
     """The context given to all nodees and edges of the graph."""
+
+    graph_reducer: _GraphReducer = field()
+    """Deletes flow graph terminals and optionally prunes."""
 
 
 class FlowGraphResult(PersistableContainer, Dictable):
@@ -669,6 +766,32 @@ class FlowGraphResult(PersistableContainer, Dictable):
                  cstats['reentrancies']))
         return pd.DataFrame(rows, columns=cols)
 
+    def reduce(self, child_name: str = None, component_name: str = None,
+               prune: bool = True) -> DocumentGraph:
+        """Deletes flow graph terminals and optionally prunes.
+
+        :param child_name: target graph name to reduce, which defaults the
+                           nascent graph and the final bipartite graph rendered
+                           ("restore previous flow on source")
+
+        :param component_name: target component to reduce, which defaults the
+                               source
+
+        :param prune: whether :obj:`doc_graph` will have 0-flow edges pruned
+
+        :return: a new cloned graph without terminals and optionally pruned (see
+                 :obj:`prune`)
+
+        """
+        # set defaults to the first component path
+        child_name = self._component_paths[0][0] \
+            if child_name is None else child_name
+        component_name = self._component_paths[0][1] \
+            if component_name is None else component_name
+        # create reduced graph from a clone of the child graph for modification
+        doc_graph: DocumentGraph = self.doc_graph.children[child_name]
+        return self._context.graph_reducer(doc_graph, component_name, prune)
+
     def get_render_contexts(self, child_names: Iterable[str] = None,
                             include_nascent: bool = False) -> \
             List[RenderContext]:
@@ -676,7 +799,7 @@ class FlowGraphResult(PersistableContainer, Dictable):
         :class:`.render.base.rendergroup`.
 
         :param child_names: the name of the :obj:`.DocumentGraph.children` to
-                            render, which defaults the the nascent grah and the
+                            render, which defaults the nascent graph and the
                             final bipartite graph rendered ("restore previous
                             flow on source")
 

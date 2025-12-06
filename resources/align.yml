@@ -170,10 +170,15 @@ calamr_restore_flow_source_controller:
 calamr_flow_doc_graph_manager:
   class_name: zensols.calamr.FlowDocumentGraphManager
 
+calamr_graph_reducer:
+  class_name: zensols.calamr.flow._GraphReducer
+  graph_attrib_context: 'instance: calamr_graph_attrib_context'
+
 calamr_flow_graph_result_context:
   class_name: zensols.calamr.flow._FlowGraphResultContext
   renderer: 'instance: calamr_graph_render_${calamr_default:renderer}'
   graph_attrib_context: 'instance: calamr_graph_attrib_context'
+  graph_reducer: 'instance: calamr_graph_reducer'
 
 calamr_flow_graph_result:
   class_name: zensols.calamr.FlowGraphResult

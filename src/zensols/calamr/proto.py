@@ -214,7 +214,17 @@ class _ProtoApplication(_AlignmentBaseApplication):
             for k, v in stash.items():
                 print(k, v)
 
-    def proto(self, run: int = 7):
+    def _render_reduced(self):
+        with self.resources.corpus() as r:
+            res: FlowGraphResult = r.alignments['liu-example']
+            graph: DocumentGraph = res.reduce()
+            assert len(graph.children) == 0
+            res.doc_graph.children['reduced'] = graph
+            res.render(res.get_render_contexts(
+                child_names=res.doc_graph.children.keys(),
+                include_nascent=True))
+
+    def proto(self, run: int = 8):
         """Prototype test."""
         return {
             1: self._write_default_doc,
@@ -224,4 +234,5 @@ class _ProtoApplication(_AlignmentBaseApplication):
             5: lambda: self.align('20080717_0594', Path('-'), Format.txt),
             6: self._iterate_align_tokens,
             7: self._create_adhoc,
+            8: self._render_reduced,
         }[run]()
