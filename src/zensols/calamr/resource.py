@@ -237,3 +237,15 @@ class Resources(object):
             corpus=corpus,
             corpus_id=corpus_id,
             clear=clear)
+
+    def restore(self, res: FlowGraphResult):
+        """Restore the information on a flow graph result needed to render it.
+        Without out it, :meth:`.FlowGraphResult.render` will raise errors.  This
+        is only needed when unpickling a :class:`.FlowGraphResult`.
+
+        :param res: to instance to have additional context information set
+
+        """
+        from .stash import FlowGraphRestoreStash
+        stash: FlowGraphRestoreStash = self._flow_results_stash
+        stash.restore(res)
