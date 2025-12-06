@@ -62,6 +62,7 @@ Features:
 
 The recommended reading order for this project:
 
+1. See the [Ad hoc Corpora](#ad-hoc-corpora) as a quick start.
 1. The [conference slides](https://plandes.github.io/calamr/doc/CalamrSlides.pdf)
 1. The abstract and introduction of the paper [CALAMR: Component ALignment for
    Abstract Meaning Representation]
@@ -257,10 +258,10 @@ from zensols.calamr import (
     DocumentGraph, FlowGraphResult, Resources, ApplicationFactory
 )
 
-# import and get the Resources bundle:
+# import and get the Resources bundle
 resources: Resources = ApplicationFactory.get_resources()
 
-# create corpus data (toy two-document corpus for this example):
+# create corpus data (toy two-document corpus for this example)
 corpus: List[Dict[str, str]] = [{
     "id": "first",
     "body": "The rulings bolster criticisms of how hastily the prosecutions were brought. The rulings were rushed.",
@@ -280,15 +281,15 @@ with resources.adhoc(corpus) as r:
     doc: AmrFeatureDocument = r.documents['first']
     doc.write()
 
-# get and visualize the results (for documentation purposes, a new ``with`` is given):
+# get and visualize the results (for documentation purposes, a new ``with`` is given)
 with resources.adhoc(corpus) as r:
     # get an alignment, which parses alignments (if not already)
     flow: FlowGraphResult = r.alignments['first']
     # write the metrics (or flow.stats to get a simle dictionary)
     flow.write()
-    # render the results of a flow:
+    # render the results of a flow
     flow.render()
-    # render all graphs of the flow results of the flow to directory `example`:
+    # render all graphs of the flow results of the flow to directory `example`
     flow.render(
         contexts=flow.get_render_contexts(include_nascent=True),
         directory=Path('example'),

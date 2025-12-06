@@ -53,7 +53,7 @@ class DocumentGraph(GraphComponent):
     name: str = field()
     """The name of the graph used to identify it.  For now, this is only
     ``reversed_source`` for the graph that flows from the summary to the source,
-    and ``reversed_summary for the graph that flows from the source to the
+    and ``reversed_summary`` for the graph that flows from the source to the
     summary.  These are "reversed" because the flow is reversed from the leaf
     nodes to the root.
 

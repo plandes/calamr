@@ -54,7 +54,7 @@ class Flow(Dictable):
 
     @property
     def edge_type(self) -> str:
-        """Whether the edge is an AMR ``role`` or ``align``ment."""
+        """Whether the edge is an AMR ``role`` or ``align`` (for alignment)."""
         if isinstance(self.edge, ComponentAlignmentGraphEdge):
             return 'align'
         else:

@@ -65,7 +65,7 @@ class _adhoc_resource(object):
 @dataclass
 class Resource(object):
     """Contains objects that parse AMR annotated documents and align them.
-    Instance of this class are created with :classs:`.Resources`.
+    Instance of this class are created with :class:`.Resources`.
 
     """
     documents: Stash = field()

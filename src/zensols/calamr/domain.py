@@ -206,7 +206,7 @@ class GraphAttributeContext(Dictable):
 
     """
     relation_stash: Stash = field(repr=False)
-    """Creates instances of role :class:`~zensols.propbankdb.domain..Relation.
+    """Creates instances of role :class:`~zensols.propbankdb.domain.Relation`.
 
     """
     # hyperparams
