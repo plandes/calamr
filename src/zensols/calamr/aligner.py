@@ -69,7 +69,7 @@ class DocumentGraphAligner(ABC):
     def is_valid_render_level(cls: Type, render_level: int,
                               should_raise: bool = False) -> bool:
         """Return whether ``render_level`` is a valid value for
-        :obj:`render_level.
+        :obj:`render_level`.
 
         """
         ml: int = cls.MAX_RENDER_LEVEL

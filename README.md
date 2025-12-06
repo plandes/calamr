@@ -248,76 +248,71 @@ corpus, but in a different file system space.  It optionally takes the name of
 the corpus for this name space.  If not provided one is created by hashing the
 data given to the API.
 
-1. Import and get the [Resources] bundle:
-   ```python
-   from typing import List, Dict
-   from zensols.amr import AmrFeatureDocument
-   from zensols.calamr import (
-	   DocumentGraph, FlowGraphResult, Resources, ApplicationFactory
-   )
+An example of how to parse and align ad hoc documents follows
 
-   resources: Resources = ApplicationFactory.get_resources()
-   ```
-1. Create corpus data.  For this example, it's a toy two-document corpus:
-   ```python
-   corpus: List[Dict[str, str]] = \
-	   [{
-		   "id": "first",
-		   "body": "The rulings bolster criticisms of how hastily the prosecutions were brought. The rulings were rushed.",
-		   "summary": "The rulings suggest the prosecutions were rushed."
-	   }]
-   ```
-1. Parse the corpus as AMR documents and access it:
-   ```python
-   # access an ad hoc corpus as defined above with the list of dictionaries above
-   with resources.adhoc(corpus) as r:
-	   # list the keys in the corpus, each of which is available as a document or
-	   # alignment as flow metrics/data
-	   keys = tuple(r.documents.keys())
-	   print(keys)
+```python
+from typing import List, Dict
+from zensols.amr import AmrFeatureDocument
+from zensols.calamr import (
+    DocumentGraph, FlowGraphResult, Resources, ApplicationFactory
+)
 
-	   # get a document, which parses the document (if they aren't already); this
-	   # step isn't necessary if you want to go right to the alignments
-	   doc: AmrFeatureDocument = r.documents['first']
-	   doc.write()
-   ```
-1. Get and visualize the results (for documentation purposes, a new ``with`` is given):
-   ```python
-   with resources.adhoc(corpus) as r:
-	   # get an alignment, which parses alignments (if not already)
-	   flow: FlowGraphResult = r.alignments['first']
-	   # write the metrics (or flow.stats to get a simle dictionary)
-	   flow.write()
-   ```
-   output:
-   ```yaml
-   summary:
-       The rulings suggest the prosecutions were rushed.
-   sections:
-       no section sentences
-           The rulings bolster criticisms of how hastily the prosecutions were brought.
-           The rulings were rushed.
-   statistics:
-       agg:
-           aligned_portion_hmean: 0.7777777777777779
-           mean_flow: 0.7187621593475342
-           tot_alignable: 16
-           tot_aligned: 12
-           aligned_portion: 0.75
-           reentrancies: 0
-   ...
-   ```
-1. Render the results of a flow:
-   ```python
-   flow.render()
-   ```
-1. Render all graphs of the flow results of the flow to directory `example`:
-   ```python
-   flow.render(
-       contexts=flow.get_render_contexts(include_nascent=True),
-       directory=Path('example'),
-       display=False)
-   ```
+# import and get the Resources bundle:
+resources: Resources = ApplicationFactory.get_resources()
+
+# create corpus data (toy two-document corpus for this example):
+corpus: List[Dict[str, str]] = [{
+    "id": "first",
+    "body": "The rulings bolster criticisms of how hastily the prosecutions were brought. The rulings were rushed.",
+    "summary": "The rulings suggest the prosecutions were rushed."
+}]
+
+# parse and access an ad hoc corpus as defined above with the list
+# of dictionaries above
+with resources.adhoc(corpus) as r:
+    # list the keys in the corpus, each of which is available as a document or
+    # alignment as flow metrics/data
+    keys = tuple(r.documents.keys())
+    print(keys)
+
+    # get a document, which parses the document (if they aren't already); this
+    # step isn't necessary if you want to go right to the alignments
+    doc: AmrFeatureDocument = r.documents['first']
+    doc.write()
+
+# get and visualize the results (for documentation purposes, a new ``with`` is given):
+with resources.adhoc(corpus) as r:
+    # get an alignment, which parses alignments (if not already)
+    flow: FlowGraphResult = r.alignments['first']
+    # write the metrics (or flow.stats to get a simle dictionary)
+    flow.write()
+    # render the results of a flow:
+    flow.render()
+    # render all graphs of the flow results of the flow to directory `example`:
+    flow.render(
+        contexts=flow.get_render_contexts(include_nascent=True),
+        directory=Path('example'),
+        display=False)
+```
+
+output:
+```yaml
+summary:
+    The rulings suggest the prosecutions were rushed.
+sections:
+    no section sentences
+        The rulings bolster criticisms of how hastily the prosecutions were brought.
+        The rulings were rushed.
+statistics:
+    agg:
+        aligned_portion_hmean: 0.7777777777777779
+        mean_flow: 0.7187621593475342
+        tot_alignable: 16
+        tot_aligned: 12
+        aligned_portion: 0.75
+        reentrancies: 0
+...
+```
 
 
 #### Aligning Corpora Documents
@@ -327,48 +322,47 @@ Biomedical Corpus, or Proxy report 3.0) as discussed in [Aligning Corpus
 Documents](#aligning-corpus-documents).  The following API can be used, which
 is similar to the [Aligning Ad hoc Documents](#aligning-ad-hoc-documents)
 example but use a corpus. All the same resources are available in the ``with
-resource.corpus`` scope.
+resource.corpus`` scope:
 
-1. Import and get the resource bundle:
-   ```python
-   from zensols.amr import AmrFeatureDocument
-   from zensols.calamr import FlowGraphResult, Resources, ApplicationFactory
+```python
+# import and get the resource bundle
+from zensols.amr import AmrFeatureDocument
+from zensols.calamr import FlowGraphResult, Resources, ApplicationFactory
 
-   # get the resource bundle
-   resources: Resources = ApplicationFactory.get_resources()
-   ```
-1. Get the Liu et al. AMR feature document example and print it.
-   ```python
-   # access the corpus in the `./download` directory
-   with resources.corpus() as r:
-	   # get a document, which parses the document (if they aren't already); this
-	   # step isn't necessary if you want to go right to the alignments
-	   doc: AmrFeatureDocument = r.documents['liu-example']
-	   doc.write()
-   ```
-   output:
-   ```yaml
-   [T]: Joe's dog was chasing a cat in the garden. I saw Joe's dog, which was running in the garden. The dog was chasing a cat.
-   sentences:
-       [N]: Joe's dog was chasing a cat in the garden.
-           (c0 / chase-01~e.4
-                 :location (g0 / garden~e.9)
-                 :ARG0 (d0 / dog~e.2
-                       :poss (p0 / person
-                             :name (n0 / name
-                                   :op1 "Joe"~e.0)))
-                 :ARG1 (c1 / cat~e.6))
-   .
-   .
-   .
-   amr:
-       summary:
-           Joe's dog was chasing a cat in the garden.
-       sections:
-           no section sentences
-               I saw Joe's dog, which was running in the garden.
-               The dog was chasing a cat.
-   ```
+# get the resource bundle
+resources: Resources = ApplicationFactory.get_resources()
+# get the Liu et al. AMR feature document example and print it,
+# this accesses the corpus in the `./download` directory
+with resources.corpus() as r:
+    # get a document, which parses the document (if they aren't already); this
+    # step isn't necessary if you want to go right to the alignments
+    doc: AmrFeatureDocument = r.documents['liu-example']
+    doc.write()
+```
+
+output:
+```yaml
+[T]: Joe's dog was chasing a cat in the garden. I saw Joe's dog, which was running in the garden. The dog was chasing a cat.
+sentences:
+    [N]: Joe's dog was chasing a cat in the garden.
+        (c0 / chase-01~e.4
+              :location (g0 / garden~e.9)
+              :ARG0 (d0 / dog~e.2
+                    :poss (p0 / person
+                          :name (n0 / name
+                                :op1 "Joe"~e.0)))
+              :ARG1 (c1 / cat~e.6))
+.
+.
+.
+amr:
+    summary:
+        Joe's dog was chasing a cat in the garden.
+    sections:
+        no section sentences
+            I saw Joe's dog, which was running in the garden.
+            The dog was chasing a cat.
+```
 
 See [configuration](#text-alignments) regarding text alignments.
 
@@ -545,5 +539,3 @@ Copyright (c) 2023 - 2025 Paul Landes
 [zensols.propbankdb]: https://github.com/plandes/propbankdb
 [PropBank API/curated database]: https://github.com/plandes/propbankdb
 [Installing the Gsii Model]: https://github.com/plandes/amr#installing-the-gsii-model
-
-[Resources]: api/zensols.calamr.html#zensols.calamr.resource.Resources
