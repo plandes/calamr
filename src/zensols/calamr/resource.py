@@ -7,9 +7,13 @@ from typing import Dict, Sequence, Optional, Type
 from dataclasses import dataclass, field
 import logging
 import traceback
+from pathlib import Path
 from zensols.persist import Stash
+from zensols.amr import AmrFeatureDocument
 from zensols.amr.serial import AmrSerializedFactory
-from . import DocumentGraphFactory, DocumentGraphAligner
+from . import (
+    DocumentGraph, FlowGraphResult, DocumentGraphFactory, DocumentGraphAligner
+)
 
 logger = logging.getLogger(__name__)
 
@@ -62,24 +66,53 @@ class _adhoc_resource(object):
 @dataclass
 class Resource(object):
     """Contains objects that parse AMR annotated documents and align them.
+    Instance of this class are created with :classs:`.Resources`.
 
     """
     documents: Stash = field()
-    """An stash (:class:`dict` like) collection with AMR doc IDs keys to
-    :class:`~zensols.amr.doc.AmrFeatureDocument` values.
+    """A stash (:class:`dict` like) collection with AMR doc IDs keys to
+    :class:`~zensols.amr.container.AmrFeatureDocument` values.
 
     """
     alignments: Stash = field()
-    """An stash (:class:`dict` like) collection with AMR doc IDs keys to
+    """A stash (:class:`dict` like) collection with AMR doc IDs keys to
     :class:`~zensols.calamr.flow.FlowGraphResult` values.
 
     """
+    _resources: Resources = field()
+    """The object that created this instance."""
+
+    def align(self, doc_id: str, render_level: int = None,
+              output_dir: Path = None) -> FlowGraphResult:
+        """Align a document, which allows for the rendering of a document since
+        it does not use the cached results from :obj:`alignments`.
+
+        """
+        graph_factory: DocumentGraphFactory = self._resources.doc_graph_factory
+        graph_aligner: DocumentGraphAligner = self._resources.doc_graph_aligner
+        doc: AmrFeatureDocument = self.documents[doc_id]
+        doc_graph: DocumentGraph = graph_factory(doc)
+        prev_render_level: int = graph_aligner.render_level
+        prev_output_dir: Path = graph_aligner.output_dir
+        try:
+            if render_level is not None:
+                graph_aligner.render_level = render_level
+            if output_dir is not None:
+                graph_aligner.output_dir = output_dir
+            return graph_aligner.align(doc_graph)
+        finally:
+            graph_aligner.render_level = prev_render_level
+            graph_aligner.output_dir = prev_output_dir
 
 
 @dataclass
 class Resources(object):
     """A client facade (GoF) for Calamr annotated AMR corpus access and
     alginment.  This object is used as a context manager.
+
+    The :meth:`corpus` and :meth:`adhoc` methods provide access to documents and
+    alignments.  Use the stashes provided by those methods to clear respective
+    cached data.
 
     :see: :class:`.AdhocAnnotatedAmrDocumentStash`
 
@@ -93,7 +126,7 @@ class Resources(object):
     """Create document graphs."""
 
     doc_graph_aligner: DocumentGraphAligner = field()
-    """Create document graphs."""
+    """Align document graphs."""
 
     _anon_doc_stash: Stash = field()
     """Contains human annotated AMRs.  This could be from the adhoc (micro)
@@ -119,9 +152,13 @@ class Resources(object):
 
         .. code-block:: python
 
-           with self.resources.corpus() as r:
+           from zensols.calamr import Resources, ApplicationFactory
+
+           resources: Resources = ApplicationFactory.get_resources()
+
+           with resources.corpus() as r:
                # print the keys of the annotated AMR documents
-               r.documents.keys()
+               print(tuple(r.documents.keys()))
                # determine if a document is in the stash
                print('some_key' in r.documents)
                # write an AMR document
@@ -131,7 +168,8 @@ class Resources(object):
         return _corpus_resource(
             resource=Resource(
                 documents=self._anon_doc_stash,
-                alignments=self._flow_results_stash))
+                alignments=self._flow_results_stash,
+                _resources=self))
 
     def adhoc(self, corpus: Sequence[Dict[str, str]], corpus_id: str = None,
               clear: bool = False) -> Resource:
@@ -147,19 +185,18 @@ class Resources(object):
         dictionary are the case-insensitive enumeration values of
         :class:`~zensols.amr.annotate.SentenceType`.  Keys ``id`` and
         ``comment`` are the unique document identifier and a comment that is
-        added to the AMR sentence metadata.  Both are optional, and if ``id`` is
-        missing, :obj:``doc_id``.
+        added to the AMR sentence metadata.
 
         The following example JSON creates a document with ID ``ex1``, a
         ``comment`` metadata, one
         :obj:`~zensols.amr.annotate.SentenceType.SUMMARY` and two
-        :obj:`.SentenceType.BODY` sentences::
+        :obj:`~zensols.amr.annotate.SentenceType.BODY` sentences::
 
             corpus = [{
                 "id": "ex1",
                 "comment": "very short",
                 "body": "The man ran to make the train. He just missed it.",
-                "summary": "A man got caught in the door of a train he just missed."
+                "summary": "A man got caught in a train he just missed."
             }]
 
         This source / summary text can then be AMR parsed, aligned, and rendered
@@ -167,13 +204,20 @@ class Resources(object):
 
         .. code-block:: python
 
-           with self.resources.adhoc(corpus, clear=True) as r:
+           from zensols.calamr import Resources, ApplicationFactory
+
+           resources: Resources = ApplicationFactory.get_resources()
+
+           with resources.adhoc(corpus, clear=True) as r:
                # render an aligned document
                r.alignments['some_key'].render()
 
+        The ``clear=True`` means to delete all cached files generated in the
+        block.
+
         :param data: the AMR summary documents, which is usually a sequence of
                      :class:`~typing.Dict` instances (see
-                     :class:`~zensols.arm.annotate.AnnotatedAmrFeatureDocumentFactory`
+                     :class:`~zensols.amr.annotate.AnnotatedAmrFeatureDocumentFactory`
                      for data structure details)
 
         :param corpus_id: a unique identifier for ``data``, or ``None`` to use a
@@ -188,7 +232,8 @@ class Resources(object):
         return _adhoc_resource(
             resource=Resource(
                 documents=self._adhoc_doc_stash,
-                alignments=self._flow_results_stash),
+                alignments=self._flow_results_stash,
+                _resources=self),
             corpus=corpus,
             corpus_id=corpus_id,
             clear=clear)
