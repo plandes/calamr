@@ -54,15 +54,15 @@ doc:
     intersphinx_mapping:
       util:
         modules: ['zensols.util', 'zensols.persist', 'zensols.config', 'zensols.cli', 'zensols.multi']
+        url: "{RP_DOC_IM_URL}/{package}/{mod_last}"
+      nlparse:
+        modules: ['zensols.nlp']
         url: '{RP_DOC_IM_URL}/{package}/'
       amr:
         modules: ['zensols.amr']
         url: '{RP_DOC_IM_URL}/{package}/'
       propbankdb:
         modules: ['zensols.propbankdb']
-        url: '{RP_DOC_IM_URL}/{package}/'
-      nlp:
-        modules: ['zensols.nlp']
         url: '{RP_DOC_IM_URL}/{package}/'
       numpy:
         modules: ['numpy']

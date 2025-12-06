@@ -248,13 +248,15 @@ corpus, but in a different file system space.  It optionally takes the name of
 the corpus for this name space.  If not provided one is created by hashing the
 data given to the API.
 
-1. Import and get the resource bundle:
+1. Import and get the [Resources] bundle:
    ```python
    from typing import List, Dict
    from zensols.amr import AmrFeatureDocument
    from zensols.calamr import (
 	   DocumentGraph, FlowGraphResult, Resources, ApplicationFactory
    )
+
+   resources: Resources = ApplicationFactory.get_resources()
    ```
 1. Create corpus data.  For this example, it's a toy two-document corpus:
    ```python
@@ -307,7 +309,7 @@ data given to the API.
    ```
 1. Render the results of a flow:
    ```python
-       flow.render()
+   flow.render()
    ```
 1. Render all graphs of the flow results of the flow to directory `example`:
    ```python
@@ -543,3 +545,5 @@ Copyright (c) 2023 - 2025 Paul Landes
 [zensols.propbankdb]: https://github.com/plandes/propbankdb
 [PropBank API/curated database]: https://github.com/plandes/propbankdb
 [Installing the Gsii Model]: https://github.com/plandes/amr#installing-the-gsii-model
+
+[Resources]: api/zensols.calamr.html#zensols.calamr.resource.Resources
