@@ -7,6 +7,7 @@ from dataclasses import dataclass, field
 import logging
 import traceback
 from pathlib import Path
+from zensols.util import APIError
 from zensols.persist import Stash
 from zensols.amr import AmrFeatureDocument
 from zensols.amr.serial import AmrSerializedFactory
@@ -170,8 +171,8 @@ class Resources(object):
                 alignments=self._flow_results_stash,
                 _resources=self))
 
-    def adhoc(self, corpus: Sequence[Dict[str, str]], corpus_id: str = None,
-              clear: bool = False) -> Resource:
+    def adhoc(self, corpus: Sequence[Dict[str, str]] = None,
+              corpus_id: str = None, clear: bool = False) -> Resource:
         """Return a context manager for parsing and aligning adhoc documents.
         This sets the corpus documents that will be used for parsing and
         annotating.  The data will immediately be parsed into AMRs in this call
@@ -214,10 +215,14 @@ class Resources(object):
         The ``clear=True`` means to delete all cached files generated in the
         block.
 
-        :param data: the AMR summary documents, which is usually a sequence of
-                     :class:`~typing.Dict` instances (see
-                     :class:`~zensols.amr.annotate.AnnotatedAmrFeatureDocumentFactory`
-                     for data structure details)
+        Either ``corpus`` and/or ``corpus_id`` must be given.  If ``corpus`` is
+        not given but ``corpus_id`` is, it will assume there is an existing set
+        of data files to use for accessing.
+
+        :param corpus: the AMR summary documents, which is usually a sequence of
+                       :class:`~typing.Dict` instances (see
+                       :class:`~zensols.amr.annotate.AnnotatedAmrFeatureDocumentFactory`
+                       for data structure details)
 
         :param corpus_id: a unique identifier for ``data``, or ``None`` to use a
                           hashed string, which in turn, is used as the directory
@@ -228,6 +233,10 @@ class Resources(object):
                       boundaries of the context manager
 
         """
+        if corpus is None:
+            if corpus_id is None:
+                raise APIError('Either a corpus or corpus_id must be given')
+            corpus = ()
         return _adhoc_resource(
             resource=Resource(
                 documents=self._adhoc_doc_stash,
