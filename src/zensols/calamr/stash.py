@@ -86,7 +86,8 @@ class FlowGraphRestoreStash(DelegateStash, PrimeableStash):
 
     def load(self, name: str) -> FlowGraphResult:
         res: FlowGraphResult = super().load(name)
-        self.restore(res)
+        if res is not None:
+            self.restore(res)
         return res
 
     def exists(self, name: str) -> bool:
