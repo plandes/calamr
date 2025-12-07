@@ -2,7 +2,7 @@
 
 """
 __author__ = 'Paul Landes'
-from typing import Dict, Sequence, Optional, Type
+from typing import Dict, Sequence, Optional, Type, Union
 from dataclasses import dataclass, field
 import logging
 import traceback
@@ -82,23 +82,33 @@ class Resource(object):
     _resources: 'Resources' = field()
     """The object that created this instance."""
 
-    def align(self, doc_id: str, render_level: int = None,
-              output_dir: Path = None) -> FlowGraphResult:
+    def align(self, doc: Union[AmrFeatureDocument, str],
+              render_level: int = None, directory: Path = None) -> \
+            FlowGraphResult:
         """Align a document, which allows for the rendering of a document since
         it does not use the cached results from :obj:`alignments`.
+
+        :param doc: either the unique document ID or a unique document ID that
+                    indicates which document to align
+
+        :param render_level: how many graphs to render (0 - 10), higher means
+                             more
+
+        :param directory: the output directory
 
         """
         graph_factory: DocumentGraphFactory = self._resources.doc_graph_factory
         graph_aligner: DocumentGraphAligner = self._resources.doc_graph_aligner
-        doc: AmrFeatureDocument = self.documents[doc_id]
+        doc: AmrFeatureDocument = self.documents[doc] \
+            if isinstance(doc, str) else doc
         doc_graph: DocumentGraph = graph_factory(doc)
         prev_render_level: int = graph_aligner.render_level
         prev_output_dir: Path = graph_aligner.output_dir
         try:
             if render_level is not None:
                 graph_aligner.render_level = render_level
-            if output_dir is not None:
-                graph_aligner.output_dir = output_dir
+            if directory is not None:
+                graph_aligner.output_dir = directory
             return graph_aligner.align(doc_graph)
         finally:
             graph_aligner.render_level = prev_render_level
