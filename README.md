@@ -23,7 +23,8 @@ Features:
 * Rendering of the alignments.
 * Support for four AMR [corpora](#corpora).
 * High-level, how-to and API
-  [documentation](https://plandes.github.io/calamr/index.html).
+  [documentation](https://plandes.github.io/calamr/index.html) and [quick
+  start](#aligning-ad-hoc-documents) examples.
 
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
