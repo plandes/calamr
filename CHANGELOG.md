@@ -8,9 +8,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+## [1.0.1] - 2025-12-06
 ### Added
 - The reduction method from [zensols.alsum] that removes flow graph terminals
   and optionally 0-flow alignment edges.
+### Changed
+- Protect missing flow alignments with loading from stash.
 
 
 ## [1.0.0] - 2025-12-02
@@ -91,7 +94,8 @@ Major API interface change to make ad hoc document parsing and aligning easier.
 
 
 <!-- links -->
-[Unreleased]: https://github.com/plandes/calamr/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/plandes/calamr/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/plandes/calamr/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/plandes/calamr/compare/v0.4.0...v1.0.0
 [0.4.0]: https://github.com/plandes/calamr/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/plandes/calamr/compare/v0.2.0...v0.3.0
