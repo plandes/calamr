@@ -44,7 +44,7 @@ class FlowGraphResultFactoryStash(ReadOnlyStash, PrimeableStash):
                 logger.info(f"alignment result: {res}")
             return res
         except Exception as e:
-            msg: str = f"Could not align: '{name}': {e}"
+            msg: str = f"Could not align '{name}': {e}"
             logger.error(msg, e)
             return self.doc_graph_aligner.create_error_result(e, msg)
         finally:
