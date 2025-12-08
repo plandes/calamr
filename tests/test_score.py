@@ -25,7 +25,7 @@ class TestScore(TestBase):
             message=r'^pkg_resources is deprecated as an API',
             category=UserWarning)
 
-    def _test_align(self, key: str, resources: Resources, write: bool = False):
+    def _test_align(self, key: str, resources: Resources):
         should_file = Path(f'test-resources/should-align-results-{key}.txt')
         with resources.corpus() as r:
             doc: AmrFeatureDocument = r.documents[key]
@@ -38,7 +38,7 @@ class TestScore(TestBase):
             actual = '\n'.join(map(
                 lambda s: re.sub(r'^(\s+(mean|root)_flow: [0-9.]{4})[0-9.]+', r'\1', s),
                 actual.split('\n')))
-            if write:
+            if self.WRITE:
                 with open(should_file, 'w') as f:
                     f.write(actual)
             with open(should_file) as f:
@@ -54,7 +54,6 @@ class TestScore(TestBase):
             self._test_align('aurora-borealis', resource)
 
     def test_score(self):
-        WRITE: bool = False
         out_file = Path('target/score.csv')
         res_dir = Path('test-resources')
         should_file = res_dir / 'score.csv'
@@ -66,7 +65,7 @@ class TestScore(TestBase):
             f'{res_dir}/lp-gold.txt ' +
             f'--parsed {res_dir}/lp-parsed.txt --out {out_file}')
         df = pd.read_csv(out_file)
-        if WRITE:
+        if self.WRITE:
             df.to_csv(should_file)
         dfs = pd.read_csv(should_file, index_col=0)
         sigdig = 2

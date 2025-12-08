@@ -15,6 +15,8 @@ from zensols.calamr import (
 
 
 class TestBase(unittest.TestCase):
+    WRITE: bool = 0
+
     def setUp(self):
         suppress_warnings()
         self.maxDiff = sys.maxsize
