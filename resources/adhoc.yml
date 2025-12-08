@@ -12,8 +12,8 @@ calamr_adhoc_config_swapper:
     - ['calamr_flow_graph_result_persist_stash', 'path', 'path', null, 'both']
     - ['amr_anon_doc_factory_stash', 'corpus_cache_dir', 'path', null, 'both']
     - ['amr_anon_doc_factory_stash', '_corpus_doc', 'persist', null, 'both']
-    - ['amr_anon_doc_factory_stash', '_corpus_df', 'persist', null, 'both']
-    - ['calamr_adhoc_anon_doc_part_factory_stash', 'corpus', 'value', null, 'attr']
+    - ['amr_anon_doc_factory_stash', '_corpus_df', 'persist_path', null, 'attr']
+    - ['calamr_adhoc_anon_doc_part_factory_stash', 'corpus', 'value', null, 'both']
     - ['calamr_adhoc_anon_doc_part_back_stash', 'path', 'path', null, 'both']
     - ['calamr_flow_graph_result_factory_stash', 'anon_doc_stash', 'instance', 'calamr_adhoc_anon_feature_doc_stash', 'both']
     - ['calamr_adhoc_anon_feature_doc_stash', '_cache_dir', 'identity', null, 'config']
@@ -38,7 +38,9 @@ calamr_adhoc_anon_feature_doc_stash:
   doc_part_stash: 'instance: calamr_adhoc_anon_doc_part_stash'
   hasher: "object: zensols.util.Hasher"
   swapper: 'instance: calamr_adhoc_config_swapper'
+  amr_anon_doc_stash: 'instance: amr_anon_doc_factory_stash'
   root_dir: 'path: ${calamr_default:data_dir}/adhoc'
   swap_keys:
     corpus: ['calamr_adhoc_anon_doc_part_factory_stash', 'corpus']
     doc: ['amr_anon_doc_factory_stash', '_corpus_doc']
+    doc_df: ['amr_anon_doc_factory_stash', '_corpus_df']

@@ -210,7 +210,13 @@ class _ProtoApplication(_AlignmentBaseApplication):
             with open('corpus/micro/source.json') as f:
                 ex = json.load(f)
         with self.resources.adhoc(ex) as r:
+            stash = r.documents
+            print(tuple(stash.keys()))
+            for k, v in stash.items():
+                print(k, v)
+        with self.resources.adhoc(ex) as r:
             stash = r.alignments
+            print(tuple(stash.keys()))
             for k, v in stash.items():
                 print(k, v)
 
@@ -224,7 +230,7 @@ class _ProtoApplication(_AlignmentBaseApplication):
                 child_names=res.doc_graph.children.keys(),
                 include_nascent=True))
 
-    def proto(self, run: int = 8):
+    def proto(self, run: int = 7):
         """Prototype test."""
         return {
             1: self._write_default_doc,

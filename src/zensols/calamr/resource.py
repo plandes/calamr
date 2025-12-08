@@ -40,9 +40,11 @@ class _adhoc_resource(object):
         self._clear = clear
         self._corpus = corpus
         self._corpus_id = corpus_id
+        logger.info('setting corpus')
         self._doc_stash.set_corpus(self._corpus, self._corpus_id)
 
     def __enter__(self) -> Stash:
+        logger.info('priming corpus')
         self._doc_stash.prime()
         return self._resource
 
@@ -50,11 +52,13 @@ class _adhoc_resource(object):
                  trace: traceback):
         try:
             if self._clear:
+                logger.info('clearing corpus')
                 self._doc_stash.clear()
         except Exception as e:
             logger.error(f'Could not clear stash in {self.__class__}: {e}',
                          exc_info=True)
         try:
+            logger.info('restoring corpus')
             self._doc_stash.restore()
         except Exception as e:
             logger.error(f'Could not restore state in {self.__class__}: {e}',

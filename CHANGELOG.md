@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+### Changed
+- Fix read/write race condition on child process with AMR corpus dataframe.
+
+
 ## [1.0.1] - 2025-12-06
 ### Added
 - The reduction method from [zensols.alsum] that removes flow graph terminals

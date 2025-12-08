@@ -91,13 +91,21 @@ class ConfigSwapper(Dictable):
                     new = PersistedWork(attr, prev.owner)
                 else:
                     new = PersistedWork(attr, prev.owner, initial_value=repl)
+            elif swap_type == 'persist_path':
+                prev_path: Path = prev.path
+                if repl is None:
+                    new_path: Path = self.root_dir / prev_path.name
+                else:
+                    new_path: Path = repl
+                new = PersistedWork(new_path, prev.owner)
+                new_conf = ser.format_option(new_path)
             elif swap_type == 'instance':
                 new = self.config_factory(repl)
                 new_conf = f'instance: {repl}'
             else:
                 raise APIError(f'Unknown swap type: {swap_type}')
             if new_conf is not None and \
-               to_set in {'both', 'config'} and\
+               to_set in {'both', 'config'} and \
                config.has_option(attr, sec):
                 # some values are set on object instances that have no
                 # configuration, such as those with default values
@@ -105,7 +113,7 @@ class ConfigSwapper(Dictable):
             self._prev[key] = (prev, new, prev_conf)
             if to_set in {'both', 'attr'}:
                 setattr(inst, attr, new)
-            if new_conf is not None:
+            if new_conf is not None and to_set in {'both', 'config'}:
                 if logger.isEnabledFor(logging.DEBUG):
                     logger.debug(f'set config: {sec}:{attr} -> {new_conf}')
                 config.set_option(attr, new_conf, sec)
@@ -113,7 +121,6 @@ class ConfigSwapper(Dictable):
     def restore(self):
         """Restore all data replaced by :meth:`swap`."""
         config: Configurable = self.config_factory.config
-        #ser: Serializer = self.config_factory.config.serializer
         if logger.isEnabledFor(logging.DEBUG):
             logger.debug(f'swap out: {self.root_dir}')
         sec: str
@@ -192,7 +199,7 @@ class AdhocAnnotatedAmrDocumentStash(PrimeableStash, DelegateStash):
     """Used to create unique file cache root directories."""
 
     doc_part_stash: Stash = field()
-    """Leverages :class:`.AdhocAmrDocumentPartStash` (in some object graph) go
+    """Leverages :class:`.AdhocAmrDocumentPartStash` (in some object graph) to
     create :class:`~zensols.amr.doc.AmrDocument` instances.  These, in turn, are
     used to create one document from all the sentences.
 
@@ -208,6 +215,8 @@ class AdhocAnnotatedAmrDocumentStash(PrimeableStash, DelegateStash):
     swapper: ConfigSwapper = field()
     """Used to swap in the adhoc paths and document and then back out."""
 
+    amr_anon_doc_stash: PrimeableStash = field()
+
     _cache_dir: Path = field(default=None)
     """Set by :meth:`.get_cache_dir` and left as an initializer so it can be
     set by the config factory in child process workers (see ``adhoc.yml``).
@@ -220,7 +229,6 @@ class AdhocAnnotatedAmrDocumentStash(PrimeableStash, DelegateStash):
         self._reset()
 
     def _reset(self):
-        #self._cache_dir: Path = None
         self._corpus: Sequence[Dict[str, str]] = None
         self._created_docs: bool = False
 
@@ -280,32 +288,47 @@ class AdhocAnnotatedAmrDocumentStash(PrimeableStash, DelegateStash):
             pid: int = os.getpid()
             raise APIError(f'Must first call set_corpus before access in {pid}')
         amr_doc_file: Path = self._cache_dir / 'amr-docs.dat'
+        amr_df_file: Path = self._cache_dir / 'amr-df.dat'
         need_create: bool = not amr_doc_file.exists()
         id_field: str = self.ID_FIELD
         corpus: Dict[str, Dict[str, str]] = None
-        doc: AmrDocument
-        if self._corpus is not None:
+        need_swap: bool = (self._corpus is not None)
+        if need_swap:
+            # self._corpus is not set in the child
             corpus = dict(map(lambda d: (d[id_field], d), self._corpus))
-            self.swapper.swap({self.swap_keys['corpus']: corpus})
+            if logger.isEnabledFor(logging.DEBUG):
+                logger.debug(f'swapping with corpus len {len(corpus)}')
+            self.swapper.swap({
+                self.swap_keys['corpus']: corpus,
+                self.swap_keys['doc_df']: amr_df_file,
+            })
+        else:
+            logger.debug('not swapping')
+            if 0:
+                import os
+                pid = os.getpid()
+                with open(f'/d/tmp-{pid}.yml', 'w') as f:
+                    self.swapper.config_factory.config.asyaml(writer=f)
         if logger.isEnabledFor(logging.DEBUG):
             logger.debug(f'need create: {amr_doc_file} -> {need_create}')
+        doc: AmrDocument
         if need_create:
+            assert corpus is not None
             doc = self._get_doc(corpus)
             amr_doc_file.parent.mkdir(parents=True, exist_ok=True)
             with open(amr_doc_file, 'wb') as f:
                 pickle.dump(doc, f)
             if logger.isEnabledFor(logging.INFO):
                 logger.info(f'wrote adhoc parsed amrs: {amr_doc_file}')
+            self.amr_anon_doc_stash._corpus_doc.set(doc)
+            self.amr_anon_doc_stash.prime()
         else:
             with open(amr_doc_file, 'rb') as f:
                 doc = pickle.load(f)
             if logger.isEnabledFor(logging.INFO):
                 logger.info(f'restored adhoc parsed amrs: {amr_doc_file}')
-        doc_key: Tuple[str, str] = self.swap_keys['doc']
-        pw_inst: Any = self.swapper.config_factory(doc_key[0])
-        #pw_current_corp_doc: PersistedWork = self.swapper[doc_key][1]
-        pw_current_corp_doc: PersistedWork = getattr(pw_inst, doc_key[1])
-        pw_current_corp_doc.set(doc)
+        self.amr_anon_doc_stash._corpus_doc.set(doc)
+        self.amr_anon_doc_stash._corpus_df.path = amr_df_file
         self._created_docs = True
 
     def prime(self):

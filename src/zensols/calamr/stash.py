@@ -5,12 +5,8 @@ __author__ = 'Paul Landes'
 
 from typing import Iterable
 from dataclasses import dataclass, field
-import sys
 import logging
-import itertools as it
-from zensols.persist import (
-    persisted, Stash, ReadOnlyStash, PrimeableStash, DelegateStash
-)
+from zensols.persist import Stash, ReadOnlyStash, PrimeableStash, DelegateStash
 from zensols.amr import AmrFeatureDocument
 from . import (
     DocumentGraph, DocumentGraphFactory, DocumentGraphAligner, FlowGraphResult
@@ -35,9 +31,6 @@ class FlowGraphResultFactoryStash(ReadOnlyStash, PrimeableStash):
     doc_graph_factory: DocumentGraphFactory = field()
     """Create document graphs."""
 
-    limit: int = field(default=sys.maxsize)
-    """The limit of the number of items to create."""
-
     def load(self, name: str) -> FlowGraphResult:
         if logger.isEnabledFor(logging.INFO):
             logger.info(f"creating alignment: '{name}'")
@@ -57,9 +50,8 @@ class FlowGraphResultFactoryStash(ReadOnlyStash, PrimeableStash):
         finally:
             self.doc_graph_aligner.render_level = prev_render_level
 
-    @persisted('_keys')
     def keys(self) -> Iterable[str]:
-        return set(it.islice(self.anon_doc_stash.keys(), self.limit))
+        return self.anon_doc_stash.keys()
 
     def exists(self, name: str) -> bool:
         return name in self.keys()
@@ -85,6 +77,7 @@ class FlowGraphRestoreStash(DelegateStash, PrimeableStash):
         res._set_context(self.flow_graph_result_context)
 
     def load(self, name: str) -> FlowGraphResult:
+        self.prime()
         res: FlowGraphResult = super().load(name)
         if res is not None:
             self.restore(res)
