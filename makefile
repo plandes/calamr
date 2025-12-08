@@ -42,7 +42,7 @@ configapp:
 $(MICRO_CORP_FILE):
 			@mkdir -p corpus/amr-rel
 			$(eval outfile := download/micro.txt.bz2)
-			@$(MAKE) pyharn ARG="mkadhoc"
+			@$(MAKE) pyharn ARG="mkadhoc --override=calamr_corpus.name=micro"
 			@mkdir -p download
 			@( cat corpus/micro/amr.txt | bzip2 > $(MICRO_CORP_FILE) )
 			@$(call loginfo,created $(MICRO_CORP_FILE))
