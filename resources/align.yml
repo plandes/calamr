@@ -224,7 +224,7 @@ calamr_flow_graph_result_factory_stash:
 # backing stash
 calamr_flow_graph_result_persist_stash:
   class_name: zensols.persist.DirectoryStash
-  path: 'path: ${calamr_default:data_dir}/aligns'
+  path: 'path: ${calamr_default:data_dir}/${calamr_corpus:name}/aligns'
 
 # multiprocessing stash to process the entire corpus
 calamr_flow_graph_result_preemptive_stash:
