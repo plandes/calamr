@@ -68,7 +68,7 @@ class _AlignmentBaseApplication(object):
         res: FlowGraphResult = self.resources.doc_graph_aligner.align(doc_graph)
         if res is None:
             raise ApplicationError(f"No such key: '{key}', use keys action")
-        if res.is_error:
+        if res.is_failure:
             res.failure.rethrow()
         return res, doc
 
@@ -239,7 +239,7 @@ class AlignmentApplication(_AlignmentBaseApplication):
                     output_dir, doc_id, output_format)
             res: FlowGraphResult = self._align_doc(
                 doc_id, output_dir, output_format, use_stdout, doc)
-            if res.is_error:
+            if res.is_failure:
                 res.failure.rethrow()
             with stdout(output_file, 'w') as fout:
                 self._output_align(output_format, doc, fout, res)
@@ -260,7 +260,7 @@ class AlignmentApplication(_AlignmentBaseApplication):
             dfs: List[pd.DataFrame] = []
             res: FlowGraphResult
             for key, res in zip(success_keys, results):
-                if res.is_error:
+                if res.is_failure:
                     res.write()
                     continue
                 df: pd.DataFrame = res.stats_df

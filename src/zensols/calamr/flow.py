@@ -12,6 +12,7 @@ import sys
 import logging
 from frozendict import frozendict
 import collections
+import re
 import textwrap as tw
 import json
 from io import TextIOBase
@@ -569,7 +570,7 @@ class FlowGraphResult(PersistableContainer, Dictable):
 
     def _set_context(self, context: _FlowGraphResultContext):
         self._context = context
-        if context is not None and not self.is_error:
+        if context is not None and not self.is_failure:
             doc_graph: DocumentGraph = self._data
             doc_graph.graph_attrib_context = context.graph_attrib_context
 
@@ -582,7 +583,7 @@ class FlowGraphResult(PersistableContainer, Dictable):
             return self._data
 
     @property
-    def is_error(self) -> bool:
+    def is_failure(self) -> bool:
         """Whether the graph resulted in an error."""
         return self.failure is not None
 
@@ -592,10 +593,10 @@ class FlowGraphResult(PersistableContainer, Dictable):
 
         :throws ComponentAlignmentError: if this instanced resulted in an error
 
-        :see: :obj:`is_error`
+        :see: :obj:`is_failure`
 
         """
-        if self.is_error:
+        if self.is_failure:
             self._data.rethrow()
         return self._data
 
@@ -606,7 +607,7 @@ class FlowGraphResult(PersistableContainer, Dictable):
 
         :throws ComponentAlignmentError: if this instanced resulted in an error
 
-        :see: :obj:`is_error`
+        :see: :obj:`is_failure`
 
         """
         def map_comp_name(path: Tuple[str, str]) -> FlowDocumentGraphComponent:
@@ -622,7 +623,7 @@ class FlowGraphResult(PersistableContainer, Dictable):
 
         :throws ComponentAlignmentError: if this instanced resulted in an error
 
-        :see: :obj:`is_error`
+        :see: :obj:`is_failure`
 
         """
         return frozendict({c.name: c for c in self._components})
@@ -636,7 +637,7 @@ class FlowGraphResult(PersistableContainer, Dictable):
 
         :throws ComponentAlignmentError: if this instanced resulted in an error
 
-        :see: :obj:`is_error`
+        :see: :obj:`is_failure`
 
         """
         dfs: List[pd.DataFrame] = []
@@ -653,7 +654,7 @@ class FlowGraphResult(PersistableContainer, Dictable):
 
         :throws ComponentAlignmentError: if this instanced resulted in an error
 
-        :see: :obj:`is_error`
+        :see: :obj:`is_failure`
 
         """
         dfds: List[DataFrameDescriber] = []
@@ -674,7 +675,7 @@ class FlowGraphResult(PersistableContainer, Dictable):
 
         :throws ComponentAlignmentError: if this instanced resulted in an error
 
-        :see: :obj:`is_error`
+        :see: :obj:`is_failure`
 
         """
         cstats: Dict[str, Dict[str, Any]] = collections.OrderedDict()
@@ -856,14 +857,14 @@ class FlowGraphResult(PersistableContainer, Dictable):
                 rg(ctx)
 
     def _from_dictable(self, *args, **kwargs) -> Dict[str, Any]:
-        if self.is_error:
+        if self.is_failure:
             return {'error': self.failure.asdict()}
         else:
             return super()._from_dictable(*args, **kwargs)
 
     def write(self, depth: int = 0, writer: TextIOBase = sys.stdout,
               include_doc: bool = True):
-        if self.is_error:
+        if self.is_failure:
             super().write(depth, writer)
         else:
             if include_doc:
@@ -871,13 +872,23 @@ class FlowGraphResult(PersistableContainer, Dictable):
             self._write_line('statistics:', depth, writer)
             self._write_object(self.stats, depth + 1, writer)
 
-    def __str__(self) -> str:
-        if self.is_error:
-            return str(self.failure)
+    def _format_result(self, keyval: bool) -> str:
+        if self.is_failure:
+            mid: str = '=' if keyval else ': '
+            return 'failure' + mid + re.sub(r'\n\s*', r'\\n', str(self.failure))
         else:
             hmean: float = self.stats['agg']['aligned_portion_hmean']
             doc: AmrFeatureDocument = self.doc_graph.doc
-            return f'{doc}: {hmean}'
+            if keyval:
+                return f'doc={doc}, align_portion_hmean={hmean}'
+            else:
+                return f'{doc}: {hmean}'
+
+    def __str__(self) -> str:
+        return self._format_result(False)
+
+    def __repr__(self) -> str:
+        return f'{self.__class__.__name__}({self._format_result(True)})'
 
     def deallocate(self):
         self._try_deallocate(self._data)
