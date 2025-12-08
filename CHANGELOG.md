@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Fix read/write race condition on child process with AMR corpus dataframe.
+- Fail document if at least one sentence failed to parse while aligning.
+- Rename `FlowGraphResults.is_error` to `~.is_failure`.
 
 
 ## [1.0.1] - 2025-12-06

@@ -9,7 +9,7 @@ PY_DOC_POST_BUILD_DEPS += cpgraphs
 PY_TEST_PRE_TARGETS +=	$(MICRO_CORP_FILE)
 PY_TEST_ALL_TARGETS +=	aligncorp alignadhoc graphexampleshtml graphexampleseps
 ADD_CLEAN +=		$(EXAMPLE_DIR)
-ADD_CLEAN_ALL +=	data download corpus/micro/amr.txt \
+ADD_CLEAN_ALL +=	data download corpus/micro/amr.txt corpus/amr-rel \
 				example/data example/multicorp/data \
 				example/multicorp/corpus/*.txt \
 				~/.cache/calamr ~/.calamrrc

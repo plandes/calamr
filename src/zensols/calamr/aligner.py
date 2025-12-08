@@ -16,7 +16,7 @@ from itertools import chain
 from zensols.util import time
 from zensols.config import ConfigFactory, Dictable
 from zensols.datdesc.hyperparam import HyperparamModel
-from zensols.amr import AmrFeatureDocument
+from zensols.amr import AmrFeatureDocument, AmrSentence
 from .render.base import GraphRenderer, RenderContext, rendergroup
 from . import (
     ComponentAlignmentError, ComponentAlignmentFailure,
@@ -113,6 +113,20 @@ class DocumentGraphAligner(ABC):
         """
         def _align(doc_graph: DocumentGraph, render) -> FlowGraphResult:
             try:
+                if len(doc_graph.doc) == 0:
+                    raise ComponentAlignmentError(
+                        'Empty document: nothing to align')
+                if doc_graph.doc.failure_count > 0:
+                    fail_sent: AmrSentence = None
+                    sent: AmrSentence
+                    for sent in doc_graph.doc.amr.sents:
+                        if sent.is_failure:
+                            fail_sent = sent
+                            break
+                    assert fail_sent is not None
+                    return self.create_error_result(
+                        ex=fail_sent.failure.exception,
+                        msg=f'AMR parse error: {fail_sent.failure_reason}')
                 return self._align(doc_graph, render)
             except Exception as e:
                 return self.create_error_result(e)
