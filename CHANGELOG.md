@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+## [1.1.0] - 2025-12-08
 ### Changed
 - Fix read/write race condition on child process with AMR corpus dataframe.
 - Fail document if at least one sentence failed to parse while aligning.
@@ -100,7 +101,8 @@ Major API interface change to make ad hoc document parsing and aligning easier.
 
 
 <!-- links -->
-[Unreleased]: https://github.com/plandes/calamr/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/plandes/calamr/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/plandes/calamr/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/plandes/calamr/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/plandes/calamr/compare/v0.4.0...v1.0.0
 [0.4.0]: https://github.com/plandes/calamr/compare/v0.3.0...v0.4.0
