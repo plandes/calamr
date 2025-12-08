@@ -29,19 +29,19 @@ class _ProtoApplication(_AlignmentBaseApplication):
     def _get_doc(self):
         # proxy corpus
         k = '20080705_0216'
-        if k not in self.resource.anon_doc_stash:
+        if k not in self.resources._anon_doc_stash:
             # adhoc
             k = 'liu-example'  # original 2014 Lui et al example
-        if k not in self.resource.anon_doc_stash:
+        if k not in self.resources._anon_doc_stash:
             # little prince
             k = '1943'
-        if k not in self.resource.anon_doc_stash:
+        if k not in self.resources._anon_doc_stash:
             # bio
             k = '1563_0473'
-        if k not in self.resource.anon_doc_stash:
+        if k not in self.resources._anon_doc_stash:
             keys = tuple(self.resource.anon_doc_stash.keys())
             raise ValueError(f'no key: {k} in {keys}')
-        return self.resource.anon_doc_stash[k]
+        return self.resources._anon_doc_stash[k]
 
     def _write_default_doc(self):
         doc = self._get_doc()
@@ -194,7 +194,13 @@ class _ProtoApplication(_AlignmentBaseApplication):
             from zensols.rend import ApplicationFactory
             ApplicationFactory.render(res.df)
 
-    def _create_adhoc(self):
+    def _create_res_corpus(self):
+        with self.resources.corpus() as r:
+            stash = r.alignments
+            for k, v in stash.items():
+                print(k, v)
+
+    def _create_res_adhoc(self):
         ex = [{
 	    "id": "newid",
 	    "body": "The rulings bolster criticisms of how hastily the prosecutions were brought. The rulings were rushed.",
@@ -210,13 +216,7 @@ class _ProtoApplication(_AlignmentBaseApplication):
             with open('corpus/micro/source.json') as f:
                 ex = json.load(f)
         with self.resources.adhoc(ex) as r:
-            stash = r.documents
-            print(tuple(stash.keys()))
-            for k, v in stash.items():
-                print(k, v)
-        with self.resources.adhoc(ex) as r:
             stash = r.alignments
-            print(tuple(stash.keys()))
             for k, v in stash.items():
                 print(k, v)
 
@@ -239,6 +239,7 @@ class _ProtoApplication(_AlignmentBaseApplication):
             4: lambda: self._align(render_level=5),
             5: lambda: self.align('20080717_0594', Path('-'), Format.txt),
             6: self._iterate_align_tokens,
-            7: self._create_adhoc,
-            8: self._render_reduced,
+            7: self._create_res_corpus,
+            8: self._create_res_adhoc,
+            9: self._render_reduced,
         }[run]()
