@@ -1,10 +1,5 @@
-from zensols import deepnlp
 from zensols.calamr import DocumentGraph
 from util import TestBase
-
-
-# initialize the NLP system
-deepnlp.init()
 
 
 class TestIdReset(TestBase):

@@ -2,16 +2,11 @@ from typing import Dict, Set, Any
 import pickle
 from io import BytesIO
 import pandas as pd
-from zensols import deepnlp
 from zensols.calamr import (
     GraphAttribute, GraphComponent, GraphNode, GraphEdge,
     DocumentGraph, FlowGraphResult, DocumentGraphAligner,
 )
 from util import TestBase
-
-
-# initialize the NLP system
-deepnlp.init()
 
 
 class TestAnnotatedAmr(TestBase):
