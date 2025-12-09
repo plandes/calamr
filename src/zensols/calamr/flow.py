@@ -437,7 +437,7 @@ class _GraphReducer(object):
             doc_graph.es.values()))
         if logger.isEnabledFor(logging.DEBUG):
             logger.debug(f'deleting {len(edges)} edges')
-        doc_graph.delete_edges(edges)
+        doc_graph.delete_edges(edges, include_nodes=True)
 
     def _prune_graph(self, doc_graph: DocumentGraph, component_name: str):
         """Remove all 0-flow links, except for document edges in the source
