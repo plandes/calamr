@@ -1,8 +1,8 @@
 # CALAMR: Component ALignment for Abstract Meaning Representation
 
 [![PyPI][pypi-badge]][pypi-link]
-[![Python 3.11][python311-badge]][python311-link]
 [![Python 3.12][python312-badge]][python312-link]
+[![Python 3.11][python311-badge]][python311-link]
 [![Build Status][build-badge]][build-link]
 
 This repository contains code for the paper [CALAMR: Component ALignment for
@@ -528,10 +528,10 @@ Copyright (c) 2023 - 2025 Paul Landes
 [pypi]: https://pypi.org/project/zensols.calamr/
 [pypi-link]: https://pypi.python.org/pypi/zensols.calamr
 [pypi-badge]: https://img.shields.io/pypi/v/zensols.calamr.svg
-[python311-badge]: https://img.shields.io/badge/python-3.11-blue.svg
-[python311-link]: https://www.python.org/downloads/release/python-3110
 [python312-badge]: https://img.shields.io/badge/python-3.12-blue.svg
 [python312-link]: https://www.python.org/downloads/release/python-3120
+[python311-badge]: https://img.shields.io/badge/python-3.11-blue.svg
+[python311-link]: https://www.python.org/downloads/release/python-3110
 [build-badge]: https://github.com/plandes/calamr/workflows/CI/badge.svg
 [build-link]: https://github.com/plandes/calamr/actions
 
