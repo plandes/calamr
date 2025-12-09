@@ -324,10 +324,10 @@ statistics:
 To display all steps of the alignment process, use the following:
 ```python
 with resources.adhoc(corpus) as r:
-	# render graphically with render level 5 (higher the more steps are rendered)
-	r.align('first', render_level=5)
-	# do not render graphically, instead write as files
-	r.align('first', render_level=0, directory=Path('~/Desktop/amr-graphs')
+    # render graphically with render level 5 (higher the more steps are rendered)
+    r.align('first', render_level=5)
+    # do not render graphically, instead write as files
+    r.align('first', render_level=0, directory=Path('~/Desktop/amr-graphs'))
 ```
 
 
