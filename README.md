@@ -294,7 +294,7 @@ with resources.adhoc(corpus) as r:
     # delete flow graph terminals and prunes 0-flow alignment edges, then render it,
     # add the graph as a flow child, then render all graphs in directory `example`
     reduced_graph: FlowGraphResult = flow.reduce()
-    rlow.doc_graph.children['reduced'] = graph
+    flow.doc_graph.children['reduced'] = graph
     flow.render(
         contexts=flow.get_render_contexts(
             child_names=flow.doc_graph.children.keys(),
