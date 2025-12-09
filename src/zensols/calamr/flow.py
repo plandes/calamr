@@ -769,7 +769,19 @@ class FlowGraphResult(PersistableContainer, Dictable):
 
     def reduce(self, child_name: str = None, component_name: str = None,
                prune: bool = True) -> DocumentGraph:
-        """Deletes flow graph terminals and optionally prunes.
+        """Deletes flow graph terminals and optionally prunes.  To computed the
+        reduced graph and add it back to this flow and render it, use:
+
+        .. code-block:: python
+
+           from zensols.calamr import FlowGraphResult, Resources, ApplicationFactory
+
+           resources: Resources = ApplicationFactory.get_resources()
+
+           with resources.corpus() as r:
+               flow: FlowGraphResult = r.alignments['some_key']
+               flow.doc_graph.children['reduced'] = flow.reduce()
+               flow.render(flow.get_render_contexts(['reduced']))
 
         :param child_name: target graph name to reduce, which defaults the
                            nascent graph and the final bipartite graph rendered
