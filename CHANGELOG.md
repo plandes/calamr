@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+### Changed
+- Fix bug with graph reducer not deleting flow graph terminal nodes.
+
+
 ## [1.1.0] - 2025-12-08
 ### Changed
 - Fix read/write race condition on child process with AMR corpus dataframe.
