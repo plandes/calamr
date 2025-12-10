@@ -8,6 +8,7 @@ from dataclasses import dataclass, field
 from io import StringIO
 from colorsys import hls_to_rgb
 import textwrap as tw
+from igraph import Edge, Vertex
 from zensols.nlp import FeatureToken
 from zensols.amr import Relation, AmrFeatureSentence
 from .. import (
@@ -47,7 +48,7 @@ class Formatter(object):
         s = delim.join(tw.wrap(s, width=self.width))
         return s
 
-    def node(self, vertex: int, gn: GraphNode, delim: str) -> str:
+    def node(self, vertex: Vertex, gn: GraphNode, delim: str) -> str:
         title: str = ''
         if isinstance(gn, DocumentGraphNode):
             title = self._wrap(gn.doc_node.description, delim)
@@ -65,8 +66,8 @@ class Formatter(object):
             sent: AmrFeatureSentence = gn.sent
             title = self._wrap(sent.norm, delim)
         vstr: str = f"""\
-vertex: {gn.id}{delim}\
-ig vertex: {vertex}{delim}\
+id: {gn.id}{delim}\
+ig: {vertex.index}{delim}\
 type: {gn.attrib_type}"""
         if len(title) == 0:
             desc: str = self._wrap(gn.description, delim)
@@ -77,10 +78,10 @@ type: {gn.attrib_type}"""
             title = vstr
         return title
 
-    def edge(self, edge: int, ge: GraphEdge, delim: str) -> str:
+    def edge(self, edge: Edge, ge: GraphEdge, delim: str) -> str:
         title: str = f"""\
-edge: {ge.id}{delim}\
-ig edge: {edge}{delim}\
+id: {ge.id}{delim}\
+ig: {edge.index}: {edge.source} -> {edge.target}{delim}\
 desc: {ge.description}{delim}\
 capacity: {ge.capacity_str()}{delim}\
 flow: {ge.flow_str()}"""
@@ -99,7 +100,7 @@ flow: {ge.flow_str()}"""
                     writer=sio,
                     include_type=False,
                     include_none=False,
-                    feature_ids='norm ent_ tag_ pos_'.split())
+                    feature_ids='idx norm ent_ tag_ pos_'.split())
             return sio.getvalue().strip().replace('=', ': ')
 
     def coref_edge(self, edge: ComponentCorefAlignmentGraphEdge) -> Tuple[str]:

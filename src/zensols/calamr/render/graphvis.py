@@ -58,7 +58,7 @@ class GraphVisGraphRenderer(GraphRenderer):
                 aparams['style'] = ','.join(
                     [aparams['style'], cparams['style']])
             cparams.update(aparams)
-            title: str = self._formatter.node(v.index, gn, '\n')
+            title: str = self._formatter.node(v, gn, '\n')
             cparams['tooltip'] = title
             if logger.isEnabledFor(logging.DEBUG):
                 logger.debug(f'creating vertex: {gn.label}, type: {at}, ' +
@@ -122,7 +122,7 @@ class GraphVisGraphRenderer(GraphRenderer):
                         (flow_color_buckets - (flow_color_ends * 2))) - \
                     flow_color_ends - 1
                 params['color'] = flow_colors[flow_bucket]
-            title = self._formatter.edge(e.index, ge, '\n')
+            title = self._formatter.edge(e, ge, '\n')
             params['tooltip'] = title
             for k, v in params.items():
                 params[k] = str(v)

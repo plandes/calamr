@@ -108,7 +108,7 @@ class _EdgeSet(object):
         mids: np.ndarray = (c[:, 0, :] + c[:, 1, :]) / 2
         rows: List[Tuple] = []
         for (e, ge), (x, y, z) in zip(self.edges, mids):
-            desc = self.formatter.edge(e.index, ge, '<br>')
+            desc = self.formatter.edge(e, ge, '<br>')
             rows.append((e.index, str(ge), desc, x, y, z))
         df = pd.DataFrame(rows, columns='id label desc x y z'.split())
         return go.Scatter3d(
@@ -298,14 +298,14 @@ class PlotlyGraphRenderer(GraphRenderer):
         # flip along x-axis since the tree is drawn upside down; if not, the
         # sentences are rendered in the reverse order
         layt.mirror(dim=1 if edges_reversed else 0)
-        n_nodes: int = graph.vcount()
         add_id: bool = nstyle['label']['add_id']
         rows: List[Tuple[Any, ...]] = []
-        i: int
-        for i in range(n_nodes):
-            gn: GraphNode = comp.node_by_id(i)
+        v: Vertex
+        gn: GraphNode
+        for v, gn in comp.vs.items():
+            i: int = v.index
             lb: str = f'{gn.label}[{i}]' if add_id else gn.label
-            title: str = self._formatter.node(i, gn, '<br>')
+            title: str = self._formatter.node(v, gn, '<br>')
             rows.append((*layt[i], z, lb, title))
         df = pd.DataFrame(data=rows, columns='x y z label title'.split())
         node_trace = go.Scatter3d(

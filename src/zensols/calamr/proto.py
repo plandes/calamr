@@ -202,23 +202,26 @@ class _ProtoApplication(_AlignmentBaseApplication):
 
     def _create_res_adhoc(self):
         ex = [{
-	    "id": "newid",
+	    "id": "ruling",
 	    "body": "The rulings bolster criticisms of how hastily the prosecutions were brought. The rulings were rushed.",
 	    "summary": "The rulings suggest the prosecutions were rushed."
         }, {
-            "id": "ex1",
+            "id": "short",
             "comment": "very short",
             "body": "The man ran to make the train. He just missed it.",
             "summary": "A man got caught in the door of a train he just missed."
+        }, {
+	    "id": "obama",
+	    "body": "Barack Obama is an American politician who served as the 44th president of the United States from 2009 to 2017. A member of the Democratic Party, he was the first African-American president of the United States.",
+	    "summary": "Barack Obama, the first Black U.S. president, served from 2009 to 2017."
         }]
         if 0:
             import json
             with open('corpus/micro/source.json') as f:
                 ex = json.load(f)
         with self.resources.adhoc(ex) as r:
-            stash = r.alignments
-            for k, v in stash.items():
-                print(k, v)
+            doc: AmrFeatureDocument = r.documents['obama']
+            r.align(doc).write()
 
     def _render_reduced(self):
         with self.resources.corpus() as r:
@@ -230,7 +233,7 @@ class _ProtoApplication(_AlignmentBaseApplication):
                 child_names=res.doc_graph.children.keys(),
                 include_nascent=True))
 
-    def proto(self, run: int = 7):
+    def proto(self, run: int = 8):
         """Prototype test."""
         return {
             1: self._write_default_doc,

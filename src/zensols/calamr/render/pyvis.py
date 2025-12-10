@@ -99,7 +99,7 @@ class PyvisGraphRenderer(GraphRenderer):
                     update_style('sink')
             else:
                 raise APIError(f'Unknown doc node type: {type(gn)}')
-            params['title'] = self._formatter.node(v.index, gn, '\n')
+            params['title'] = self._formatter.node(v, gn, '\n')
             if is_comp and v.index == root.index:
                 update_style('root')
             net.add_node(nid, **params)
@@ -137,7 +137,7 @@ class PyvisGraphRenderer(GraphRenderer):
                 logger.debug('adding edge:', ge)
             title = f'edge: {e.index}\ndesc: {ge.description}'
             if isinstance(ge, SentenceGraphAttribute):
-                fmt: str = self._formatter.edge(e.index, ge, '\n')
+                fmt: str = self._formatter.edge(e, ge, '\n')
                 if fmt is not None:
                     title = title + '\n' + fmt
             # color AMR role edges
