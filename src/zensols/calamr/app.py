@@ -124,6 +124,13 @@ class CorpusApplication(_AlignmentBaseApplication):
     analysis reporting.
 
     """
+    def download_corpus(self):
+        """Download the currently configured corpus."""
+        from zensols.install import Installer
+        installer: Installer = self.config_factory('amr_anon_corpus_installer')
+        logging.getLogger('zensols.install').setLevel(logging.INFO)
+        installer()
+
     def write_keys(self):
         """Write the document keys of the configured corpus."""
         with self.resources.corpus() as r:

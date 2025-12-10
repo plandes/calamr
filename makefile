@@ -1,4 +1,4 @@
-## makefile automates the build and deployment for python projects
+#@meta {desc: "Python build configuration", date: "2025-12-10"}
 
 
 ## Build system
@@ -9,15 +9,15 @@ PY_DOC_POST_BUILD_DEPS += cpgraphs
 PY_TEST_PRE_TARGETS +=	$(MICRO_CORP_FILE)
 PY_TEST_ALL_TARGETS +=	aligncorp alignadhoc graphexampleshtml graphexampleseps
 ADD_CLEAN +=		$(EXAMPLE_DIR)
-ADD_CLEAN_ALL +=	data download corpus/micro/amr.txt corpus/amr-rel \
-				example/data example/multicorp/data \
-				example/multicorp/corpus/*.txt \
-				~/.cache/calamr ~/.calamrrc
-VAPORIZE_DEPS +=	vaporizedep
+ADD_CLEAN_ALL +=	data download example/data example/multicorp/data \
+				example/multicorp/corpus/*.txt
+CLEAN_ALL_DEPS +=	cleancorpus
+ADD_VAPORIZE +=		~/.cache/calamr ~/.calamrrc
 
 
 ## Project
 #
+CORPUS_DIR ?=		corpus
 EXAMPLE_DIR ?= 		align-example
 MICRO_CORP_FILE ?=	download/micro.txt.bz2
 
@@ -35,31 +35,35 @@ configapp:
 			[ ! -f ~/.calamrrc ] && cp src/config/dot-calamrrc ~/.calamrrc
 			if [ ! -d ~/.cache/calamr ] ; then \
 				mkdir -p ~/.cache/calamr ; \
-				cp -r corpus ~/.cache/calamr ; \
+				cp -r $(CORPUS_DIR) ~/.cache/calamr ; \
 			fi
 
+
+## Corpora
+#
 # recreate the micro corpus using adhoc source/summary sentences in a JSON file
 $(MICRO_CORP_FILE):
-			@mkdir -p corpus/amr-rel
+			@mkdir -p $(CORPUS_DIR)/amr-rel
 			$(eval outfile := download/micro.txt.bz2)
 			@$(MAKE) pyharn ARG="mkadhoc --override=calamr_corpus.name=adhoc"
 			@mkdir -p download
-			@( cat corpus/micro/amr.txt | bzip2 > $(MICRO_CORP_FILE) )
+			@( cat $(CORPUS_DIR)/micro/amr.txt | bzip2 > $(MICRO_CORP_FILE) )
 			@$(call loginfo,created $(MICRO_CORP_FILE))
 .PHONY:			micro
 micro:			$(MICRO_CORP_FILE)
 
 
+# prepare the AMR 3.0 proxy corpus
+.PHONY:			proxycorpus
+proxycorpus:
+#			@$(MAKE) $(PY_MAKE_ARGS) pyharn ARG="download \
+#				--override calamr_corpus.name=proxy-report"
+			@$(MAKE) $(PY_MAKE_ARGS) pyharn \
+				PY_HARNESS_BIN=./src/bin/merge-proxy-anons.py
+
+
 ## Alignment
 #
-# create adhoc corpus graphs for one example
-.PHONY:			aligncorp
-aligncorp:
-			@rm -rf $(EXAMPLE_DIR)
-			@$(MAKE) $(PY_MAKE_ARGS) pyharn \
-				ARG="align -k liu-example -o $(EXAMPLE_DIR) -f txt \
-				--override='calamr_corpus.name=adhoc,calamr_default.renderer=graphviz'"
-
 # do not invoke directly--used by the align<corpus> targets
 .PHONY:			_aligncorp
 _aligncorp:
@@ -69,6 +73,14 @@ _aligncorp:
 				'calamr_corpus.name=$(CORP_CONF),calamr_default.renderer=graphviz,calamr_default.flow_graph_result_caching=preemptive' \
 				--rendlevel $(REND_LEVEL) \
 				-o $(EXAMPLE_DIR) $(EXTRA_ARGS)"
+
+# create adhoc corpus graphs for one example
+.PHONY:			aligncorp
+aligncorp:
+			@rm -rf $(EXAMPLE_DIR)
+			@$(MAKE) $(PY_MAKE_ARGS) pyharn \
+				ARG="align -k liu-example -o $(EXAMPLE_DIR) -f txt \
+				--override='calamr_corpus.name=adhoc,calamr_default.renderer=graphviz'"
 
 # align and generate graphs for the adhoc corpus
 .PHONY:			alignadhoc
@@ -110,8 +122,8 @@ cpgraphs:
 
 ## Clean
 #
-# remove everything (careful)
-.PHONY:			vaporizedep
-vaporizedep:
-			rm -fr corpus download
+# clean corpus directory
+.PHONY:			cleancorpus
+cleancorpus:
+			rm -fr corpus
 			git checkout corpus

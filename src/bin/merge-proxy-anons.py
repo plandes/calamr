@@ -45,7 +45,7 @@ class CliProxyMerger(object):
 
     def create(self):
         harness = CliHarness(
-            src_dir_name='src/python',
+            src_dir_name='src',
             app_factory_class='zensols.calamr.ApplicationFactory')
         fac: ConfigFactory = harness.get_config_factory(
             ['--override', 'calamr_corpus.name=proxy-report'])
