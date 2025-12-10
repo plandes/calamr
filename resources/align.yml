@@ -212,7 +212,7 @@ calamr_flow_graph_result_persist_stash:
 
 # multiprocessing stash to process the entire corpus
 calamr_flow_graph_result_preemptive_stash:
-  class_name: zensols.multi.MultiProcessFactoryStash
+  class_name: zensols.calamr.multi.TorchMultiProcessFactoryStash
   factory: 'instance: calamr_flow_graph_result_factory_stash'
   delegate: 'instance: calamr_flow_graph_result_persist_stash'
   workers: ${calamr_default:preemptive_workers}
