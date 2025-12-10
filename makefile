@@ -11,8 +11,8 @@ PY_TEST_ALL_TARGETS +=	aligncorp alignadhoc graphexampleshtml graphexampleseps
 ADD_CLEAN +=		$(EXAMPLE_DIR)
 ADD_CLEAN_ALL +=	data download example/data example/multicorp/data \
 				example/multicorp/corpus/*.txt
-CLEAN_ALL_DEPS +=	cleancorpus
 ADD_VAPORIZE +=		~/.cache/calamr ~/.calamrrc
+VAPORIZE_DEPS +=	cleancorpus
 
 
 ## Project
@@ -56,8 +56,6 @@ micro:			$(MICRO_CORP_FILE)
 # prepare the AMR 3.0 proxy corpus
 .PHONY:			proxycorpus
 proxycorpus:
-#			@$(MAKE) $(PY_MAKE_ARGS) pyharn ARG="download \
-#				--override calamr_corpus.name=proxy-report"
 			@$(MAKE) $(PY_MAKE_ARGS) pyharn \
 				PY_HARNESS_BIN=./src/bin/merge-proxy-anons.py
 

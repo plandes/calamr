@@ -54,6 +54,7 @@ Features:
     - [Plotly](#plotly)
 - [Attribution](#attribution)
 - [Citation](#citation)
+- [Known Issues and Limitations](#known-issues-and-limitations)
 - [Changelog](#changelog)
 - [License](#license)
 
@@ -510,6 +511,12 @@ If you use this project in your research please use the following BibTeX entry:
     pages = "2622--2637"
 }
 ```
+
+
+## Known Issues and Limitations
+
+Processing AMRs as a corpus is currently not supported under multiprocessing
+(`calamr_default:preemptive_workers` > 1).
 
 
 ## Changelog

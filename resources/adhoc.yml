@@ -30,7 +30,7 @@ calamr_adhoc_anon_doc_part_stash:
   class_name: zensols.calamr.multi.TorchMultiProcessFactoryStash
   factory: 'instance: calamr_adhoc_anon_doc_part_factory_stash'
   delegate: 'instance: calamr_adhoc_anon_doc_part_back_stash'
-  workers: ${calamr_default:preemptive_workers}
+  workers: ${calamr_default:amr_parse_preemptive_workers}
 
 calamr_adhoc_anon_feature_doc_stash:
   class_name: zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash

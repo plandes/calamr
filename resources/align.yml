@@ -210,15 +210,22 @@ calamr_flow_graph_result_persist_stash:
   class_name: zensols.persist.DirectoryStash
   path: 'path: ${calamr_default:data_corpus_dir}/aligns'
 
+# on demand caching stash
+calamr_flow_graph_result_lazy_stash:
+  class_name: zensols.persist.FactoryStash
+  factory: 'instance: calamr_flow_graph_result_factory_stash'
+  delegate: 'instance: calamr_flow_graph_result_persist_stash'
+  enable_preemptive: false
+
 # multiprocessing stash to process the entire corpus
 calamr_flow_graph_result_preemptive_stash:
   class_name: zensols.calamr.multi.TorchMultiProcessFactoryStash
   factory: 'instance: calamr_flow_graph_result_factory_stash'
   delegate: 'instance: calamr_flow_graph_result_persist_stash'
-  workers: ${calamr_default:preemptive_workers}
+  workers: ${calamr_default:align_preemptive_workers}
 
 # the stash configured/used by the client of this package
 calamr_flow_graph_result_stash:
   class_name: zensols.calamr.stash.FlowGraphRestoreStash
-  delegate: 'instance: calamr_flow_graph_result_preemptive_stash'
+  delegate: 'instance: calamr_flow_graph_result_${calamr_default:flow_graph_result_caching}_stash'
   flow_graph_result_context: 'instance: calamr_flow_graph_result_context'
