@@ -9,22 +9,6 @@ calamr_default:
   clearables: calamr_flow_graph_result_stash, calamr_adhoc_amr_anon_feature_doc_stash, ${calamr_default:amr_anon_doc_stash}
 
 
-## Alignment hyperparameters
-#
-calamr_alignment:
-  # the minimum amount of flow to trigger setting the capacity of a target edge
-  # capacity to `capacity_min`
-  align_min_capacity_cutoff: 0.1
-  # finds low flow role edges at or lower than this value and sets (zeros out)
-  # all the capacities of all the connected edge aligmnets recursively for all
-  # descendants
-  role_min_flow_cutoff: 0.1
-  # the graph component alignment edges are removed if their capacities are at
-  # or below this value, which is set by anything lower than
-  # `min_capacity_cutoff` after the graph sequence completes on converge
-  capacity_min: 0
-
-
 ## Graph instantiation
 #
 # prototype entry used for all top level document graph instantiating
