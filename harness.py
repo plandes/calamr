@@ -2,15 +2,10 @@
 
 from zensols import deepnlp
 
-# initialize the NLP system
-deepnlp.init()
-
-if 0:
-    import zensols.deepnlp.transformer as tran
-    tran.turn_off_huggingface_downloads()
-
 
 if (__name__ == '__main__'):
+    # initialize the NLP system
+    deepnlp.init()
     from zensols.cli import ConfigurationImporterCliHarness
     harness = ConfigurationImporterCliHarness(
         src_dir_name='src',
