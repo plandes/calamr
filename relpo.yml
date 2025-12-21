@@ -45,6 +45,8 @@ project:
       - 'zensols.util~=1.15.14'
       - 'zensols.propbankdb~=0.2.1'
       - 'zensols.amr~=0.2.8'
+      # imported from propbank, but need PyTorch multiproc update
+      - 'zensols.deeplearn~=1.14.7'
       # tools
       - 'zensols.rend'
   # the program is called on the command line

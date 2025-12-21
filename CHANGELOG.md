@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+## [1.2.0] - 2025-12-20
+### Removed
+- Module `zensols.calamr.multi` is replaced by `zensols.deeplearn.multi`.
+
+
 ## [1.1.1] - 2025-12-10
 ### Added
 - Add back alignment configuration for lazy access, but keep default for
@@ -115,7 +120,8 @@ Major API interface change to make ad hoc document parsing and aligning easier.
 
 
 <!-- links -->
-[Unreleased]: https://github.com/plandes/calamr/compare/v1.1.1...HEAD
+[Unreleased]: https://github.com/plandes/calamr/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/plandes/calamr/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/plandes/calamr/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/plandes/calamr/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/plandes/calamr/compare/v1.0.0...v1.0.1
