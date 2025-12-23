@@ -216,7 +216,10 @@ class AdhocAnnotatedAmrDocumentStash(PrimeableStash, DelegateStash):
     """Used to swap in the adhoc paths and document and then back out."""
 
     amr_anon_doc_stash: PrimeableStash = field()
+    """An :class:`~zensols.amr.annotate.AnnotatedAmrDocumentStash`" that is used
+    to swap the annotated documents.
 
+    """
     _cache_dir: Path = field(default=None)
     """Set by :meth:`.get_cache_dir` and left as an initializer so it can be
     set by the config factory in child process workers (see ``adhoc.yml``).
@@ -304,11 +307,6 @@ class AdhocAnnotatedAmrDocumentStash(PrimeableStash, DelegateStash):
             })
         else:
             logger.debug('not swapping')
-            if 0:
-                import os
-                pid = os.getpid()
-                with open(f'/d/tmp-{pid}.yml', 'w') as f:
-                    self.swapper.config_factory.config.asyaml(writer=f)
         if logger.isEnabledFor(logging.DEBUG):
             logger.debug(f'need create: {amr_doc_file} -> {need_create}')
         doc: AmrDocument
