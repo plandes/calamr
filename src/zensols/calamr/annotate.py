@@ -7,7 +7,7 @@ from dataclasses import dataclass, field
 import logging
 from zensols.util import time
 from zensols.persist import DelegateStash, PrimeableStash
-from zensols.amr import AmrSentence, AmrFeatureDocument
+from zensols.amr import AmrFailure, AmrSentence, AmrFeatureDocument
 from zensols.amr.annotate import (
     AnnotatedAmrFeatureDocumentFactory,
     AnnotatedAmrDocument, AnnotatedAmrSectionDocument,
@@ -20,26 +20,44 @@ logger = logging.getLogger(__name__)
 
 
 @dataclass
-class AddEmbeddingsFeatureDocumentStash(DelegateStash, PrimeableStash):
+class _EmbeddingPopulator(object):
+    """Base class for adding word piece doc embeddings.
+
+    """
+    word_piece_doc_factory: WordPieceFeatureDocumentFactory = field()
+    """The feature document factory that populates embeddings."""
+
+    def _populate_embeddings(self, doc: AmrFeatureDocument, doc_id: str = None):
+        """Adds the transformer sentinel embeddings to the document."""
+        doc_id = doc.amr.get_doc_id() if doc_id is None else doc_id
+        if self.word_piece_doc_factory is not None:
+            try:
+                with time(f'populated embedding of document {doc_id}'):
+                    wpdoc: WordPieceFeatureDocument = \
+                        self.word_piece_doc_factory(doc)
+                wpdoc.copy_embedding(doc)
+            except Exception as e:
+                msg: str = f"Could not process adhoc document: '{doc_id}': {e}"
+                sent: AmrSentence
+                for sent in doc.amr.sents:
+                    fail = AmrFailure(exception=e, thrower=self, message=msg)
+                    sent.failure = fail
+
+
+@dataclass
+class AddEmbeddingsFeatureDocumentStash(DelegateStash, PrimeableStash,
+                                        _EmbeddingPopulator):
     """Add embeddings to AMR feature documents.  Embedding population is
     disabled by configuring :obj:`word_piece_doc_factory` as ``None``.
 
     """
-    word_piece_doc_factory: WordPieceFeatureDocumentFactory = field(
-        default=None)
-    """The feature document factory that populates embeddings."""
-
     def load(self, name: str) -> AmrFeatureDocument:
         if logger.isEnabledFor(logging.DEBUG):
             logger.debug(f"loading '{name}'")
         doc: AmrFeatureDocument = self.delegate.load(name)
         if logger.isEnabledFor(logging.DEBUG):
             logger.debug(f"loaded '{name}' -> {doc}")
-        if self.word_piece_doc_factory is not None:
-            with time(f'populated embedding of document {name}'):
-                wpdoc: WordPieceFeatureDocument = \
-                    self.word_piece_doc_factory(doc)
-            wpdoc.copy_embedding(doc)
+        self._populate_embeddings(doc, name)
         return doc
 
     def get(self, name: str, default: Any = None) -> Any:
@@ -50,21 +68,11 @@ class AddEmbeddingsFeatureDocumentStash(DelegateStash, PrimeableStash):
 
 @dataclass
 class CalamrAnnotatedAmrFeatureDocumentFactory(
-        AnnotatedAmrFeatureDocumentFactory):
+        AnnotatedAmrFeatureDocumentFactory, _EmbeddingPopulator):
     """Adds wordpiece embeddings to
     :class:`~zensols.amr.container.AmrFeatureDocument` instances.
 
     """
-    word_piece_doc_factory: WordPieceFeatureDocumentFactory = field(
-        default=None)
-    """The feature document factory that populates embeddings."""
-
-    def _populate_embeddings(self, doc: AmrFeatureDocument):
-        """Adds the transformer sentinel embeddings to the document."""
-        if self.word_piece_doc_factory is not None:
-            wpdoc: WordPieceFeatureDocument = self.word_piece_doc_factory(doc)
-            wpdoc.copy_embedding(doc)
-
     def to_annotated_doc(self, doc: AmrFeatureDocument) -> AmrFeatureDocument:
         fdoc = super().to_annotated_doc(doc)
         self._populate_embeddings(fdoc)
