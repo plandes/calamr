@@ -1,0 +1,19 @@
+CALAMR: Component ALignment for AMR
+===================================
+This repository contains code for the paper and aligns the components of a bipartite source and summary AMR graph.
+
+.. toctree::
+   :maxdepth: 3
+   :glob:
+
+   Overview <index.md>
+   doc/*
+   API Reference <api.rst>
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

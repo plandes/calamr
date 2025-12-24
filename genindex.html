@@ -1,0 +1,2044 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#"><link rel="search" title="Search" href="search.html">
+
+    <!-- Generated with Sphinx 7.4.7 and Furo 2025.09.25 --><title>Index - CALAMR: Component ALignment for AMR 1.2.2 documentation</title>
+<link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=580074bf" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-codeautolink.css?v=b2176991" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="_static/codeautolink.css?v=57550ae3" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="top.html"><div class="brand">CALAMR: Component ALignment for AMR 1.2.2 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="top.html">
+  
+  <span class="sidebar-brand-text">CALAMR: Component ALignment for AMR 1.2.2 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api.html">API Reference</a><input aria-label="Toggle navigation of API Reference" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="api/zensols.calamr.html">zensols.calamr package</a><input aria-label="Toggle navigation of zensols.calamr package" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/zensols.calamr.render.html">zensols.calamr.render namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/zensols.calamr.summary.html">zensols.calamr.summary namespace</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/zensols.calamr.render.html">zensols.calamr.render namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/zensols.calamr.summary.html">zensols.calamr.summary namespace</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          
+<section class="genindex-section">
+  <h1 id="index">Index</h1>
+  <div class="genindex-jumpbox"><a href="#_"><strong>_</strong></a> | <a href="#A"><strong>A</strong></a> | <a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#H"><strong>H</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#K"><strong>K</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#O"><strong>O</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#U"><strong>U</strong></a> | <a href="#V"><strong>V</strong></a> | <a href="#W"><strong>W</strong></a> | <a href="#Z"><strong>Z</strong></a></div>
+</section>
+<section id="_" class="genindex-section">
+  <h2>_</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.AdhocAmrDocumentPartStash.__init__">__init__() (zensols.calamr.adhoc.AdhocAmrDocumentPartStash method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash.__init__">(zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.ConfigSwapper.__init__">(zensols.calamr.adhoc.ConfigSwapper method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.alignconst.GraphAlignmentConstructor.__init__">(zensols.calamr.alignconst.GraphAlignmentConstructor method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.DocumentGraphAligner.__init__">(zensols.calamr.aligner.DocumentGraphAligner method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.DocumentGraphController.__init__">(zensols.calamr.aligner.DocumentGraphController method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphIteration.__init__">(zensols.calamr.aligner.GraphIteration method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphSequence.__init__">(zensols.calamr.aligner.GraphSequence method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphSequencer.__init__">(zensols.calamr.aligner.GraphSequencer method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.MaxflowDocumentGraphAligner.__init__">(zensols.calamr.aligner.MaxflowDocumentGraphAligner method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.RenderUpSideDownGraphSequence.__init__">(zensols.calamr.aligner.RenderUpSideDownGraphSequence method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.annotate.AddEmbeddingsFeatureDocumentStash.__init__">(zensols.calamr.annotate.AddEmbeddingsFeatureDocumentStash method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.annotate.CalamrAnnotatedAmrFeatureDocumentFactory.__init__">(zensols.calamr.annotate.CalamrAnnotatedAmrFeatureDocumentFactory method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.annotate.ProxyReportAnnotatedAmrDocument.__init__">(zensols.calamr.annotate.ProxyReportAnnotatedAmrDocument method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.app.AlignmentApplication.__init__">(zensols.calamr.app.AlignmentApplication method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.app.CorpusApplication.__init__">(zensols.calamr.app.CorpusApplication method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.AmrDocumentNode.__init__">(zensols.calamr.attr.AmrDocumentNode method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.AttributeGraphNode.__init__">(zensols.calamr.attr.AttributeGraphNode method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.ComponentAlignmentGraphEdge.__init__">(zensols.calamr.attr.ComponentAlignmentGraphEdge method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.ComponentCorefAlignmentGraphEdge.__init__">(zensols.calamr.attr.ComponentCorefAlignmentGraphEdge method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.ConceptGraphNode.__init__">(zensols.calamr.attr.ConceptGraphNode method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.DocumentGraphEdge.__init__">(zensols.calamr.attr.DocumentGraphEdge method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.DocumentGraphNode.__init__">(zensols.calamr.attr.DocumentGraphNode method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.DocumentNode.__init__">(zensols.calamr.attr.DocumentNode method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.GraphEdge.__init__">(zensols.calamr.attr.GraphEdge method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.GraphNode.__init__">(zensols.calamr.attr.GraphNode method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.RoleGraphEdge.__init__">(zensols.calamr.attr.RoleGraphEdge method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.SentenceGraphAttribute.__init__">(zensols.calamr.attr.SentenceGraphAttribute method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.SentenceGraphEdge.__init__">(zensols.calamr.attr.SentenceGraphEdge method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.SentenceGraphNode.__init__">(zensols.calamr.attr.SentenceGraphNode method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.TerminalGraphEdge.__init__">(zensols.calamr.attr.TerminalGraphEdge method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.TerminalGraphNode.__init__">(zensols.calamr.attr.TerminalGraphNode method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.TripleGraphNode.__init__">(zensols.calamr.attr.TripleGraphNode method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.cli.ApplicationFactory.__init__">(zensols.calamr.cli.ApplicationFactory method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.__init__">(zensols.calamr.comp.GraphComponent method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.AlignmentCapacitySetDocumentGraphController.__init__">(zensols.calamr.ctrl.AlignmentCapacitySetDocumentGraphController method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.ConstructDocumentGraphController.__init__">(zensols.calamr.ctrl.ConstructDocumentGraphController method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.FixReentrancyDocumentGraphController.__init__">(zensols.calamr.ctrl.FixReentrancyDocumentGraphController method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.FlowDiscountDocumentGraphController.__init__">(zensols.calamr.ctrl.FlowDiscountDocumentGraphController method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.FlowSetDocumentGraphController.__init__">(zensols.calamr.ctrl.FlowSetDocumentGraphController method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.MaxflowDocumentGraphController.__init__">(zensols.calamr.ctrl.MaxflowDocumentGraphController method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.NormFlowDocumentGraphController.__init__">(zensols.calamr.ctrl.NormFlowDocumentGraphController method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.RemoveAlignsDocumentGraphController.__init__">(zensols.calamr.ctrl.RemoveAlignsDocumentGraphController method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.RoleCapacitySetDocumentGraphController.__init__">(zensols.calamr.ctrl.RoleCapacitySetDocumentGraphController method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.SnapshotDocumentGraphController.__init__">(zensols.calamr.ctrl.SnapshotDocumentGraphController method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.DocumentGraphComponent.__init__">(zensols.calamr.dcomp.DocumentGraphComponent method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.SentenceEntry.__init__">(zensols.calamr.dcomp.SentenceEntry method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.SentenceIndex.__init__">(zensols.calamr.dcomp.SentenceIndex method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraph.__init__">(zensols.calamr.doc.DocumentGraph method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraphDecorator.__init__">(zensols.calamr.doc.DocumentGraphDecorator method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraphFactory.__init__">(zensols.calamr.doc.DocumentGraphFactory method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.domain.ComponentAlignmentFailure.__init__">(zensols.calamr.domain.ComponentAlignmentFailure method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.domain.EmbeddingResource.__init__">(zensols.calamr.domain.EmbeddingResource method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttribute.__init__">(zensols.calamr.domain.GraphAttribute method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttributeContext.__init__">(zensols.calamr.domain.GraphAttributeContext method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.domain.Role.__init__">(zensols.calamr.domain.Role method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.flow.Flow.__init__">(zensols.calamr.flow.Flow method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowDocumentGraph.__init__">(zensols.calamr.flow.FlowDocumentGraph method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowDocumentGraphComponent.__init__">(zensols.calamr.flow.FlowDocumentGraphComponent method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphComponentResult.__init__">(zensols.calamr.flow.FlowGraphComponentResult method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult.__init__">(zensols.calamr.flow.FlowGraphResult method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.morph.IsomorphDocumentGraphDecorator.__init__">(zensols.calamr.morph.IsomorphDocumentGraphDecorator method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.reentrancy.EdgeFlow.__init__">(zensols.calamr.reentrancy.EdgeFlow method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.reentrancy.Reentrancy.__init__">(zensols.calamr.reentrancy.Reentrancy method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.reentrancy.ReentrancySet.__init__">(zensols.calamr.reentrancy.ReentrancySet method)</a>
+</li>
+          <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.base.GraphRenderer.__init__">(zensols.calamr.render.base.GraphRenderer method)</a>
+</li>
+          <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.base.RenderContext.__init__">(zensols.calamr.render.base.RenderContext method)</a>
+</li>
+          <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.base.rendergroup.__init__">(zensols.calamr.render.base.rendergroup method)</a>
+</li>
+          <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.graphvis.GraphVisGraphRenderer.__init__">(zensols.calamr.render.graphvis.GraphVisGraphRenderer method)</a>
+</li>
+          <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.plotly.PlotlyGraphRenderer.__init__">(zensols.calamr.render.plotly.PlotlyGraphRenderer method)</a>
+</li>
+          <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.pyvis.PyvisGraphRenderer.__init__">(zensols.calamr.render.pyvis.PyvisGraphRenderer method)</a>
+</li>
+          <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.util.Formatter.__init__">(zensols.calamr.render.util.Formatter method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.resource.Resource.__init__">(zensols.calamr.resource.Resource method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.resource.Resources.__init__">(zensols.calamr.resource.Resources method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.score.CalamrScore.__init__">(zensols.calamr.score.CalamrScore method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.score.CalamrScoreMethod.__init__">(zensols.calamr.score.CalamrScoreMethod method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.stash.FlowGraphRestoreStash.__init__">(zensols.calamr.stash.FlowGraphRestoreStash method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.stash.FlowGraphResultFactoryStash.__init__">(zensols.calamr.stash.FlowGraphResultFactoryStash method)</a>
+</li>
+          <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.alignconst.ReverseFlowGraphAlignmentConstructor.__init__">(zensols.calamr.summary.alignconst.ReverseFlowGraphAlignmentConstructor method)</a>
+</li>
+          <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.alignconst.SharedGraphAlignmentConstructor.__init__">(zensols.calamr.summary.alignconst.SharedGraphAlignmentConstructor method)</a>
+</li>
+          <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.alignconst.SummaryGraphAlignmentConstructor.__init__">(zensols.calamr.summary.alignconst.SummaryGraphAlignmentConstructor method)</a>
+</li>
+          <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.capacity.CapacityCalculator.__init__">(zensols.calamr.summary.capacity.CapacityCalculator method)</a>
+</li>
+          <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.coref.CorefDocumentGraphController.__init__">(zensols.calamr.summary.coref.CorefDocumentGraphController method)</a>
+</li>
+          <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.factory.AnnotatedSummaryAmrDocumentGraphFactory.__init__">(zensols.calamr.summary.factory.AnnotatedSummaryAmrDocumentGraphFactory method)</a>
+</li>
+          <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.factory.IntermediateNodeRemoveDocumentGraphDecorator.__init__">(zensols.calamr.summary.factory.IntermediateNodeRemoveDocumentGraphDecorator method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.ComponentAlignmentError.__module__">__module__ (zensols.calamr.domain.ComponentAlignmentError attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="A" class="genindex-section">
+  <h2>A</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraph.add_child">add_child() (zensols.calamr.doc.DocumentGraph method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.alignconst.GraphAlignmentConstructor.add_edges">add_edges() (zensols.calamr.alignconst.GraphAlignmentConstructor method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.annotate.AddEmbeddingsFeatureDocumentStash">AddEmbeddingsFeatureDocumentStash (class in zensols.calamr.annotate)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.resource.Resources.adhoc">adhoc() (zensols.calamr.resource.Resources method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.AdhocAmrDocumentPartStash">AdhocAmrDocumentPartStash (class in zensols.calamr.adhoc)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash">AdhocAnnotatedAmrDocumentStash (class in zensols.calamr.adhoc)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.adjacency_list">adjacency_list (zensols.calamr.comp.GraphComponent property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.DocumentGraphAligner.align">align() (zensols.calamr.aligner.DocumentGraphAligner method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.app.AlignmentApplication.align">(zensols.calamr.app.AlignmentApplication method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.resource.Resource.align">(zensols.calamr.resource.Resource method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.app.AlignmentApplication">AlignmentApplication (class in zensols.calamr.app)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.AlignmentCapacitySetDocumentGraphController">AlignmentCapacitySetDocumentGraphController (class in zensols.calamr.ctrl)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.resource.Resource.alignments">alignments (zensols.calamr.resource.Resource attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash.amr_anon_doc_stash">amr_anon_doc_stash (zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.AmrDocumentNode">AmrDocumentNode (class in zensols.calamr.attr)</a>
+</li>
+        <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.factory.AnnotatedSummaryAmrDocumentGraphFactory">AnnotatedSummaryAmrDocumentGraphFactory (class in zensols.calamr.summary.factory)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.AdhocAmrDocumentPartStash.anon_doc_factory">anon_doc_factory (zensols.calamr.adhoc.AdhocAmrDocumentPartStash attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.stash.FlowGraphResultFactoryStash.anon_doc_stash">anon_doc_stash (zensols.calamr.stash.FlowGraphResultFactoryStash attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.cli.ApplicationFactory">ApplicationFactory (class in zensols.calamr.cli)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.AttributeGraphNode.ATTRIB_TYPE">ATTRIB_TYPE (zensols.calamr.attr.AttributeGraphNode attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.ComponentAlignmentGraphEdge.ATTRIB_TYPE">(zensols.calamr.attr.ComponentAlignmentGraphEdge attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.ComponentCorefAlignmentGraphEdge.ATTRIB_TYPE">(zensols.calamr.attr.ComponentCorefAlignmentGraphEdge attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.ConceptGraphNode.ATTRIB_TYPE">(zensols.calamr.attr.ConceptGraphNode attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.DocumentGraphEdge.ATTRIB_TYPE">(zensols.calamr.attr.DocumentGraphEdge attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.DocumentGraphNode.ATTRIB_TYPE">(zensols.calamr.attr.DocumentGraphNode attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.RoleGraphEdge.ATTRIB_TYPE">(zensols.calamr.attr.RoleGraphEdge attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.SentenceGraphEdge.ATTRIB_TYPE">(zensols.calamr.attr.SentenceGraphEdge attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.SentenceGraphNode.ATTRIB_TYPE">(zensols.calamr.attr.SentenceGraphNode attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.TerminalGraphEdge.ATTRIB_TYPE">(zensols.calamr.attr.TerminalGraphEdge attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.TerminalGraphNode.ATTRIB_TYPE">(zensols.calamr.attr.TerminalGraphNode attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttribute.ATTRIB_TYPE">(zensols.calamr.domain.GraphAttribute attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttribute.attrib_type">attrib_type (zensols.calamr.domain.GraphAttribute property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.AttributeGraphNode">AttributeGraphNode (class in zensols.calamr.attr)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.SentenceEntry.attributes">attributes (zensols.calamr.dcomp.SentenceEntry attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="B" class="genindex-section">
+  <h2>B</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraph.bipartite_relation_set">bipartite_relation_set (zensols.calamr.doc.DocumentGraph property)</a>
+</li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.base.GraphRenderer.browser_manager">browser_manager (zensols.calamr.render.base.GraphRenderer attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.alignconst.GraphAlignmentConstructor.build">build() (zensols.calamr.alignconst.GraphAlignmentConstructor method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.alignconst.ReverseFlowGraphAlignmentConstructor.build">(zensols.calamr.summary.alignconst.ReverseFlowGraphAlignmentConstructor method)</a>
+</li>
+          <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.alignconst.SummaryGraphAlignmentConstructor.build">(zensols.calamr.summary.alignconst.SummaryGraphAlignmentConstructor method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.ConstructDocumentGraphController.build_graph_name">build_graph_name (zensols.calamr.ctrl.ConstructDocumentGraphController attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.SentenceIndex.by_sentence">by_sentence (zensols.calamr.dcomp.SentenceIndex property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.reentrancy.ReentrancySet.by_vertex">by_vertex (zensols.calamr.reentrancy.ReentrancySet property)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="C" class="genindex-section">
+  <h2>C</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.annotate.CalamrAnnotatedAmrFeatureDocumentFactory">CalamrAnnotatedAmrFeatureDocumentFactory (class in zensols.calamr.annotate)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.score.CalamrScore">CalamrScore (class in zensols.calamr.score)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.score.CalamrScoreMethod">CalamrScoreMethod (class in zensols.calamr.score)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.GraphEdge.capacity">capacity (zensols.calamr.attr.GraphEdge property)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.AlignmentCapacitySetDocumentGraphController.capacity">(zensols.calamr.ctrl.AlignmentCapacitySetDocumentGraphController attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.RoleCapacitySetDocumentGraphController.capacity">(zensols.calamr.ctrl.RoleCapacitySetDocumentGraphController attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.alignconst.SummaryGraphAlignmentConstructor.capacity_calculator">capacity_calculator (zensols.calamr.summary.alignconst.SummaryGraphAlignmentConstructor attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.GraphEdge.capacity_str">capacity_str() (zensols.calamr.attr.GraphEdge method)</a>
+</li>
+        <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.capacity.CapacityCalculator">CapacityCalculator (class in zensols.calamr.summary.capacity)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.DocumentNode.children">children (zensols.calamr.attr.DocumentNode attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraph.children">(zensols.calamr.doc.DocumentGraph attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.DocumentNode.children_by_name">children_by_name (zensols.calamr.attr.DocumentNode property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash.clear">clear() (zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.ConfigSwapper.clear">(zensols.calamr.adhoc.ConfigSwapper method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.score.CalamrScoreMethod.clear">(zensols.calamr.score.CalamrScoreMethod method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.capacity.CapacityCalculator.clear_align_node_iteration">clear_align_node_iteration (zensols.calamr.summary.capacity.CapacityCalculator attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.clone">clone() (zensols.calamr.comp.GraphComponent method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.DocumentGraphComponent.clone">(zensols.calamr.dcomp.DocumentGraphComponent method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraph.clone">(zensols.calamr.doc.DocumentGraph method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.util.ColorUtil">ColorUtil (class in zensols.calamr.render.util)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.reentrancy.ReentrancySet.combine">combine() (zensols.calamr.reentrancy.ReentrancySet class method)</a>
+</li>
+        <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.alignconst.SummaryGraphAlignmentConstructor.component_alignment_capacities">component_alignment_capacities (zensols.calamr.summary.alignconst.SummaryGraphAlignmentConstructor property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttributeContext.component_alignment_capacity">component_alignment_capacity (zensols.calamr.domain.GraphAttributeContext attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraph.component_iter">component_iter() (zensols.calamr.doc.DocumentGraph method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.FixReentrancyDocumentGraphController.component_name">component_name (zensols.calamr.ctrl.FixReentrancyDocumentGraphController attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.FlowDiscountDocumentGraphController.component_names">component_names (zensols.calamr.ctrl.FlowDiscountDocumentGraphController attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.FlowSetDocumentGraphController.component_names">(zensols.calamr.ctrl.FlowSetDocumentGraphController attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.NormFlowDocumentGraphController.component_names">(zensols.calamr.ctrl.NormFlowDocumentGraphController attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.RoleCapacitySetDocumentGraphController.component_names">(zensols.calamr.ctrl.RoleCapacitySetDocumentGraphController attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.SnapshotDocumentGraphController.component_names">(zensols.calamr.ctrl.SnapshotDocumentGraphController attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.ComponentAlignmentError">ComponentAlignmentError</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.ComponentAlignmentFailure">ComponentAlignmentFailure (class in zensols.calamr.domain)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.ComponentAlignmentGraphEdge">ComponentAlignmentGraphEdge (class in zensols.calamr.attr)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.ComponentCorefAlignmentGraphEdge">ComponentCorefAlignmentGraphEdge (class in zensols.calamr.attr)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraph.components">components (zensols.calamr.doc.DocumentGraph attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraph.components_by_name">components_by_name (zensols.calamr.doc.DocumentGraph property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraph.components_by_name_sorted">components_by_name_sorted (zensols.calamr.doc.DocumentGraph property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.SentenceEntry.concept_by_variable">concept_by_variable (zensols.calamr.dcomp.SentenceEntry property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.reentrancy.Reentrancy.concept_node">concept_node (zensols.calamr.reentrancy.Reentrancy attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.reentrancy.Reentrancy.concept_node_vertex">concept_node_vertex (zensols.calamr.reentrancy.Reentrancy attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.ConceptGraphNode">ConceptGraphNode (class in zensols.calamr.attr)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.SentenceEntry.concepts">concepts (zensols.calamr.dcomp.SentenceEntry attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.ConfigSwapper.config_factory">config_factory (zensols.calamr.adhoc.ConfigSwapper attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.DocumentGraphAligner.config_factory">(zensols.calamr.aligner.DocumentGraphAligner attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.app.AlignmentApplication.config_factory">(zensols.calamr.app.AlignmentApplication attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.app.CorpusApplication.config_factory">(zensols.calamr.app.CorpusApplication attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraphFactory.config_factory">(zensols.calamr.doc.DocumentGraphFactory attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.morph.IsomorphDocumentGraphDecorator.config_factory">(zensols.calamr.morph.IsomorphDocumentGraphDecorator attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.ConfigSwapper">ConfigSwapper (class in zensols.calamr.adhoc)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphComponentResult.connected_stats">connected_stats (zensols.calamr.flow.FlowGraphComponentResult property)</a>
+</li>
+        <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.alignconst.SummaryGraphAlignmentConstructor.connections">connections (zensols.calamr.summary.alignconst.SummaryGraphAlignmentConstructor property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.AttributeGraphNode.constant">constant (zensols.calamr.attr.AttributeGraphNode property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.ConstructDocumentGraphController">ConstructDocumentGraphController (class in zensols.calamr.ctrl)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.ConstructDocumentGraphController.constructor">constructor (zensols.calamr.ctrl.ConstructDocumentGraphController attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.MaxflowDocumentGraphController.constructor">(zensols.calamr.ctrl.MaxflowDocumentGraphController attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.NormFlowDocumentGraphController.constructor">(zensols.calamr.ctrl.NormFlowDocumentGraphController attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.coref.CorefDocumentGraphController.constructor">(zensols.calamr.summary.coref.CorefDocumentGraphController attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttribute.context">context (zensols.calamr.domain.GraphAttribute attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphSequence.controller">controller (zensols.calamr.aligner.GraphSequence attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.copy_graph">copy_graph() (zensols.calamr.comp.GraphComponent method)</a>
+</li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.util.Formatter.coref_edge">coref_edge() (zensols.calamr.render.util.Formatter method)</a>
+</li>
+        <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.coref.CorefDocumentGraphController">CorefDocumentGraphController (class in zensols.calamr.summary.coref)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.AdhocAmrDocumentPartStash.corpus">corpus (zensols.calamr.adhoc.AdhocAmrDocumentPartStash attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.resource.Resources.corpus">corpus() (zensols.calamr.resource.Resources method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.app.CorpusApplication">CorpusApplication (class in zensols.calamr.app)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraphFactory.create">create() (zensols.calamr.doc.DocumentGraphFactory method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult.create_data_describer">create_data_describer() (zensols.calamr.flow.FlowGraphResult method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphComponentResult.create_data_frame_describer">create_data_frame_describer() (zensols.calamr.flow.FlowGraphComponentResult method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.create_edges">create_edges() (zensols.calamr.comp.GraphComponent static method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.DocumentGraphAligner.create_error_result">create_error_result() (zensols.calamr.aligner.DocumentGraphAligner method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.create_vertexes">create_vertexes() (zensols.calamr.comp.GraphComponent static method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="D" class="genindex-section">
+  <h2>D</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.deallocate">deallocate() (zensols.calamr.comp.GraphComponent method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.DocumentGraphComponent.deallocate">(zensols.calamr.dcomp.DocumentGraphComponent method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraph.deallocate">(zensols.calamr.doc.DocumentGraph method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttribute.deallocate">(zensols.calamr.domain.GraphAttribute method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult.deallocate">(zensols.calamr.flow.FlowGraphResult method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraphDecorator.decorate">decorate() (zensols.calamr.doc.DocumentGraphDecorator method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.morph.IsomorphDocumentGraphDecorator.decorate">(zensols.calamr.morph.IsomorphDocumentGraphDecorator method)</a>
+</li>
+          <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.factory.IntermediateNodeRemoveDocumentGraphDecorator.decorate">(zensols.calamr.summary.factory.IntermediateNodeRemoveDocumentGraphDecorator method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttributeContext.default_capacity">default_capacity (zensols.calamr.domain.GraphAttributeContext attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttributeContext.default_format_strlen">default_format_strlen (zensols.calamr.domain.GraphAttributeContext attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.delete_edges">delete_edges() (zensols.calamr.comp.GraphComponent method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraph.delete_edges">(zensols.calamr.doc.DocumentGraph method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.util.Formatter.desc_width">desc_width (zensols.calamr.render.util.Formatter attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.DocumentGraphComponent.description">description (zensols.calamr.dcomp.DocumentGraphComponent attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttribute.description">(zensols.calamr.domain.GraphAttribute property)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphComponentResult.df">df (zensols.calamr.flow.FlowGraphComponentResult property)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult.df">(zensols.calamr.flow.FlowGraphResult property)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.FlowDiscountDocumentGraphController.discount_sum">discount_sum (zensols.calamr.ctrl.FlowDiscountDocumentGraphController attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.base.GraphRenderer.display">display() (zensols.calamr.render.base.GraphRenderer method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.pyvis.PyvisGraphRenderer.display">(zensols.calamr.render.pyvis.PyvisGraphRenderer method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.base.GraphRenderer.display_all">display_all() (zensols.calamr.render.base.GraphRenderer method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.AmrDocumentNode.doc">doc (zensols.calamr.attr.AmrDocumentNode attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraph.doc">(zensols.calamr.doc.DocumentGraph attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttributeContext.doc_capacity">doc_capacity (zensols.calamr.domain.GraphAttributeContext attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.alignconst.GraphAlignmentConstructor.doc_graph">doc_graph (zensols.calamr.alignconst.GraphAlignmentConstructor property)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult.doc_graph">(zensols.calamr.flow.FlowGraphResult property)</a>
+</li>
+          <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.base.RenderContext.doc_graph">(zensols.calamr.render.base.RenderContext attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.resource.Resources.doc_graph_aligner">doc_graph_aligner (zensols.calamr.resource.Resources attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.score.CalamrScoreMethod.doc_graph_aligner">(zensols.calamr.score.CalamrScoreMethod attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.stash.FlowGraphResultFactoryStash.doc_graph_aligner">(zensols.calamr.stash.FlowGraphResultFactoryStash attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.resource.Resources.doc_graph_factory">doc_graph_factory (zensols.calamr.resource.Resources attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.score.CalamrScoreMethod.doc_graph_factory">(zensols.calamr.score.CalamrScoreMethod attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.stash.FlowGraphResultFactoryStash.doc_graph_factory">(zensols.calamr.stash.FlowGraphResultFactoryStash attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.DocumentGraphAligner.doc_graph_name">doc_graph_name (zensols.calamr.aligner.DocumentGraphAligner attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraphFactory.doc_graph_section_name">doc_graph_section_name (zensols.calamr.doc.DocumentGraphFactory attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.DocumentGraphNode.doc_node">doc_node (zensols.calamr.attr.DocumentGraphNode attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash.doc_part_stash">doc_part_stash (zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.DocumentGraphComponent.doc_vertices">doc_vertices (zensols.calamr.dcomp.DocumentGraphComponent property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraph">DocumentGraph (class in zensols.calamr.doc)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.DocumentGraphAligner">DocumentGraphAligner (class in zensols.calamr.aligner)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.DocumentGraphComponent">DocumentGraphComponent (class in zensols.calamr.dcomp)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.DocumentGraphController">DocumentGraphController (class in zensols.calamr.aligner)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraphDecorator">DocumentGraphDecorator (class in zensols.calamr.doc)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.DocumentGraphEdge">DocumentGraphEdge (class in zensols.calamr.attr)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraphFactory">DocumentGraphFactory (class in zensols.calamr.doc)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.DocumentGraphNode">DocumentGraphNode (class in zensols.calamr.attr)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.DocumentNode">DocumentNode (class in zensols.calamr.attr)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.resource.Resource.documents">documents (zensols.calamr.resource.Resource attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.app.CorpusApplication.download_corpus">download_corpus() (zensols.calamr.app.CorpusApplication method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.app.CorpusApplication.dump_annotated">dump_annotated() (zensols.calamr.app.CorpusApplication method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="E" class="genindex-section">
+  <h2>E</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.Flow.edge">edge (zensols.calamr.flow.Flow attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.reentrancy.EdgeFlow.edge">(zensols.calamr.reentrancy.EdgeFlow attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.util.Formatter.edge">edge() (zensols.calamr.render.util.Formatter method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.edge_by_graph_edge_id">edge_by_graph_edge_id() (zensols.calamr.comp.GraphComponent method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.edge_by_id">edge_by_id() (zensols.calamr.comp.GraphComponent method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphComponentResult.edge_counts">edge_counts (zensols.calamr.flow.FlowGraphComponentResult property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.reentrancy.Reentrancy.edge_flows">edge_flows (zensols.calamr.reentrancy.Reentrancy attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.edge_ref_by_id">edge_ref_by_id() (zensols.calamr.comp.GraphComponent method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.Flow.edge_type">edge_type (zensols.calamr.flow.Flow property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.reentrancy.EdgeFlow">EdgeFlow (class in zensols.calamr.reentrancy)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.edges_reversed">edges_reversed (zensols.calamr.comp.GraphComponent property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttribute.embedding">embedding (zensols.calamr.domain.GraphAttribute property)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.capacity.CapacityCalculator.embedding_populator">embedding_populator (zensols.calamr.summary.capacity.CapacityCalculator attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttribute.embedding_resource">embedding_resource (zensols.calamr.domain.GraphAttribute property)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttributeContext.embedding_resource">(zensols.calamr.domain.GraphAttributeContext attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.EmbeddingResource">EmbeddingResource (class in zensols.calamr.domain)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.SentenceIndex.entries">entries (zensols.calamr.dcomp.SentenceIndex attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.es">es (zensols.calamr.comp.GraphComponent property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.AdhocAmrDocumentPartStash.exists">exists() (zensols.calamr.adhoc.AdhocAmrDocumentPartStash method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.stash.FlowGraphRestoreStash.exists">(zensols.calamr.stash.FlowGraphRestoreStash method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.stash.FlowGraphResultFactoryStash.exists">(zensols.calamr.stash.FlowGraphResultFactoryStash method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.base.GraphRenderer.extension">extension (zensols.calamr.render.base.GraphRenderer attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.graphvis.GraphVisGraphRenderer.extension">(zensols.calamr.render.graphvis.GraphVisGraphRenderer attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.plotly.PlotlyGraphRenderer.extension">(zensols.calamr.render.plotly.PlotlyGraphRenderer attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.pyvis.PyvisGraphRenderer.extension">(zensols.calamr.render.pyvis.PyvisGraphRenderer attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="F" class="genindex-section">
+  <h2>F</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult.failure">failure (zensols.calamr.flow.FlowGraphResult property)</a>
+</li>
+        <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.alignconst.SummaryGraphAlignmentConstructor.find_flow_diffs">find_flow_diffs() (zensols.calamr.summary.alignconst.SummaryGraphAlignmentConstructor method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.FixReentrancyDocumentGraphController">FixReentrancyDocumentGraphController (class in zensols.calamr.ctrl)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.Flow">Flow (class in zensols.calamr.flow)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.GraphEdge.flow">flow (zensols.calamr.attr.GraphEdge property)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.FlowSetDocumentGraphController.flow">(zensols.calamr.ctrl.FlowSetDocumentGraphController attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.reentrancy.EdgeFlow.flow">(zensols.calamr.reentrancy.EdgeFlow attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.score.CalamrScore.flow_graph_res">flow_graph_res (zensols.calamr.score.CalamrScore attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.stash.FlowGraphRestoreStash.flow_graph_result_context">flow_graph_result_context (zensols.calamr.stash.FlowGraphRestoreStash attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.DocumentGraphAligner.flow_graph_result_name">flow_graph_result_name (zensols.calamr.aligner.DocumentGraphAligner attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.GraphEdge.flow_str">flow_str() (zensols.calamr.attr.GraphEdge method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.FlowDiscountDocumentGraphController">FlowDiscountDocumentGraphController (class in zensols.calamr.ctrl)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowDocumentGraph">FlowDocumentGraph (class in zensols.calamr.flow)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowDocumentGraphComponent">FlowDocumentGraphComponent (class in zensols.calamr.flow)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphComponentResult">FlowGraphComponentResult (class in zensols.calamr.flow)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.stash.FlowGraphRestoreStash">FlowGraphRestoreStash (class in zensols.calamr.stash)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult">FlowGraphResult (class in zensols.calamr.flow)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.stash.FlowGraphResultFactoryStash">FlowGraphResultFactoryStash (class in zensols.calamr.stash)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowDocumentGraphComponent.flows">flows (zensols.calamr.flow.FlowDocumentGraphComponent property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.FlowSetDocumentGraphController">FlowSetDocumentGraphController (class in zensols.calamr.ctrl)</a>
+</li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.util.Formatter">Formatter (class in zensols.calamr.render.util)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.annotate.CalamrAnnotatedAmrFeatureDocumentFactory.from_dict">from_dict() (zensols.calamr.annotate.CalamrAnnotatedAmrFeatureDocumentFactory method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="G" class="genindex-section">
+  <h2>G</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.annotate.AddEmbeddingsFeatureDocumentStash.get">get() (zensols.calamr.annotate.AddEmbeddingsFeatureDocumentStash method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.stash.FlowGraphRestoreStash.get">(zensols.calamr.stash.FlowGraphRestoreStash method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.app.CorpusApplication.get_annotated_summary">get_annotated_summary() (zensols.calamr.app.CorpusApplication method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.get_attributes">get_attributes() (zensols.calamr.comp.GraphComponent method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.DocumentGraphComponent.get_attributes">(zensols.calamr.dcomp.DocumentGraphComponent method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraph.get_containing_component">get_containing_component() (zensols.calamr.doc.DocumentGraph method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphSequencer.get_graph">get_graph() (zensols.calamr.aligner.GraphSequencer method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult.get_render_contexts">get_render_contexts() (zensols.calamr.flow.FlowGraphResult method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.cli.ApplicationFactory.get_resources">get_resources() (zensols.calamr.cli.ApplicationFactory class method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.EmbeddingResource.get_role_embedding">get_role_embedding() (zensols.calamr.domain.EmbeddingResource method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.EmbeddingResource.get_roleset_embedding">get_roleset_embedding() (zensols.calamr.domain.EmbeddingResource method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.EmbeddingResource.get_sentence_tokens_embedding">get_sentence_tokens_embedding() (zensols.calamr.domain.EmbeddingResource method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.EmbeddingResource.get_token_embedding">get_token_embedding() (zensols.calamr.domain.EmbeddingResource method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.EmbeddingResource.get_tokens_embedding">get_tokens_embedding() (zensols.calamr.domain.EmbeddingResource method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.EmbeddingResource.get_word_piece_document">get_word_piece_document() (zensols.calamr.domain.EmbeddingResource method)</a>
+</li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.util.ColorUtil.gradient_colors">gradient_colors() (zensols.calamr.render.util.ColorUtil static method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.graph">graph (zensols.calamr.comp.GraphComponent property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraph.graph_attrib_context">graph_attrib_context (zensols.calamr.doc.DocumentGraph property)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraphFactory.graph_attrib_context">(zensols.calamr.doc.DocumentGraphFactory attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.morph.IsomorphDocumentGraphDecorator.graph_attrib_context_name">graph_attrib_context_name (zensols.calamr.morph.IsomorphDocumentGraphDecorator attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.GRAPH_ATTRIB_NAME">GRAPH_ATTRIB_NAME (zensols.calamr.comp.GraphComponent attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraphFactory.graph_decorators">graph_decorators (zensols.calamr.doc.DocumentGraphFactory attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.graph_edge_id_to_edge_ref">graph_edge_id_to_edge_ref (zensols.calamr.comp.GraphComponent property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.graph_edge_to_edge">graph_edge_to_edge (zensols.calamr.comp.GraphComponent property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.graph_instance">graph_instance() (zensols.calamr.comp.GraphComponent static method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.graph_node_id_to_vertex_ref">graph_node_id_to_vertex_ref (zensols.calamr.comp.GraphComponent property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.MaxflowDocumentGraphAligner.graph_sequencer_name">graph_sequencer_name (zensols.calamr.aligner.MaxflowDocumentGraphAligner attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.alignconst.GraphAlignmentConstructor">GraphAlignmentConstructor (class in zensols.calamr.alignconst)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttribute">GraphAttribute (class in zensols.calamr.domain)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttributeContext">GraphAttributeContext (class in zensols.calamr.domain)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent">GraphComponent (class in zensols.calamr.comp)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.GraphEdge">GraphEdge (class in zensols.calamr.attr)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphIteration">GraphIteration (class in zensols.calamr.aligner)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.GraphNode">GraphNode (class in zensols.calamr.attr)</a>
+</li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.base.GraphRenderer">GraphRenderer (class in zensols.calamr.render.base)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphSequence">GraphSequence (class in zensols.calamr.aligner)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphSequencer">GraphSequencer (class in zensols.calamr.aligner)</a>
+</li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.graphvis.GraphVisGraphRenderer">GraphVisGraphRenderer (class in zensols.calamr.render.graphvis)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="H" class="genindex-section">
+  <h2>H</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.ConceptGraphNode.has_roleset">has_roleset (zensols.calamr.attr.ConceptGraphNode property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.SentenceGraphAttribute.has_token_embedding">has_token_embedding (zensols.calamr.attr.SentenceGraphAttribute property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.reentrancy.Reentrancy.has_zero_flow">has_zero_flow (zensols.calamr.reentrancy.Reentrancy property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash.hasher">hasher (zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphSequence.heading">heading (zensols.calamr.aligner.GraphSequence attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.base.RenderContext.heading">(zensols.calamr.render.base.RenderContext attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.MaxflowDocumentGraphAligner.hyp">hyp (zensols.calamr.aligner.MaxflowDocumentGraphAligner attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.capacity.CapacityCalculator.hyp">(zensols.calamr.summary.capacity.CapacityCalculator attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="I" class="genindex-section">
+  <h2>I</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttribute.id">id (zensols.calamr.domain.GraphAttribute property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash.ID_FIELD">ID_FIELD (zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.capacity.CapacityCalculator.include_tokens">include_tokens (zensols.calamr.summary.capacity.CapacityCalculator attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.Role.index">index (zensols.calamr.domain.Role attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.SentenceGraphAttribute.indices">indices (zensols.calamr.attr.SentenceGraphAttribute property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.DocumentGraphAligner.init_loops_render_level">init_loops_render_level (zensols.calamr.aligner.DocumentGraphAligner attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.ConceptGraphNode.instance">instance (zensols.calamr.attr.ConceptGraphNode property)</a>
+</li>
+        <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.factory.IntermediateNodeRemoveDocumentGraphDecorator">IntermediateNodeRemoveDocumentGraphDecorator (class in zensols.calamr.summary.factory)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.invalidate">invalidate() (zensols.calamr.comp.GraphComponent method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.DocumentGraphController.invoke">invoke() (zensols.calamr.aligner.DocumentGraphController method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphSequence.invoke">(zensols.calamr.aligner.GraphSequence method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.ComponentCorefAlignmentGraphEdge.is_bipartite">is_bipartite (zensols.calamr.attr.ComponentCorefAlignmentGraphEdge attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult.is_failure">is_failure (zensols.calamr.flow.FlowGraphResult property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.Role.is_inverted">is_inverted (zensols.calamr.domain.Role attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.TerminalGraphNode.is_source">is_source (zensols.calamr.attr.TerminalGraphNode attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.DocumentGraphAligner.is_valid_render_level">is_valid_render_level() (zensols.calamr.aligner.DocumentGraphAligner class method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.morph.IsomorphDocumentGraphDecorator">IsomorphDocumentGraphDecorator (class in zensols.calamr.morph)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="K" class="genindex-section">
+  <h2>K</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.AdhocAmrDocumentPartStash.keys">keys() (zensols.calamr.adhoc.AdhocAmrDocumentPartStash method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.stash.FlowGraphResultFactoryStash.keys">(zensols.calamr.stash.FlowGraphResultFactoryStash method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="L" class="genindex-section">
+  <h2>L</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttribute.label">label (zensols.calamr.domain.GraphAttribute property)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.domain.Role.label">(zensols.calamr.domain.Role attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.DocumentGraphNode.level_name">level_name (zensols.calamr.attr.DocumentGraphNode attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.AdhocAmrDocumentPartStash.load">load() (zensols.calamr.adhoc.AdhocAmrDocumentPartStash method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.annotate.AddEmbeddingsFeatureDocumentStash.load">(zensols.calamr.annotate.AddEmbeddingsFeatureDocumentStash method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.stash.FlowGraphRestoreStash.load">(zensols.calamr.stash.FlowGraphRestoreStash method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.stash.FlowGraphResultFactoryStash.load">(zensols.calamr.stash.FlowGraphResultFactoryStash method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="M" class="genindex-section">
+  <h2>M</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.cli.main">main() (in module zensols.calamr.cli)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.FlowSetDocumentGraphController.match_edge_classes">match_edge_classes (zensols.calamr.ctrl.FlowSetDocumentGraphController attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.GraphEdge.MAX_CAPACITY">MAX_CAPACITY (zensols.calamr.attr.GraphEdge attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.DocumentGraphAligner.MAX_RENDER_LEVEL">MAX_RENDER_LEVEL (zensols.calamr.aligner.DocumentGraphAligner attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.MaxflowDocumentGraphAligner.max_sequencer_iterations">max_sequencer_iterations (zensols.calamr.aligner.MaxflowDocumentGraphAligner attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.FixReentrancyDocumentGraphController.maxflow_controller">maxflow_controller (zensols.calamr.ctrl.FixReentrancyDocumentGraphController attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.MaxflowDocumentGraphAligner">MaxflowDocumentGraphAligner (class in zensols.calamr.aligner)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.MaxflowDocumentGraphController">MaxflowDocumentGraphController (class in zensols.calamr.ctrl)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.AlignmentCapacitySetDocumentGraphController.min_capacity">min_capacity (zensols.calamr.ctrl.AlignmentCapacitySetDocumentGraphController attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.RemoveAlignsDocumentGraphController.min_capacity">(zensols.calamr.ctrl.RemoveAlignsDocumentGraphController attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.RoleCapacitySetDocumentGraphController.min_flow">min_flow (zensols.calamr.ctrl.RoleCapacitySetDocumentGraphController attribute)</a>
+</li>
+        <li>
+    module
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr">zensols.calamr</a>
+</li>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.adhoc">zensols.calamr.adhoc</a>
+</li>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.alignconst">zensols.calamr.alignconst</a>
+</li>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.aligner">zensols.calamr.aligner</a>
+</li>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.annotate">zensols.calamr.annotate</a>
+</li>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.app">zensols.calamr.app</a>
+</li>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.attr">zensols.calamr.attr</a>
+</li>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.cli">zensols.calamr.cli</a>
+</li>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.comp">zensols.calamr.comp</a>
+</li>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.ctrl">zensols.calamr.ctrl</a>
+</li>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.dcomp">zensols.calamr.dcomp</a>
+</li>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.doc">zensols.calamr.doc</a>
+</li>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.domain">zensols.calamr.domain</a>
+</li>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.flow">zensols.calamr.flow</a>
+</li>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.flowmeta">zensols.calamr.flowmeta</a>
+</li>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.morph">zensols.calamr.morph</a>
+</li>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.proto">zensols.calamr.proto</a>
+</li>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.reentrancy">zensols.calamr.reentrancy</a>
+</li>
+          <li><a href="api/zensols.calamr.render.html#module-zensols.calamr.render">zensols.calamr.render</a>
+</li>
+          <li><a href="api/zensols.calamr.render.html#module-zensols.calamr.render.base">zensols.calamr.render.base</a>
+</li>
+          <li><a href="api/zensols.calamr.render.html#module-zensols.calamr.render.graphvis">zensols.calamr.render.graphvis</a>
+</li>
+          <li><a href="api/zensols.calamr.render.html#module-zensols.calamr.render.plotly">zensols.calamr.render.plotly</a>
+</li>
+          <li><a href="api/zensols.calamr.render.html#module-zensols.calamr.render.pyvis">zensols.calamr.render.pyvis</a>
+</li>
+          <li><a href="api/zensols.calamr.render.html#module-zensols.calamr.render.util">zensols.calamr.render.util</a>
+</li>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.resource">zensols.calamr.resource</a>
+</li>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.score">zensols.calamr.score</a>
+</li>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.stash">zensols.calamr.stash</a>
+</li>
+          <li><a href="api/zensols.calamr.summary.html#module-zensols.calamr.summary">zensols.calamr.summary</a>
+</li>
+          <li><a href="api/zensols.calamr.summary.html#module-zensols.calamr.summary.alignconst">zensols.calamr.summary.alignconst</a>
+</li>
+          <li><a href="api/zensols.calamr.summary.html#module-zensols.calamr.summary.capacity">zensols.calamr.summary.capacity</a>
+</li>
+          <li><a href="api/zensols.calamr.summary.html#module-zensols.calamr.summary.coref">zensols.calamr.summary.coref</a>
+</li>
+          <li><a href="api/zensols.calamr.summary.html#module-zensols.calamr.summary.factory">zensols.calamr.summary.factory</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="N" class="genindex-section">
+  <h2>N</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphComponentResult.n_alignable_nodes">n_alignable_nodes (zensols.calamr.flow.FlowGraphComponentResult property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.DocumentGraphController.name">name (zensols.calamr.aligner.DocumentGraphController attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphSequence.name">(zensols.calamr.aligner.GraphSequence attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.DocumentNode.name">(zensols.calamr.attr.DocumentNode attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.DocumentGraphComponent.name">(zensols.calamr.dcomp.DocumentGraphComponent property)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraph.name">(zensols.calamr.doc.DocumentGraph attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.score.CalamrScore.NAN_INSTANCE">NAN_INSTANCE (zensols.calamr.score.CalamrScore attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.SentenceEntry.node">node (zensols.calamr.dcomp.SentenceEntry attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.util.Formatter.node">node() (zensols.calamr.render.util.Formatter method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.node_by_graph_node_id">node_by_graph_node_id() (zensols.calamr.comp.GraphComponent method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.node_by_id">node_by_id() (zensols.calamr.comp.GraphComponent method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphComponentResult.node_counts">node_counts (zensols.calamr.flow.FlowGraphComponentResult property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.node_to_vertex">node_to_vertex (zensols.calamr.comp.GraphComponent property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.NormFlowDocumentGraphController.normalize_mode">normalize_mode (zensols.calamr.ctrl.NormFlowDocumentGraphController attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.NormFlowDocumentGraphController">NormFlowDocumentGraphController (class in zensols.calamr.ctrl)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="O" class="genindex-section">
+  <h2>O</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.FixReentrancyDocumentGraphController.only_report">only_report (zensols.calamr.ctrl.FixReentrancyDocumentGraphController attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.alignconst.SharedGraphAlignmentConstructor.org_constructor">org_constructor (zensols.calamr.summary.alignconst.SharedGraphAlignmentConstructor attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.DocumentGraphAligner.output_dir">output_dir (zensols.calamr.aligner.DocumentGraphAligner attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="P" class="genindex-section">
+  <h2>P</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.GraphNode.partition">partition (zensols.calamr.attr.GraphNode property)</a>
+</li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.plotly.PlotlyGraphRenderer">PlotlyGraphRenderer (class in zensols.calamr.render.plotly)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphSequence.populate_render_context">populate_render_context() (zensols.calamr.aligner.GraphSequence method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.RenderUpSideDownGraphSequence.populate_render_context">(zensols.calamr.aligner.RenderUpSideDownGraphSequence method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.Role.prefix">prefix (zensols.calamr.domain.Role attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash.prime">prime() (zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.stash.FlowGraphResultFactoryStash.prime">(zensols.calamr.stash.FlowGraphResultFactoryStash method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphSequence.process_graph">process_graph (zensols.calamr.aligner.GraphSequence property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphSequence.process_name">process_name (zensols.calamr.aligner.GraphSequence attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.annotate.ProxyReportAnnotatedAmrDocument">ProxyReportAnnotatedAmrDocument (class in zensols.calamr.annotate)</a>
+</li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.pyvis.PyvisGraphRenderer">PyvisGraphRenderer (class in zensols.calamr.render.pyvis)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="R" class="genindex-section">
+  <h2>R</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.util.ColorUtil.rainbow_colors">rainbow_colors() (zensols.calamr.render.util.ColorUtil static method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult.reduce">reduce() (zensols.calamr.flow.FlowGraphResult method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.reentrancy.ReentrancySet.reentrancies">reentrancies (zensols.calamr.reentrancy.ReentrancySet attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.reentrancy.Reentrancy">Reentrancy (class in zensols.calamr.reentrancy)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowDocumentGraphComponent.reentrancy_set">reentrancy_set (zensols.calamr.flow.FlowDocumentGraphComponent attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.reentrancy.ReentrancySet">ReentrancySet (class in zensols.calamr.reentrancy)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.ComponentCorefAlignmentGraphEdge.relation">relation (zensols.calamr.attr.ComponentCorefAlignmentGraphEdge attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.DocumentGraphEdge.relation">(zensols.calamr.attr.DocumentGraphEdge attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.domain.Role.relation">(zensols.calamr.domain.Role attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.DocumentGraphComponent.relation_set">relation_set (zensols.calamr.dcomp.DocumentGraphComponent property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttributeContext.relation_stash">relation_stash (zensols.calamr.domain.GraphAttributeContext attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.RemoveAlignsDocumentGraphController">RemoveAlignsDocumentGraphController (class in zensols.calamr.ctrl)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult.render">render() (zensols.calamr.flow.FlowGraphResult method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphSequence.render_graph">render_graph (zensols.calamr.aligner.GraphSequence property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.DocumentGraphAligner.render_level">render_level (zensols.calamr.aligner.DocumentGraphAligner attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphIteration.render_level">(zensols.calamr.aligner.GraphIteration attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphSequencer.render_level">(zensols.calamr.aligner.GraphSequencer property)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphSequence.render_name">render_name (zensols.calamr.aligner.GraphSequence attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.base.GraphRenderer.render_to_file">render_to_file() (zensols.calamr.render.base.GraphRenderer method)</a>
+</li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.base.RenderContext">RenderContext (class in zensols.calamr.render.base)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.DocumentGraphAligner.renderer">renderer (zensols.calamr.aligner.DocumentGraphAligner attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.ConstructDocumentGraphController.renderer">(zensols.calamr.ctrl.ConstructDocumentGraphController attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.base.rendergroup">rendergroup (class in zensols.calamr.render.base)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.RenderUpSideDownGraphSequence">RenderUpSideDownGraphSequence (class in zensols.calamr.aligner)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.alignconst.GraphAlignmentConstructor.requires_reversed_edges">requires_reversed_edges() (zensols.calamr.alignconst.GraphAlignmentConstructor method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.alignconst.ReverseFlowGraphAlignmentConstructor.requires_reversed_edges">(zensols.calamr.summary.alignconst.ReverseFlowGraphAlignmentConstructor method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.DocumentGraphController.reset">reset() (zensols.calamr.aligner.DocumentGraphController method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphIteration.reset">(zensols.calamr.aligner.GraphIteration method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphSequence.reset">(zensols.calamr.aligner.GraphSequence method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphSequencer.reset">(zensols.calamr.aligner.GraphSequencer method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.MaxflowDocumentGraphController.reset">(zensols.calamr.ctrl.MaxflowDocumentGraphController method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.SnapshotDocumentGraphController.reset">(zensols.calamr.ctrl.SnapshotDocumentGraphController method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttributeContext.reset_attrib_id">reset_attrib_id() (zensols.calamr.domain.GraphAttributeContext method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.resource.Resource">Resource (class in zensols.calamr.resource)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.resource.Resources">Resources (class in zensols.calamr.resource)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash.restore">restore() (zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.ConfigSwapper.restore">(zensols.calamr.adhoc.ConfigSwapper method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.resource.Resources.restore">(zensols.calamr.resource.Resources method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.stash.FlowGraphRestoreStash.restore">(zensols.calamr.stash.FlowGraphRestoreStash method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowDocumentGraphComponent.result">result (zensols.calamr.flow.FlowDocumentGraphComponent property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.app.CorpusApplication.results_dir">results_dir (zensols.calamr.app.CorpusApplication attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.alignconst.ReverseFlowGraphAlignmentConstructor.reverse_alignments">reverse_alignments (zensols.calamr.summary.alignconst.ReverseFlowGraphAlignmentConstructor attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.alignconst.ReverseFlowGraphAlignmentConstructor">ReverseFlowGraphAlignmentConstructor (class in zensols.calamr.summary.alignconst)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.Role">Role (class in zensols.calamr.domain)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.AttributeGraphNode.role">role (zensols.calamr.attr.AttributeGraphNode property)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.RoleGraphEdge.role">(zensols.calamr.attr.RoleGraphEdge attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.RoleCapacitySetDocumentGraphController">RoleCapacitySetDocumentGraphController (class in zensols.calamr.ctrl)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.RoleGraphEdge">RoleGraphEdge (class in zensols.calamr.attr)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.ConceptGraphNode.roleset">roleset (zensols.calamr.attr.ConceptGraphNode property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.ConceptGraphNode.roleset_embedding">roleset_embedding (zensols.calamr.attr.ConceptGraphNode property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.ConceptGraphNode.roleset_id">roleset_id (zensols.calamr.attr.ConceptGraphNode property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.EmbeddingResource.roleset_stash">roleset_stash (zensols.calamr.domain.EmbeddingResource attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.DocumentNode.root">root (zensols.calamr.attr.DocumentNode attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.root">(zensols.calamr.comp.GraphComponent property)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.DocumentGraphComponent.root">(zensols.calamr.dcomp.DocumentGraphComponent property)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.ROOT_ATTRIB_NAME">ROOT_ATTRIB_NAME (zensols.calamr.comp.GraphComponent attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash.root_dir">root_dir (zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.ConfigSwapper.root_dir">(zensols.calamr.adhoc.ConfigSwapper attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowDocumentGraphComponent.root_flow">root_flow (zensols.calamr.flow.FlowDocumentGraphComponent property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowDocumentGraphComponent.root_flow_value">root_flow_value (zensols.calamr.flow.FlowDocumentGraphComponent property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.DocumentGraphComponent.root_node">root_node (zensols.calamr.dcomp.DocumentGraphComponent attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.base.GraphRenderer.rooted">rooted (zensols.calamr.render.base.GraphRenderer attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.roots">roots (zensols.calamr.comp.GraphComponent property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphSequencer.run">run() (zensols.calamr.aligner.GraphSequencer method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="S" class="genindex-section">
+  <h2>S</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.score.CalamrScoreMethod.score_annotated_doc">score_annotated_doc() (zensols.calamr.score.CalamrScoreMethod method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.score.CalamrScoreMethod.score_pair">score_pair() (zensols.calamr.score.CalamrScoreMethod method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.annotate.ProxyReportAnnotatedAmrDocument.sections">sections (zensols.calamr.annotate.ProxyReportAnnotatedAmrDocument property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.select_edges">select_edges() (zensols.calamr.comp.GraphComponent method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.select_vertices">select_vertices() (zensols.calamr.comp.GraphComponent method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.SentenceGraphAttribute.sent">sent (zensols.calamr.attr.SentenceGraphAttribute attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.SentenceGraphEdge.sent">(zensols.calamr.attr.SentenceGraphEdge attribute)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.SentenceGraphNode.sent">(zensols.calamr.attr.SentenceGraphNode attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.DocumentGraphComponent.sent_index">sent_index (zensols.calamr.dcomp.DocumentGraphComponent attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.SentenceGraphEdge.sent_ix">sent_ix (zensols.calamr.attr.SentenceGraphEdge attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.SentenceGraphNode.sent_ix">(zensols.calamr.attr.SentenceGraphNode attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.SentenceGraphNode.SENT_TEXT_LEN">SENT_TEXT_LEN (zensols.calamr.attr.SentenceGraphNode attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.SentenceEntry">SentenceEntry (class in zensols.calamr.dcomp)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.SentenceGraphAttribute">SentenceGraphAttribute (class in zensols.calamr.attr)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.SentenceGraphEdge">SentenceGraphEdge (class in zensols.calamr.attr)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.SentenceGraphNode">SentenceGraphNode (class in zensols.calamr.attr)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.SentenceIndex">SentenceIndex (class in zensols.calamr.dcomp)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.DocumentNode.sents">sents (zensols.calamr.attr.DocumentNode property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphIteration.sequence">sequence (zensols.calamr.aligner.GraphIteration attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphSequence.sequencer">sequencer (zensols.calamr.aligner.GraphSequence attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.resource.Resources.serialized_factory">serialized_factory (zensols.calamr.resource.Resources attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.alignconst.GraphAlignmentConstructor.set_capacities">set_capacities() (zensols.calamr.alignconst.GraphAlignmentConstructor method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash.set_corpus">set_corpus() (zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.set_edge">set_edge() (zensols.calamr.comp.GraphComponent class method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.set_node">set_node() (zensols.calamr.comp.GraphComponent class method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.alignconst.SharedGraphAlignmentConstructor">SharedGraphAlignmentConstructor (class in zensols.calamr.summary.alignconst)</a>
+</li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.base.GraphRenderer.show">show() (zensols.calamr.render.base.GraphRenderer method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttributeContext.similarity_threshold">similarity_threshold (zensols.calamr.domain.GraphAttributeContext attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttributeContext.sink_capacity">sink_capacity (zensols.calamr.domain.GraphAttributeContext attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.alignconst.GraphAlignmentConstructor.sink_flow_node">sink_flow_node (zensols.calamr.alignconst.GraphAlignmentConstructor property)</a>
+</li>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.base.GraphRenderer.sleep">sleep (zensols.calamr.render.base.GraphRenderer attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.SnapshotDocumentGraphController.snapshot_source">snapshot_source (zensols.calamr.ctrl.SnapshotDocumentGraphController attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.ctrl.SnapshotDocumentGraphController">SnapshotDocumentGraphController (class in zensols.calamr.ctrl)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.Flow.source">source (zensols.calamr.flow.Flow attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.alignconst.SummaryGraphAlignmentConstructor.source">(zensols.calamr.summary.alignconst.SummaryGraphAlignmentConstructor property)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.factory.SummaryConstants.SOURCE_COMP">SOURCE_COMP (zensols.calamr.summary.factory.SummaryConstants attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.alignconst.GraphAlignmentConstructor.source_flow">source_flow (zensols.calamr.alignconst.GraphAlignmentConstructor attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.alignconst.GraphAlignmentConstructor.source_flow_node">source_flow_node (zensols.calamr.alignconst.GraphAlignmentConstructor property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphComponentResult.stats">stats (zensols.calamr.flow.FlowGraphComponentResult property)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult.stats">(zensols.calamr.flow.FlowGraphResult property)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.reentrancy.ReentrancySet.stats">(zensols.calamr.reentrancy.ReentrancySet property)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult.stats_df">stats_df (zensols.calamr.flow.FlowGraphResult property)</a>
+</li>
+        <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.alignconst.SummaryGraphAlignmentConstructor.summary">summary (zensols.calamr.summary.alignconst.SummaryGraphAlignmentConstructor property)</a>
+</li>
+        <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.factory.SummaryConstants.SUMMARY_COMP">SUMMARY_COMP (zensols.calamr.summary.factory.SummaryConstants attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.factory.SummaryConstants">SummaryConstants (class in zensols.calamr.summary.factory)</a>
+</li>
+        <li><a href="api/zensols.calamr.summary.html#zensols.calamr.summary.alignconst.SummaryGraphAlignmentConstructor">SummaryGraphAlignmentConstructor (class in zensols.calamr.summary.alignconst)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.ConfigSwapper.swap">swap() (zensols.calamr.adhoc.ConfigSwapper method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash.swap_keys">swap_keys (zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash.swapper">swapper (zensols.calamr.adhoc.AdhocAnnotatedAmrDocumentStash attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.adhoc.ConfigSwapper.swaps">swaps (zensols.calamr.adhoc.ConfigSwapper attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="T" class="genindex-section">
+  <h2>T</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.Flow.target">target (zensols.calamr.flow.Flow attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.TerminalGraphEdge">TerminalGraphEdge (class in zensols.calamr.attr)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.TerminalGraphNode">TerminalGraphNode (class in zensols.calamr.attr)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.annotate.CalamrAnnotatedAmrFeatureDocumentFactory.to_annotated_doc">to_annotated_doc() (zensols.calamr.annotate.CalamrAnnotatedAmrFeatureDocumentFactory method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.to_edge">to_edge() (zensols.calamr.comp.GraphComponent class method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.to_node">to_node() (zensols.calamr.comp.GraphComponent class method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttributeContext.to_role">to_role() (zensols.calamr.domain.GraphAttributeContext method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.flow.Flow.to_row">to_row (zensols.calamr.flow.Flow property)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.SentenceGraphAttribute.token_align_str">token_align_str (zensols.calamr.attr.SentenceGraphAttribute property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.SentenceGraphAttribute.token_aligns">token_aligns (zensols.calamr.attr.SentenceGraphAttribute attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.ConceptGraphNode.token_embedding">token_embedding (zensols.calamr.attr.ConceptGraphNode property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.SentenceGraphAttribute.tokens">tokens (zensols.calamr.attr.SentenceGraphAttribute property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.EmbeddingResource.torch_config">torch_config (zensols.calamr.domain.EmbeddingResource attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.reentrancy.Reentrancy.total_flow">total_flow (zensols.calamr.reentrancy.Reentrancy property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.RoleGraphEdge.triple">triple (zensols.calamr.attr.RoleGraphEdge attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.TripleGraphNode.triple">(zensols.calamr.attr.TripleGraphNode attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.TripleGraphNode">TripleGraphNode (class in zensols.calamr.attr)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="U" class="genindex-section">
+  <h2>U</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.EmbeddingResource.unknown_edge_embedding">unknown_edge_embedding (zensols.calamr.domain.EmbeddingResource property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.EmbeddingResource.unknown_node_embedding">unknown_node_embedding (zensols.calamr.domain.EmbeddingResource property)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.alignconst.GraphAlignmentConstructor.update_capacities">update_capacities() (zensols.calamr.alignconst.GraphAlignmentConstructor method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.aligner.GraphIteration.updates">updates (zensols.calamr.aligner.GraphIteration attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="V" class="genindex-section">
+  <h2>V</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.GraphEdge.value_str">value_str (zensols.calamr.attr.GraphEdge property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.TripleGraphNode.variable">variable (zensols.calamr.attr.TripleGraphNode property)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.vertex_ref_by_id">vertex_ref_by_id() (zensols.calamr.comp.GraphComponent method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.base.GraphRenderer.visual_style">visual_style (zensols.calamr.render.base.GraphRenderer attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.base.RenderContext.visual_style">(zensols.calamr.render.base.RenderContext attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.vs">vs (zensols.calamr.comp.GraphComponent property)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="W" class="genindex-section">
+  <h2>W</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.render.html#zensols.calamr.render.util.Formatter.width">width (zensols.calamr.render.util.Formatter attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.EmbeddingResource.word_piece_doc_factory">word_piece_doc_factory (zensols.calamr.domain.EmbeddingResource attribute)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.score.CalamrScoreMethod.word_piece_doc_factory">(zensols.calamr.score.CalamrScoreMethod attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.domain.EmbeddingResource.word_piece_doc_parser">word_piece_doc_parser (zensols.calamr.domain.EmbeddingResource attribute)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.attr.DocumentNode.write">write() (zensols.calamr.attr.DocumentNode method)</a>
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.attr.SentenceGraphAttribute.write">(zensols.calamr.attr.SentenceGraphAttribute method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.comp.GraphComponent.write">(zensols.calamr.comp.GraphComponent method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.dcomp.DocumentGraphComponent.write">(zensols.calamr.dcomp.DocumentGraphComponent method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraph.write">(zensols.calamr.doc.DocumentGraph method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.domain.GraphAttribute.write">(zensols.calamr.domain.GraphAttribute method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphComponentResult.write">(zensols.calamr.flow.FlowGraphComponentResult method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult.write">(zensols.calamr.flow.FlowGraphResult method)</a>
+</li>
+          <li><a href="api/zensols.calamr.html#zensols.calamr.reentrancy.Reentrancy.write">(zensols.calamr.reentrancy.Reentrancy method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.app.CorpusApplication.write_adhoc_corpus">write_adhoc_corpus() (zensols.calamr.app.CorpusApplication method)</a>
+</li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.app.CorpusApplication.write_keys">write_keys() (zensols.calamr.app.CorpusApplication method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="Z" class="genindex-section">
+  <h2>Z</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    zensols.calamr
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.adhoc
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.adhoc">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.alignconst
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.alignconst">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.aligner
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.aligner">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.annotate
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.annotate">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.app
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.app">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.attr
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.attr">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.cli
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.cli">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.comp
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.comp">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.ctrl
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.ctrl">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.dcomp
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.dcomp">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.doc
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.doc">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.domain
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.domain">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.flow
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.flow">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.flowmeta
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.flowmeta">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.morph
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.morph">module</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    zensols.calamr.proto
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.proto">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.reentrancy
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.reentrancy">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.render
+
+        <ul>
+          <li><a href="api/zensols.calamr.render.html#module-zensols.calamr.render">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.render.base
+
+        <ul>
+          <li><a href="api/zensols.calamr.render.html#module-zensols.calamr.render.base">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.render.graphvis
+
+        <ul>
+          <li><a href="api/zensols.calamr.render.html#module-zensols.calamr.render.graphvis">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.render.plotly
+
+        <ul>
+          <li><a href="api/zensols.calamr.render.html#module-zensols.calamr.render.plotly">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.render.pyvis
+
+        <ul>
+          <li><a href="api/zensols.calamr.render.html#module-zensols.calamr.render.pyvis">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.render.util
+
+        <ul>
+          <li><a href="api/zensols.calamr.render.html#module-zensols.calamr.render.util">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.resource
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.resource">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.score
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.score">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.stash
+
+        <ul>
+          <li><a href="api/zensols.calamr.html#module-zensols.calamr.stash">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.summary
+
+        <ul>
+          <li><a href="api/zensols.calamr.summary.html#module-zensols.calamr.summary">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.summary.alignconst
+
+        <ul>
+          <li><a href="api/zensols.calamr.summary.html#module-zensols.calamr.summary.alignconst">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.summary.capacity
+
+        <ul>
+          <li><a href="api/zensols.calamr.summary.html#module-zensols.calamr.summary.capacity">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.summary.coref
+
+        <ul>
+          <li><a href="api/zensols.calamr.summary.html#module-zensols.calamr.summary.coref">module</a>
+</li>
+        </ul></li>
+        <li>
+    zensols.calamr.summary.factory
+
+        <ul>
+          <li><a href="api/zensols.calamr.summary.html#module-zensols.calamr.summary.factory">module</a>
+</li>
+        </ul></li>
+        <li><a href="api/zensols.calamr.html#zensols.calamr.reentrancy.Reentrancy.zero_flows">zero_flows (zensols.calamr.reentrancy.Reentrancy property)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025 Paul Landes
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=fd7cadf9"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    </body>
+</html>

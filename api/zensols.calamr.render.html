@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+
+<html class="no-js" data-content_root="../" lang="en">
+<head><meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="light dark" name="color-scheme"/><meta content="width=device-width, initial-scale=1" name="viewport">
+<link href="../genindex.html" rel="index" title="Index"/><link href="../search.html" rel="search" title="Search"/><link href="zensols.calamr.summary.html" rel="next" title="zensols.calamr.summary namespace"/><link href="zensols.calamr.html" rel="prev" title="zensols.calamr package"/>
+<!-- Generated with Sphinx 7.4.7 and Furo 2025.09.25 -->
+<title>zensols.calamr.render namespace - CALAMR: Component ALignment for AMR 1.2.2 documentation</title>
+<link href="../_static/pygments.css?v=03e43079" rel="stylesheet" type="text/css">
+<link href="../_static/styles/furo.css?v=580074bf" rel="stylesheet" type="text/css">
+<link href="../_static/copybutton.css?v=76b2166b" rel="stylesheet" type="text/css">
+<link href="../_static/sphinx-codeautolink.css?v=b2176991" rel="stylesheet" type="text/css">
+<link href="../_static/graphviz.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/styles/furo-extensions.css?v=8dab3a3b" rel="stylesheet" type="text/css"/>
+<link href="../_static/codeautolink.css?v=57550ae3" rel="stylesheet" type="text/css"/>
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></link></link></link></link></meta></head>
+<body>
+<script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+<symbol id="svg-toc" viewbox="0 0 24 24">
+<title>Contents</title>
+<svg fill="currentColor" stroke="currentColor" stroke-width="0" viewbox="0 0 1024 1024">
+<path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"></path>
+</svg>
+</symbol>
+<symbol id="svg-menu" viewbox="0 0 24 24">
+<title>Menu</title>
+<svg class="feather-menu" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<line x1="3" x2="21" y1="12" y2="12"></line>
+<line x1="3" x2="21" y1="6" y2="6"></line>
+<line x1="3" x2="21" y1="18" y2="18"></line>
+</svg>
+</symbol>
+<symbol id="svg-arrow-right" viewbox="0 0 24 24">
+<title>Expand</title>
+<svg class="feather-chevron-right" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<polyline points="9 18 15 12 9 6"></polyline>
+</svg>
+</symbol>
+<symbol id="svg-sun" viewbox="0 0 24 24">
+<title>Light mode</title>
+<svg class="feather-sun" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" x2="12" y1="1" y2="3"></line>
+<line x1="12" x2="12" y1="21" y2="23"></line>
+<line x1="4.22" x2="5.64" y1="4.22" y2="5.64"></line>
+<line x1="18.36" x2="19.78" y1="18.36" y2="19.78"></line>
+<line x1="1" x2="3" y1="12" y2="12"></line>
+<line x1="21" x2="23" y1="12" y2="12"></line>
+<line x1="4.22" x2="5.64" y1="19.78" y2="18.36"></line>
+<line x1="18.36" x2="19.78" y1="5.64" y2="4.22"></line>
+</svg>
+</symbol>
+<symbol id="svg-moon" viewbox="0 0 24 24">
+<title>Dark mode</title>
+<svg class="icon-tabler-moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0h24v24H0z" fill="none" stroke="none"></path>
+<path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path>
+</svg>
+</symbol>
+<symbol id="svg-sun-with-moon" viewbox="0 0 24 24">
+<title>Auto light/dark, in light mode</title>
+<svg class="icon-custom-derived-from-feather-sun-and-tabler-moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z" style="opacity: 50%"></path>
+<line x1="14.5" x2="14.5" y1="3.25" y2="1.25"></line>
+<line x1="14.5" x2="14.5" y1="15.85" y2="17.85"></line>
+<line x1="10.044" x2="8.63" y1="5.094" y2="3.68"></line>
+<line x1="19" x2="20.414" y1="14.05" y2="15.464"></line>
+<line x1="8.2" x2="6.2" y1="9.55" y2="9.55"></line>
+<line x1="20.8" x2="22.8" y1="9.55" y2="9.55"></line>
+<line x1="10.044" x2="8.63" y1="14.006" y2="15.42"></line>
+<line x1="19" x2="20.414" y1="5.05" y2="3.636"></line>
+<circle cx="14.5" cy="9.55" r="3.6"></circle>
+</svg>
+</symbol>
+<symbol id="svg-moon-with-sun" viewbox="0 0 24 24">
+<title>Auto light/dark, in dark mode</title>
+<svg class="icon-custom-derived-from-feather-sun-and-tabler-moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"></path>
+<line style="opacity: 50%" x1="18" x2="18" y1="3.705" y2="2.5"></line>
+<line style="opacity: 50%" x1="18" x2="18" y1="11.295" y2="12.5"></line>
+<line style="opacity: 50%" x1="15.316" x2="14.464" y1="4.816" y2="3.964"></line>
+<line style="opacity: 50%" x1="20.711" x2="21.563" y1="10.212" y2="11.063"></line>
+<line style="opacity: 50%" x1="14.205" x2="13.001" y1="7.5" y2="7.5"></line>
+<line style="opacity: 50%" x1="21.795" x2="23" y1="7.5" y2="7.5"></line>
+<line style="opacity: 50%" x1="15.316" x2="14.464" y1="10.184" y2="11.036"></line>
+<line style="opacity: 50%" x1="20.711" x2="21.563" y1="4.789" y2="3.937"></line>
+<circle cx="18" cy="7.5" r="2.169" style="opacity: 50%"></circle>
+</svg>
+</symbol>
+<symbol id="svg-pencil" viewbox="0 0 24 24">
+<svg class="icon-tabler-pencil-code" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4"></path>
+<path d="M13.5 6.5l4 4"></path>
+<path d="M20 21l2 -2l-2 -2"></path>
+<path d="M17 17l-2 2l2 2"></path>
+</svg>
+</symbol>
+<symbol id="svg-eye" viewbox="0 0 24 24">
+<svg class="icon-tabler-eye-code" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0h24v24H0z" fill="none" stroke="none"></path>
+<path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+<path d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008"></path>
+<path d="M20 21l2 -2l-2 -2"></path>
+<path d="M17 17l-2 2l2 2"></path>
+</svg>
+</symbol>
+</svg>
+<input aria-label="Toggle site navigation sidebar" class="sidebar-toggle" id="__navigation" name="__navigation" type="checkbox"/>
+<input aria-label="Toggle table of contents sidebar" class="sidebar-toggle" id="__toc" name="__toc" type="checkbox"/>
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+<div class="page">
+<header class="mobile-header">
+<div class="header-left">
+<label class="nav-overlay-icon" for="__navigation">
+<span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+</label>
+</div>
+<div class="header-center">
+<a href="../top.html"><div class="brand">CALAMR: Component ALignment for AMR 1.2.2 documentation</div></a>
+</div>
+<div class="header-right">
+<div class="theme-toggle-container theme-toggle-header">
+<button aria-label="Toggle Light / Dark / Auto color theme" class="theme-toggle">
+<svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+<svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+<svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+<svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+</button>
+</div>
+<label class="toc-overlay-icon toc-header-icon" for="__toc">
+<span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+</label>
+</div>
+</header>
+<aside class="sidebar-drawer">
+<div class="sidebar-container">
+<div class="sidebar-sticky"><a class="sidebar-brand" href="../top.html">
+<span class="sidebar-brand-text">CALAMR: Component ALignment for AMR 1.2.2 documentation</span>
+</a><form action="../search.html" class="sidebar-search-container" method="get" role="search">
+<input aria-label="Search" class="sidebar-search" name="q" placeholder="Search"/>
+<input name="check_keywords" type="hidden" value="yes"/>
+<input name="area" type="hidden" value="default"/>
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Overview</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../api.html">API Reference</a><input aria-label="Toggle navigation of API Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="zensols.calamr.html">zensols.calamr package</a><input aria-label="Toggle navigation of zensols.calamr package" checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">zensols.calamr.render namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zensols.calamr.summary.html">zensols.calamr.summary namespace</a></li>
+</ul>
+</input></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">zensols.calamr.render namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zensols.calamr.summary.html">zensols.calamr.summary namespace</a></li>
+</ul>
+</input></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<div class="main">
+<div class="content">
+<div class="article-container">
+<a class="back-to-top muted-link" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+</svg>
+<span>Back to top</span>
+</a>
+<div class="content-icon-container">
+<div class="view-this-page">
+<a class="muted-link" href="../_sources/api/zensols.calamr.render.rst.txt" title="View this page">
+<svg><use href="#svg-eye"></use></svg>
+<span class="visually-hidden">View this page</span>
+</a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+<button aria-label="Toggle Light / Dark / Auto color theme" class="theme-toggle">
+<svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+<svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+<svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+<svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+</button>
+</div>
+<label class="toc-overlay-icon toc-content-icon" for="__toc">
+<span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+</label>
+</div>
+<article id="furo-main-content" role="main">
+<section id="module-zensols.calamr.render">
+<span id="zensols-calamr-render-namespace"></span><h1>zensols.calamr.render namespace<a class="headerlink" href="#module-zensols.calamr.render" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-zensols.calamr.render.base">
+<span id="zensols-calamr-render-base-module"></span><h2>zensols.calamr.render.base module<a class="headerlink" href="#module-zensols.calamr.render.base" title="Link to this heading">¶</a></h2>
+<p>Renderer AMR graphs.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="zensols.calamr.render.base.GraphRenderer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zensols.calamr.render.base.</span></span><span class="sig-name descname"><span class="pre">GraphRenderer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">browser_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rooted=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visual_style=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep=0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/calamr/render/base.html#GraphRenderer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.calamr.render.base.GraphRenderer" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></a></p>
+<p>Renders an igraph in to a file and then displays it.  To render the
+graph, use <code class="xref py py-meth docutils literal notranslate"><span class="pre">render()</span></code>.  Then you can display it with <a class="reference internal" href="#zensols.calamr.render.base.GraphRenderer.show" title="zensols.calamr.render.base.GraphRenderer.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">show()</span></code></a>.</p>
+<p>The implementation of rendering is done in subclasses.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.calamr.render.base.GraphRenderer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">browser_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rooted=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visual_style=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep=0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zensols.calamr.render.base.GraphRenderer.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.calamr.render.base.GraphRenderer.browser_manager">
+<span class="sig-name descname"><span class="pre">browser_manager</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">BrowserManager</span></code></em><a class="headerlink" href="#zensols.calamr.render.base.GraphRenderer.browser_manager" title="Link to this definition">¶</a></dt>
+<dd><p>Detects and controls the screen.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.calamr.render.base.GraphRenderer.display">
+<span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/calamr/render/base.html#GraphRenderer.display"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.calamr.render.base.GraphRenderer.display" title="Link to this definition">¶</a></dt>
+<dd><p>Display the graph generated in file <code class="docutils literal notranslate"><span class="pre">out_file</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>out_file</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a></span>) – the graph to display</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.calamr.render.base.GraphRenderer.display_all">
+<span class="sig-name descname"><span class="pre">display_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_files</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/calamr/render/base.html#GraphRenderer.display_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.calamr.render.base.GraphRenderer.display_all" title="Link to this definition">¶</a></dt>
+<dd><p>Like <a class="reference internal" href="#zensols.calamr.render.base.GraphRenderer.display" title="zensols.calamr.render.base.GraphRenderer.display"><code class="xref py py-meth docutils literal notranslate"><span class="pre">display()</span></code></a> but display several files at once.  In some
+cases, this means a separate browser window with multiple tabs with just
+the selected graphs will be shown.</p>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.calamr.render.base.GraphRenderer.extension">
+<span class="sig-name descname"><span class="pre">extension</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><a class="headerlink" href="#zensols.calamr.render.base.GraphRenderer.extension" title="Link to this definition">¶</a></dt>
+<dd><p>The output file’s extension.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.calamr.render.base.GraphRenderer.render_to_file">
+<span class="sig-name descname"><span class="pre">render_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/calamr/render/base.html#GraphRenderer.render_to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.calamr.render.base.GraphRenderer.render_to_file" title="Link to this definition">¶</a></dt>
+<dd><p>Render graph the graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>context</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#zensols.calamr.render.base.RenderContext" title="zensols.calamr.render.base.RenderContext"><code class="xref py py-class docutils literal notranslate"><span class="pre">RenderContext</span></code></a></span>) – contains everything that is needed to render a graph</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.calamr.render.base.GraphRenderer.rooted">
+<span class="sig-name descname"><span class="pre">rooted</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#zensols.calamr.render.base.GraphRenderer.rooted" title="Link to this definition">¶</a></dt>
+<dd><p>Whether the graph should be drawn as a tree.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.calamr.render.base.GraphRenderer.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/calamr/render/base.html#GraphRenderer.show"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.calamr.render.base.GraphRenderer.show" title="Link to this definition">¶</a></dt>
+<dd><p>Render and display the document graph.</p>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.calamr.render.base.GraphRenderer.sleep">
+<span class="sig-name descname"><span class="pre">sleep</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a><span class="pre">,</span> <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#zensols.calamr.render.base.GraphRenderer.sleep" title="Link to this definition">¶</a></dt>
+<dd><p>The number of seconds to sleep before deleting the generated file to give
+the browser time to display.</p>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.calamr.render.base.GraphRenderer.visual_style">
+<span class="sig-name descname"><span class="pre">visual_style</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://plandes.github.io/util/api/zensols.config.html#zensols.config.serial.Settings" title="(in Zensols Utilities v1.15.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Settings</span></code></a></em><a class="headerlink" href="#zensols.calamr.render.base.GraphRenderer.visual_style" title="Link to this definition">¶</a></dt>
+<dd><p>Contains the visualization sytle for the graph.</p>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="zensols.calamr.render.base.RenderContext">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zensols.calamr.render.base.</span></span><span class="sig-name descname"><span class="pre">RenderContext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heading</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visual_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/calamr/render/base.html#RenderContext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.calamr.render.base.RenderContext" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://plandes.github.io/util/api/zensols.config.html#zensols.config.dictable.Dictable" title="(in Zensols Utilities v1.15.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dictable</span></code></a></p>
+<p>Contains everything that is needed to render a graph.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.calamr.render.base.RenderContext.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heading</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visual_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zensols.calamr.render.base.RenderContext.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.calamr.render.base.RenderContext.doc_graph">
+<span class="sig-name descname"><span class="pre">doc_graph</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DocumentGraph</span></em><a class="headerlink" href="#zensols.calamr.render.base.RenderContext.doc_graph" title="Link to this definition">¶</a></dt>
+<dd><p>The graph to render.</p>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.calamr.render.base.RenderContext.heading">
+<span class="sig-name descname"><span class="pre">heading</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#zensols.calamr.render.base.RenderContext.heading" title="Link to this definition">¶</a></dt>
+<dd><p>The title to use as the heading.</p>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.calamr.render.base.RenderContext.visual_style">
+<span class="sig-name descname"><span class="pre">visual_style</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict[str,</span> <span class="pre">Any]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#zensols.calamr.render.base.RenderContext.visual_style" title="Link to this definition">¶</a></dt>
+<dd><p>Any overriding context for the renderer.</p>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="zensols.calamr.render.base.rendergroup">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zensols.calamr.render.base.</span></span><span class="sig-name descname"><span class="pre">rendergroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">renderer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'graph'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/calamr/render/base.html#rendergroup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.calamr.render.base.rendergroup" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A context manager to render several graphs at a time, then optionally
+display them.  Rendering graphs is done by calling an instance of this
+context manager.</p>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">rendergroup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">renderer</span><span class="p">)</span> <span class="k">as</span> <span class="n">render</span><span class="p">:</span>
+    <span class="n">render</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">heading</span><span class="o">=</span><span class="s1">'Source Max flow'</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.calamr.render.base.rendergroup.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">renderer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'graph'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/calamr/render/base.html#rendergroup.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.calamr.render.base.rendergroup.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize the context manager.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>renderer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#zensols.calamr.render.base.GraphRenderer" title="zensols.calamr.render.base.GraphRenderer"><code class="xref py py-class docutils literal notranslate"><span class="pre">GraphRenderer</span></code></a></span>) – used to render the graphs and optionally display using
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">Renderer.display_all()</span></code></p></li>
+<li><p><strong>graph_id</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – a unique identifier prefixed to files generated if none
+provided in the call method</p></li>
+<li><p><strong>display</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – whether to display the files after generated</p></li>
+<li><p><strong>directory</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a></span>) – the directory to create the files in place of the
+temporary directory; if provided the directory is not
+removed after the graphs are rendered</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+</section>
+<section id="module-zensols.calamr.render.graphvis">
+<span id="zensols-calamr-render-graphvis-module"></span><h2>zensols.calamr.render.graphvis module<a class="headerlink" href="#module-zensols.calamr.render.graphvis" title="Link to this heading">¶</a></h2>
+<p>Renderer AMR graphs using <code class="xref py py-mod docutils literal notranslate"><span class="pre">graphviz</span></code>.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="zensols.calamr.render.graphvis.GraphVisGraphRenderer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zensols.calamr.render.graphvis.</span></span><span class="sig-name descname"><span class="pre">GraphVisGraphRenderer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">browser_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension='pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rooted=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visual_style=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep=0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/calamr/render/graphvis.html#GraphVisGraphRenderer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.calamr.render.graphvis.GraphVisGraphRenderer" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#zensols.calamr.render.base.GraphRenderer" title="zensols.calamr.render.base.GraphRenderer"><code class="xref py py-class docutils literal notranslate"><span class="pre">GraphRenderer</span></code></a></p>
+<p>A graph renderer using <code class="xref py py-class docutils literal notranslate"><span class="pre">graphviz.Digraph</span></code>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.calamr.render.graphvis.GraphVisGraphRenderer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">browser_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension='pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rooted=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visual_style=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep=0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zensols.calamr.render.graphvis.GraphVisGraphRenderer.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.calamr.render.graphvis.GraphVisGraphRenderer.extension">
+<span class="sig-name descname"><span class="pre">extension</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'pdf'</span></em><a class="headerlink" href="#zensols.calamr.render.graphvis.GraphVisGraphRenderer.extension" title="Link to this definition">¶</a></dt>
+<dd><p>The output file’s extension.</p>
+</dd></dl>
+</dd></dl>
+</section>
+<section id="module-zensols.calamr.render.plotly">
+<span id="zensols-calamr-render-plotly-module"></span><h2>zensols.calamr.render.plotly module<a class="headerlink" href="#module-zensols.calamr.render.plotly" title="Link to this heading">¶</a></h2>
+<p>Renderer AMR graphs using <code class="xref py py-mod docutils literal notranslate"><span class="pre">plotly</span></code>.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="zensols.calamr.render.plotly.PlotlyGraphRenderer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zensols.calamr.render.plotly.</span></span><span class="sig-name descname"><span class="pre">PlotlyGraphRenderer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">browser_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension='html'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rooted=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visual_style=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep=0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/calamr/render/plotly.html#PlotlyGraphRenderer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.calamr.render.plotly.PlotlyGraphRenderer" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#zensols.calamr.render.base.GraphRenderer" title="zensols.calamr.render.base.GraphRenderer"><code class="xref py py-class docutils literal notranslate"><span class="pre">GraphRenderer</span></code></a></p>
+<p>Render teh graph in plotly using a tree layout with each separated on the
+Z-axis.  This makes it easier to see each component separately and easier to
+follow where the component alignment lie.</p>
+<p>To do this, the components have to be detached from the connected bipartite
+graph to be rendered separately.  The alignment edges are then rendered
+afterwward.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.calamr.render.plotly.PlotlyGraphRenderer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">browser_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension='html'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rooted=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visual_style=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep=0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zensols.calamr.render.plotly.PlotlyGraphRenderer.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.calamr.render.plotly.PlotlyGraphRenderer.extension">
+<span class="sig-name descname"><span class="pre">extension</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'html'</span></em><a class="headerlink" href="#zensols.calamr.render.plotly.PlotlyGraphRenderer.extension" title="Link to this definition">¶</a></dt>
+<dd><p>The output file’s extension.</p>
+</dd></dl>
+</dd></dl>
+</section>
+<section id="module-zensols.calamr.render.pyvis">
+<span id="zensols-calamr-render-pyvis-module"></span><h2>zensols.calamr.render.pyvis module<a class="headerlink" href="#module-zensols.calamr.render.pyvis" title="Link to this heading">¶</a></h2>
+<p>Renderer AMR graphs using <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyvis</span></code>.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="zensols.calamr.render.pyvis.PyvisGraphRenderer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zensols.calamr.render.pyvis.</span></span><span class="sig-name descname"><span class="pre">PyvisGraphRenderer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">browser_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension='html'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rooted=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visual_style=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep=0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/calamr/render/pyvis.html#PyvisGraphRenderer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.calamr.render.pyvis.PyvisGraphRenderer" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#zensols.calamr.render.base.GraphRenderer" title="zensols.calamr.render.base.GraphRenderer"><code class="xref py py-class docutils literal notranslate"><span class="pre">GraphRenderer</span></code></a></p>
+<p>A graph renderer using the <code class="xref py py-class docutils literal notranslate"><span class="pre">pyvis.network.Network</span></code> API.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.calamr.render.pyvis.PyvisGraphRenderer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">browser_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension='html'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rooted=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visual_style=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep=0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zensols.calamr.render.pyvis.PyvisGraphRenderer.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.calamr.render.pyvis.PyvisGraphRenderer.display">
+<span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/calamr/render/pyvis.html#PyvisGraphRenderer.display"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.calamr.render.pyvis.PyvisGraphRenderer.display" title="Link to this definition">¶</a></dt>
+<dd><p>Display the graph generated in file <code class="docutils literal notranslate"><span class="pre">out_file</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>out_file</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a></span>) – the graph to display</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.calamr.render.pyvis.PyvisGraphRenderer.extension">
+<span class="sig-name descname"><span class="pre">extension</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'html'</span></em><a class="headerlink" href="#zensols.calamr.render.pyvis.PyvisGraphRenderer.extension" title="Link to this definition">¶</a></dt>
+<dd><p>The output file’s extension.</p>
+</dd></dl>
+</dd></dl>
+</section>
+<section id="module-zensols.calamr.render.util">
+<span id="zensols-calamr-render-util-module"></span><h2>zensols.calamr.render.util module<a class="headerlink" href="#module-zensols.calamr.render.util" title="Link to this heading">¶</a></h2>
+<p>Utilities such as gradient color generators.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="zensols.calamr.render.util.ColorUtil">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zensols.calamr.render.util.</span></span><span class="sig-name descname"><span class="pre">ColorUtil</span></span><a class="reference internal" href="../_modules/zensols/calamr/render/util.html#ColorUtil"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.calamr.render.util.ColorUtil" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.calamr.render.util.ColorUtil.gradient_colors">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gradient_colors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rgb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/calamr/render/util.html#ColorUtil.gradient_colors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.calamr.render.util.ColorUtil.gradient_colors" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.calamr.render.util.ColorUtil.rainbow_colors">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rainbow_colors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">light</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/calamr/render/util.html#ColorUtil.rainbow_colors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.calamr.render.util.ColorUtil.rainbow_colors" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="zensols.calamr.render.util.Formatter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zensols.calamr.render.util.</span></span><span class="sig-name descname"><span class="pre">Formatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desc_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/calamr/render/util.html#Formatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.calamr.render.util.Formatter" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.calamr.render.util.Formatter.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desc_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zensols.calamr.render.util.Formatter.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.calamr.render.util.Formatter.coref_edge">
+<span class="sig-name descname"><span class="pre">coref_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edge</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/calamr/render/util.html#Formatter.coref_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.calamr.render.util.Formatter.coref_edge" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.calamr.render.util.Formatter.desc_width">
+<span class="sig-name descname"><span class="pre">desc_width</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">500</span></em><a class="headerlink" href="#zensols.calamr.render.util.Formatter.desc_width" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.calamr.render.util.Formatter.edge">
+<span class="sig-name descname"><span class="pre">edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edge</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ge</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/calamr/render/util.html#Formatter.edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.calamr.render.util.Formatter.edge" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.calamr.render.util.Formatter.node">
+<span class="sig-name descname"><span class="pre">node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/calamr/render/util.html#Formatter.node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.calamr.render.util.Formatter.node" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.calamr.render.util.Formatter.width">
+<span class="sig-name descname"><span class="pre">width</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">60</span></em><a class="headerlink" href="#zensols.calamr.render.util.Formatter.width" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+</section>
+</section>
+</article>
+</div>
+<footer>
+<div class="related-pages">
+<a class="next-page" href="zensols.calamr.summary.html">
+<div class="page-info">
+<div class="context">
+<span>Next</span>
+</div>
+<div class="title">zensols.calamr.summary namespace</div>
+</div>
+<svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+</a>
+<a class="prev-page" href="zensols.calamr.html">
+<svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+<div class="page-info">
+<div class="context">
+<span>Previous</span>
+</div>
+<div class="title">zensols.calamr package</div>
+</div>
+</a>
+</div>
+<div class="bottom-of-page">
+<div class="left-details">
+<div class="copyright">
+                Copyright © 2025 Paul Landes
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+</div>
+<div class="right-details">
+</div>
+</div>
+</footer>
+</div>
+<aside class="toc-drawer">
+<div class="toc-sticky toc-scroll">
+<div class="toc-title-container">
+<span class="toc-title">
+            On this page
+          </span>
+</div>
+<div class="toc-tree-container">
+<div class="toc-tree">
+<ul>
+<li><a class="reference internal" href="#">zensols.calamr.render namespace</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-zensols.calamr.render.base">zensols.calamr.render.base module</a><ul>
+<li><a class="reference internal" href="#zensols.calamr.render.base.GraphRenderer"><code class="docutils literal notranslate"><span class="pre">GraphRenderer</span></code></a><ul>
+<li><a class="reference internal" href="#zensols.calamr.render.base.GraphRenderer.__init__"><code class="docutils literal notranslate"><span class="pre">GraphRenderer.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.base.GraphRenderer.browser_manager"><code class="docutils literal notranslate"><span class="pre">GraphRenderer.browser_manager</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.base.GraphRenderer.display"><code class="docutils literal notranslate"><span class="pre">GraphRenderer.display()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.base.GraphRenderer.display_all"><code class="docutils literal notranslate"><span class="pre">GraphRenderer.display_all()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.base.GraphRenderer.extension"><code class="docutils literal notranslate"><span class="pre">GraphRenderer.extension</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.base.GraphRenderer.render_to_file"><code class="docutils literal notranslate"><span class="pre">GraphRenderer.render_to_file()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.base.GraphRenderer.rooted"><code class="docutils literal notranslate"><span class="pre">GraphRenderer.rooted</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.base.GraphRenderer.show"><code class="docutils literal notranslate"><span class="pre">GraphRenderer.show()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.base.GraphRenderer.sleep"><code class="docutils literal notranslate"><span class="pre">GraphRenderer.sleep</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.base.GraphRenderer.visual_style"><code class="docutils literal notranslate"><span class="pre">GraphRenderer.visual_style</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#zensols.calamr.render.base.RenderContext"><code class="docutils literal notranslate"><span class="pre">RenderContext</span></code></a><ul>
+<li><a class="reference internal" href="#zensols.calamr.render.base.RenderContext.__init__"><code class="docutils literal notranslate"><span class="pre">RenderContext.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.base.RenderContext.doc_graph"><code class="docutils literal notranslate"><span class="pre">RenderContext.doc_graph</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.base.RenderContext.heading"><code class="docutils literal notranslate"><span class="pre">RenderContext.heading</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.base.RenderContext.visual_style"><code class="docutils literal notranslate"><span class="pre">RenderContext.visual_style</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#zensols.calamr.render.base.rendergroup"><code class="docutils literal notranslate"><span class="pre">rendergroup</span></code></a><ul>
+<li><a class="reference internal" href="#zensols.calamr.render.base.rendergroup.__init__"><code class="docutils literal notranslate"><span class="pre">rendergroup.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-zensols.calamr.render.graphvis">zensols.calamr.render.graphvis module</a><ul>
+<li><a class="reference internal" href="#zensols.calamr.render.graphvis.GraphVisGraphRenderer"><code class="docutils literal notranslate"><span class="pre">GraphVisGraphRenderer</span></code></a><ul>
+<li><a class="reference internal" href="#zensols.calamr.render.graphvis.GraphVisGraphRenderer.__init__"><code class="docutils literal notranslate"><span class="pre">GraphVisGraphRenderer.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.graphvis.GraphVisGraphRenderer.extension"><code class="docutils literal notranslate"><span class="pre">GraphVisGraphRenderer.extension</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-zensols.calamr.render.plotly">zensols.calamr.render.plotly module</a><ul>
+<li><a class="reference internal" href="#zensols.calamr.render.plotly.PlotlyGraphRenderer"><code class="docutils literal notranslate"><span class="pre">PlotlyGraphRenderer</span></code></a><ul>
+<li><a class="reference internal" href="#zensols.calamr.render.plotly.PlotlyGraphRenderer.__init__"><code class="docutils literal notranslate"><span class="pre">PlotlyGraphRenderer.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.plotly.PlotlyGraphRenderer.extension"><code class="docutils literal notranslate"><span class="pre">PlotlyGraphRenderer.extension</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-zensols.calamr.render.pyvis">zensols.calamr.render.pyvis module</a><ul>
+<li><a class="reference internal" href="#zensols.calamr.render.pyvis.PyvisGraphRenderer"><code class="docutils literal notranslate"><span class="pre">PyvisGraphRenderer</span></code></a><ul>
+<li><a class="reference internal" href="#zensols.calamr.render.pyvis.PyvisGraphRenderer.__init__"><code class="docutils literal notranslate"><span class="pre">PyvisGraphRenderer.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.pyvis.PyvisGraphRenderer.display"><code class="docutils literal notranslate"><span class="pre">PyvisGraphRenderer.display()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.pyvis.PyvisGraphRenderer.extension"><code class="docutils literal notranslate"><span class="pre">PyvisGraphRenderer.extension</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-zensols.calamr.render.util">zensols.calamr.render.util module</a><ul>
+<li><a class="reference internal" href="#zensols.calamr.render.util.ColorUtil"><code class="docutils literal notranslate"><span class="pre">ColorUtil</span></code></a><ul>
+<li><a class="reference internal" href="#zensols.calamr.render.util.ColorUtil.gradient_colors"><code class="docutils literal notranslate"><span class="pre">ColorUtil.gradient_colors()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.util.ColorUtil.rainbow_colors"><code class="docutils literal notranslate"><span class="pre">ColorUtil.rainbow_colors()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#zensols.calamr.render.util.Formatter"><code class="docutils literal notranslate"><span class="pre">Formatter</span></code></a><ul>
+<li><a class="reference internal" href="#zensols.calamr.render.util.Formatter.__init__"><code class="docutils literal notranslate"><span class="pre">Formatter.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.util.Formatter.coref_edge"><code class="docutils literal notranslate"><span class="pre">Formatter.coref_edge()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.util.Formatter.desc_width"><code class="docutils literal notranslate"><span class="pre">Formatter.desc_width</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.util.Formatter.edge"><code class="docutils literal notranslate"><span class="pre">Formatter.edge()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.util.Formatter.node"><code class="docutils literal notranslate"><span class="pre">Formatter.node()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.calamr.render.util.Formatter.width"><code class="docutils literal notranslate"><span class="pre">Formatter.width</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</div><script src="../_static/documentation_options.js?v=fd7cadf9"></script>
+<script src="../_static/doctools.js?v=9a2dae69"></script>
+<script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+<script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+<script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+<script src="../_static/copybutton.js?v=f281be69"></script>
+</body>
+</html>

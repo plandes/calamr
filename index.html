@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+
+<html class="no-js" data-content_root="./" lang="en">
+<head><meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="light dark" name="color-scheme"/><meta content="width=device-width, initial-scale=1" name="viewport">
+<link href="genindex.html" rel="index" title="Index"/><link href="search.html" rel="search" title="Search"/><link href="api.html" rel="next" title="API Reference"/><link href="top.html" rel="prev" title="CALAMR: Component ALignment for AMR"/>
+<!-- Generated with Sphinx 7.4.7 and Furo 2025.09.25 -->
+<title>CALAMR: Component ALignment for Abstract Meaning Representation - CALAMR: Component ALignment for AMR 1.2.2 documentation</title>
+<link href="_static/pygments.css?v=03e43079" rel="stylesheet" type="text/css">
+<link href="_static/styles/furo.css?v=580074bf" rel="stylesheet" type="text/css">
+<link href="_static/copybutton.css?v=76b2166b" rel="stylesheet" type="text/css">
+<link href="_static/sphinx-codeautolink.css?v=b2176991" rel="stylesheet" type="text/css">
+<link href="_static/graphviz.css" rel="stylesheet" type="text/css"/>
+<link href="_static/styles/furo-extensions.css?v=8dab3a3b" rel="stylesheet" type="text/css"/>
+<link href="_static/codeautolink.css?v=57550ae3" rel="stylesheet" type="text/css"/>
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></link></link></link></link></meta></head>
+<body>
+<script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+<symbol id="svg-toc" viewbox="0 0 24 24">
+<title>Contents</title>
+<svg fill="currentColor" stroke="currentColor" stroke-width="0" viewbox="0 0 1024 1024">
+<path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"></path>
+</svg>
+</symbol>
+<symbol id="svg-menu" viewbox="0 0 24 24">
+<title>Menu</title>
+<svg class="feather-menu" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<line x1="3" x2="21" y1="12" y2="12"></line>
+<line x1="3" x2="21" y1="6" y2="6"></line>
+<line x1="3" x2="21" y1="18" y2="18"></line>
+</svg>
+</symbol>
+<symbol id="svg-arrow-right" viewbox="0 0 24 24">
+<title>Expand</title>
+<svg class="feather-chevron-right" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<polyline points="9 18 15 12 9 6"></polyline>
+</svg>
+</symbol>
+<symbol id="svg-sun" viewbox="0 0 24 24">
+<title>Light mode</title>
+<svg class="feather-sun" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" x2="12" y1="1" y2="3"></line>
+<line x1="12" x2="12" y1="21" y2="23"></line>
+<line x1="4.22" x2="5.64" y1="4.22" y2="5.64"></line>
+<line x1="18.36" x2="19.78" y1="18.36" y2="19.78"></line>
+<line x1="1" x2="3" y1="12" y2="12"></line>
+<line x1="21" x2="23" y1="12" y2="12"></line>
+<line x1="4.22" x2="5.64" y1="19.78" y2="18.36"></line>
+<line x1="18.36" x2="19.78" y1="5.64" y2="4.22"></line>
+</svg>
+</symbol>
+<symbol id="svg-moon" viewbox="0 0 24 24">
+<title>Dark mode</title>
+<svg class="icon-tabler-moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0h24v24H0z" fill="none" stroke="none"></path>
+<path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path>
+</svg>
+</symbol>
+<symbol id="svg-sun-with-moon" viewbox="0 0 24 24">
+<title>Auto light/dark, in light mode</title>
+<svg class="icon-custom-derived-from-feather-sun-and-tabler-moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z" style="opacity: 50%"></path>
+<line x1="14.5" x2="14.5" y1="3.25" y2="1.25"></line>
+<line x1="14.5" x2="14.5" y1="15.85" y2="17.85"></line>
+<line x1="10.044" x2="8.63" y1="5.094" y2="3.68"></line>
+<line x1="19" x2="20.414" y1="14.05" y2="15.464"></line>
+<line x1="8.2" x2="6.2" y1="9.55" y2="9.55"></line>
+<line x1="20.8" x2="22.8" y1="9.55" y2="9.55"></line>
+<line x1="10.044" x2="8.63" y1="14.006" y2="15.42"></line>
+<line x1="19" x2="20.414" y1="5.05" y2="3.636"></line>
+<circle cx="14.5" cy="9.55" r="3.6"></circle>
+</svg>
+</symbol>
+<symbol id="svg-moon-with-sun" viewbox="0 0 24 24">
+<title>Auto light/dark, in dark mode</title>
+<svg class="icon-custom-derived-from-feather-sun-and-tabler-moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"></path>
+<line style="opacity: 50%" x1="18" x2="18" y1="3.705" y2="2.5"></line>
+<line style="opacity: 50%" x1="18" x2="18" y1="11.295" y2="12.5"></line>
+<line style="opacity: 50%" x1="15.316" x2="14.464" y1="4.816" y2="3.964"></line>
+<line style="opacity: 50%" x1="20.711" x2="21.563" y1="10.212" y2="11.063"></line>
+<line style="opacity: 50%" x1="14.205" x2="13.001" y1="7.5" y2="7.5"></line>
+<line style="opacity: 50%" x1="21.795" x2="23" y1="7.5" y2="7.5"></line>
+<line style="opacity: 50%" x1="15.316" x2="14.464" y1="10.184" y2="11.036"></line>
+<line style="opacity: 50%" x1="20.711" x2="21.563" y1="4.789" y2="3.937"></line>
+<circle cx="18" cy="7.5" r="2.169" style="opacity: 50%"></circle>
+</svg>
+</symbol>
+<symbol id="svg-pencil" viewbox="0 0 24 24">
+<svg class="icon-tabler-pencil-code" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4"></path>
+<path d="M13.5 6.5l4 4"></path>
+<path d="M20 21l2 -2l-2 -2"></path>
+<path d="M17 17l-2 2l2 2"></path>
+</svg>
+</symbol>
+<symbol id="svg-eye" viewbox="0 0 24 24">
+<svg class="icon-tabler-eye-code" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0h24v24H0z" fill="none" stroke="none"></path>
+<path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+<path d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008"></path>
+<path d="M20 21l2 -2l-2 -2"></path>
+<path d="M17 17l-2 2l2 2"></path>
+</svg>
+</symbol>
+</svg>
+<input aria-label="Toggle site navigation sidebar" class="sidebar-toggle" id="__navigation" name="__navigation" type="checkbox"/>
+<input aria-label="Toggle table of contents sidebar" class="sidebar-toggle" id="__toc" name="__toc" type="checkbox"/>
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+<div class="page">
+<header class="mobile-header">
+<div class="header-left">
+<label class="nav-overlay-icon" for="__navigation">
+<span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+</label>
+</div>
+<div class="header-center">
+<a href="top.html"><div class="brand">CALAMR: Component ALignment for AMR 1.2.2 documentation</div></a>
+</div>
+<div class="header-right">
+<div class="theme-toggle-container theme-toggle-header">
+<button aria-label="Toggle Light / Dark / Auto color theme" class="theme-toggle">
+<svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+<svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+<svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+<svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+</button>
+</div>
+<label class="toc-overlay-icon toc-header-icon" for="__toc">
+<span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+</label>
+</div>
+</header>
+<aside class="sidebar-drawer">
+<div class="sidebar-container">
+<div class="sidebar-sticky"><a class="sidebar-brand" href="top.html">
+<span class="sidebar-brand-text">CALAMR: Component ALignment for AMR 1.2.2 documentation</span>
+</a><form action="search.html" class="sidebar-search-container" method="get" role="search">
+<input aria-label="Search" class="sidebar-search" name="q" placeholder="Search"/>
+<input name="check_keywords" type="hidden" value="yes"/>
+<input name="area" type="hidden" value="default"/>
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api.html">API Reference</a><input aria-label="Toggle navigation of API Reference" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="api/zensols.calamr.html">zensols.calamr package</a><input aria-label="Toggle navigation of zensols.calamr package" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/zensols.calamr.render.html">zensols.calamr.render namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/zensols.calamr.summary.html">zensols.calamr.summary namespace</a></li>
+</ul>
+</input></li>
+<li class="toctree-l2"><a class="reference internal" href="api/zensols.calamr.render.html">zensols.calamr.render namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/zensols.calamr.summary.html">zensols.calamr.summary namespace</a></li>
+</ul>
+</input></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<div class="main">
+<div class="content">
+<div class="article-container">
+<a class="back-to-top muted-link" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+</svg>
+<span>Back to top</span>
+</a>
+<div class="content-icon-container">
+<div class="view-this-page">
+<a class="muted-link" href="_sources/index.md.txt" title="View this page">
+<svg><use href="#svg-eye"></use></svg>
+<span class="visually-hidden">View this page</span>
+</a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+<button aria-label="Toggle Light / Dark / Auto color theme" class="theme-toggle">
+<svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+<svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+<svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+<svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+</button>
+</div>
+<label class="toc-overlay-icon toc-content-icon" for="__toc">
+<span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+</label>
+</div>
+<article id="furo-main-content" role="main">
+<section id="calamr-component-alignment-for-abstract-meaning-representation">
+<h1>CALAMR: Component ALignment for Abstract Meaning Representation<a class="headerlink" href="#calamr-component-alignment-for-abstract-meaning-representation" title="Link to this heading">¶</a></h1>
+<p><a class="reference external" href="https://pypi.python.org/pypi/zensols.calamr"><img alt="PyPI" src="https://img.shields.io/pypi/v/zensols.calamr.svg"/></a>
+<a class="reference external" href="https://www.python.org/downloads/release/python-3120"><img alt="Python 3.12" src="https://img.shields.io/badge/python-3.12-blue.svg"/></a>
+<a class="reference external" href="https://www.python.org/downloads/release/python-3110"><img alt="Python 3.11" src="https://img.shields.io/badge/python-3.11-blue.svg"/></a>
+<a class="reference external" href="https://github.com/plandes/calamr/actions"><img alt="Build Status" src="https://github.com/plandes/calamr/workflows/CI/badge.svg"/></a></p>
+<p>This repository contains code for the paper <a class="reference external" href="https://aclanthology.org/2024.lrec-main.236/">CALAMR: Component ALignment for
+Abstract Meaning Representation</a> and aligns the components of a bipartite
+source and summary AMR graph.  To reproduce the results of the paper, see the
+<a class="reference external" href="https://github.com/uic-nlp-lab/calamr">paper repository</a>.</p>
+<p>The results are useful as a semantic graph similarity score (like SMATCH) or to
+find the summarized portion (as AMR nodes, edges and subgraphs) of a document
+or the portion of the source that represents the summary.  If you use this
+library or the <a class="reference external" href="https://github.com/plandes/propbankdb">PropBank API/curated database</a>, please <a class="reference external" href="#citation">cite</a> our
+paper.</p>
+<p>Features:</p>
+<ul class="simple">
+<li><p>Align source/summary AMR graphs.</p></li>
+<li><p>Scores for extent to which AMRs are summarized or represented in their source
+text.</p></li>
+<li><p>Rendering of the alignments.</p></li>
+<li><p>Support for four AMR <a class="reference external" href="#corpora">corpora</a>.</p></li>
+<li><p>High-level, how-to and API
+<a class="reference external" href="https://plandes.github.io/calamr/index.html">documentation</a> and <a class="reference external" href="#aligning-ad-hoc-documents">quick
+start</a> examples.</p></li>
+</ul>
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc --><section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="#documentation">Documentation</a></p></li>
+<li><p><a class="reference external" href="#installing">Installing</a></p></li>
+<li><p><a class="reference external" href="#corpora">Corpora</a></p></li>
+<li><p><a class="reference external" href="#usage">Usage</a></p>
+<ul>
+<li><p><a class="reference external" href="#command-line">Command Line</a></p>
+<ul>
+<li><p><a class="reference external" href="#ad-hoc-corpora">Ad hoc Corpora</a></p></li>
+<li><p><a class="reference external" href="#aligning-corpus-documents">Aligning Corpus Documents</a></p></li>
+<li><p><a class="reference external" href="#multiple-ad-hoc-corpora">Multiple Ad hoc Corpora</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#amr-release-30-corpus-ldc2020t02">AMR Release 3.0 Corpus (LDC2020T02)</a></p></li>
+<li><p><a class="reference external" href="#api">API</a></p>
+<ul>
+<li><p><a class="reference external" href="#aligning-ad-hoc-documents">Aligning Ad hoc Documents</a></p></li>
+<li><p><a class="reference external" href="#aligning-corpora-documents">Aligning Corpora Documents</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#docker">Docker</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#configuration">Configuration</a></p>
+<ul>
+<li><p><a class="reference external" href="#text-alignments">Text Alignments</a></p></li>
+<li><p><a class="reference external" href="#multiprocessing">Multiprocessing</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#example-graphs">Example Graphs</a></p>
+<ul>
+<li><p><a class="reference external" href="#graphviz">GraphViz</a></p>
+<ul>
+<li><p><a class="reference external" href="#the-nascent-graph-with-flow-data">The Nascent Graph (with flow data)</a></p></li>
+<li><p><a class="reference external" href="#the-source-graph">The Source Graph</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#plotly">Plotly</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#attribution">Attribution</a></p></li>
+<li><p><a class="reference external" href="#citation">Citation</a></p></li>
+<li><p><a class="reference external" href="#known-issues-and-limitations">Known Issues and Limitations</a></p></li>
+<li><p><a class="reference external" href="#changelog">Changelog</a></p></li>
+<li><p><a class="reference external" href="#license">License</a></p></li>
+</ul>
+<!-- markdown-toc end --></section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">¶</a></h2>
+<p>The recommended reading order for this project:</p>
+<ol class="simple">
+<li><p>See the <a class="reference external" href="#aligning-ad-hoc-documents">Ad hoc Corpora</a> as a quick start.</p></li>
+<li><p>The <a class="reference external" href="https://plandes.github.io/calamr/doc/CalamrSlides.pdf">conference slides</a></p></li>
+<li><p>The abstract and introduction of the paper <a class="reference external" href="https://aclanthology.org/2024.lrec-main.236/">CALAMR: Component ALignment for
+Abstract Meaning Representation</a></p></li>
+<li><p><a class="reference external" href="https://plandes.github.io/calamr/doc/CalamrImplementGuide.pdf">Overview and implementation guide</a></p></li>
+<li><p><a class="reference external" href="https://plandes.github.io/calamr/index.html">Full documentation</a></p></li>
+<li><p><a class="reference external" href="https://plandes.github.io/calamr/api.html">API reference</a></p></li>
+</ol>
+</section>
+<section id="installing">
+<h2>Installing<a class="headerlink" href="#installing" title="Link to this heading">¶</a></h2>
+<p>Because the this library has many dependencies and many moving parts, it is
+best to create a new environment using <a class="reference external" href="https://docs.anaconda.com/miniconda/">conda</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://github.com/plandes/calamr/raw/refs/heads/master/environment.yml
+conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>environment.yml
+conda<span class="w"> </span>activate<span class="w"> </span>calamr
+</pre></div>
+</div>
+<p>The library can also be installed with pip from the <a class="reference external" href="https://pypi.org/project/zensols.calamr/">pypi</a> repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3<span class="w"> </span>install<span class="w"> </span>zensols.calamr
+</pre></div>
+</div>
+<p>See <a class="reference external" href="https://github.com/plandes/amr#installing-the-gsii-model">Installing the Gsii Model</a>.</p>
+</section>
+<section id="corpora">
+<h2>Corpora<a class="headerlink" href="#corpora" title="Link to this heading">¶</a></h2>
+<p>This repository contains code to support the following corpora with
+source/summary AMR for alignment:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://catalog.ldc.upenn.edu/LDC2020T02">LDC2020T02</a> (AMR Release 3.0) Proxy Corpus</p></li>
+<li><p><a class="reference external" href="https://amr.isi.edu">ISI</a> Little Prince</p></li>
+<li><p><a class="reference external" href="https://amr.isi.edu">ISI</a> Bio AMR</p></li>
+<li><p>A <a class="reference external" href="corpus/micro/source.json">micro corpus</a> (toy corpus) used in the paper examples and <a class="reference external" href="#usage">usage</a>.</p></li>
+</ul>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<p>The command-line tool and API does not depend on the repository.  However, it
+has a template configuration file that both the CLI and the API use.  The
+examples also use data in the repository.  Do the following to get started:</p>
+<ol>
+<li><p>Clone this repository and change the working directory to it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/plandes/calamr<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>calamr
+</pre></div>
+</div>
+</li>
+<li><p>Copy the resource file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>config/dot-calamrrc<span class="w"> </span>~/.calamrrc
+</pre></div>
+</div>
+</li>
+</ol>
+<section id="command-line">
+<h3>Command Line<a class="headerlink" href="#command-line" title="Link to this heading">¶</a></h3>
+<p>The steps below show how to use the command-line tool.  First set up the
+application environment:</p>
+<ol>
+<li><p>Edit the <code class="docutils literal notranslate"><span class="pre">~/.calamrrc</span></code> file to choose the corpus and visualization.  Keep
+the <code class="docutils literal notranslate"><span class="pre">calamr_corpus</span></code> set to <code class="docutils literal notranslate"><span class="pre">adhoc</span></code> for these examples.  (Note that you can
+also set the the <code class="docutils literal notranslate"><span class="pre">CALAMRRC</span></code> environment variable to a file in a different
+location if you prefer.)</p></li>
+<li><p>Create the micro corpus:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>calamr<span class="w"> </span>mkadhoc<span class="w"> </span>--corpusfile<span class="w"> </span>corpus/micro/source.json
+</pre></div>
+</div>
+</li>
+<li><p>Print the document keys of the corpus:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>calamr<span class="w"> </span>keys
+</pre></div>
+</div>
+</li>
+</ol>
+<section id="ad-hoc-corpora">
+<h4>Ad hoc Corpora<a class="headerlink" href="#ad-hoc-corpora" title="Link to this heading">¶</a></h4>
+<p>The <a class="reference external" href="corpus/micro/source.json">micro corpus</a> can be edited and rebuilt to add your own data to be
+aligned.  However, there’s an easier way to align ad hoc documents.</p>
+<ol>
+<li><p>Align a summarized document not included in any corpus.  First create the
+annotated documents as files <code class="docutils literal notranslate"><span class="pre">short-story.json</span></code>.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w"> 	   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"intro"</span><span class="p">,</span>
+<span class="w"> 	   </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Dow Jones Industrial Average and other major indexes pared losses."</span><span class="p">,</span>
+<span class="w"> 	   </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dow Jones and other major indexes reduced losses."</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w"> 	   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dow-stats"</span><span class="p">,</span>
+<span class="w"> 	   </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Dow ended 0.5% lower on Friday while the S&amp;P 500 fell 0.7%. Among the S&amp;P sectors, energy and utilities gained while technology and communication services lagged."</span><span class="p">,</span>
+<span class="w"> 	   </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dow sank 0.5%, S&amp;P 500 lost 0.7% and energy, utilities up, tech, comms came down."</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Now align the documents using the <code class="docutils literal notranslate"><span class="pre">XFM</span> <span class="pre">Bart</span> <span class="pre">Base</span></code> AMR parser, rendering
+with the maximum number of steps (<code class="docutils literal notranslate"><span class="pre">-r</span> <span class="pre">10</span></code>), and save results to <code class="docutils literal notranslate"><span class="pre">example</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>calamr<span class="w"> </span>align<span class="w"> </span>short-story.json<span class="w"> </span>--override<span class="w"> </span>amr_default.parse_model<span class="o">=</span>xfm_bart_base<span class="w"> </span>-r<span class="w"> </span><span class="m">10</span><span class="w"> </span>-o<span class="w"> </span>example<span class="w"> </span>-f<span class="w"> </span>txt
+</pre></div>
+</div>
+</li>
+</ol>
+<p>The <code class="docutils literal notranslate"><span class="pre">-r</span></code> option controls how many intermediate graphs generated to show the
+iteration of the algorithm over all the steps (see the paper for details).  It
+is possible to align ad hoc documents
+<a class="reference external" href="#aligning-ad-hoc-documents">programmatically</a> as well.</p>
+</section>
+<section id="aligning-corpus-documents">
+<h4>Aligning Corpus Documents<a class="headerlink" href="#aligning-corpus-documents" title="Link to this heading">¶</a></h4>
+<p>AMR corpora that distinguish between source and summary documents are needed so
+the API knows what data to align.  The following examples utilize preexisting
+corpora (including the last section’s micro corpus):</p>
+<ol>
+<li><p>Generate the Liu et al. graph for the micro corpus in directory <code class="docutils literal notranslate"><span class="pre">example</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>calamr<span class="w"> </span>aligncorp<span class="w"> </span>liu-example<span class="w"> </span>-f<span class="w"> </span>txt<span class="w"> </span>-o<span class="w"> </span>example
+</pre></div>
+</div>
+</li>
+<li><p>Force the <em>Little Prince</em> AMR corpus download and confirm success with the
+single document key <code class="docutils literal notranslate"><span class="pre">1943</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>calamr<span class="w"> </span>keys<span class="w"> </span>--override<span class="o">=</span>calamr_corpus.name<span class="o">=</span>little-prince
+</pre></div>
+</div>
+</li>
+<li><p>Use the default AMR parser to extract sentence text from the <em>Little Prince</em>
+AMR corpus using the <a class="reference external" href="https://github.com/SapienzaNLP/spring">SPRING</a> (Bevilacqua et al. 2021) parser:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>calamr<span class="w"> </span>penman<span class="w"> </span>-o<span class="w"> </span>lp.txt<span class="w"> </span>--limit<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
+<span class="w">	</span>--override<span class="w"> </span>amr_default.parse_model<span class="o">=</span>spring<span class="w"> </span><span class="se">\</span>
+<span class="w">	</span>~/.cache/calamr/corpus/amr-rel/amr-bank-struct-v3.0.txt
+</pre></div>
+</div>
+</li>
+<li><p>Score the parsed sentences using CALAMR, SMATCH and WLK:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>calamr<span class="w"> </span>score<span class="w"> </span>--parsed<span class="w"> </span>lp.txt<span class="w"> </span><span class="se">\</span>
+<span class="w">	</span>--methods<span class="w"> </span>calamr,smatch,wlk<span class="w"> </span><span class="se">\</span>
+<span class="w">	</span>~/.cache/calamr/corpus/amr-rel/amr-bank-struct-v3.0.txt
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="multiple-ad-hoc-corpora">
+<h4>Multiple Ad hoc Corpora<a class="headerlink" href="#multiple-ad-hoc-corpora" title="Link to this heading">¶</a></h4>
+<p>Multiple ad hoc corpora can coexist in one project.  See the <a class="reference external" href="example/multicorp">multiple corpora
+example</a>.  This examples demonstrates:</p>
+<ul class="simple">
+<li><p>Creating corpora from JSON files with source/summary pairs.</p></li>
+<li><p>Aligning the corpora.</p></li>
+<li><p>Programmatically accessing the corpus and caching flow results.</p></li>
+</ul>
+</section>
+</section>
+<section id="amr-release-3-0-corpus-ldc2020t02">
+<h3>AMR Release 3.0 Corpus (LDC2020T02)<a class="headerlink" href="#amr-release-3-0-corpus-ldc2020t02" title="Link to this heading">¶</a></h3>
+<p>If you are using the AMR 3.0 corpus, there is a preprocessing step that needs
+executing before it can be used.</p>
+<p>The Proxy Report corpus from the AMR 3.0 does not have both the <code class="docutils literal notranslate"><span class="pre">alignments</span></code>
+(text-to-graph alignments) and <code class="docutils literal notranslate"><span class="pre">snt-type</span></code> (indicates if a sentence is part of
+the source or the summary) metadata.  By default, this API expects both.  To
+merge them into one dataset do the following:</p>
+<ol>
+<li><p><a class="reference external" href="https://catalog.ldc.upenn.edu/LDC2020T02">Obtain or purchase</a> the corpus.</p></li>
+<li><p>Move the file where the software can find it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>~/.cache/calamr/download
+cp<span class="w"> </span>/path/to/amr_annotation_3.0_LDC2020T02.tgz<span class="w"> </span>~/.cache/calamr/download
+</pre></div>
+</div>
+</li>
+<li><p>Merge the alignments and sentence descriptors:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./src/bin/merge-proxy-anons.py
+</pre></div>
+</div>
+</li>
+<li><p>Confirm the merge was successful by printing the document keys and align a report:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>calamr<span class="w"> </span>keys<span class="w"> </span>--override<span class="o">=</span>calamr_corpus.name<span class="o">=</span>proxy-report
+calamr<span class="w"> </span>aligncorp<span class="w"> </span>20041010_0024<span class="w"> </span>-f<span class="w"> </span>txt<span class="w"> </span>-o<span class="w"> </span>example<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--override<span class="w"> </span>calamr_corpus.name<span class="o">=</span>proxy-report
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="api">
+<h3>API<a class="headerlink" href="#api" title="Link to this heading">¶</a></h3>
+<p>This section explains how to use the library’s API directly in Python.</p>
+<section id="aligning-ad-hoc-documents">
+<h4>Aligning Ad hoc Documents<a class="headerlink" href="#aligning-ad-hoc-documents" title="Link to this heading">¶</a></h4>
+<p>You can parse an align documents without setting up a corpus first.  To do
+this, there is an ad API that creates the same data files as when using with a
+corpus, but in a different file system space.  It optionally takes the name of
+the corpus for this name space.  If not provided one is created by hashing the
+data given to the API.</p>
+<p>An example of how to parse and align ad hoc documents follows</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/typing.html#module-typing" title="typing"><span class="nn">typing</span></a><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/typing.html#typing.List" title="typing.List"><span class="n">List</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="typing.Dict"><span class="n">Dict</span></a>
+<span class="kn">from</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="https://plandes.github.io/amr/api/zensols.amr.html#module-zensols.amr" title="zensols.amr"><span class="nn">zensols.amr</span></a><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://plandes.github.io/amr/api/zensols.amr.html#zensols.amr.container.AmrFeatureDocument" title="zensols.amr.container.AmrFeatureDocument"><span class="n">AmrFeatureDocument</span></a>
+<span class="kn">from</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#module-zensols.calamr" title="zensols.calamr"><span class="nn">zensols.calamr</span></a><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.doc.DocumentGraph" title="zensols.calamr.doc.DocumentGraph"><span class="n">DocumentGraph</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult" title="zensols.calamr.flow.FlowGraphResult"><span class="n">FlowGraphResult</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.resource.Resources" title="zensols.calamr.resource.Resources"><span class="n">Resources</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.cli.ApplicationFactory" title="zensols.calamr.cli.ApplicationFactory"><span class="n">ApplicationFactory</span></a>
+<span class="p">)</span>
+
+<span class="c1"># import and get the Resources bundle</span>
+<a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.resource.Resources" title="zensols.calamr.resource.Resources"><span class="n">resources</span></a><span class="p">:</span> <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.resource.Resources" title="zensols.calamr.resource.Resources"><span class="n">Resources</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.cli.ApplicationFactory.get_resources" title="zensols.calamr.cli.ApplicationFactory.get_resources"><span class="n">ApplicationFactory</span><span class="o">.</span><span class="n">get_resources</span></a><span class="p">()</span>
+
+<span class="c1"># create corpus data (toy two-document corpus for this example)</span>
+<span class="n">corpus</span><span class="p">:</span> <a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/typing.html#typing.List" title="typing.List"><span class="n">List</span></a><span class="p">[</span><a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="typing.Dict"><span class="n">Dict</span></a><span class="p">[</span><a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/stdtypes.html#str" title="str"><span class="nb">str</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/stdtypes.html#str" title="str"><span class="nb">str</span></a><span class="p">]]</span> <span class="o">=</span> <span class="p">[{</span>
+    <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"first"</span><span class="p">,</span>
+    <span class="s2">"body"</span><span class="p">:</span> <span class="s2">"The rulings bolster criticisms of how hastily the prosecutions were brought. The rulings were rushed."</span><span class="p">,</span>
+    <span class="s2">"summary"</span><span class="p">:</span> <span class="s2">"The rulings suggest the prosecutions were rushed."</span>
+<span class="p">}]</span>
+
+<span class="c1"># parse and access an ad hoc corpus as defined above with the list</span>
+<span class="c1"># of dictionaries above</span>
+<span class="k">with</span> <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.resource.Resources.adhoc" title="zensols.calamr.resource.Resources.adhoc"><span class="n">resources</span><span class="o">.</span><span class="n">adhoc</span></a><span class="p">(</span><span class="n">corpus</span><span class="p">)</span> <span class="k">as</span> <span class="n">r</span><span class="p">:</span>
+    <span class="c1"># list the keys in the corpus, each of which is available as a document or</span>
+    <span class="c1"># alignment as flow metrics/data</span>
+    <span class="n">keys</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="tuple"><span class="nb">tuple</span></a><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">documents</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/functions.html#print" title="print"><span class="nb">print</span></a><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
+
+    <span class="c1"># get a document, which parses the document (if they aren't already); this</span>
+    <span class="c1"># step isn't necessary if you want to go right to the alignments</span>
+    <a class="sphinx-codeautolink-a" href="https://plandes.github.io/amr/api/zensols.amr.html#zensols.amr.container.AmrFeatureDocument" title="zensols.amr.container.AmrFeatureDocument"><span class="n">doc</span></a><span class="p">:</span> <a class="sphinx-codeautolink-a" href="https://plandes.github.io/amr/api/zensols.amr.html#zensols.amr.container.AmrFeatureDocument" title="zensols.amr.container.AmrFeatureDocument"><span class="n">AmrFeatureDocument</span></a> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">documents</span><span class="p">[</span><span class="s1">'first'</span><span class="p">]</span>
+    <a class="sphinx-codeautolink-a" href="https://plandes.github.io/amr/api/zensols.amr.html#zensols.amr.container.AmrFeatureDocument.write" title="zensols.amr.container.AmrFeatureDocument.write"><span class="n">doc</span><span class="o">.</span><span class="n">write</span></a><span class="p">()</span>
+
+<span class="c1"># get and visualize the results (for documentation purposes, a new ``with`` is given)</span>
+<span class="k">with</span> <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.resource.Resources.adhoc" title="zensols.calamr.resource.Resources.adhoc"><span class="n">resources</span><span class="o">.</span><span class="n">adhoc</span></a><span class="p">(</span><span class="n">corpus</span><span class="p">)</span> <span class="k">as</span> <span class="n">r</span><span class="p">:</span>
+    <span class="c1"># get an alignment, which parses alignments (if not already)</span>
+    <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult" title="zensols.calamr.flow.FlowGraphResult"><span class="n">flow</span></a><span class="p">:</span> <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult" title="zensols.calamr.flow.FlowGraphResult"><span class="n">FlowGraphResult</span></a> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">alignments</span><span class="p">[</span><span class="s1">'first'</span><span class="p">]</span>
+    <span class="c1"># write the metrics (or flow.stats to get a simle dictionary)</span>
+    <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult.write" title="zensols.calamr.flow.FlowGraphResult.write"><span class="n">flow</span><span class="o">.</span><span class="n">write</span></a><span class="p">()</span>
+    <span class="c1"># render the results of a flow in a browser window</span>
+    <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult.render" title="zensols.calamr.flow.FlowGraphResult.render"><span class="n">flow</span><span class="o">.</span><span class="n">render</span></a><span class="p">()</span>
+    <span class="c1"># delete flow graph terminals and prunes 0-flow alignment edges, then render it,</span>
+    <span class="c1"># add the graph as a flow child, then render all graphs in directory `example`</span>
+    <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult" title="zensols.calamr.flow.FlowGraphResult"><span class="n">reduced_graph</span></a><span class="p">:</span> <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult" title="zensols.calamr.flow.FlowGraphResult"><span class="n">FlowGraphResult</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult.reduce" title="zensols.calamr.flow.FlowGraphResult.reduce"><span class="n">flow</span><span class="o">.</span><span class="n">reduce</span></a><span class="p">()</span>
+    <span class="n">flow</span><span class="o">.</span><span class="n">doc_graph</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="s1">'reduced'</span><span class="p">]</span> <span class="o">=</span> <span class="n">graph</span>
+    <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult.render" title="zensols.calamr.flow.FlowGraphResult.render"><span class="n">flow</span><span class="o">.</span><span class="n">render</span></a><span class="p">(</span>
+        <span class="n">contexts</span><span class="o">=</span><a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult.get_render_contexts" title="zensols.calamr.flow.FlowGraphResult.get_render_contexts"><span class="n">flow</span><span class="o">.</span><span class="n">get_render_contexts</span></a><span class="p">(</span>
+            <span class="n">child_names</span><span class="o">=</span><span class="n">flow</span><span class="o">.</span><span class="n">doc_graph</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>
+            <span class="n">include_nascent</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="n">directory</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s1">'example'</span><span class="p">),</span>
+        <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>output:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">summary</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">The rulings suggest the prosecutions were rushed.</span>
+<span class="nt">sections</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">no section sentences</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">The rulings bolster criticisms of how hastily the prosecutions were brought.</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">The rulings were rushed.</span>
+<span class="nt">statistics</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">agg</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">aligned_portion_hmean</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.7777777777777779</span>
+<span class="w">        </span><span class="nt">mean_flow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.7187621593475342</span>
+<span class="w">        </span><span class="nt">tot_alignable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">        </span><span class="nt">tot_aligned</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span>
+<span class="w">        </span><span class="nt">aligned_portion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.75</span>
+<span class="w">        </span><span class="nt">reentrancies</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>To display all steps of the alignment process, use the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">resources</span><span class="o">.</span><span class="n">adhoc</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span> <span class="k">as</span> <span class="n">r</span><span class="p">:</span>
+    <span class="c1"># render graphically with render level 5 (higher the more steps are rendered)</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="s1">'first'</span><span class="p">,</span> <span class="n">render_level</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="c1"># do not render graphically, instead write as files</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="s1">'first'</span><span class="p">,</span> <span class="n">render_level</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s1">'~/Desktop/amr-graphs'</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="aligning-corpora-documents">
+<h4>Aligning Corpora Documents<a class="headerlink" href="#aligning-corpora-documents" title="Link to this heading">¶</a></h4>
+<p>You can access existing corpora (the “micro” corpus, The Little Prince,
+Biomedical Corpus, or Proxy report 3.0) as discussed in <a class="reference external" href="#aligning-corpus-documents">Aligning Corpus
+Documents</a>.  The following API can be used, which
+is similar to the <a class="reference external" href="#aligning-ad-hoc-documents">Aligning Ad hoc Documents</a>
+example but use a corpus. All the same resources are available in the <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">resource.corpus</span></code> scope:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import and get the resource bundle</span>
+<span class="kn">from</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="https://plandes.github.io/amr/api/zensols.amr.html#module-zensols.amr" title="zensols.amr"><span class="nn">zensols.amr</span></a><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://plandes.github.io/amr/api/zensols.amr.html#zensols.amr.container.AmrFeatureDocument" title="zensols.amr.container.AmrFeatureDocument"><span class="n">AmrFeatureDocument</span></a>
+<span class="kn">from</span><span class="w"> </span><a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#module-zensols.calamr" title="zensols.calamr"><span class="nn">zensols.calamr</span></a><span class="w"> </span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.flow.FlowGraphResult" title="zensols.calamr.flow.FlowGraphResult"><span class="n">FlowGraphResult</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.resource.Resources" title="zensols.calamr.resource.Resources"><span class="n">Resources</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.cli.ApplicationFactory" title="zensols.calamr.cli.ApplicationFactory"><span class="n">ApplicationFactory</span></a>
+
+<span class="c1"># get the resource bundle</span>
+<a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.resource.Resources" title="zensols.calamr.resource.Resources"><span class="n">resources</span></a><span class="p">:</span> <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.resource.Resources" title="zensols.calamr.resource.Resources"><span class="n">Resources</span></a> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.cli.ApplicationFactory.get_resources" title="zensols.calamr.cli.ApplicationFactory.get_resources"><span class="n">ApplicationFactory</span><span class="o">.</span><span class="n">get_resources</span></a><span class="p">()</span>
+<span class="c1"># get the Liu et al. AMR feature document example and print it,</span>
+<span class="c1"># this accesses the corpus in the `./download` directory</span>
+<span class="k">with</span> <a class="sphinx-codeautolink-a" href="api/zensols.calamr.html#zensols.calamr.resource.Resources.corpus" title="zensols.calamr.resource.Resources.corpus"><span class="n">resources</span><span class="o">.</span><span class="n">corpus</span></a><span class="p">()</span> <span class="k">as</span> <span class="n">r</span><span class="p">:</span>
+    <span class="c1"># get a document, which parses the document (if they aren't already); this</span>
+    <span class="c1"># step isn't necessary if you want to go right to the alignments</span>
+    <a class="sphinx-codeautolink-a" href="https://plandes.github.io/amr/api/zensols.amr.html#zensols.amr.container.AmrFeatureDocument" title="zensols.amr.container.AmrFeatureDocument"><span class="n">doc</span></a><span class="p">:</span> <a class="sphinx-codeautolink-a" href="https://plandes.github.io/amr/api/zensols.amr.html#zensols.amr.container.AmrFeatureDocument" title="zensols.amr.container.AmrFeatureDocument"><span class="n">AmrFeatureDocument</span></a> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">documents</span><span class="p">[</span><span class="s1">'liu-example'</span><span class="p">]</span>
+    <a class="sphinx-codeautolink-a" href="https://plandes.github.io/amr/api/zensols.amr.html#zensols.amr.container.AmrFeatureDocument.write" title="zensols.amr.container.AmrFeatureDocument.write"><span class="n">doc</span><span class="o">.</span><span class="n">write</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<p>output:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">T</span><span class="p p-Indicator">]:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Joe's dog was chasing a cat in the garden. I saw Joe's dog, which was running in the garden. The dog was chasing a cat.</span>
+<span class="nt">sentences</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">[</span><span class="nv">N</span><span class="p p-Indicator">]:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Joe's dog was chasing a cat in the garden.</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">(c0 / chase-01~e.4</span>
+<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">:location (g0 / garden~e.9)</span>
+<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">:ARG0 (d0 / dog~e.2</span>
+<span class="w">                    </span><span class="l l-Scalar l-Scalar-Plain">:poss (p0 / person</span>
+<span class="w">                          </span><span class="l l-Scalar l-Scalar-Plain">:name (n0 / name</span>
+<span class="w">                                </span><span class="l l-Scalar l-Scalar-Plain">:op1 "Joe"~e.0)))</span>
+<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">:ARG1 (c1 / cat~e.6))</span>
+<span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="nt">amr</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">summary</span><span class="p">:</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">Joe's dog was chasing a cat in the garden.</span>
+<span class="w">    </span><span class="nt">sections</span><span class="p">:</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">no section sentences</span>
+<span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">I saw Joe's dog, which was running in the garden.</span>
+<span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">The dog was chasing a cat.</span>
+</pre></div>
+</div>
+<p>See <a class="reference external" href="#text-alignments">configuration</a> regarding text alignments.</p>
+</section>
+</section>
+<section id="docker">
+<h3>Docker<a class="headerlink" href="#docker" title="Link to this heading">¶</a></h3>
+<p>A stand-alone docker image is also available (see <a class="reference external" href="./docker">CALAMR Docker
+image</a>).  This <a class="reference external" href="https://hub.docker.com/r/plandes/calamr">docker image</a> provides stand-alone container with all
+models, configuration and the ad hoc micro corpus installed.</p>
+</section>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">¶</a></h2>
+<p>To modify the configuration, create an <code class="docutils literal notranslate"><span class="pre">ini</span></code> file in <code class="docutils literal notranslate"><span class="pre">~/.calamrrc</span></code>.</p>
+<section id="text-alignments">
+<h3>Text Alignments<a class="headerlink" href="#text-alignments" title="Link to this heading">¶</a></h3>
+<p>The program was built to deal with data using the corpora API.  However, ad hoc
+documents can be aligned but they document graphs will not have the text
+alignments.  To enable that, in your <code class="docutils literal notranslate"><span class="pre">~/.calamrrc</span></code> add the following:’</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># include alignments in ad hoc parsed documents</span>
+<span class="k">[amr_anon_doc_factory]</span>
+<span class="na">remove_alignments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">False</span>
+</pre></div>
+</div>
+</section>
+<section id="multiprocessing">
+<h3>Multiprocessing<a class="headerlink" href="#multiprocessing" title="Link to this heading">¶</a></h3>
+<p>By default, corpus documents are lazy-aligned from the
+<a class="reference external" href="#aligning-corpora-documents"><code class="docutils literal notranslate"><span class="pre">Resources.get_corpus_document</span></code></a> method.
+However, the entire corpus can be aligned across multiple processes.  In this
+case, the first access to the first document will start the processing, and
+will not return until the entire dataset is aligned.  This is enabled by
+setting the following configuration:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># use 4 processes to align the corpus</span>
+<span class="k">[calamr_default]</span>
+<span class="na">flow_graph_result_caching</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">preemptive</span>
+<span class="na">preemptive_workers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">4</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="example-graphs">
+<h2>Example Graphs<a class="headerlink" href="#example-graphs" title="Link to this heading">¶</a></h2>
+<p>The Liu et al. example graphs were created from the last step of the
+<a class="reference external" href="#api">API</a> examples, which is equivalent the first step of the <a class="reference external" href="#aligning-corpus-documents">command line
+example</a>.</p>
+<section id="graphviz">
+<h3>GraphViz<a class="headerlink" href="#graphviz" title="Link to this heading">¶</a></h3>
+<p>To create these graphs, set your <code class="docutils literal notranslate"><span class="pre">~/.calamrrc</span></code> configuration to:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[calamr_default]</span>
+<span class="na">renderer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">graphviz</span>
+</pre></div>
+</div>
+<section id="the-nascent-graph-with-flow-data">
+<h4>The Nascent Graph (with flow data)<a class="headerlink" href="#the-nascent-graph-with-flow-data" title="Link to this heading">¶</a></h4>
+<p align="center">
+<img alt="source graph" src="./doc/graphs/liu-nascent-graphviz.svg" style="outline: 5px solid #D3D3D3;" width="80%"/>
+</p></section>
+<section id="the-source-graph">
+<h4>The Source Graph<a class="headerlink" href="#the-source-graph" title="Link to this heading">¶</a></h4>
+<p align="center">
+<img alt="source graph" src="./doc/graphs/liu-source-graphviz.svg" style="outline: 5px solid #D3D3D3;" width="90%"/>
+</p></section>
+</section>
+<section id="plotly">
+<h3>Plotly<a class="headerlink" href="#plotly" title="Link to this heading">¶</a></h3>
+<p>To create these graphs, set your <code class="docutils literal notranslate"><span class="pre">~/.calamrrc</span></code> configuration to:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[calamr_default]</span>
+<span class="na">renderer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">plotly</span>
+</pre></div>
+</div>
+<p>See the <a class="reference external" href="https://plandes.github.io/calamr/doc/graphs/liu-source-plotly.html">interactive version</a>.
+<a class="reference external" href="https://plandes.github.io/calamr/doc/graphs/liu-source-plotly.html"><img src="./doc/graphs/liu-source-plotly-screenshot.png"/></a></p>
+</section>
+</section>
+<section id="attribution">
+<h2>Attribution<a class="headerlink" href="#attribution" title="Link to this heading">¶</a></h2>
+<p>This project, or reference model code, uses:</p>
+<ul class="simple">
+<li><p>Python 3.11</p></li>
+<li><p><a class="reference external" href="https://github.com/bjascob/amrlib">amrlib</a> for AMR parsing.</p></li>
+<li><p><a class="reference external" href="https://github.com/bjascob/amr_coref">amr_coref</a> for AMR co-reference</p></li>
+<li><p><a class="reference external" href="https://github.com/plandes/amr">zensols.amr</a> for AMR features and summarization data structures.</p></li>
+<li><p><a class="reference external" href="https://www.sbert.net">Sentence-BERT</a> embeddings</p></li>
+<li><p><a class="reference external" href="https://github.com/plandes/propbankdb">zensols.propbankdb</a> and <a class="reference external" href="https://github.com/plandes/deepnlp">zensols.deepnlp</a> for PropBank embeddings</p></li>
+<li><p><a class="reference external" href="https://github.com/plandes/nlparse">zensols.nlparse</a> for natural language features and <a class="reference external" href="https://plandes.github.io/nlparse/api/zensols.nlp.html#zensols-nlp-score">NLP scoring</a></p></li>
+<li><p><a class="reference external" href="https://github.com/snowblink14/smatch">Smatch</a> (Cai and Knight. 2013) and <a class="reference external" href="https://github.com/flipz357/weisfeiler-leman-amr-metrics">WLK</a> (Opitz et. al. 2021) for scoring.</p></li>
+</ul>
+</section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Link to this heading">¶</a></h2>
+<p>If you use this project in your research please use the following BibTeX entry:</p>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">landes-di-eugenio-2024-calamr-component</span><span class="p">,</span>
+<span class="w">    </span><span class="na">title</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">"{CALAMR}: Component {AL}ignment for {A}bstract {M}eaning {R}epresentation"</span><span class="p">,</span>
+<span class="w">    </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">"Landes, Paul  and</span>
+<span class="s">      Di Eugenio, Barbara"</span><span class="p">,</span>
+<span class="w">    </span><span class="na">editor</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">"Calzolari, Nicoletta  and</span>
+<span class="s">      Kan, Min-Yen  and</span>
+<span class="s">      Hoste, Veronique  and</span>
+<span class="s">      Lenci, Alessandro  and</span>
+<span class="s">      Sakti, Sakriani  and</span>
+<span class="s">      Xue, Nianwen"</span><span class="p">,</span>
+<span class="w">    </span><span class="na">booktitle</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">"Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024)"</span><span class="p">,</span>
+<span class="w">    </span><span class="na">month</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nv">may</span><span class="p">,</span>
+<span class="w">    </span><span class="na">year</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">"2024"</span><span class="p">,</span>
+<span class="w">    </span><span class="na">address</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">"Torino, Italy"</span><span class="p">,</span>
+<span class="w">    </span><span class="na">publisher</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">"ELRA and ICCL"</span><span class="p">,</span>
+<span class="w">    </span><span class="na">url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">"https://aclanthology.org/2024.lrec-main.236"</span><span class="p">,</span>
+<span class="w">    </span><span class="na">pages</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">"2622--2637"</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="known-issues-and-limitations">
+<h2>Known Issues and Limitations<a class="headerlink" href="#known-issues-and-limitations" title="Link to this heading">¶</a></h2>
+<p>Processing AMRs as a corpus is currently not supported under multiprocessing
+(<code class="docutils literal notranslate"><span class="pre">calamr_default:preemptive_workers</span></code> &gt; 1).</p>
+</section>
+<section id="changelog">
+<h2>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">¶</a></h2>
+<p>An extensive changelog is available <a class="reference external" href="https://docs.python.org/3/whatsnew/changelog.html#changelog" title="(in Python v3.14)"><a class="reference external" href="CHANGELOG">here</a></a>.</p>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading">¶</a></h2>
+<p><a class="reference external" href="LICENSE">MIT License</a></p>
+<p>Copyright (c) 2023 - 2025 Paul Landes</p>
+<!-- links --></section>
+</section>
+</article>
+</div>
+<footer>
+<div class="related-pages">
+<a class="next-page" href="api.html">
+<div class="page-info">
+<div class="context">
+<span>Next</span>
+</div>
+<div class="title">API Reference</div>
+</div>
+<svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+</a>
+<a class="prev-page" href="top.html">
+<svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+<div class="page-info">
+<div class="context">
+<span>Previous</span>
+</div>
+<div class="title">Home</div>
+</div>
+</a>
+</div>
+<div class="bottom-of-page">
+<div class="left-details">
+<div class="copyright">
+                Copyright © 2025 Paul Landes
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+</div>
+<div class="right-details">
+</div>
+</div>
+</footer>
+</div>
+<aside class="toc-drawer">
+<div class="toc-sticky toc-scroll">
+<div class="toc-title-container">
+<span class="toc-title">
+            On this page
+          </span>
+</div>
+<div class="toc-tree-container">
+<div class="toc-tree">
+<ul>
+<li><a class="reference internal" href="#">CALAMR: Component ALignment for Abstract Meaning Representation</a><ul>
+<li><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
+<li><a class="reference internal" href="#installing">Installing</a></li>
+<li><a class="reference internal" href="#corpora">Corpora</a></li>
+<li><a class="reference internal" href="#usage">Usage</a><ul>
+<li><a class="reference internal" href="#command-line">Command Line</a><ul>
+<li><a class="reference internal" href="#ad-hoc-corpora">Ad hoc Corpora</a></li>
+<li><a class="reference internal" href="#aligning-corpus-documents">Aligning Corpus Documents</a></li>
+<li><a class="reference internal" href="#multiple-ad-hoc-corpora">Multiple Ad hoc Corpora</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#amr-release-3-0-corpus-ldc2020t02">AMR Release 3.0 Corpus (LDC2020T02)</a></li>
+<li><a class="reference internal" href="#api">API</a><ul>
+<li><a class="reference internal" href="#aligning-ad-hoc-documents">Aligning Ad hoc Documents</a></li>
+<li><a class="reference internal" href="#aligning-corpora-documents">Aligning Corpora Documents</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#docker">Docker</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#text-alignments">Text Alignments</a></li>
+<li><a class="reference internal" href="#multiprocessing">Multiprocessing</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example-graphs">Example Graphs</a><ul>
+<li><a class="reference internal" href="#graphviz">GraphViz</a><ul>
+<li><a class="reference internal" href="#the-nascent-graph-with-flow-data">The Nascent Graph (with flow data)</a></li>
+<li><a class="reference internal" href="#the-source-graph">The Source Graph</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#plotly">Plotly</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#attribution">Attribution</a></li>
+<li><a class="reference internal" href="#citation">Citation</a></li>
+<li><a class="reference internal" href="#known-issues-and-limitations">Known Issues and Limitations</a></li>
+<li><a class="reference internal" href="#changelog">Changelog</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</div><script src="_static/documentation_options.js?v=fd7cadf9"></script>
+<script src="_static/doctools.js?v=9a2dae69"></script>
+<script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+<script src="_static/scripts/furo.js?v=46bd48cc"></script>
+<script src="_static/clipboard.min.js?v=a7894cd8"></script>
+<script src="_static/copybutton.js?v=f281be69"></script>
+</body>
+</html>
