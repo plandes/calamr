@@ -14,7 +14,7 @@ from zensols.config import Dictable, Serializer, ConfigFactory, Configurable
 from zensols.persist import (
     PersistedWork, PrimeableStash, DelegateStash, ReadOnlyStash, Stash
 )
-from zensols.amr import AmrError, AmrDocument, AmrFeatureDocument
+from zensols.amr import AmrError, AmrFailure, AmrDocument, AmrFeatureDocument
 from zensols.amr.annotate import AnnotatedAmrFeatureDocumentFactory
 from zensols.amr import AmrSentence
 
@@ -166,6 +166,10 @@ class AdhocAmrDocumentPartStash(ReadOnlyStash):
 
     """
     def load(self, did: str) -> AmrDocument:
+        def to_err_doc(did: str, fail: AmrFailure):
+            did: int = doc.get(id_field, did)
+            return AmrDocument.from_failure(fail, str(did))
+
         id_field: str = AdhocAnnotatedAmrDocumentStash.ID_FIELD
         doc: Dict[str, str] = self.corpus.get(did)
         if doc is not None:
@@ -173,10 +177,15 @@ class AdhocAmrDocumentPartStash(ReadOnlyStash):
                 fdoc: AmrFeatureDocument = self.anon_doc_factory(doc)
                 return fdoc.amr
             except AmrError as e:
-                did: int = doc.get(id_field, did)
-                sent = AmrSentence(e.to_failure())
-                sent.set_metadata(id_field, f"{did}.0")
-                return AmrDocument((sent,))
+                return to_err_doc(did, e.to_failure())
+            except Exception as e:
+                msg: str = f"Could not process adhoc document: '{did}': {e}"
+                logger.error(msg, e)
+                fail = AmrFailure(
+                    exception=e,
+                    thrower=self,
+                    message=msg)
+                return to_err_doc(did, fail)
 
     def keys(self) -> Iterable[str]:
         return self.corpus.keys()

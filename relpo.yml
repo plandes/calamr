@@ -44,7 +44,7 @@ project:
       # framework
       - 'zensols.util~=1.15.14'
       - 'zensols.propbankdb~=0.2.1'
-      - 'zensols.amr~=0.2.9'
+      - 'zensols.amr~=0.2.10'
       # imported from propbank, but need PyTorch multiproc update
       - 'zensols.deeplearn~=1.14.7'
       # tools

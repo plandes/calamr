@@ -29,8 +29,8 @@ class _EmbeddingPopulator(object):
 
     def _populate_embeddings(self, doc: AmrFeatureDocument, doc_id: str = None):
         """Adds the transformer sentinel embeddings to the document."""
-        doc_id = doc.amr.get_doc_id() if doc_id is None else doc_id
-        if self.word_piece_doc_factory is not None:
+        if self.word_piece_doc_factory is not None and not doc.is_failure:
+            doc_id = doc.amr.get_doc_id() if doc_id is None else doc_id
             try:
                 with time(f'populated embedding of document {doc_id}'):
                     wpdoc: WordPieceFeatureDocument = \
