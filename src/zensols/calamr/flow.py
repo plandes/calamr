@@ -180,9 +180,9 @@ class FlowGraphComponentResult(Dictable):
 
           * ``t_attr: target node of ``s_attr``
 
-          * ``s_id``: source node :mod:`igraph` ID
+          * ``s_id``: source graph (attribute) node ID
 
-          * ``t_id``: target node :mod:`igraph` ID
+          * ``t_id``: target graph (attribute) node ID
 
           * ``edge_type``: whether the edge is an AMR ``role`` or ``alignment``
 
