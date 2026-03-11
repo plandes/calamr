@@ -218,9 +218,10 @@ class TestAnnotatedAmr(TestBase):
         df: pd.DataFrame = res.df
         should_ids: Set[int] = self._get_ids(res.doc_graph)
         should_mem_ids: Set[int] = self._get_mem_ids(res.doc_graph)
+        should_stats: dict[str, Any] = res.stats
         self.assertTrue(len(should_ids) > 0)
         self.assertTrue(len(should_mem_ids) > 0)
-        res = self._copy_by_pickle(res)
+        res: FlowGraphResult = self._copy_by_pickle(res)
         self._cmp_align_stats(res.stats)
         df_copy: pd.DataFrame = res.df
         dfd: pd.DataFrame = df_copy.compare(df)
@@ -228,6 +229,7 @@ class TestAnnotatedAmr(TestBase):
         self.assertEqual(should_ids, self._get_ids(res.doc_graph))
         self.assertNotEqual(should_mem_ids, self._get_mem_ids(res.doc_graph))
         self.assertEqual(len(should_mem_ids), len(self._get_mem_ids(res.doc_graph)))
+        self.assertEqual(should_stats, res.stats)
 
     def test_flow_pickle_double(self):
         doc_graph_aligner: DocumentGraphAligner = self._get_doc_graph_aligner()
